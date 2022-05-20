@@ -1,0 +1,107 @@
+import React from 'react';
+
+
+const Statistics=()=> {
+  return (
+    <div>
+      <div className="dash-content-side">
+                <div className="container-fluid">
+                    <div className="row justify-content-end">
+                        <div className="col-md-6 text-end">
+                            <div className="sticky-bell">
+                                <span className="bell-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M19 11V8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8V11C5 14.3 2 15.1 2 17C2 18.7 5.9 20 12 20C18.1 20 22 18.7 22 17C22 15.1 19 14.3 19 11Z" stroke="#65006B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 22C10.989 22 10.039 21.966 9.14502 21.9C9.53619 23.1478 10.6924 23.997 12 23.997C13.3077 23.997 14.4639 23.1478 14.855 21.9C13.961 21.966 13.011 22 12 22Z" fill="#65006B"/>
+                                </svg>
+                                <span className="notification-count">2</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="setting-tab">
+                            <nav>
+                                <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button className="nav-link active" id="nav-subscribers-tab" data-bs-toggle="tab" data-bs-target="#nav-subscribers" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Subscribers</button>
+                                    <button className="nav-link" id="nav-Omzet-tab" data-bs-toggle="tab" data-bs-target="#nav-Omzet" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Omzet</button>
+                                    <button style={{color: "#959595"}} className="nav-link" id="nav-videoprestaties-tab" data-bs-toggle="tab" data-bs-target="#nav-videoprestaties" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" disabled>Videoprestaties <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 7.25H11.9375V3.75C11.9375 2.64531 11.0422 1.75 9.9375 1.75H6.0625C4.95781 1.75 4.0625 2.64531 4.0625 3.75V7.25H3C2.72344 7.25 2.5 7.47344 2.5 7.75V13.75C2.5 14.0266 2.72344 14.25 3 14.25H13C13.2766 14.25 13.5 14.0266 13.5 13.75V7.75C13.5 7.47344 13.2766 7.25 13 7.25ZM5.1875 3.75C5.1875 3.26719 5.57969 2.875 6.0625 2.875H9.9375C10.4203 2.875 10.8125 3.26719 10.8125 3.75V7.25H5.1875V3.75ZM12.375 13.125H3.625V8.375H12.375V13.125ZM7.5625 10.9531V11.7812C7.5625 11.85 7.61875 11.9062 7.6875 11.9062H8.3125C8.38125 11.9062 8.4375 11.85 8.4375 11.7812V10.9531C8.56648 10.8605 8.66275 10.7294 8.71245 10.5786C8.76216 10.4278 8.76273 10.2651 8.71409 10.114C8.66545 9.96281 8.57011 9.831 8.44179 9.73749C8.31346 9.64398 8.15878 9.5936 8 9.5936C7.84122 9.5936 7.68654 9.64398 7.55821 9.73749C7.42989 9.831 7.33455 9.96281 7.28591 10.114C7.23727 10.2651 7.23784 10.4278 7.28755 10.5786C7.33725 10.7294 7.43352 10.8605 7.5625 10.9531Z" fill="#959595"/>
+                                    </svg>
+                                    </button>
+                                </div>
+                                </nav>
+                                <div className="tab-content" id="nav-tabContent">
+                                <div className="tab-pane fade show active" id="nav-subscribers" role="tabpanel" aria-labelledby="nav-subscribers-tab">
+                                  <div className='row'>
+                                    <div className='col-md-5'>
+                                          <div className='setting-tab-content'>
+                                          <h6 className='stats-page-title'>Totaal aantal subscribers</h6>
+                                            <div className='stats-count'>                                              
+                                              <div className='total-subs d-flex justify-content-between align-items-center'>
+                                                <div className='ts-left d-flex justify-content-start align-items-top'>
+                                                  <div className='ts-icon'><span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13.625 6.15625C13.6938 6.15625 13.75 6.1 13.75 6.03125V5.09375C13.75 5.025 13.6938 4.96875 13.625 4.96875H11.0625V2.375C11.0625 2.30625 11.0063 2.25 10.9375 2.25H9.9375C9.86875 2.25 9.8125 2.30625 9.8125 2.375V4.96875H6.25V2.375C6.25 2.30625 6.19375 2.25 6.125 2.25H5.125C5.05625 2.25 5 2.30625 5 2.375V4.96875H2.375C2.30625 4.96875 2.25 5.025 2.25 5.09375V6.03125C2.25 6.1 2.30625 6.15625 2.375 6.15625H5V9.84375H2.375C2.30625 9.84375 2.25 9.9 2.25 9.96875V10.9062C2.25 10.975 2.30625 11.0312 2.375 11.0312H5V13.625C5 13.6938 5.05625 13.75 5.125 13.75H6.125C6.19375 13.75 6.25 13.6938 6.25 13.625V11.0312H9.8125V13.625C9.8125 13.6938 9.86875 13.75 9.9375 13.75H10.9375C11.0063 13.75 11.0625 13.6938 11.0625 13.625V11.0312H13.625C13.6938 11.0312 13.75 10.975 13.75 10.9062V9.96875C13.75 9.9 13.6938 9.84375 13.625 9.84375H11.0625V6.15625H13.625ZM9.8125 9.84375H6.25V6.15625H9.8125V9.84375Z" fill="white"/>
+                                                    </svg>
+                                                    </span>
+                                                  </div>
+                                                  <div className='ts-text'>
+                                                    <p>Aantal subscribers</p>
+                                                    <h4>17.543</h4>
+                                                  </div>
+                                                </div>
+                                                <div className='ts-right d-flex justify-content-start align-items-top'>
+                                                  <div className='ts-icon'><span className='purple-icon'><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                  <g clip-path="url(#clip0_114_981)">
+                                                  <path d="M15.3733 10.2222L13.56 8L15.3378 5.82222C15.435 5.70308 15.4963 5.5587 15.5144 5.40599C15.5325 5.25328 15.5067 5.09857 15.44 4.96C15.3724 4.80468 15.2604 4.67284 15.1181 4.58109C14.9757 4.48934 14.8093 4.4418 14.64 4.44444H0.862222C0.750741 4.44268 0.640004 4.46289 0.536336 4.50393C0.432668 4.54497 0.338099 4.60603 0.258032 4.68362C0.177964 4.76121 0.113966 4.85381 0.0696925 4.95614C0.025419 5.05847 0.00173727 5.16852 0 5.28L0 10.7244C0.00467144 10.9488 0.0980006 11.1622 0.259578 11.318C0.421155 11.4737 0.637831 11.5591 0.862222 11.5556H14.6889C14.8526 11.5583 15.0136 11.5141 15.153 11.4283C15.2924 11.3424 15.4043 11.2185 15.4756 11.0711C15.5395 10.9342 15.5638 10.7821 15.5458 10.6321C15.5277 10.482 15.468 10.34 15.3733 10.2222ZM0.888889 10.6667V5.33333H14.5689L12.4178 7.96889L14.6 10.6667H0.888889Z" fill="white"/>
+                                                  <path d="M4.17334 8.60001L2.72445 6.66667H2.22223V9.41334H2.72445V7.48445L4.17334 9.41334H4.67112V6.66667H4.17334V8.60001Z" fill="white"/>
+                                                  <path d="M5.41333 9.41334H7.48444V8.96001H5.91555V8.24445H7.33333V7.78667H5.91555V7.12445H7.48444V6.66667H5.41333V9.41334Z" fill="white"/>
+                                                  <path d="M10.8978 8.63556L10.2489 6.66667H9.70667L9.05333 8.63556L8.46666 6.66667H7.92L8.79111 9.41334H9.28444L9.97778 7.37334L10.6667 9.41334H11.1689L12.0356 6.66667H11.4889L10.8978 8.63556Z" fill="white"/>
+                                                  </g>
+                                                  <defs>
+                                                  <clipPath id="clip0_114_981">
+                                                  <rect width="16" height="16" fill="white"/>
+                                                  </clipPath>
+                                                  </defs>
+                                                  </svg></span>
+                                                  </div>
+                                                  <div className='ts-text'>
+                                                    <p>Waarvan nieuw</p>
+                                                    <h4>1.252</h4>
+                                                  </div>
+                                                  <span className='count-fall'><svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M2.71716 6.28284C2.87337 6.43905 3.12663 6.43905 3.28284 6.28284L5.82843 3.73726C5.98464 3.58105 5.98464 3.32778 5.82843 3.17157C5.67222 3.01536 5.41895 3.01536 5.26274 3.17157L3 5.43431L0.737258 3.17157C0.581048 3.01536 0.327783 3.01536 0.171573 3.17157C0.0153632 3.32778 0.0153632 3.58105 0.171573 3.73726L2.71716 6.28284ZM2.6 0L2.6 6H3.4L3.4 0L2.6 0Z" fill="#FF6A6A"/>
+                                                  </svg> 14.5%
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div className='col-md-5'>
+                                          <div className='setting-tab-content'>
+                                            <h6 className='stats-page-title'>Aantal nieuwe subscribers (tijdlijn) </h6>
+                                          </div>
+                                    </div>
+                                    <div className='col-md-10 mt-4'>
+                                        <div className='setting-tab-content'>
+                                          <h6 className='stats-page-title'>Nieuwste subscribers</h6>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="tab-pane fade" id="nav-Omzet" role="tabpanel" aria-labelledby="nav-Omzet-tab">...
+                                </div>
+                                <div className="tab-pane fade" id="nav-videoprestaties" role="tabpanel" aria-labelledby="nav-videoprestaties-tab">...
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+  )
+}
+export default Statistics

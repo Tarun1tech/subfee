@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&display=swap');
+a{
+    color: inherit;
+    text-underline-position: none;
+    text-decoration: none;
+    &:hover{
+        color: inherit;
+    }
+}
+*{
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+$white: #fff;
+$dark: #000;
+$pink: #C205A3;
+$purple: #320035;
+$My-gradient: linear-gradient(87.39deg, #BF00A5 0%, #FF6A6A 100%);
+
+.small_heading{
+    font-size: 30px;
+    font-weight: 700;
+    color: $dark;
+}
+.text{
+    font-size: 13px;
+    font-weight: 400;
+    color: $dark;
+}
+
+
+.login_back{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: $My-gradient;
+    text-align: center;
+    .light_logo{
+        width: 272px;
+        margin-bottom: 30px;
+    }
+    .login_card{
+        border-radius: 10px;
+        background: $white;
+        padding: 72px;
+        width: 480px;
+        text-align: center;
+        form{
+            width: 100%;
+            text-align: left;
+            label{
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 15px;
+                letter-spacing: 0em;                
+                margin-top: 18px;
+                margin-bottom: 8px;
+            }
+            input[type="text"]{
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #BBBBBB;
+                border-radius: 10px;
+            }
+            input[type="password"]{
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #BBBBBB;
+                border-radius: 10px;
+            }
+            .submit{
+                background: $My-gradient;
+                color: $white;
+                margin-top: 30px;
+                border: none;
+                padding: 14px;
+                width: 100%;
+                border-radius: 10px;
+            }
+            .end-text {
+                color: $pink;
+                font-size: 13px;
+                font-weight: 600;
+                margin-bottom: 0;
+                margin-top: 12px;
+            }
+            /* The mark-container */
+            .mark-container {
+                font-family: 'Raleway', sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                display: block;
+                position: relative;
+                padding-left: 35px;
+                margin-bottom: 12px;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                padding-top: 5px;
+            }
+            /* Hide the browser's default checkbox */
+            .mark-container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                border-radius: 6px;
+                border: 1px solid #bbb;
+            }
+            .mark-container:hover input ~ .checkmark {
+                background-color: #ccc;
+            }
+            .mark-container input:checked ~ .checkmark {
+                background-color: $pink;
+            }
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+            .mark-container input:checked ~ .checkmark:after {
+                display: block;
+            }
+            .mark-container .checkmark:after {
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+/* dashboard sidebar css */
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16%;
+    padding: 42px;
+    background-color: $purple;
+    left: 0;
+    height: 100vh;
+    float: left;
+    .dash-logo{
+        width: auto;
+        margin-bottom: 18px;
+    }
+    .sidenav{
+        padding-bottom: 30px;
+        border-bottom: 1px solid #65006B;
+        ul{
+            padding-left: 0;
+            .active{
+                background-image: $My-gradient;
+            }
+            li{
+                list-style-type: none;
+                padding: 12px 20px;
+                width: 100%;
+                color: $white;
+                font-size: 16px;
+                font-weight: 500;
+                border-radius: 10px;
+                margin: 14px 0;
+                cursor: pointer;
+                svg{
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+    .user-detail{
+        color: $white;
+        padding-top: 30px;
+        img{
+            width: 42px;
+            border-radius: 50%;
+            margin-right: 14px;
+        }
+        p{
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        span{
+            font-size: 13px;
+            font-weight: 300;
+        }
+    }
+}
+.dash-content-side{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 84%;
+    right: 0;
+    min-height: 100vh;
+    background-color: #F4F4F4;
+    float: left;
+    padding: 60px 60px 60px 120px;
+    .sticky-bell {
+        position: fixed;
+        top: 8%;
+        right: 6%;
+    }
+    .bell-icon{
+        cursor: pointer;
+        padding: 14px 12px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.3);   
+        position: relative;
+        .notification-count{
+            position: absolute;
+            top: -3px;
+            right: -6px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #FE6A6A;
+            color: $white;
+            text-align: center;
+        }
+    }
+}
+.setting-tab {
+    .nav-link{
+        color: $dark;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 3px transparent;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .nav-tabs {
+        border-bottom: none;
+    }
+    .nav-tabs .nav-link.active {
+        color: $dark;
+        background-color: #fff;
+        border-bottom: 3px solid $purple;
+        background-color: transparent;
+    }
+    .nav-tabs .nav-link:hover {
+        isolation: unset;
+    }
+    .setting-tab-content{
+        margin-top: 40px;
+        padding: 70px 40px;
+        border-radius: 20px;
+        background-color: $white;
+        form{
+            h6{
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 14px;
+            }
+            label{
+                font-size: 17px;
+                font-weight: 500;
+                margin-bottom: 10px;
+                margin-top: 20px;
+            }
+            input{
+                width: 100%;
+                padding: 12px;
+                border: 1px solid $pink;
+                border-radius: 10px;
+            }
+            span{
+                font-size: 17px;
+                font-weight: 500;
+            }
+            p{
+                font-size: 12px;
+                font-weight: 300;
+                color: #989898;
+            }
+            textarea{
+                padding: 12px;
+                border: 1px solid $pink;
+                border-radius: 10px;
+                width: 100%;
+                min-height: 290px;
+            }
+            .form-submit{
+                background: $My-gradient;
+                color: $white;
+                margin-top: 30px;
+                border: none;
+                padding: 14px;
+                border-radius: 10px;
+                width: unset;
+            }
+            input[type="color"] {
+                height: 56px;
+            }
+            button{
+                padding: 14px 30px;
+                background-color: #C20000;
+                border-radius: 10px;
+                font-size: 16px;
+                font-weight: 500;
+                border: none;
+                color: $white;
+            }
+        }
+    }
+}
+
+.stats-page-title{
+    font-size: 18px;
+    font-weight: 500;
+    color: $dark;
+    margin-bottom: 30px;
+    &::before{
+        content: '';
+        margin-right: 10px;
+        border-radius: 2px;
+        border: 5px solid $purple;
+    }
+}
+
+.stats-count{
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #eee;
+    .total-subs{
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 10px;
+        .ts-left{
+            padding: 18px 20px;
+            border-radius: 10px;
+            background-color: $white; 
+            width: 48%;           
+        }
+        .ts-right{
+            width: 48%;
+            padding: 18px 20px;
+            position: relative;
+            .count-fall{
+                color: #FE6A6A;
+                background-color: #FFDEDE;
+                font-size: 8px;
+                border-radius: 20px;
+                padding: 4px 10px;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+}
+.ts-icon{
+    margin-top: 7px;
+    span{
+        padding: 6px 7px;
+        border-radius: 50%;
+        background-color: #FF6A6A;
+        margin-right: 12px;
+    }
+}
+.ts-text{
+    p{
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #787878;
+    }
+    h4{
+        margin-bottom: 0;
+        font-size: 30px;
+        font-weight: 500;
+    }
+}
+.purple-icon{
+    background-color: $purple !important;
+}
