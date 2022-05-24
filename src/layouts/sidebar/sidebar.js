@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DashLogo from "../../assets/images/dash-logo.png";
 import UserImg from "../../assets/images/user.png";
+import ContentPage from "../../pages/dashboard/content";
 import DashContentSide from "../../pages/dashboard/settings";
 import Statistics from "../../pages/dashboard/statistics";
+import Subscribers from "../../pages/dashboard/subscribers";
 
 const DashSidebar = () => {
     return(
@@ -45,8 +47,10 @@ const DashSidebar = () => {
                 </div>
             </div>
 
-            {/* <DashContentSide/> */}
-            <Statistics/>
+            <DashContentSide/>
+            {/* <Statistics/> */}
+            {/* <ContentPage /> */}
+            {/* <Subscribers/> */}
         </div>
     )
 }

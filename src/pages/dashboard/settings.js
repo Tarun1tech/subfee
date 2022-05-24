@@ -117,7 +117,7 @@ const DashContentSide = () => {
                                                 <h6>Kanaalinstellingen</h6>
                                                 <label>Kanaal verwijderen</label>
                                                 <p>Je SubFee kanaal verwijderen. <b>Let op: deze actie kan niet teruggedraaid worden!</b></p>
-                                                <button>Kanaal verwijderen</button>
+                                                <button className="maroon-btn">Kanaal verwijderen</button>
                                             </form>
                                         </div>
                                     </div>
