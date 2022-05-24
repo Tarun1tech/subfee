@@ -1,14 +1,73 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Login from "../src/pages/login";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Auth from "./Auth";
+import Sidebar from "./layouts/sidebar/sidebar";
+import ContentPage from "./pages/dashboard/content";
+import DashContentSide from "./pages/dashboard/settings";
+import Statistics from "./pages/dashboard/statistics";
+import Subscribers from "./pages/dashboard/subscribers";
 
+import Login from "./pages/login";
 
+const Router = (data) => {
+  return (
+    <Switch>
+      <PublicRoute exact path="/login" component={Login} />
+      <PublicRoute exact path="/" component={Login} />
+      <PrivateRoute exact path="/subscribers" component={Subscribers} />
+      <PrivateRoute exact path="/dashboard" component={Statistics} />
+      <PrivateRoute exact path="/settings" component={DashContentSide} />
+      <PrivateRoute exact path="/content" component={ContentPage} />
+      <PrivateRoute exact path="/statistics" component={Statistics} />
+    </Switch>
+  );
+};
 
-function WebRouter() {
-    return (
-        <div>
-        </div>
-    )
-}
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        Auth.checkAuth() ? (
+          <>
+            <div className="min-h-screen flex">
+              <Sidebar />
+              <div>
+                <div className="main">
+                  <Component {...props} />
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
-export default WebRouter;
+const PublicRoute = ({ componeusernt: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      Auth.checkAuth() === false ? (
+        <>
+          <Component {...props} />
+        </>
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/dashboard",
+          }}
+        />
+      )
+    }
+  />
+);
+
+export default Router;

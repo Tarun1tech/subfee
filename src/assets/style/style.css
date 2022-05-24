@@ -18,7 +18,7 @@ a:hover {
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .small_heading {
@@ -45,7 +45,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: linear-gradient(87.39deg, #BF00A5 0%, #FF6A6A 100%);
+  background-image: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   text-align: center;
 }
 
@@ -81,19 +81,19 @@ body {
 .login_back .login_card form input[type="text"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #BBBBBB;
+  border: 1px solid #bbbbbb;
   border-radius: 10px;
 }
 
 .login_back .login_card form input[type="password"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #BBBBBB;
+  border: 1px solid #bbbbbb;
   border-radius: 10px;
 }
 
 .login_back .login_card form .submit {
-  background: linear-gradient(87.39deg, #BF00A5 0%, #FF6A6A 100%);
+  background: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   color: #fff;
   margin-top: 30px;
   border: none;
@@ -103,7 +103,7 @@ body {
 }
 
 .login_back .login_card form .end-text {
-  color: #C205A3;
+  color: #c205a3;
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 0;
@@ -111,7 +111,7 @@ body {
 }
 
 .login_back .login_card form .mark-container {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 13px;
   font-weight: 600;
   display: block;
@@ -149,7 +149,7 @@ body {
 }
 
 .login_back .login_card form .mark-container input:checked ~ .checkmark {
-  background-color: #C205A3;
+  background-color: #c205a3;
 }
 
 .login_back .login_card form .checkmark:after {
@@ -193,7 +193,7 @@ body {
 
 .sidebar .sidenav {
   padding-bottom: 30px;
-  border-bottom: 1px solid #65006B;
+  border-bottom: 1px solid #65006b;
 }
 
 .sidebar .sidenav ul {
@@ -201,7 +201,7 @@ body {
 }
 
 .sidebar .sidenav ul .active {
-  background-image: linear-gradient(87.39deg, #BF00A5 0%, #FF6A6A 100%);
+  background-image: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
 }
 
 .sidebar .sidenav ul li {
@@ -214,6 +214,11 @@ body {
   border-radius: 10px;
   margin: 14px 0;
   cursor: pointer;
+}
+
+.sidebar .sidenav ul li .sidebar_list {
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 .sidebar .sidenav ul li svg {
@@ -249,7 +254,7 @@ body {
   width: 84%;
   right: 0;
   min-height: 100vh;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   float: left;
   padding: 60px 60px 60px 120px;
 }
@@ -273,7 +278,7 @@ body {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background-color: #FE6A6A;
+  background-color: #fe6a6a;
   color: #fff;
   text-align: center;
 }
@@ -326,7 +331,7 @@ body {
 .setting-tab .setting-tab-content form input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #C205A3;
+  border: 1px solid #c205a3;
   border-radius: 10px;
 }
 
@@ -343,7 +348,7 @@ body {
 
 .setting-tab .setting-tab-content form textarea {
   padding: 12px;
-  border: 1px solid #C205A3;
+  border: 1px solid #c205a3;
   border-radius: 10px;
   width: 100%;
   min-height: 290px;
@@ -354,7 +359,7 @@ body {
 }
 
 .form-submit {
-  background: linear-gradient(87.39deg, #BF00A5 0%, #FF6A6A 100%);
+  background: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   color: #fff;
   margin-top: 30px;
   border: none;
@@ -365,7 +370,7 @@ body {
 
 .maroon-btn {
   padding: 14px 30px;
-  background-color: #C20000;
+  background-color: #c20000;
   border-radius: 10px;
   font-size: 16px;
   font-weight: 500;
@@ -381,7 +386,7 @@ body {
 }
 
 .stats-page-title::before {
-  content: '';
+  content: "";
   margin-right: 10px;
   border-radius: 2px;
   border: 5px solid #320035;
@@ -413,8 +418,8 @@ body {
 }
 
 .stats-count .total-subs .ts-right .count-fall {
-  color: #FE6A6A;
-  background-color: #FFDEDE;
+  color: #fe6a6a;
+  background-color: #ffdede;
   font-size: 8px;
   border-radius: 20px;
   padding: 4px 10px;
@@ -430,7 +435,7 @@ body {
 .ts-icon span {
   padding: 6px 7px;
   border-radius: 50%;
-  background-color: #FF6A6A;
+  background-color: #ff6a6a;
   margin-right: 12px;
 }
 
@@ -514,19 +519,19 @@ table td {
 
 .content-next-table {
   border: none;
-  background-color: #FE6A6A !important;
+  background-color: #fe6a6a !important;
   color: #fff !important;
 }
 
 .content-next-table:hover {
-  background-color: #FE6A6A !important;
+  background-color: #fe6a6a !important;
   color: #fff !important;
 }
 
 .pagination .page-link {
   font-size: 14px;
   color: #000;
-  background-color: #E4E4E4;
+  background-color: #e4e4e4;
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
@@ -564,10 +569,10 @@ table td {
 
 .video-submit-model form input {
   width: 100%;
-  border: 1px solid #C7C7C7;
+  border: 1px solid #c7c7c7;
   border-radius: 10px;
   padding: 14px;
-  color: #C7C7C7;
+  color: #c7c7c7;
   margin-bottom: 18px;
   font-size: 12px;
   font-weight: 300;
@@ -575,10 +580,10 @@ table td {
 
 .video-submit-model form textarea {
   width: 100%;
-  border: 1px solid #C7C7C7;
+  border: 1px solid #c7c7c7;
   border-radius: 10px;
   padding: 14px;
-  color: #C7C7C7;
+  color: #c7c7c7;
   font-size: 12px;
   font-weight: 300;
 }
@@ -648,8 +653,8 @@ table td {
   bottom: 0;
   height: 24px;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .custom-comment-switch .slider:before {
@@ -661,8 +666,8 @@ table td {
   left: 0;
   bottom: -8px;
   background-color: #320035;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .custom-comment-switch .ja {

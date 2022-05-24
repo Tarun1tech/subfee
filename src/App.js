@@ -1,26 +1,16 @@
 import React from "react";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
-import './assets/style/style.css';
-import Login from "./pages/login";
-import {
-  BrowserRouter,
-  Route,
-  Routes
-} from "react-router-dom";
-import DashSidebar from "./layouts/sidebar/sidebar";
-
-
-
+import "./assets/style/style.css";
+import { BrowserRouter, BrowserRouter as Router } from "react-router-dom";
+import RouterComp from "./routes";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Routes>        
-        <Route path="/" element={<Login/>} />
-        <Route path="/sidebar" element={<DashSidebar/>}/>
-        
-      </Routes>
+        <Router>
+          <RouterComp />
+        </Router>
       </BrowserRouter>
     </div>
   );
