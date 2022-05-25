@@ -16,7 +16,7 @@ const Login = () => {
           <img className="light_logo" src={WhiteLogo} alt="logo" />
           <div className="login_card">
             <h4 className="small_heading">
-              <Link to="/sidebar">Creator login</Link>
+              Creator login
             </h4>
             <p className="text">Zie hoe je kanaal weer verder gegroeid is!</p>
             <form onSubmit={handleSubmit}>

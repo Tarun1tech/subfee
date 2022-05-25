@@ -28,6 +28,10 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   font-size: 30px;
   font-weight: 700;
   color: $dark;
+  a{
+      color: $dark;
+      text-decoration: none;
+  }
 }
 .text {
   font-size: 13px;
@@ -186,10 +190,6 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
         border-radius: 10px;
         margin: 14px 0;
         cursor: pointer;
-        .sidebar_list {
-          color: $white !important;
-          text-decoration: none !important;
-        }
         svg {
           margin-right: 8px;
         }
@@ -249,6 +249,10 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     }
   }
 }
+.sidenav li a{
+    color: $white !important;
+    text-decoration: none !important;
+}
 .setting-tab {
   .nav-link {
     color: $dark;
@@ -258,18 +262,21 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     border-bottom: 3px transparent;
     font-size: 18px;
     font-weight: 500;
+    &:hover{
+        color: $dark;
+        border: none;
+    }
   }
   .nav-tabs {
     border-bottom: none;
   }
   .nav-tabs .nav-link.active {
     color: $dark;
-    background-color: #fff;
     border-bottom: 3px solid $purple;
-    background-color: transparent;
-  }
-  .nav-tabs .nav-link:hover {
-    isolation: unset;
+    background-color: transparent !important;
+    border-right: none;
+    border-left: none;
+    border-top: none;
   }
   .setting-tab-content {
     margin-top: 40px;

@@ -27,6 +27,11 @@ body {
   color: #000;
 }
 
+.small_heading a {
+  color: #000;
+  text-decoration: none;
+}
+
 .text {
   font-size: 13px;
   font-weight: 400;
@@ -216,11 +221,6 @@ body {
   cursor: pointer;
 }
 
-.sidebar .sidenav ul li .sidebar_list {
-  color: #fff !important;
-  text-decoration: none !important;
-}
-
 .sidebar .sidenav ul li svg {
   margin-right: 8px;
 }
@@ -283,6 +283,11 @@ body {
   text-align: center;
 }
 
+.sidenav li a {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
 .setting-tab .nav-link {
   color: #000;
   border-top: none;
@@ -293,19 +298,22 @@ body {
   font-weight: 500;
 }
 
+.setting-tab .nav-link:hover {
+  color: #000;
+  border: none;
+}
+
 .setting-tab .nav-tabs {
   border-bottom: none;
 }
 
 .setting-tab .nav-tabs .nav-link.active {
   color: #000;
-  background-color: #fff;
   border-bottom: 3px solid #320035;
-  background-color: transparent;
-}
-
-.setting-tab .nav-tabs .nav-link:hover {
-  isolation: unset;
+  background-color: transparent !important;
+  border-right: none;
+  border-left: none;
+  border-top: none;
 }
 
 .setting-tab .setting-tab-content {
