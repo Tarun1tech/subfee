@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Auth from "./Auth";
 import Sidebar from "./layouts/sidebar/sidebar";
 import ContentPage from "./pages/dashboard/content";
+import Dashboard from "./pages/dashboard/dashboard";
 import Finanical from "./pages/dashboard/finanical";
 import DashContentSide from "./pages/dashboard/settings";
 import Statistics from "./pages/dashboard/statistics";
@@ -16,7 +17,7 @@ const Router = (data) => {
       <PublicRoute exact path="/login" component={Login} />
       <PublicRoute exact path="/" component={Login} />
       <PrivateRoute exact path="/subscribers" component={Subscribers} />
-      <PrivateRoute exact path="/dashboard" component={Statistics} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/settings" component={DashContentSide} />
       <PrivateRoute exact path="/content" component={ContentPage} />
       <PrivateRoute exact path="/statistics" component={Statistics} />
@@ -62,11 +63,7 @@ const PublicRoute = ({ componeusernt: Component, ...rest }) => (
           <Component {...props} />
         </>
       ) : (
-        <Redirect
-          to={{
-            pathname: "/dashboard",
-          }}
-        />
+        <Redirect to={{ pathname: "/dashboard" }} />
       )
     }
   />
