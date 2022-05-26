@@ -62,7 +62,7 @@ const DashSidebar = () => {
               </Link>
             </li>
             <li className="">
-              <Link to="/dashboard" className="sidebar_list">
+              <Link to="/financial" className="sidebar_list">
                 <svg
                   width="19"
                   height="20"
