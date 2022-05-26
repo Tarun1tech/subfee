@@ -249,9 +249,10 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     }
   }
 }
-.sidenav li a{
+.sidenav .sidebar_list{
     color: $white !important;
     text-decoration: none !important;
+    display: flex;
 }
 .setting-tab {
   .nav-link {

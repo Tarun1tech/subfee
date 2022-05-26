@@ -283,9 +283,12 @@ body {
   text-align: center;
 }
 
-.sidenav li a {
+.sidenav .sidebar_list {
   color: #fff !important;
   text-decoration: none !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .setting-tab .nav-link {

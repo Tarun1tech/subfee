@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Auth from "./Auth";
 import Sidebar from "./layouts/sidebar/sidebar";
 import ContentPage from "./pages/dashboard/content";
+import Finanical from "./pages/dashboard/finanical";
 import DashContentSide from "./pages/dashboard/settings";
 import Statistics from "./pages/dashboard/statistics";
 import Subscribers from "./pages/dashboard/subscribers";
@@ -19,6 +20,7 @@ const Router = (data) => {
       <PrivateRoute exact path="/settings" component={DashContentSide} />
       <PrivateRoute exact path="/content" component={ContentPage} />
       <PrivateRoute exact path="/statistics" component={Statistics} />
+      <PrivateRoute exact path="/finanical" component={Finanical} />
     </Switch>
   );
 };
