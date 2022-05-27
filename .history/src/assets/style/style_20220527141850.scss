@@ -791,12 +791,6 @@ table {
   border-radius: 10px;
   width: 100%;
 }
-text.highcharts-title{
-  display: none !important;
-}
-.highcharts-credits{
-  display: none !important;
-}
-g.highcharts-legend-item{
+.highcharts-container .highcharts-title{
   display: none;
 }

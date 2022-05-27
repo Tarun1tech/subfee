@@ -59,7 +59,7 @@ const Dashboard = () =>{
     },
     series: [{
       name: 'Installation',
-      data: [3000,1200,2500,1900,1200]
+      data: [30000,1200,2500,1900,1200]
   }, {
       name: 'Manufacturing',
       data: [2000,900,1600,1500,1000]

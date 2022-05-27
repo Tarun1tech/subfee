@@ -42,27 +42,33 @@ const Dashboard = () =>{
   },
     xAxis: {
       
-      gridLineWidth: 0,
+      gridLineWidth: 1,
       categories: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
         'Oct',
         'Nov',
-        'Dec',
-        'Jan',
-        'Feb'
+        'Dec'
     ],
     },
     yAxis: {
-      min: 0,
-      gridLineWidth: 0,
-     
+      
+      gridLineWidth: 1,
       
     },
     series: [{
       name: 'Installation',
-      data: [3000,1200,2500,1900,1200]
+      data: [1200,2000,3500,4200,4700]
   }, {
       name: 'Manufacturing',
-      data: [2000,900,1600,1500,1000]
+      data: [1500,2100,3600,4000,5000]
   }],
   }
   

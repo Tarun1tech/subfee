@@ -1,73 +1,25 @@
 import React from "react";
 import notifImg from "../../assets/images/subs.png"
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
+import { Doughnut } from 'react-chartjs-2';
 const Dashboard = () =>{
   const options = {
-    xAxis: {
-      
-      gridLineWidth: 1,
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
+    labels: ['Nurlan', 'Crypto',],
+    datasets: [
+      {
+        label: '# of Votes',
+        data: [12, 19],
+        segmentStrokeColor : "rgba(0,0,0,0)",
+        backgroundColor: [
+          "#36E0A0",
+          "#4CB7BD",
+          
+        ],
+        borderWidth: 1,
+        hole: .8,
+        textinfo: 'none'
+      },
     ],
-    },
-    yAxis: {
-      
-      gridLineWidth: 1,
-      
-    },
-    series: [{
-      name: 'Installation',
-      data: [1200,2000,3500,4200,4700]
-  }, {
-      name: 'Manufacturing',
-      data: [1500,2100,3600,4000,5000]
-  }],
-  }
-  
-  const BarOption = {
-    chart: {
-      type: 'column'
-  },
-    xAxis: {
-      
-      gridLineWidth: 0,
-      categories: [
-        'Oct',
-        'Nov',
-        'Dec',
-        'Jan',
-        'Feb'
-    ],
-    },
-    yAxis: {
-      min: 0,
-      gridLineWidth: 0,
-     
-      
-    },
-    series: [{
-      name: 'Installation',
-      data: [3000,1200,2500,1900,1200]
-  }, {
-      name: 'Manufacturing',
-      data: [2000,900,1600,1500,1000]
-  }],
-  }
-  
-  
-  
+  };
     return(
         <div>
             <div className="dash-content-side">
@@ -109,7 +61,7 @@ const Dashboard = () =>{
                         <h1>Welkom terug👋</h1>
                     </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-5">
                     <div className="setting-tab">
                         <div className="setting-tab-content">
                           <h6 className="stats-page-title">
@@ -166,16 +118,11 @@ const Dashboard = () =>{
                               </div>
                             </div>
                     </div>
-                    <div className="mt-4">
-                    <HighchartsReact
-    highcharts={Highcharts}
-    options={options}
-                      />
-                      </div>
+                           <Doughnut data={options}  />
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-5">
                     <div className="setting-tab">
                         <div className="setting-tab-content">
                           <h6 className="stats-page-title">
@@ -225,13 +172,7 @@ const Dashboard = () =>{
                                 </span>
                               </div>
                             </div>
-                    </div>
-                    <div className="mt-4">
-                    <HighchartsReact
-    highcharts={Highcharts}
-    options={BarOption}
-                      />
-                      </div>
+                          </div>
                         </div>
                     </div>
                 </div>
