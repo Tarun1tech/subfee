@@ -1,6 +1,4 @@
 import React from "react";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 
 const Finanical = () => {
   const BarOption = {
@@ -15,7 +13,6 @@ const Finanical = () => {
       min: 0,
       gridLineWidth: 0,
     },
-    colors: ['#bf00a5', '#ff6a6a'],
     series: [
       {
         name: "Installation",
@@ -79,6 +76,10 @@ const Finanical = () => {
                           <h6 className="stats-page-title">
                           Inkomstenrapport
                   </h6>
+                  <HighchartsReact
+    highcharts={Highcharts}
+    options={BarOption}
+                      />
                           <div className="stats-count">
                             <div className="total-subs d-flex justify-content-between align-items-center">
                               <div className="ts-left d-flex justify-content-start align-items-top">
@@ -123,11 +124,7 @@ const Finanical = () => {
                                 </span>
                               </div>
                             </div>
-                  </div>
-                  <HighchartsReact
-    highcharts={Highcharts}
-    options={BarOption}
-                      />
+                          </div>
                         </div>
                     </div>
                 </div>

@@ -1,32 +1,6 @@
 import React from "react";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 
 const Finanical = () => {
-  const BarOption = {
-    chart: {
-      type: "column",
-    },
-    xAxis: {
-      gridLineWidth: 0,
-      categories: ["Oct", "Nov", "Dec", "Jan", "Feb"],
-    },
-    yAxis: {
-      min: 0,
-      gridLineWidth: 0,
-    },
-    colors: ['#bf00a5', '#ff6a6a'],
-    series: [
-      {
-        name: "Installation",
-        data: [3000, 1200, 2500, 1900, 1200],
-      },
-      {
-        name: "Manufacturing",
-        data: [2000, 900, 1600, 1500, 1000],
-      },
-    ],
-  };
   return (
     <div>
       <div className="dash-content-side">
@@ -79,6 +53,10 @@ const Finanical = () => {
                           <h6 className="stats-page-title">
                           Inkomstenrapport
                   </h6>
+                  <HighchartsReact
+    highcharts={Highcharts}
+    options={BarOption}
+                      />
                           <div className="stats-count">
                             <div className="total-subs d-flex justify-content-between align-items-center">
                               <div className="ts-left d-flex justify-content-start align-items-top">
@@ -123,11 +101,7 @@ const Finanical = () => {
                                 </span>
                               </div>
                             </div>
-                  </div>
-                  <HighchartsReact
-    highcharts={Highcharts}
-    options={BarOption}
-                      />
+                          </div>
                         </div>
                     </div>
                 </div>

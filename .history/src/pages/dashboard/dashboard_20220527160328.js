@@ -24,7 +24,6 @@ const Dashboard = () => {
     yAxis: {
       gridLineWidth: 1,
     },
-    colors: ['#bf00a5', '#ff6a6a'],
     series: [
       {
         name: "Installation",

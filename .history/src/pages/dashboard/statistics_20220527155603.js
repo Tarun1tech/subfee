@@ -4,39 +4,6 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 const Statistics = () => {
-  const options = {
-    xAxis: {
-      gridLineWidth: 1,
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-    },
-    yAxis: {
-      gridLineWidth: 1,
-    },
-    colors: ['#bf00a5', '#ff6a6a'],
-    series: [
-      {
-        name: "Installation",
-        data: [70, 79, 77, 47, 79],
-      },
-      {
-        name: "Manufacturing",
-        data: [48, 25, 77, 15, 50],
-      },
-    ],
-  };
   const BarOption = {
     chart: {
       type: "column",
@@ -49,7 +16,6 @@ const Statistics = () => {
       min: 0,
       gridLineWidth: 0,
     },
-    colors: ['#bf00a5', '#ff6a6a'],
     series: [
       {
         name: "Installation",
@@ -160,7 +126,7 @@ const Statistics = () => {
                     aria-labelledby="nav-subscribers-tab"
                   >
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-md-5">
                         <div className="setting-tab-content">
                           <h6 className="stats-page-title">
                             Totaal aantal subscribers
@@ -257,15 +223,11 @@ const Statistics = () => {
                       />
                         </div>
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-5">
                         <div className="setting-tab-content">
                           <h6 className="stats-page-title">
                             Aantal nieuwe subscribers (tijdlijn){" "}
                           </h6>
-                          <HighchartsReact
-                      highcharts={Highcharts}
-                      options={options}
-                    />
                         </div>
                       </div>
                       <div className="col-md-10 mt-4">
