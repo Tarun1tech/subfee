@@ -25,7 +25,7 @@ const Statistics = () => {
     yAxis: {
       gridLineWidth: 1,
     },
-    colors: ["#bf00a5", "#ff6a6a"],
+    colors: ['#bf00a5', '#ff6a6a'],
     series: [
       {
         name: "Installation",
@@ -49,7 +49,7 @@ const Statistics = () => {
       min: 0,
       gridLineWidth: 0,
     },
-    colors: ["#bf00a5", "#ff6a6a"],
+    colors: ['#bf00a5', '#ff6a6a'],
     series: [
       {
         name: "Installation",
@@ -160,7 +160,7 @@ const Statistics = () => {
                     aria-labelledby="nav-subscribers-tab"
                   >
                     <div className="row">
-                      <div className="col-md-5">
+                      <div className="col-md-6">
                         <div className="setting-tab-content">
                           <h6 className="stats-page-title">
                             Totaal aantal subscribers
@@ -252,9 +252,9 @@ const Statistics = () => {
                             </div>
                           </div>
                           <HighchartsReact
-                            highcharts={Highcharts}
-                            options={BarOption}
-                          />
+    highcharts={Highcharts}
+    options={BarOption}
+                      />
                         </div>
                       </div>
                       <div className="col-md-5">
@@ -263,9 +263,9 @@ const Statistics = () => {
                             Aantal nieuwe subscribers (tijdlijn){" "}
                           </h6>
                           <HighchartsReact
-                            highcharts={Highcharts}
-                            options={options}
-                          />
+                      highcharts={Highcharts}
+                      options={options}
+                    />
                         </div>
                       </div>
                       <div className="col-md-10 mt-4">

@@ -271,7 +271,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="col-md-10">
+            <div className="col-md-12">
               <div className="row">
                 <div className="col-md-4">
                   <div className="setting-tab">
