@@ -285,6 +285,19 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     padding: 70px 40px;
     border-radius: 20px;
     background-color: $white;
+    p{
+      font-size: 16px;
+      font-weight: 400;
+    }
+    a{
+      color: $white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      &:hover{
+        color: $white;
+      }
+    }
     form {
       h6 {
         font-size: 20px;
@@ -365,10 +378,21 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     padding: 10px;
     border-radius: 10px;
     .ts-left {
+      position: relative;
       padding: 18px 20px;
       border-radius: 10px;
       background-color: $white;
       width: 48%;
+      .count-up{
+        color: #4FB665;
+        background-color: #CEFFC6;
+        font-size: 8px;
+        border-radius: 20px;
+        padding: 4px 10px;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+      }
     }
     .ts-right {
       width: 48%;
@@ -381,8 +405,8 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
         border-radius: 20px;
         padding: 4px 10px;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 4px;
+        right: 4px;
       }
     }
   }
@@ -665,4 +689,105 @@ table {
     font-weight: 700;
     color: $dark;    
   }
+}
+.dashb{
+  .setting-tab-content{
+    padding: 40px;
+  }
+}
+.dash-bottom-one{
+  margin-top: 20px;
+  h2{
+    font-size: 60px;
+    font-weight: 600;
+    color: $purple
+  }
+  p{
+    font-size: 14px;
+    font-weight: 400;
+    color: #808191;
+    span{
+      color: #FE6A6A;
+    }
+  }
+}
+.web-btn{
+  margin-top: 30px;
+  a{
+    font-size: 16px;
+    font-weight: 500;
+    color: $white;
+    background-image: $My-gradient;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 10px;
+    &:hover{
+      color: $white;
+    }
+  }
+}
+.dash-latest-comment{
+  margin-top: 20px;
+  ul{
+    padding-left: 0;
+    li{
+      list-style-type: none;
+      margin: 22px 0;
+      .notif-img {
+        width: 18%;
+        img{
+          width: 39px;
+          height: 39px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+      }
+      .notif-content{
+        width: 82%;
+        h6{
+          font-size: 13px;
+          font-weight: 600;
+          color: $dark;
+          margin-bottom: 6px;
+        }
+        span{
+          font-size: 10px;
+          font-weight: 400;
+          color: #808080;
+        }
+        p{
+          font-size: 12px;
+          font-weight: 400;
+          color: $dark;
+          margin-bottom: 0;
+          span{
+            color: $pink;
+          }
+        }
+      }
+    }
+  }
+}
+.financial-data{
+  p{
+    color: #159800;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  span{
+    color: #959595;
+    font-size: 500;
+    font-size: 15px;
+  }
+}
+.td-long{
+  width: 50%;
+}
+.page-direc{
+  margin-top: 40px;
+  padding: 14px;
+  background-image: $My-gradient;
+  border-radius: 10px;
+  width: 100%;
 }
