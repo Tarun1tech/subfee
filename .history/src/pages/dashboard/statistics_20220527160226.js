@@ -25,7 +25,7 @@ const Statistics = () => {
     yAxis: {
       gridLineWidth: 1,
     },
-    colors: ['#bf00a5', '#ff6a6a'],
+    colors: ['#65006B', '#ff6a6a'],
     series: [
       {
         name: "Installation",

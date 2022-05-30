@@ -370,7 +370,6 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
 }
 
 .stats-count {
-  padding: 18px;
   border-radius: 10px;
   background-color: #eee;
   .total-subs {
@@ -799,4 +798,13 @@ text.highcharts-title{
 }
 g.highcharts-legend-item{
   display: none;
+}
+.dropdown-menu{
+  padding: 20px !important;
+  .notif-content{
+    margin-left: 8px;
+  }
+}
+.my-noti{
+  min-height: unset !important;
 }

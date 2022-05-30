@@ -2,6 +2,7 @@ import React from "react";
 import notifImg from "../../assets/images/subs.png";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import MyNotifications from "../../layouts/notification/notifications";
 const Dashboard = () => {
   const options = {
     xAxis: {
@@ -24,7 +25,7 @@ const Dashboard = () => {
     yAxis: {
       gridLineWidth: 1,
     },
-    colors: ['#bf00a5', '#ff6a6a'],
+    colors: ['#65006B', '#ff6a6a'],
     series: [
       {
         name: "Installation",
@@ -49,7 +50,7 @@ const Dashboard = () => {
       min: 0,
       gridLineWidth: 0,
     },
-    colors: ['#bf00a5', '#ff6a6a'],
+    colors: ['#65006B', '#ff6a6a'],
     series: [
       {
         name: "Installation",
@@ -62,13 +63,44 @@ const Dashboard = () => {
     ],
   };
 
+
+  const BarOptionTwo = {
+    chart: {
+      type: "column",
+      height: (225) + 'px'
+    },
+    xAxis: {
+      gridLineWidth: 0,
+      categories: ["Oct", "Nov", "Dec", "Jan", "Feb"],
+    },
+    yAxis: {
+      min: 0,
+      gridLineWidth: 0,
+    },
+    colors: ['#65006B', '#ff6a6a'],
+    series: [
+      {
+        name: "Installation",
+        data: [3000, 1200, 2500, 1900, 1200],
+      },
+      {
+        name: "Manufacturing",
+        data: [2000, 900, 1600, 1500, 1000],
+      },
+    ],
+  };
+
+  
+
   return (
     <div>
       <div className="dash-content-side">
         <div className="container-fluid">
           <div className="row justify-content-end">
             <div className="col-md-6 text-end">
-              <div className="sticky-bell">
+              <MyNotifications/>
+            {/* <div class="dropdown"> 
+              <div className="sticky-bell" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span className="bell-icon">
                   <svg
                     width="24"
@@ -94,6 +126,62 @@ const Dashboard = () => {
                   <span className="notification-count">2</span>
                 </span>
               </div>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <div className="dash-latest-comment">
+                        <ul>
+                          <li>
+                            <div className="d-flex justify-content-start align-items-center">
+                              <div className="notif-img">
+                                <img src={notifImg} />
+                              </div>
+                              <div className="notif-content">
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <h6>John Doe</h6>
+                                  <span>13m</span>
+                                </div>
+                                <p>
+                                  Gaf commentaar op <span>videonaam</span>
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div className="d-flex justify-content-start align-items-center">
+                              <div className="notif-img">
+                                <img src={notifImg} />
+                              </div>
+                              <div className="notif-content">
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <h6>John Doe</h6>
+                                  <span>13m</span>
+                                </div>
+                                <p>
+                                  Gaf commentaar op <span>videonaam</span>
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div className="d-flex justify-content-start align-items-center">
+                              <div className="notif-img">
+                                <img src={notifImg} />
+                              </div>
+                              <div className="notif-content">
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <h6>John Doe</h6>
+                                  <span>13m</span>
+                                </div>
+                                <p>
+                                  Gaf commentaar op <span>videonaam</span>
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+              </ul>
+            </div> */}
+              
             </div>
           </div>
           <div className="row justify-content-start dashb">
@@ -293,12 +381,12 @@ const Dashboard = () => {
 
                 <div className="col-md-4">
                   <div className="setting-tab">
-                    <div className="setting-tab-content">
+                    <div className="setting-tab-content pb-0">
                       <h6 className="stats-page-title">Gemiddelde kijktijd</h6>
                       <div className="mt-4">
                         <HighchartsReact
                           highcharts={Highcharts}
-                          options={BarOption}
+                          options={BarOptionTwo}
                         />
                       </div>
                     </div>
@@ -311,22 +399,6 @@ const Dashboard = () => {
                       <h6 className="stats-page-title">Nieuwste comments</h6>
                       <div className="dash-latest-comment">
                         <ul>
-                          <li>
-                            <div className="d-flex justify-content-start align-items-center">
-                              <div className="notif-img">
-                                <img src={notifImg} />
-                              </div>
-                              <div className="notif-content">
-                                <div className="d-flex justify-content-between align-items-center">
-                                  <h6>John Doe</h6>
-                                  <span>13m</span>
-                                </div>
-                                <p>
-                                  Gaf commentaar op <span>videonaam</span>
-                                </p>
-                              </div>
-                            </div>
-                          </li>
                           <li>
                             <div className="d-flex justify-content-start align-items-center">
                               <div className="notif-img">

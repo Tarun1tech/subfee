@@ -421,7 +421,6 @@ body {
 }
 
 .stats-count {
-  padding: 18px;
   border-radius: 10px;
   background-color: #eee;
 }
@@ -905,5 +904,17 @@ text.highcharts-title {
 
 g.highcharts-legend-item {
   display: none;
+}
+
+.dropdown-menu {
+  padding: 20px !important;
+}
+
+.dropdown-menu .notif-content {
+  margin-left: 8px;
+}
+
+.my-noti {
+  min-height: unset !important;
 }
 /*# sourceMappingURL=style.css.map */
