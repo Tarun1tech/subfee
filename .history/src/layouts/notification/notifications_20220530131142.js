@@ -37,7 +37,7 @@ const MyNotifications = () => {
                           <li>
                             <div className="d-flex justify-content-start align-items-center">
                               <div className="notif-img">
-                                <img src={notifImg} alt="notifImg" />
+                                <img src={notifImg} />
                               </div>
                               <div className="notif-content">
                                 <div className="d-flex justify-content-between align-items-center">
@@ -53,7 +53,7 @@ const MyNotifications = () => {
                           <li>
                             <div className="d-flex justify-content-start align-items-center">
                               <div className="notif-img">
-                                <img src={notifImg} alt="notifImg"/>
+                                <img src={notifImg} />
                               </div>
                               <div className="notif-content">
                                 <div className="d-flex justify-content-between align-items-center">
@@ -69,7 +69,7 @@ const MyNotifications = () => {
                           <li>
                             <div className="d-flex justify-content-start align-items-center">
                               <div className="notif-img">
-                                <img src={notifImg} alt="notifImg"/>
+                                <img src={notifImg} />
                               </div>
                               <div className="notif-content">
                                 <div className="d-flex justify-content-between align-items-center">

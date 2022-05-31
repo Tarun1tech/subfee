@@ -1,6 +1,7 @@
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import MyNotifications from "../../layouts/notification/notifications";
 
 const Finanical = () => {
   const BarOption = {
@@ -32,6 +33,11 @@ const Finanical = () => {
     <div>
       <div className="dash-content-side">
             <div className="container-fluid">
+            <div className="row justify-content-end">
+                {/* <div className="col-md-6 text-end">
+                  <MyNotifications/>
+                </div> */}
+            </div>
             <div className="row justify-content-start dashb">
                 <div className="col-md-5">
                     <div className="setting-tab">

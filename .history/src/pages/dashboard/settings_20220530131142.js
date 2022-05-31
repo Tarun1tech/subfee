@@ -1,10 +1,16 @@
 import React from "react";
+import MyNotifications from "../../layouts/notification/notifications";
 
 const DashContentSide = () => {
   return (
     <div>
       <div className="dash-content-side">
         <div className="container-fluid">
+          <div className="row justify-content-end">
+            <div className="col-md-6 text-end">
+              <MyNotifications/>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-12">
               <div className="setting-tab">

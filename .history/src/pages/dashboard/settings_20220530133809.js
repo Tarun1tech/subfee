@@ -1,4 +1,5 @@
 import React from "react";
+import MyNotifications from "../../layouts/notification/notifications";
 
 const DashContentSide = () => {
   return (

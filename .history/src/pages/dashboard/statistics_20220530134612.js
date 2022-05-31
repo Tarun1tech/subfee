@@ -499,7 +499,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -518,7 +518,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -537,7 +537,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -556,7 +556,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -575,7 +575,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>

@@ -33,6 +33,11 @@ const ContentPage = () => {
     <div>
       <div className="dash-content-side">
         <div className="container-fluid">
+          <div className="row justify-content-end">
+            <div className="col-md-6 text-end">
+              <MyNotifications/>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-12 mt-4 mb-4">
               <div className="video-upload-sec">

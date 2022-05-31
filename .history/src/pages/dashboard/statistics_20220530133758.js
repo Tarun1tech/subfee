@@ -2,6 +2,7 @@ import React from "react";
 import SubsImg from "../../assets/images/subs.png";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import MyNotifications from "../../layouts/notification/notifications";
 
 const Statistics = () => {
   const options = {
@@ -276,7 +277,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -295,7 +296,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -314,7 +315,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="SubsImg" />
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -333,7 +334,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="SubImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -352,7 +353,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="SubsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -499,7 +500,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -518,7 +519,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -537,7 +538,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -556,7 +557,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>
@@ -575,7 +576,7 @@ const Statistics = () => {
                                 <td>
                                   <div className="subs-table-row d-flex justify-content-start align-items-center">
                                     <div>
-                                      <img src={SubsImg} alt="subsImg"/>
+                                      <img src={SubsImg} />
                                     </div>
                                     <div>
                                       <p>John Doe</p>

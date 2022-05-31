@@ -2,7 +2,6 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Auth from "./Auth";
 import Sidebar from "./layouts/sidebar/sidebar";
-import MyNotifications from "./layouts/notification/notifications";
 import ContentPage from "./pages/dashboard/content";
 import Dashboard from "./pages/dashboard/dashboard";
 import Finanical from "./pages/dashboard/finanical";
@@ -36,12 +35,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           <>
             <div className="min-h-screen flex">
               <Sidebar />
+              <MyNotifications />
               <div>
-              <div className="row justify-content-end">
-                <div className="col-md-6 text-end">
-                  <MyNotifications/>
-                </div>
-            </div>
                 <div className="main">
                   <Component {...props} />
                 </div>

@@ -37,12 +37,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             <div className="min-h-screen flex">
               <Sidebar />
               <div>
-              <div className="row justify-content-end">
+                <div className="main">
+                <div className="row justify-content-end">
                 <div className="col-md-6 text-end">
                   <MyNotifications/>
                 </div>
             </div>
-                <div className="main">
                   <Component {...props} />
                 </div>
               </div>

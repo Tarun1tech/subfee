@@ -2,7 +2,7 @@ import React from "react";
 import notifImg from "../../assets/images/subs.png";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
+import MyNotifications from "../../layouts/notification/notifications";
 const Dashboard = () => {
   const options = {
     xAxis: {
@@ -96,6 +96,7 @@ const Dashboard = () => {
     <div>
       <div className="dash-content-side">
         <div className="container-fluid">
+      
           <div className="row justify-content-start dashb">
             <div className="col-md-10">
               <div className="user-welcome">
@@ -314,7 +315,7 @@ const Dashboard = () => {
                           <li>
                             <div className="d-flex justify-content-start align-items-center">
                               <div className="notif-img">
-                                <img src={notifImg} alt="notifImg" />
+                                <img src={notifImg} />
                               </div>
                               <div className="notif-content">
                                 <div className="d-flex justify-content-between align-items-center">
@@ -330,7 +331,7 @@ const Dashboard = () => {
                           <li>
                             <div className="d-flex justify-content-start align-items-center">
                               <div className="notif-img">
-                                <img src={notifImg} alt="notifImg" />
+                                <img src={notifImg} />
                               </div>
                               <div className="notif-content">
                                 <div className="d-flex justify-content-between align-items-center">
@@ -346,7 +347,7 @@ const Dashboard = () => {
                           <li>
                             <div className="d-flex justify-content-start align-items-center">
                               <div className="notif-img">
-                                <img src={notifImg} alt="notifImg"/>
+                                <img src={notifImg} />
                               </div>
                               <div className="notif-content">
                                 <div className="d-flex justify-content-between align-items-center">
