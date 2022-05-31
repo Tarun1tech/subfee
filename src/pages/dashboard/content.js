@@ -216,6 +216,7 @@ const ContentPage = () => {
                 </div>
               </div>
             </div>
+            {/* chobbar de chehre ute noor dsda eda uthu ga jawani ch janaja mithiye macbook pro has been given to the suffuscated one for the current situatio */}
             <div className="col-md-12 mt-4">
               <div className="setting-tab-content">
                 <h6 className="stats-page-title">Recent geüploade content</h6>

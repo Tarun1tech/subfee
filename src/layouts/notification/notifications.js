@@ -3,7 +3,7 @@ import notifImg from "../../assets/images/subs.png";
 
 const MyNotifications = () => {
     return(
-        <div className="dash-content-side my-noti">
+        <div className="my-noti">
             <div class="dropdown"> 
               <div className="sticky-bell" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span className="bell-icon">
