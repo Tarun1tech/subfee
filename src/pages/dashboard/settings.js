@@ -118,6 +118,19 @@ const DashContentSide = () => {
                             </div>
                             <div className="row">
                               <div className="col-md-12">
+                              <h6>Social media</h6>
+                              <label>Instagram URL</label>
+                              <input type="text" name="instagam_url" />
+                              <label>Twitter URL</label>
+                              <input type="text" name="twitter_url" />
+                              <label>Facebook URL</label>
+                              <input type="text" name="facebook_url" />
+                              <label>Youtube URL</label>
+                              <input type="text" name="youtube_url" />
+                              </div>
+                            </div>
+                            <div className="row mt-3">
+                              <div className="col-md-12 mt-5">
                                 <h6>Wettelijke gegevens</h6>
                                 <label>Algemene voorwaarden</label>
                                 <textarea name="Algemene-voorwaarden" />
@@ -126,11 +139,7 @@ const DashContentSide = () => {
                               </div>
                             </div>
                             <div className="text-end">
-                              <input
-                                className="form-submit"
-                                type="submit"
-                                value="Opslaan"
-                              />
+                              <input className="form-submit" type="submit" value="Opslaan"/>
                             </div>
                           </form>
                         </div>
