@@ -228,7 +228,7 @@ body {
 
 .sidebar .user-detail {
   color: #fff;
-  padding-top: 30px;
+  padding: 30px 20px;
 }
 
 .sidebar .user-detail img {
@@ -535,16 +535,38 @@ table td {
   margin-right: 20px;
 }
 
-.video-upload-sec {
+.content-upload-btn {
+  width: 100%;
+  padding: 12px 20px;
+  text-align: center;
   color: #fff;
-  margin-top: 100px;
-  background-color: #320035;
-  padding: 40px;
-  border-radius: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #65006B;
+  font-size: 18px;
+  font-weight: 500;
 }
 
-.video-upload-sec .stats-page-title::before {
-  border: 5px solid #fff !important;
+.content-upload-btn svg {
+  margin-right: 8px;
+}
+
+.modal-content {
+  border-radius: 16px !important;
+  border: none;
+}
+
+.content-sub-btns {
+  margin-top: 30px;
+  border: none !important;
+  background-image: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
+  color: #fff !important;
+  font-size: 16px !important;
+}
+
+.content-first-row-gap {
+  margin-top: 120px !important;
+  margin-bottom: 50px;
 }
 
 .dash-dragger .ant-upload-drag {
@@ -917,5 +939,15 @@ g.highcharts-legend-item {
 
 .my-noti {
   min-height: unset !important;
+}
+
+.logout-btn {
+  margin: 8px 20px;
+}
+
+.logout-btn p {
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 13px;
 }
 /*# sourceMappingURL=style.css.map */
