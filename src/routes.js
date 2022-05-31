@@ -7,7 +7,7 @@ import ContentPage from "./pages/dashboard/content";
 import Dashboard from "./pages/dashboard/dashboard";
 import Finanical from "./pages/dashboard/finanical";
 import DashContentSide from "./pages/dashboard/settings";
-import Statistics from "./pages/dashboard/statistics";
+import Statistics from "./pages/dashboard/statistics/index";
 import Subscribers from "./pages/dashboard/subscribers";
 
 import Login from "./pages/login";

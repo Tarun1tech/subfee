@@ -918,4 +918,23 @@ g.highcharts-legend-item {
 .my-noti {
   min-height: unset !important;
 }
+
+.react-tabs__tab-list {
+  border-bottom: none !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+.react-tabs__tab--selected {
+  color: #000;
+  border-bottom: 3px solid #320035 !important;
+  background-color: transparent !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-top: none !important;
+}
+
+.react-tabs__tab:focus:after {
+  background: transparent !important;
+}
 /*# sourceMappingURL=style.css.map */
