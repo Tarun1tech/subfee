@@ -164,7 +164,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   top: 0;
   left: 0;
   width: 16%;
-  padding: 42px;
+  padding: 30px 20px;
   background-color: $purple;
   left: 0;
   height: 100vh;
@@ -186,7 +186,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
         padding: 12px 20px;
         width: 100%;
         color: $white;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 500;
         border-radius: 10px;
         margin: 14px 0;
@@ -211,7 +211,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
       margin-bottom: 0;
     }
     span {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 300;
     }
   }
@@ -225,7 +225,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   min-height: 100vh;
   background-color: #f4f4f4;
   float: left;
-  padding: 60px 60px 60px 120px;
+  padding: 30px 120px 30px 80px;
   .sticky-bell {
     position: fixed;
     top: 8%;
@@ -282,7 +282,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     border-top: none;
   }
   .setting-tab-content {
-    margin-top: 40px;
+    margin-top: 30px;
     padding: 70px 40px;
     border-radius: 20px;
     background-color: $white;
@@ -293,7 +293,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     a{
       color: $white;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
       &:hover{
         color: $white;
@@ -358,7 +358,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   color: $white;
 }
 .stats-page-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   color: $dark;
   margin-bottom: 30px;
@@ -379,7 +379,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     border-radius: 10px;
     .ts-left {
       position: relative;
-      padding: 18px 20px;
+      padding: 18px 14px;
       border-radius: 10px;
       background-color: $white;
       width: 48%;
@@ -396,7 +396,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
     }
     .ts-right {
       width: 48%;
-      padding: 18px 20px;
+      padding: 18px 14px;
       position: relative;
       .count-fall {
         color: #fe6a6a;
@@ -429,7 +429,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   }
   h4 {
     margin-bottom: 0;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 500;
   }
 }
@@ -473,7 +473,7 @@ table {
 }
 .content-upload-btn{
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px 36px;
   text-align: center;
   color: $white;
   border: none;
@@ -498,7 +498,7 @@ table {
 }
 .content-first-row-gap{
   margin-top: 120px !important;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 .dash-dragger .ant-upload-drag {
   padding: 40px 20px;
@@ -512,6 +512,7 @@ table {
   border: none;
   background-color: #fe6a6a !important;
   color: $white !important;
+  border-radius: 10px !important;
   &:hover {
     background-color: #fe6a6a !important;
     color: $white !important;
@@ -533,6 +534,7 @@ table {
     color: $white !important;
     background-color: $purple;
     border: none;
+    border-radius: 10px;
   }
 }
 .page-item:first-child .page-link {
@@ -699,7 +701,7 @@ table {
 }
 .user-welcome{
   p{
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 500;
     color: $dark;
   }
@@ -711,13 +713,13 @@ table {
 }
 .dashb{
   .setting-tab-content{
-    padding: 40px;
+    padding: 30px;
   }
 }
 .dash-bottom-one{
   margin-top: 20px;
   h2{
-    font-size: 60px;
+    font-size: 52px;
     font-weight: 600;
     color: $purple
   }
@@ -849,6 +851,43 @@ g.highcharts-legend-item{
   p{
     color: $white;
     margin-bottom: 0;
-    font-size: 13px;
+    font-size: 12px;
   }
+}
+.chart-keypoint{
+  margin-bottom: 16px;
+  p{
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #787878;
+    margin-right: 20px;
+  }
+  .purp-dot{
+    &::before{
+      content: '';
+      border-left: 10px solid $purple;
+      border-right: 8px solid $purple;
+      margin-right: 6px;
+      border-radius: 50%;
+    }
+  }
+  .pink-dot{
+    &::before{
+      content: '';
+      border-left: 10px solid #FE6A6A;
+      border-right: 8px solid #FE6A6A;
+      margin-right: 6px;
+      border-radius: 50%;
+    }
+  }
+}
+
+
+
+
+@media only screen and (min-width: 1800px) {
+  .dash-content-side {
+    padding: 30px 240px 30px 140px;
+}
 }

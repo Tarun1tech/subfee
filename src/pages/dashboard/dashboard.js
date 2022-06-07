@@ -5,6 +5,9 @@ import HighchartsReact from "highcharts-react-official";
 
 const Dashboard = () => {
   const options = {
+    chart: {
+      height: (220) + 'px'
+    },
     xAxis: {
       gridLineWidth: 1,
       categories: [
@@ -41,6 +44,7 @@ const Dashboard = () => {
   const BarOption = {
     chart: {
       type: "column",
+      height: (220) + 'px'
     },
     xAxis: {
       gridLineWidth: 0,
@@ -67,7 +71,7 @@ const Dashboard = () => {
   const BarOptionTwo = {
     chart: {
       type: "column",
-      height: (225) + 'px'
+      height: (210) + 'px'
     },
     xAxis: {
       gridLineWidth: 0,
@@ -103,9 +107,9 @@ const Dashboard = () => {
                 <h1>Welkom terug👋</h1>
               </div>
             </div>
-            <div className="col-md-5">
+            <div className="col-md-6">
               <div className="setting-tab">
-                <div className="setting-tab-content">
+                <div className="setting-tab-content pb-0">
                   <h6 className="stats-page-title">Algemeen</h6>
                   <div className="stats-count">
                     <div className="total-subs d-flex justify-content-between align-items-center">
@@ -194,9 +198,9 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-5">
+            <div className="col-md-6">
               <div className="setting-tab">
-                <div className="setting-tab-content">
+                <div className="setting-tab-content pb-0">
                   <h6 className="stats-page-title">Inkomstenrapport</h6>
                   <div className="stats-count">
                     <div className="total-subs d-flex justify-content-between align-items-center">
@@ -218,7 +222,7 @@ const Dashboard = () => {
                           </span>
                         </div>
                         <div className="ts-text">
-                          <p>Totale inkomsten</p>
+                          <p>Totaal</p>
                           <h4>€ 57.4k</h4>
                         </div>
                       </div>
@@ -271,7 +275,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="col-md-10">
+            <div className="col-md-12">
               <div className="row">
                 <div className="col-md-4">
                   <div className="setting-tab">

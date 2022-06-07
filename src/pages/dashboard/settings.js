@@ -6,7 +6,7 @@ const DashContentSide = () => {
       <div className="dash-content-side">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 mt-5">
               <div className="setting-tab">
                 <nav>
                   <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -81,7 +81,7 @@ const DashContentSide = () => {
                     role="tabpanel"
                     aria-labelledby="nav-home-tab"
                   >
-                    <div className="col-md-10">
+                    <div className="col-md-12">
                       <div className="setting-tab-content">
                         <div className="container-fluid">
                           <form>
@@ -152,9 +152,10 @@ const DashContentSide = () => {
                     role="tabpanel"
                     aria-labelledby="nav-profile-tab"
                   >
-                    <div className="col-md-8">
+                    <div className="col-md-9">
                       <div className="setting-tab-content">
                         <div className="container-fluid">
+                          {/*  */}
                           <form>
                             <div className="row justify-content-between">
                               <div className="col-md-12">
@@ -216,7 +217,7 @@ const DashContentSide = () => {
                     role="tabpanel"
                     aria-labelledby="nav-contact-tab"
                   >
-                    <div className="col-md-8">
+                    <div className="col-md-9">
                       <div className="setting-tab-content">
                         <form>
                           <h6>Kanaalinstellingen</h6>

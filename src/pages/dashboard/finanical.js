@@ -6,7 +6,7 @@ const Finanical = () => {
   const BarOption = {
     chart: {
       type: "column",
-      height: (6 / 16 * 100) + '%'
+      height: (195) + 'px'
     },
     xAxis: {
       gridLineWidth: 0,
@@ -32,8 +32,8 @@ const Finanical = () => {
     <div>
       <div className="dash-content-side">
             <div className="container-fluid">
-            <div className="row justify-content-start dashb">
-                <div className="col-md-5">
+            <div className="row justify-content-start dashb mt-5 pt-5">
+                <div className="col-md-6">
                     <div className="setting-tab">
                         <div className="setting-tab-content">
                           <h6 className="stats-page-title">
@@ -44,7 +44,7 @@ const Finanical = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-5">
+                <div className="col-md-6">
                     <div className="setting-tab">
                         <div className="setting-tab-content pb-0">
                           <h6 className="stats-page-title">
@@ -103,7 +103,7 @@ const Finanical = () => {
                     </div>
                 </div>
 
-                <div className="col-md-10">
+                <div className="col-md-12">
                   <div className="setting-tab">
                     <div className="setting-tab-content">
                       <h6 className="stats-page-title">Recente uitbetalingen</h6>

@@ -7,7 +7,7 @@ const Subscribers = () => {
       <div className="dash-content-side">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-11">
+            <div className="col-md-12">
               <div className="setting-tab subs-page">
                 <h6 className="stats-page-title">Alle subscribers</h6>
                 <table className="table">

@@ -5,6 +5,9 @@ import HighchartsReact from "highcharts-react-official";
 
 const Omzet = () => {
     const options = {
+      chart: {
+        height: (360) + "px",
+      },
         xAxis: {
           gridLineWidth: 1,
           categories: [
@@ -40,7 +43,7 @@ const Omzet = () => {
     const BarOption = {
         chart: {
           type: "column",
-          height: (9 / 16 * 100) + '%'
+          height: (240) + 'px'
         },
         xAxis: {
           gridLineWidth: 0,
@@ -75,10 +78,10 @@ const Omzet = () => {
                 aria-labelledby="nav-Omzet-tab"
               >
                 <div className="row">
-                  <div className="col-md-5">
-                    <div className="setting-tab-content">
+                  <div className="col-md-6">
+                    <div className="setting-tab-content pb-0">
                       <h6 className="stats-page-title">
-                        Totaal aantal subscribers
+                      Inkomstenrapport
                       </h6>
                       <div className="stats-count">
                         <div className="total-subs d-flex justify-content-between align-items-center">
@@ -149,8 +152,8 @@ const Omzet = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-md-5">
-                    <div className="setting-tab-content">
+                  <div className="col-md-6">
+                    <div className="setting-tab-content pb-0">
                       <h6 className="stats-page-title">
                         Behaalde omzet (tijdlijn)
                                           </h6>
@@ -160,7 +163,7 @@ const Omzet = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-md-10 mt-4">
+                  <div className="col-md-12 mt-4">
                     <div className="setting-tab-content">
                       <h6 className="stats-page-title">Nieuwste subscribers</h6>
 

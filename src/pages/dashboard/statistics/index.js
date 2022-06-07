@@ -42,8 +42,8 @@ const Statistics = () => {
     <div>
       <div className="dash-content-side">
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12">
+          <div className="row dashb">
+            <div className="col-md-12 mt-5">
               <div className="setting-tab">
                 <nav>
                   <div className="nav nav-tabs" id="nav-tab" role="tablist">

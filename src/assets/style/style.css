@@ -185,7 +185,7 @@ body {
   top: 0;
   left: 0;
   width: 16%;
-  padding: 42px;
+  padding: 30px 20px;
   background-color: #320035;
   left: 0;
   height: 100vh;
@@ -215,7 +215,7 @@ body {
   padding: 12px 20px;
   width: 100%;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   border-radius: 10px;
   margin: 14px 0;
@@ -244,7 +244,7 @@ body {
 }
 
 .sidebar .user-detail span {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
 }
 
@@ -257,7 +257,7 @@ body {
   min-height: 100vh;
   background-color: #f4f4f4;
   float: left;
-  padding: 60px 60px 60px 120px;
+  padding: 30px 120px 30px 80px;
 }
 
 .dash-content-side .sticky-bell {
@@ -322,7 +322,7 @@ body {
 }
 
 .setting-tab .setting-tab-content {
-  margin-top: 40px;
+  margin-top: 30px;
   padding: 70px 40px;
   border-radius: 20px;
   background-color: #fff;
@@ -336,7 +336,7 @@ body {
 .setting-tab .setting-tab-content a {
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -408,7 +408,7 @@ body {
 }
 
 .stats-page-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   color: #000;
   margin-bottom: 30px;
@@ -434,7 +434,7 @@ body {
 
 .stats-count .total-subs .ts-left {
   position: relative;
-  padding: 18px 20px;
+  padding: 18px 14px;
   border-radius: 10px;
   background-color: #fff;
   width: 48%;
@@ -453,7 +453,7 @@ body {
 
 .stats-count .total-subs .ts-right {
   width: 48%;
-  padding: 18px 20px;
+  padding: 18px 14px;
   position: relative;
 }
 
@@ -488,7 +488,7 @@ body {
 
 .ts-text h4 {
   margin-bottom: 0;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 500;
 }
 
@@ -537,7 +537,7 @@ table td {
 
 .content-upload-btn {
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px 36px;
   text-align: center;
   color: #fff;
   border: none;
@@ -566,7 +566,7 @@ table td {
 
 .content-first-row-gap {
   margin-top: 120px !important;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .dash-dragger .ant-upload-drag {
@@ -583,6 +583,7 @@ table td {
   border: none;
   background-color: #fe6a6a !important;
   color: #fff !important;
+  border-radius: 10px !important;
 }
 
 .content-next-table:hover {
@@ -606,6 +607,7 @@ table td {
   color: #fff !important;
   background-color: #320035;
   border: none;
+  border-radius: 10px;
 }
 
 .page-item:first-child .page-link {
@@ -787,7 +789,7 @@ table td {
 }
 
 .user-welcome p {
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 500;
   color: #000;
 }
@@ -799,7 +801,7 @@ table td {
 }
 
 .dashb .setting-tab-content {
-  padding: 40px;
+  padding: 30px;
 }
 
 .dash-bottom-one {
@@ -807,7 +809,7 @@ table td {
 }
 
 .dash-bottom-one h2 {
-  font-size: 60px;
+  font-size: 52px;
   font-weight: 600;
   color: #320035;
 }
@@ -967,6 +969,40 @@ g.highcharts-legend-item {
 .logout-btn p {
   color: #fff;
   margin-bottom: 0;
-  font-size: 13px;
+  font-size: 12px;
+}
+
+.chart-keypoint {
+  margin-bottom: 16px;
+}
+
+.chart-keypoint p {
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #787878;
+  margin-right: 20px;
+}
+
+.chart-keypoint .purp-dot::before {
+  content: '';
+  border-left: 10px solid #320035;
+  border-right: 8px solid #320035;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+.chart-keypoint .pink-dot::before {
+  content: '';
+  border-left: 10px solid #FE6A6A;
+  border-right: 8px solid #FE6A6A;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+@media only screen and (min-width: 1800px) {
+  .dash-content-side {
+    padding: 30px 240px 30px 140px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

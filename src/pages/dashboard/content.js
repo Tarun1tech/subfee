@@ -34,21 +34,21 @@ const ContentPage = () => {
       <div className="dash-content-side">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-11 content-first-row-gap">
-              <div className="row justify-content-between">
-                <div className="col-md-3">
+            <div className="col-md-12 content-first-row-gap">
+              <div className="d-flex justify-content-between align-items-enter">
+                <div className="">
                 <button className="content-upload-btn" data-bs-toggle="modal" data-bs-target="#video-submit"> <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M30 11.6667C30 9.82834 28.505 8.33334 26.6667 8.33334H6.66668C4.82834 8.33334 3.33334 9.82834 3.33334 11.6667V28.3333C3.33334 30.1717 4.82834 31.6667 6.66668 31.6667H26.6667C28.505 31.6667 30 30.1717 30 28.3333V22.7783L36.6667 28.3333V11.6667L30 17.2217V11.6667ZM26.67 28.3333H6.66668V11.6667H26.6667L26.6683 19.9983L26.6667 20L26.6683 20.0017L26.67 28.3333Z" fill="white"/>
                 </svg>
                 After video upload </button>                
                 </div>
-                <div className="col-md-3">
+                <div className="">
                   <button className="content-upload-btn" data-bs-toggle="modal" data-bs-target="#photo-submit"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M33.75 9.6875H28.4375L27.1719 6.14063C27.0844 5.89792 26.9242 5.68813 26.7131 5.53991C26.5019 5.39169 26.2502 5.31227 25.9922 5.3125H14.0078C13.4805 5.3125 13.0078 5.64453 12.832 6.14063L11.5625 9.6875H6.25C4.52344 9.6875 3.125 11.0859 3.125 12.8125V30.625C3.125 32.3516 4.52344 33.75 6.25 33.75H33.75C35.4766 33.75 36.875 32.3516 36.875 30.625V12.8125C36.875 11.0859 35.4766 9.6875 33.75 9.6875ZM34.0625 30.625C34.0625 30.7969 33.9219 30.9375 33.75 30.9375H6.25C6.07812 30.9375 5.9375 30.7969 5.9375 30.625V12.8125C5.9375 12.6406 6.07812 12.5 6.25 12.5H13.543L14.2109 10.6328L15.1055 8.125H24.8906L25.7852 10.6328L26.4531 12.5H33.75C33.9219 12.5 34.0625 12.6406 34.0625 12.8125V30.625ZM20 15C16.5469 15 13.75 17.7969 13.75 21.25C13.75 24.7031 16.5469 27.5 20 27.5C23.4531 27.5 26.25 24.7031 26.25 21.25C26.25 17.7969 23.4531 15 20 15ZM20 25C17.9297 25 16.25 23.3203 16.25 21.25C16.25 19.1797 17.9297 17.5 20 17.5C22.0703 17.5 23.75 19.1797 23.75 21.25C23.75 23.3203 22.0703 25 20 25Z" fill="white"/>
                   </svg>
                   Upload nieuwe foto</button>
                 </div>
-                <div className="col-md-3">
+                <div className="">
                   <button className="content-upload-btn" data-bs-toggle="modal" data-bs-target="#message-submit"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M33.3333 3.33334H6.66668C4.82834 3.33334 3.33334 4.82834 3.33334 6.66668V26.6667C3.33334 28.505 4.82834 30 6.66668 30H11.6667V36.2783L22.1283 30H33.3333C35.1717 30 36.6667 28.505 36.6667 26.6667V6.66668C36.6667 4.82834 35.1717 3.33334 33.3333 3.33334ZM33.3333 26.6667H21.205L15 30.3883V26.6667H6.66668V6.66668H33.3333V26.6667Z" fill="white"/>
                   </svg>
@@ -221,7 +221,8 @@ const ContentPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-11 mt-4">
+            <div className="col-md-12 mt-4">
+              <div className="setting-tab">
               <div className="setting-tab-content">
                 <h6 className="stats-page-title">Recent geüploade content</h6>
 
@@ -683,6 +684,7 @@ const ContentPage = () => {
                     </ul>
                   </nav>
                 </div>
+              </div>
               </div>
             </div>
           </div>
