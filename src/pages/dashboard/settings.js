@@ -166,6 +166,11 @@ const DashContentSide = () => {
                                   transparante .png zijn)
                                 </p>
                                 <input type="file" name="Logo" />
+                                <label>Log-in scherm achtergrond</label>
+                                <p>
+                                De afbeelding die getoond wordt achter de log-in module 
+                                </p>
+                                <input type="file" name="login-background" />
                                 <label>Headerafbeelding</label>
                                 <p>
                                   De headerafbeelding voor bovenaan de dashboard
@@ -184,7 +189,7 @@ const DashContentSide = () => {
                                   browsertabblad
                                 </p>
                                 <input type="file" name="Favicon" />
-                                <h6>Kleuren aanpassen</h6>
+                                <h6 className="mt-5">Kleuren aanpassen</h6>
                                 <label>Primaire kleur</label>
                                 <input
                                   type="color"

@@ -1,5 +1,7 @@
 import React from "react";
 import SubsImg from "../../assets/images/subs.png";
+import Csv from "../../assets/images/csv.png";
+import Excel from "../../assets/images/excel.png";
 
 const Subscribers = () => {
   return (
@@ -9,7 +11,45 @@ const Subscribers = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="setting-tab subs-page">
-                <h6 className="stats-page-title">Alle subscribers</h6>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 className="stats-page-title">Alle subscribers</h6>
+                  </div>
+                  <div>
+                    <button className="export-subscribers-btn" type="button" data-bs-toggle="modal" data-bs-target="#exportSubs">Exporteren</button>
+                    <div class="modal fade" id="exportSubs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-modal-size">
+                        <div class="modal-content">
+                          <div class="modal-body export-subs-body">
+                          <h6 className="stats-page-title">Subscribers exporteren</h6>
+                          <p className="mt-3">Bestandsformaat</p>
+                          <form>
+                          <div className="d-flex justify-content-center align-items-center">
+                            <div>
+                            <label class="custom-export-select">
+                              <div>
+                              <input type="checkbox"/>
+                              <div className="file-icon"><img src={Csv} /> CSV</div>
+                              </div>
+                            </label>                          
+                            </div>
+                            <div>
+                            <label class="custom-export-select">
+                              <div>
+                              <input type="checkbox"/>
+                              <div className="file-icon"><img src={Excel} />XLSX</div>
+                              </div>
+                            </label>
+                            </div>
+                          </div>
+                          <button className="chose-btn-export" data-bs-dismiss="modal">Exporteren</button>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <table className="table">
                   <thead>
                     <tr>

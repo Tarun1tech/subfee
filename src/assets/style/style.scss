@@ -192,6 +192,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
         margin: 14px 0;
         cursor: pointer;
         svg {
+          width: 20px;
           margin-right: 8px;
         }
       }
@@ -314,7 +315,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
       input {
         width: 100%;
         padding: 12px;
-        border: 1px solid $pink;
+        border: 1px solid $dark;
         border-radius: 10px;
       }
       span {
@@ -328,7 +329,7 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
       }
       textarea {
         padding: 12px;
-        border: 1px solid $pink;
+        border: 1px solid $dark;
         border-radius: 10px;
         width: 100%;
         min-height: 290px;
@@ -343,10 +344,10 @@ $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   background: $My-gradient;
   color: $white;
   margin-top: 30px;
-  border: none;
-  padding: 14px;
+  border: none !important;
+  padding: 14px 64px !important;
   border-radius: 10px;
-  width: unset;
+  width: unset !important;
 }
 .maroon-btn {
   padding: 14px 30px;
@@ -445,6 +446,96 @@ table {
     font-weight: 500;
   }
 }
+.export-subscribers-btn{
+  margin-bottom: 30px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid #A4A4A4;
+  border-radius: 10px;
+  background-color: transparent;
+}
+.modal-modal-size {
+  max-width: 609px;
+  .chose-btn-export{
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-image: $My-gradient;
+    color: $white;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+  }
+}
+.export-subs-body{
+  padding: 35px !important;
+  .custom-export-select {    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+  }
+  
+  /* Hide the browser's default checkbox */
+  .custom-export-select input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .file-icon {
+    width: 215px;
+    height: 75px;
+    border: 2px solid #999;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+    img{
+      background-color: #D9D9D9;
+      border-radius: 3px;
+      margin-right: 6px;
+    }
+  }
+  
+  
+  /* When the checkbox is checked, add a blue background */
+  .custom-export-select input:checked ~ .file-icon {
+    border: 2px solid $pink;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .file-icon:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .custom-export-select input:checked ~ .file-icon:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .custom-export-select .file-icon:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
 .subs-table-row {
   p {
     margin-bottom: 0;
@@ -471,15 +562,33 @@ table {
   background-color: #c4c4c4;
   margin-right: 20px;
 }
+.content-upload-btns-back {
+  text-align: center;
+  width: 26%;
+  background: #fff;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  p{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 30px 0 24px 0;
+    margin-bottom: 0;
+    svg{
+      margin-right: 8px;
+      width: 30px;
+    }
+  }
+}
 .content-upload-btn{
   width: 100%;
   padding: 12px 36px;
   text-align: center;
   color: $white;
   border: none;
-  border-radius: 10px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   background-color: #65006B;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   svg{
     margin-right: 8px;
@@ -848,6 +957,7 @@ g.highcharts-legend-item{
 }
 .logout-btn {
   margin: 8px 20px;
+  cursor: pointer;
   p{
     color: $white;
     margin-bottom: 0;

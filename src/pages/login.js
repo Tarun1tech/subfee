@@ -1,17 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import WhiteLogo from "../assets/images/light-logo.png";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
+const userInputs={
+  email:"",
+  password:"", 
+}
 
 const Login = () => {
+
+  
+
   const history = useHistory();
-  const handleSubmit = () => {
-    localStorage.setItem("access_token", "token");
-    history.push("/dashboard");
+  const [inputs,setInputs] = useState(userInputs);
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
   };
+
+
+    const  makeLogin=(e)=> {
+      e.preventDefault();
+      axios
+        .post(`${process.env.REACT_APP_API_ENDPOINT}api/login`, {
+          "email":inputs.email,
+          "password":inputs.password
+      })
+        .then((response) => {
+        if (response.data.success === true) {
+          toast.success(response.data.message);
+          localStorage.setItem("access_token", response.data.access_token)
+          history.push("/dashboard")
+       
+          }
+          else {
+            toast.error(response.data.message);
+          }
+        });
+    }       
 
   return (
     <div>
       <div className="login_back">
+      <ToastContainer />
         <div>
           <img className="light_logo" src={WhiteLogo} alt="logo" />
           <div className="login_card">
@@ -19,11 +59,11 @@ const Login = () => {
               Creator login
             </h4>
             <p className="text">Zie hoe je kanaal weer verder gegroeid is!</p>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={makeLogin}>
               <label>E-mailadres*</label>
-              <input type="text" name="username" />
+              <input type="text" name="email" onChange={handleInputChange} required/>
               <label>Wachtwoord*</label>
-              <input type="password" name="password" />
+              <input type="password" name="password" onChange={handleInputChange} required/>
               <div className="d-flex justify-content-between align-items-center">
                 <div>
                   <label className="mark-container">

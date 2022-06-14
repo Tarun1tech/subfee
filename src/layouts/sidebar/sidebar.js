@@ -2,6 +2,9 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import DashLogo from "../../assets/images/dash-logo.png";
 import UserImg from "../../assets/images/user.png";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DashSidebar = (props) => {
   let url = window.location.pathname;
@@ -9,6 +12,7 @@ const DashSidebar = (props) => {
   const sidebarToggle = (url) => {
     history.push(`${url}`);
   };
+  const token=localStorage.getItem("access_token")
   const _nav = [
     {
       type: "",
@@ -140,7 +144,40 @@ const DashSidebar = (props) => {
         </div>
       ),
     },
+    {
+      type: "",
+      name: `Naar je platform`,
+      to: "#",
+      icon: (
+        <div className="mr-4">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.875 14.5833V19.7917C21.875 20.3442 21.6555 20.8741 21.2648 21.2648C20.8741 21.6555 20.3442 21.875 19.7917 21.875H5.20833C4.6558 21.875 4.12589 21.6555 3.73519 21.2648C3.34449 20.8741 3.125 20.3442 3.125 19.7917V5.20833C3.125 4.6558 3.34449 4.12589 3.73519 3.73519C4.12589 3.34449 4.6558 3.125 5.20833 3.125H10.4167M14.0625 10.9375L21.875 3.125L14.0625 10.9375ZM16.6667 3.125H21.875V8.33333L16.6667 3.125Z" stroke="white" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      ),
+    },
   ];
+
+  const logOut = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${process.env.REACT_APP_API_ENDPOINT}api/creator/logout`,{},{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+      }).then((response) => {
+        if (response.data.success === true) {
+          toast.success(response.data.message);
+          localStorage.clear();
+          history.push("/")
+       
+          }
+          else {
+            toast.error(response.data.error);
+          }
+        });
+      
+  }
 
   return (
     <div>
@@ -177,7 +214,7 @@ const DashSidebar = (props) => {
             <span>1750 Subscribers</span>
           </div>
         </div>
-        <div className="logout-btn">
+        <div className="logout-btn" onClick={logOut}>
           <p><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3.75 18.75H11.25C11.5814 18.7497 11.8992 18.6179 12.1335 18.3835C12.3679 18.1492 12.4997 17.8314 12.5 17.5V15.625H11.25V17.5H3.75V2.5H11.25V4.375H12.5V2.5C12.4997 2.16858 12.3679 1.85083 12.1335 1.61648C11.8992 1.38213 11.5814 1.25033 11.25 1.25H3.75C3.41858 1.25033 3.10083 1.38213 2.86648 1.61648C2.63213 1.85083 2.50033 2.16858 2.5 2.5V17.5C2.50033 17.8314 2.63213 18.1492 2.86648 18.3835C3.10083 18.6179 3.41858 18.7497 3.75 18.75Z" fill="white"/>
           <path d="M12.8663 12.8663L15.1075 10.625H6.25V9.375H15.1075L12.8663 7.13375L13.75 6.25L17.5 10L13.75 13.75L12.8663 12.8663Z" fill="white"/>
