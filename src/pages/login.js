@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Link } from "react-router-dom";
 
 
 
@@ -13,9 +13,7 @@ const userInputs={
   password:"", 
 }
 
-const Login = () => {
-
-  
+const Login = () => {  
 
   const history = useHistory();
   const [inputs,setInputs] = useState(userInputs);
@@ -38,9 +36,8 @@ const Login = () => {
         .then((response) => {
         if (response.data.success === true) {
           toast.success(response.data.message);
-          localStorage.setItem("access_token", response.data.access_token)
-          history.push("/dashboard")
-       
+          localStorage.setItem("access_token", response.data.access_token);
+          history.push("/dashboard");       
           }
           else {
             toast.error(response.data.message);
@@ -50,8 +47,8 @@ const Login = () => {
 
   return (
     <div>
-      <div className="login_back">
       <ToastContainer />
+      <div className="login_back">      
         <div>
           <img className="light_logo" src={WhiteLogo} alt="logo" />
           <div className="login_card">
@@ -60,9 +57,9 @@ const Login = () => {
             </h4>
             <p className="text">Zie hoe je kanaal weer verder gegroeid is!</p>
             <form onSubmit={makeLogin}>
-              <label>E-mailadres*</label>
+              <label for="emailAddress">E-mailadres*</label>
               <input type="text" name="email" onChange={handleInputChange} required/>
-              <label>Wachtwoord*</label>
+              <label for="password">Wachtwoord*</label>
               <input type="password" name="password" onChange={handleInputChange} required/>
               <div className="d-flex justify-content-between align-items-center">
                 <div>
@@ -72,7 +69,7 @@ const Login = () => {
                   </label>
                 </div>
                 <div>
-                  <p className="end-text">Wachtwoord vergeten?</p>
+                <Link to="/email-verification"><p className="end-text">Wachtwoord vergeten?</p></Link>
                 </div>
               </div>
               <input type="submit" className="submit" value="Inloggen" />
