@@ -161,7 +161,7 @@ const DashSidebar = (props) => {
   const logOut = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_API_ENDPOINT}api/creator/logout`,{},{
+      .post(`${process.env.REACT_APP_API_ENDPOINT}creator/logout`,{},{
           headers: {
             Authorization: `Bearer ${token}`,
           },
