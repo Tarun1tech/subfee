@@ -26,6 +26,9 @@ $pink: #c205a3;
 $purple: #320035;
 $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
 
+::selection {
+  background: $purple;
+}
 .small_heading {
   font-size: 30px;
   font-weight: 700;

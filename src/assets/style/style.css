@@ -22,6 +22,14 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
+::-moz-selection {
+  background: #320035;
+}
+
+::selection {
+  background: #320035;
+}
+
 .small_heading {
   font-size: 30px;
   font-weight: 700;

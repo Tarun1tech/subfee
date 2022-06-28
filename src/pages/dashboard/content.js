@@ -170,8 +170,7 @@ const ContentPage = () => {
       }
     })
   }
-
-  /* list content get api starts from here */
+  /* here the whole thing could be great */
 
   const [contentlist, setContentlist] = React.useState(null);
 
@@ -187,10 +186,10 @@ const ContentPage = () => {
       setContentlist(response.data.data.data);
     });
   }, []);
-
+  
+  
   console.log(contentlist, "i want dtata");
   
-
   return (
     <div>
       <ToastContainer />
@@ -433,7 +432,11 @@ const ContentPage = () => {
                               </td>
                               <td>
                                 <div className="subs-table-row d-flex justify-content-start align-items-center">
-                                  <div className="video-thumb-sec"><img src={`https://subfee.techstriker.com/backend/public/${item?.thumbnail}`} /></div>
+                                  <div className="video-thumb-sec">
+                                    {
+                                      (item.thumbnail != null ? <img src={`https://subfee.techstriker.com/backend/public/${item?.thumbnail}`} /> : <img src="" className="d-none" />)
+                                    }                                    
+                                    </div>
                                   <div>
                                     <p>{item.title}</p>
                                     <span><Moment format="DD/MM/YYYY">{item.updated_at}</Moment></span>
