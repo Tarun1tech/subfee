@@ -1,4 +1,4 @@
-import { doLogin } from "../queries";
+import { doLogin, emailVerify, forgotPassword } from "../queries";
 import { checkResponse } from "../../constants/index";
 import { toast } from "react-toastify";
 
@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 export const do_login = payload => async dispatch => {
     let response = await doLogin(payload);
     response = checkResponse(response);
-    console.log(response, "response")
     if (response.success === true) {
         toast.success(response.message)
         dispatch({
@@ -22,10 +21,48 @@ export const do_login = payload => async dispatch => {
             type: "LOGIN_FAILED",
             payload: response.error
         });
-        console.log(response.success)
         localStorage.clear();
-
         localStorage.setItem("success", response.success)
     }
 };
 
+/* Email Verification */
+export const email_verify = payload => async dispatch => {
+    let response = await emailVerify(payload);
+    response = checkResponse(response);
+    if (response.success === true) {
+        toast.success(response.message)
+        dispatch({
+            type: "EMAIL_VERIFY",
+            payload: response.data
+        });
+
+    } else {
+        toast.error(response.error)
+        dispatch({
+            type: "EMAIL_VERIFY_FAILED",
+            payload: response.error
+        });
+    }
+};
+
+/* Forgot password */
+export const forgot_password = payload => async dispatch => {
+    let response = await forgotPassword(payload);
+    response = checkResponse(response);
+    if (response.success === true) {
+        toast.success(response.message)
+        dispatch({
+            type: "FORGOT_PASSWORD",
+            payload: response.data
+        });
+
+    } else {
+        toast.error(response.error)
+        dispatch({
+            type: "FORGOT_PASSWORD_FAILED",
+            payload: response.error
+        });
+
+    }
+};

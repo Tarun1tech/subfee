@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WhiteLogo from "../assets/images/light-logo.png";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from "react-redux";
@@ -45,9 +45,9 @@ const Login = (props) => {
       });
     }
   }
-  const token = localStorage.getItem("access_token");
 
   useEffect(() => {
+    const token = localStorage.getItem("access_token");
     if (token) {
       history.push("/dashboard");
     }
@@ -85,7 +85,7 @@ const Login = (props) => {
                   </label>
                 </div>
                 <div>
-                  <p className="end-text">Wachtwoord vergeten?</p>
+                  <Link to="/email-verification"><p className="end-text">Wachtwoord vergeten?</p></Link>
                 </div>
               </div>
               <input type="submit" className="submit" value="Inloggen" />

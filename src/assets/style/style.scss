@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&display=swap");
+@import '~antd/dist/antd.css';
 
 a {
   color: inherit;
@@ -28,8 +29,12 @@ $dark: #000;
 $pink: #c205a3;
 $purple: #320035;
 $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
-
 $danger: #FF0000;
+$grey: #e9ecef;
+
+::selection {
+  background: $purple;
+}
 
 .small_heading {
   font-size: 30px;
@@ -75,6 +80,16 @@ $danger: #FF0000;
     width: 480px;
     text-align: center;
 
+    small {
+      font-size: 12px;
+      color: red;
+      margin-top: 18px !important;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
     form {
       width: 100%;
       text-align: left;
@@ -89,6 +104,13 @@ $danger: #FF0000;
       }
 
       input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #bbbbbb;
+        border-radius: 10px;
+      }
+
+      input[type="email"] {
         width: 100%;
         padding: 10px;
         border: 1px solid #bbbbbb;
@@ -647,14 +669,32 @@ table {
   border-radius: 10px;
   background-color: #c4c4c4;
   margin-right: 20px;
+
+  img {
+    width: 100%;
+    height: unset;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 10px;
+  }
 }
 
 .content-upload-btns-back {
+  position: relative;
   text-align: center;
   width: 26%;
   background: #fff;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+
+  input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 48px;
+  }
 
   p {
     font-size: 16px;
@@ -738,12 +778,22 @@ table {
     font-weight: 700;
   }
 
+  .disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
   .page-item.active .page-link {
     z-index: 3;
     color: $white  !important;
-    background-color: $purple;
+    background-color: $grey;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: $purple  !important;
   }
 }
 
@@ -915,6 +965,7 @@ table {
 }
 
 .subs-page {
+  background-color: $white;
   margin-top: 110px;
   padding: 50px;
   border-radius: 10px;
