@@ -28,7 +28,7 @@ const ContentList = (props) => {
             console.log("fsdf")
             setTotalPage(props.contentlist?.total)
         }
-    }, [])
+    }, [props])
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">
