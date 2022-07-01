@@ -447,7 +447,8 @@ $grey: #e9ecef;
   font-size: 17px;
   font-weight: 500;
   color: $dark;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
 
   &::before {
     content: "";
@@ -672,7 +673,7 @@ table {
 
   img {
     width: 100%;
-    height: unset;
+    height: 100%;
     margin-left: 0;
     margin-right: 0;
     border-radius: 10px;
@@ -729,6 +730,10 @@ table {
 .modal-content {
   border-radius: 16px !important;
   border: none;
+}
+
+.modal-header {
+  border: none !important;
 }
 
 .content-sub-btns {
@@ -824,7 +829,6 @@ table {
       border-radius: 10px;
       padding: 14px;
       color: #c7c7c7;
-      margin-bottom: 18px;
       font-size: 12px;
       font-weight: 300;
     }

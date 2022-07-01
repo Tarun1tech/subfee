@@ -19,7 +19,7 @@ export const status = {
 
 
 export const checkResponse = (response) => {
-console.log(response,"const")
+  console.log(response, "const")
   let newResponse = '';
   if (response.data.success === false) {
     newResponse = {
@@ -33,9 +33,25 @@ console.log(response,"const")
       success: true,
       data: response,
       message: response.data.message,
-      
+
     };
   }
   return newResponse;
 
+}
+
+
+
+export const extension = (fname) => {
+  var pos = fname.lastIndexOf(".");
+  var strlen = fname.length;
+  if (pos != -1 && strlen != pos + 1) {
+    var ext = fname.split(".");
+    var len = ext.length;
+    var extension = ext[len - 1].toLowerCase();
+  } else {
+    extension = "No extension found";
+  }
+
+  return extension;
 }

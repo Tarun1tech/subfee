@@ -387,7 +387,8 @@ body {
   font-size: 17px;
   font-weight: 500;
   color: #000;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
 }
 .stats-page-title::before {
   content: "";
@@ -584,7 +585,7 @@ table td {
 }
 .video-thumb-sec img {
   width: 100%;
-  height: unset;
+  height: 100%;
   margin-left: 0;
   margin-right: 0;
   border-radius: 10px;
@@ -636,6 +637,10 @@ table td {
 .modal-content {
   border-radius: 16px !important;
   border: none;
+}
+
+.modal-header {
+  border: none !important;
 }
 
 .content-sub-btns {
@@ -722,7 +727,6 @@ table td {
   border-radius: 10px;
   padding: 14px;
   color: #c7c7c7;
-  margin-bottom: 18px;
   font-size: 12px;
   font-weight: 300;
 }

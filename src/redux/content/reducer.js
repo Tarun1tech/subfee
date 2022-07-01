@@ -7,6 +7,12 @@ const INIT_STATE = {
 
 export default (state = INIT_STATE, action) => {
     switch (action.type) {
+        case 'RESET_APP':
+            return {
+                ...state,
+                upload_file: {},
+                error: ""
+            };
         case "CONTENT_DATA":
             return {
                 ...state,

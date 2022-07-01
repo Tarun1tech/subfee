@@ -7,25 +7,28 @@ let PageSize = 10;
 
 const ContentList = (props) => {
     const token = localStorage.getItem("access_token")
-    const [totalPage, setTotalPage] = useState(0)
+    const [totalPage, setTotalPage] = useState(1)
     const [currentPage, setCurrentPage] = useState(1);
+
     useEffect(() => {
         props.get_content_data({
             page: currentPage
         });
+    }, [token]);
 
-        if (props.contentlist?.data.length > 0) {
-            setTotalPage(props.contentlist?.total)
-        }
-    }, [token, totalPage]);
-
+    console.log(totalPage, "totalpahe")
     const handlePerPage = (page) => {
         props.get_content_data({
             page: page
         });
         setCurrentPage(page)
     }
-
+    useEffect(() => {
+        if (props.contentlist?.data?.length > 0) {
+            console.log("fsdf")
+            setTotalPage(props.contentlist?.total)
+        }
+    }, [])
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">
@@ -83,14 +86,14 @@ const ContentList = (props) => {
                                                 <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
                                                     stroke="#65006B" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
-                                            12.584
+                                            {item.view}
                                         </td>
                                         <td>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M4.66666 2C2.826 2 1.33333 3.47733 1.33333 5.3C1.33333 6.77133 1.91666 10.2633 7.65866 13.7933C7.76152 13.8559 7.8796 13.889 8 13.889C8.12039 13.889 8.23847 13.8559 8.34133 13.7933C14.0833 10.2633 14.6667 6.77133 14.6667 5.3C14.6667 3.47733 13.174 2 11.3333 2C9.49266 2 8 4 8 4C8 4 6.50733 2 4.66666 2Z"
                                                     stroke="#D90000" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
-                                            126 likes
+                                            {item.likes} likes
                                         </td>
                                         <td>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -134,7 +137,7 @@ const ContentList = (props) => {
 }
 const mapStateToProps = state => ({
     ...state,
-    contentlist: state.content.content_list.data
+    contentlist: state.content?.content_list?.data
 });
 
 export default connect(mapStateToProps, { get_content_data })(ContentList);
