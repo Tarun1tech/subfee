@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { upload_file, reset_app, create_content, get_content_data } from "../../../redux/content/actions";
 import { extension } from "../../../constants/index";
 import { useHistory } from "react-router-dom";
+
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -168,7 +169,6 @@ const ContentPage = (props) => {
       props.create_content(payload);
     }
   }
-  /* here the whole thing could be great */
 
   const handleGet = () => {
     props.get_content_data({
@@ -238,7 +238,7 @@ const ContentPage = (props) => {
                 </div>
               </div>
               <div className="mdls">
-                <Modal show={showvideo} size="xl" onHide={handleClosevideo} backdrop="static"
+                <Modal className="content-upload-popup" show={showvideo} size="xl" onHide={handleClosevideo} backdrop="static"
                   keyboard={false}>
                   <Modal.Header closeButton>
                     <h6 className="stats-page-title">Nieuwe content uploaden</h6>
@@ -339,7 +339,7 @@ const ContentPage = (props) => {
                     </div>
                   </div>
                 </Modal>
-                <Modal show={showimage} onHide={() => handleCloseimage()} size="lg" backdrop="static"
+                <Modal className="content-upload-popup" show={showimage} onHide={() => handleCloseimage()} size="lg" backdrop="static"
                   keyboard={false}>
                   <Modal.Header closeButton>
                     <h6 className="stats-page-title">Nieuwe foto uploaden</h6>
@@ -393,7 +393,7 @@ const ContentPage = (props) => {
 
                 </Modal>
 
-                <Modal show={showcontent} onHide={() => handleClosecontent()} size="lg" backdrop="static"
+                <Modal className="content-upload-popup" show={showcontent} onHide={() => handleClosecontent()} size="lg" backdrop="static"
                   keyboard={false}>
                   <Modal.Header closeButton>
                     <h6 className="stats-page-title">Nieuwe bericht plaatsen</h6>

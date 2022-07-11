@@ -387,14 +387,21 @@ body {
   font-size: 17px;
   font-weight: 500;
   color: #000;
-  margin-top: 30px;
-  margin-left: 30px;
+  margin-bottom: 30px;
 }
 .stats-page-title::before {
   content: "";
   margin-right: 10px;
   border-radius: 2px;
   border: 5px solid #320035;
+}
+
+.content-upload-popup .modal-header {
+  padding: 36px 57px 0 57px !important;
+}
+
+.content-upload-popup .stats-page-title {
+  margin-bottom: 0 !important;
 }
 
 .stats-count {
