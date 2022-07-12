@@ -387,8 +387,7 @@ body {
   font-size: 17px;
   font-weight: 500;
   color: #000;
-  margin-top: 30px;
-  margin-left: 30px;
+  margin-bottom: 30px;
 }
 .stats-page-title::before {
   content: "";
