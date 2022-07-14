@@ -124,13 +124,13 @@ export const create_delete = payload => async dispatch => {
     response = checkResponse(response);
 
     if (response.success) {
-        // toast.success(response.message)
+        toast.success(response.message)
         dispatch({
             type: "CONTENT_DELETE",
             payload: response
         });
     } else {
-        // toast.error(response.message)
+        toast.error(response.message)
         dispatch(
             {
                 type: "ERROR_OCCURED",
