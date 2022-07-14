@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from 'react-moment';
+import { toast } from 'react-toastify';
 import { connect } from "react-redux";
 import CustomModal from "../../../layouts/modal/modal";
 import Pagination from "../../../layouts/pagination/pagination";
@@ -8,21 +9,25 @@ import ContentUpdate from "./content-update";
 let PageSize = 10;
 
 const ContentList = (props) => {
-    const { contentlistbyid } = props;
+    const { contentlistbyid, deletelist } = props;
     const token = localStorage.getItem("access_token")
     const [totalPage, setTotalPage] = useState(1)
     const [currentPage, setCurrentPage] = useState(1);
-    const [deleteId, setDeleteId] = useState();
     const [bulkShow, setBulkShow] = useState(false);
     const [bodyData, setBodyData] = useState([]);
     const [bulkDeleteBtn, setBulkDeleteBtn] = useState(false)
-    const [bulkDeleteId, setBulkDeleteId] = useState();
+    const [bulkDeleteId, setBulkDeleteId] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showvideo, setShowvideo] = useState(false);
     useEffect(() => {
+        handleGet();
+    }, [token]);
+
+    const handleGet = () => {
         props.get_content_data({
             page: currentPage
         });
-    }, [token]);
+    }
 
     const handlePerPage = (page) => {
         props.get_content_data({
@@ -32,10 +37,24 @@ const ContentList = (props) => {
     }
     useEffect(() => {
         if (props.contentlist?.data?.length > 0) {
-            // setBodyData(props.contentlist?.data)
             setTotalPage(props.contentlist?.total)
         }
-        if (props.contentlist?.data !== undefined && props.contentlist?.data.length > 0) {
+    }, [])
+
+    const handleShowvideo = (id) => {
+        props.get_content_by_id_data({
+            id: id
+        })
+        setShowvideo(true);
+    };
+
+    const hidevideo = () => {
+        props.reset_app();
+        setShowvideo(false);
+    }
+
+    useEffect(() => {
+        if (props.contentlist !== undefined && props.contentlist?.data?.length > 0) {
             let bData = [];
             props.contentlist?.data.forEach((e) => {
                 let result = {};
@@ -49,54 +68,31 @@ const ContentList = (props) => {
             });
             setBodyData(bData);
         }
-    }, [props])
+        //eslint-disable-next-line
+    }, [props.contentlist])
 
     const isChecked = (id) => {
-        setBodyData(() => {
-            const data = bodyData.map((el) => {
-                if (el.id === id && el.checked === false) {
-                    el.checked = true;
-                    return el;
-                } else if (el.id === id && el.checked === true) {
-                    el.checked = false;
-                    return el;
-                } else return el;
-            });
-
-            return data;
+        const data = bodyData.map((el) => {
+            if (el.id === id && el.checked === false) {
+                el.checked = true;
+                return el;
+            } else if (el.id === id && el.checked === true) {
+                el.checked = false;
+                return el;
+            } else return el;
         });
-        const deleteBulk = bodyData.some((el) => el.checked === true);
+        setBodyData(data);
+        const deleteBulk = data.some((el) => el.checked === true);
         setBulkDeleteBtn(deleteBulk);
     };
-    const [showvideo, setShowvideo] = useState(false);
-    const handleShowvideo = (id) => {
-        props.get_content_by_id_data({
-            id: id
-        })
-        setShowvideo(true);
 
-    };
-    useEffect(() => {
-
-        if (contentlistbyid !== null || contentlistbyid !== undefined) {
-            setLoading(false);
-        }
-    }, [loading, contentlistbyid])
-
-    const hidevideo = () => {
-        props.reset_app();
-        setShowvideo(false);
-    }
     const bulkDeletePop = (bodyData) => {
-        console.log(bodyData)
         const data = bodyData.filter((el) => el.checked === true);
-        let bId = [];
+        const bId = [];
         for (let i of data) {
             bId.push(i.id);
         }
-        let bulk = bId.join(",");
-        setBulkDeleteId(bulk);
-        console.log(bulk)
+        setBulkDeleteId(bId);
         setBulkShow(true);
     };
 
@@ -106,6 +102,23 @@ const ContentList = (props) => {
         })
     }
 
+    useEffect(() => {
+        if (contentlistbyid !== null || contentlistbyid !== undefined) {
+            setLoading(false);
+        }
+        if (deletelist?.success) {
+            handleGet();
+            setBulkShow(false);
+            setBulkDeleteBtn(false);
+        } else {
+            toast.error(deletelist?.message)
+        }
+    }, [loading, contentlistbyid, deletelist])
+    const onHide = () => {
+        setBulkShow(false);
+        setBulkDeleteBtn(false);
+        handleGet();
+    };
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">
@@ -138,11 +151,11 @@ const ContentList = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.contentlist?.data.map((item, index) => {
+                            {bodyData.map((item, index) => {
                                 return (
                                     <tr key={index}>
                                         <td>
-                                            <input type="checkbox" name="checked" onClick={() => isChecked(item.id)} />
+                                            <input type="checkbox" checked={item.checked} onClick={() => isChecked(item.id)} />
                                         </td>
                                         <td>
                                             <div className="subs-table-row d-flex justify-content-start align-items-center">
@@ -201,7 +214,6 @@ const ContentList = (props) => {
                                     </tr>
                                 );
                             })}
-
                         </tbody>
                     </table>
 
@@ -219,11 +231,10 @@ const ContentList = (props) => {
                     show={showvideo}
                     hide={() => hidevideo()}
                     data={props.contentlistbyid}
-
                 />
             }
 
-            <CustomModal show={bulkShow} hide={() => setBulkShow(false)} bulkDelete={bulkDelete} />
+            <CustomModal show={bulkShow} hide={onHide} bulkDelete={bulkDelete} />
         </div>
     )
 }
@@ -231,6 +242,7 @@ const mapStateToProps = state => ({
     ...state,
     contentlist: state.content?.content_list?.data,
     contentlistbyid: state.content?.contentlistbyid?.data,
+    deletelist: state.content?.content_delete?.data?.data
 });
 
 export default connect(mapStateToProps, { get_content_data, create_delete, get_content_by_id_data, reset_app })(ContentList);
