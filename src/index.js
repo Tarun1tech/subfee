@@ -8,9 +8,13 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={configureStore()}>
-  <App/>
-</Provider>, 
-document.getElementById('root')
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>,
+  document.getElementById('root')
 );
 
 serviceWorker.unregister();

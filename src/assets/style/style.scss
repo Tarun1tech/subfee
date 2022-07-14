@@ -457,6 +457,14 @@ $grey: #e9ecef;
   }
 }
 
+.content-upload-popup .modal-header {
+  padding: 36px 57px 0 57px !important;
+}
+
+.content-upload-popup .stats-page-title {
+  margin-bottom: 0 !important;
+}
+
 .stats-count {
   border-radius: 10px;
   background-color: #eee;
@@ -542,6 +550,10 @@ table {
     padding: 18px 0 !important;
     font-size: 14px;
     font-weight: 500;
+  }
+
+  .icon_setting {
+    cursor: pointer;
   }
 }
 
@@ -827,7 +839,7 @@ table {
       border: 1px solid #c7c7c7;
       border-radius: 10px;
       padding: 14px;
-      color: #c7c7c7;
+      color: #000000;
       font-size: 12px;
       font-weight: 300;
     }
@@ -837,7 +849,7 @@ table {
       border: 1px solid #c7c7c7;
       border-radius: 10px;
       padding: 14px;
-      color: #c7c7c7;
+      color: #000000;
       font-size: 12px;
       font-weight: 300;
     }
@@ -1202,8 +1214,32 @@ g.highcharts-legend-item {
   }
 }
 
+.modal-button {
+  gap: 20px;
+}
 
+.loading {
+  height: 0;
+  width: 0;
+  padding: 15px;
+  border: 6px solid #ccc;
+  border-right-color: #888;
+  border-radius: 22px;
+  -webkit-animation: rotate 1s infinite linear;
+  /* left, top and position just for the demo! */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
 
+@-webkit-keyframes rotate {
+
+  /* 100% keyframe for  clockwise. 
+     use 0% instead for anticlockwise */
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
 
 @media only screen and (min-width: 1800px) {
   .dash-content-side {

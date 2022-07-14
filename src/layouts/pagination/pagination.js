@@ -22,7 +22,7 @@ const Pagination = props => {
     if (currentPage === 0 || paginationRange.length < 2) {
         return null;
     }
-
+    
     const onNext = () => {
         onPageChange(currentPage + 1);
     };
