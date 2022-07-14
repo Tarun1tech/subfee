@@ -273,7 +273,7 @@ const ContentUpdate = props => {
                             </div>
                           </div>
                         </div>
-                        <input className="content-sub-btns" type="submit" value="Foto plaatsen" />
+                        <input className="content-sub-btns" type="submit" value="Opslaan" />
                       </form>
                     </div>
                   </div>

@@ -1075,7 +1075,7 @@ g.highcharts-legend-item {
 
 @-webkit-keyframes rotate {
   /* 100% keyframe for  clockwise. 
-     use 0% instead for anticlockwise */
+    use 0% instead for anticlockwise */
   100% {
     -webkit-transform: rotate(360deg);
   }
@@ -1084,4 +1084,25 @@ g.highcharts-legend-item {
   .dash-content-side {
     padding: 30px 240px 30px 140px;
   }
+}
+.custom-modal .modal-dialog .modal-content {
+  padding: 20px !important;
+}
+.custom-modal .modal-dialog .modal-content .stats-page-title {
+  margin-bottom: 0;
+}
+.custom-modal .modal-dialog .page-direc {
+  margin-top: 0;
+  border: none;
+  color: #fff;
+}
+.custom-modal .modal-dialog .export-subscribers-btn {
+  margin-bottom: 0 !important;
+}
+.custom-modal .modal-dialog .modal-button {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.custom-modal .modal-dialog .modal-button button {
+  width: 50%;
 }/*# sourceMappingURL=style.css.map */

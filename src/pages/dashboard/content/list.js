@@ -9,7 +9,7 @@ import ContentUpdate from "./content-update";
 let PageSize = 10;
 
 const ContentList = (props) => {
-    const { contentlistbyid, deletelist } = props;
+    const { contentlistbyid, deletelist, get_content_data } = props;
     const token = localStorage.getItem("access_token")
     const [totalPage, setTotalPage] = useState(1)
     const [currentPage, setCurrentPage] = useState(1);
@@ -19,18 +19,14 @@ const ContentList = (props) => {
     const [bulkDeleteId, setBulkDeleteId] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showvideo, setShowvideo] = useState(false);
-    useEffect(() => {
-        handleGet();
-    }, [token]);
 
-    const handleGet = () => {
-        props.get_content_data({
+    useEffect(() => {
+        get_content_data({
             page: currentPage
         });
-    }
-
+    }, [token]);
     const handlePerPage = (page) => {
-        props.get_content_data({
+        get_content_data({
             page: page
         });
         setCurrentPage(page)
@@ -107,17 +103,21 @@ const ContentList = (props) => {
             setLoading(false);
         }
         if (deletelist?.success) {
-            handleGet();
+            get_content_data({
+                page: currentPage
+            });
             setBulkShow(false);
             setBulkDeleteBtn(false);
         } else {
             toast.error(deletelist?.message)
         }
-    }, [loading, contentlistbyid, deletelist])
+    }, [loading, contentlistbyid, deletelist, get_content_data])
     const onHide = () => {
         setBulkShow(false);
         setBulkDeleteBtn(false);
-        handleGet();
+        get_content_data({
+            page: currentPage
+        });
     };
     return (
         <div className="col-md-12 mt-4">
@@ -234,7 +234,15 @@ const ContentList = (props) => {
                 />
             }
 
-            <CustomModal show={bulkShow} hide={onHide} bulkDelete={bulkDelete} />
+            <CustomModal
+                show={bulkShow}
+                hide={onHide}
+                bulkDelete={bulkDelete}
+                popupHeader="Content verwijderen"
+                popupText="Weet je zeker dat je de geselecteerde content wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
+                confirmbuttonText="Ja, ik weet het zeker"
+                cancelbuttonText="Nee, ik wil dit niet"
+            />
         </div>
     )
 }
