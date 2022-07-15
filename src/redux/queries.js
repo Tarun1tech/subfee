@@ -1,11 +1,5 @@
 import axios from "axios";
-let token = localStorage.getItem("accessToken");
-
-var headertoken = {
-  Authorization: `Bearer ${token}`,
-  Accept: "application/json, text/plain, */*",
-  "Content-Type": "application/json",
-};
+let token = localStorage.getItem("access_token");
 
 //For Login
 export const doLogin = (data) => {
@@ -34,7 +28,6 @@ export const forgotPassword = (data) => {
 // Content API
 
 export const contentData = (data) => {
-  let token = localStorage.getItem("access_token");
   return axios
     .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getcontentlist/?page=${data.page}`, {
       headers: {
@@ -45,7 +38,6 @@ export const contentData = (data) => {
     .catch((err) => err.response);
 };
 export const contentDataById = (data) => {
-  let token = localStorage.getItem("access_token");
   return axios
     .post(`${process.env.REACT_APP_API_ENDPOINT}creator/getcontentdetails`, data, {
       headers: {
@@ -56,7 +48,6 @@ export const contentDataById = (data) => {
     .catch((err) => err.response);
 };
 export const uploadFile = (data) => {
-  let token = localStorage.getItem("access_token");
   return axios
     .post(`${process.env.REACT_APP_API_ENDPOINT}creator/upload-file`, data, {
       headers: {
@@ -68,7 +59,6 @@ export const uploadFile = (data) => {
 };
 
 export const createContent = (data) => {
-  let token = localStorage.getItem("access_token");
   return axios
     .post(`${process.env.REACT_APP_API_ENDPOINT}creator/create-content`, data, {
       headers: {
@@ -79,7 +69,6 @@ export const createContent = (data) => {
     .catch((err) => err.response);
 };
 export const updateContent = (data) => {
-  let token = localStorage.getItem("access_token");
   return axios
     .post(`${process.env.REACT_APP_API_ENDPOINT}creator/editcontent`, data, {
       headers: {
@@ -90,9 +79,31 @@ export const updateContent = (data) => {
     .catch((err) => err.response);
 };
 export const createDelete = (data) => {
-  let token = localStorage.getItem("access_token");
   return axios
     .post(`${process.env.REACT_APP_API_ENDPOINT}creator/deletecontent`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+// Profile API
+export const createProfile = (data) => {
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/updateprofile`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+export const profileData = (data) => {
+  return axios
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getprofile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

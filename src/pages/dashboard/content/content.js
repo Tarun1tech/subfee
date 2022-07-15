@@ -186,7 +186,7 @@ const ContentPage = (props) => {
     } else {
       toast.error(uploadFile?.message)
     }
-    console.log(extension, "extension")
+
     if (extensionFile === "mp4" || extensionFile === "mov" || extensionFile === "wmv" || extensionFile === "avi" || extensionFile === "webm") {
       setShowvideo(true);
       setVideourl(`https://subfee.techstriker.com/backend/public/${props.uploadFile.data.fileupload}`);

@@ -357,7 +357,7 @@ body {
   border: 1px solid #000;
   border-radius: 10px;
   width: 100%;
-  min-height: 290px;
+  min-height: 450px;
 }
 .setting-tab .setting-tab-content form input[type=color] {
   height: 56px;
