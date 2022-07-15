@@ -35,7 +35,7 @@ export const create_profile = payload => async dispatch => {
             payload: response
         });
     } else {
-        toast.error(response.message)
+        toast.error(response.error)
         dispatch(
             {
                 type: "ERROR_OCCURED",

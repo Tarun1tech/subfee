@@ -40,8 +40,8 @@ const DashContentSide = (props) => {
       first_name: inputs.first_name || props.profileData?.first_name,
       last_name: inputs.last_name || props.profileData?.last_name,
       email: inputs.email || props.profileData?.email,
-      current_password: inputs.current_password,
-      old_password: inputs.old_password,
+      newpassword: inputs.current_password,
+      oldpassword: inputs.old_password,
       default_video_descriptions: inputs.video_desc || props.profileData?.default_video_descriptions,
       instagram_url: inputs.instagram_url || props.profileData?.instagram_url,
       twitter_url: inputs.twitter_url || props.profileData?.twitter_url,
@@ -50,8 +50,6 @@ const DashContentSide = (props) => {
       legal_information: inputs.terms_condition || props.profileData?.terms_condition,
       privacy_statement: inputs.privacy_statement || props.profileData?.privacy_statement
     }
-
-    console.log(payload, "payload")
     props.create_profile(payload);
     document.getElementById("profileForm").reset();
 
