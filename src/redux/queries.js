@@ -1,12 +1,6 @@
 import axios from "axios";
 let token = localStorage.getItem("accessToken");
 
-var headertoken = {
-  Authorization: `Bearer ${token}`,
-  Accept: "application/json, text/plain, */*",
-  "Content-Type": "application/json",
-};
-
 //For Login
 export const doLogin = (data) => {
   return axios
@@ -44,7 +38,17 @@ export const contentData = (data) => {
     .then((response) => response)
     .catch((err) => err.response);
 };
-
+export const contentDataById = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/getcontentdetails`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
 export const uploadFile = (data) => {
   let token = localStorage.getItem("access_token");
   return axios
@@ -61,6 +65,78 @@ export const createContent = (data) => {
   let token = localStorage.getItem("access_token");
   return axios
     .post(`${process.env.REACT_APP_API_ENDPOINT}creator/create-content`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+export const updateContent = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/editcontent`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+export const createDelete = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/deletecontent`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+// Profile API
+export const createProfile = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/updateprofile`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+export const profileData = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getprofile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+// THEME API
+export const createTheme = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/themesetting`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+export const themeData = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getthemesetting`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

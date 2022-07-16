@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ContentList from "./list";
 import Modal from "react-bootstrap/Modal";
 import { Upload } from 'antd';
-import Moment from 'react-moment';
 import { connect } from "react-redux";
 import { upload_file, reset_app, create_content, get_content_data } from "../../../redux/content/actions";
 import { extension } from "../../../constants/index";
@@ -38,9 +36,10 @@ const ContentPage = (props) => {
   const [extensionFile, setExtensionFile] = useState("")
   const token = localStorage.getItem("access_token")
   const [loading, setLoading] = useState(false);
+  const [videoLoader, setVideoLoader] = useState(false);
+  const [imageLoader, setImageLoader] = useState(false);
   const handleCancel = () => setPreviewVisible(false);
   const history = useHistory();
-  console.log(fileList);
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
@@ -86,7 +85,6 @@ const ContentPage = (props) => {
     props.reset_app();
     setExtensionFile("");
     setShowimage(false);
-    console.log(props, "props")
   }
   const handleClosecontent = () => {
     setShowContent(false)
@@ -98,15 +96,19 @@ const ContentPage = (props) => {
   const handleChangefile = (e) => {
     e.preventDefault();
     let k = e.target.files[0];
-    console.log(k, "k")
     var formdata = new FormData();
     formdata.append("fileupload", k, k.name);
     formdata.append("type", k.type)
-    console.log(formdata, "formdata")
+
 
     props.upload_file(formdata);
-    setLoading(true)
-    console.log(props.uploadFile)
+    if (k.type === "video/mp4" || k.type === "video/mov" || k.type === "video/wmv" || k.type === "video/avi" || k.type === "video/webm") {
+      setVideoLoader(true);
+    } else if (k.type === "image/jpeg" || k.type === "image/jpg" || k.type === "image/png" || k.type === "image/webp" || k.type === "image/svg") {
+      setImageLoader(true);
+    } else {
+      setLoading(true);
+    }
   }
 
   /* video popup form api */
@@ -116,7 +118,7 @@ const ContentPage = (props) => {
     description: "",
   }
 
-  const [commentValue, setcommentValue] = useState(false);
+  const [commentValue, setcommentValue] = useState(true);
 
   const handlecheckbox = (e) => {
     if ((e.target.checked)) {
@@ -156,7 +158,7 @@ const ContentPage = (props) => {
     const payload = {
       title: contentInputs.title,
       desc: contentInputs.description,
-      video: contentInputs.mainvideourl,
+      video: mainvideourl,
       comments: commentValue
     }
     if (image[0]) {
@@ -164,7 +166,7 @@ const ContentPage = (props) => {
     } else {
       payload.thumbnail = mainimageurl
     }
-    console.log(payload, "paull")
+    console.log(payload, "payload")
     if (Object.keys(validate(contentInputs)).length === 0) {
       props.create_content(payload);
     }
@@ -178,6 +180,8 @@ const ContentPage = (props) => {
   useEffect(() => {
     if (uploadFile?.success) {
       setLoading(false);
+      setVideoLoader(false);
+      setImageLoader(false);
       setExtensionFile(extension(uploadFile.data.fileupload))
     } else {
       toast.error(uploadFile?.message)
@@ -192,7 +196,7 @@ const ContentPage = (props) => {
       setImageurl(`https://subfee.techstriker.com/backend/public/${props.uploadFile?.data.fileupload}`);
       setMainimageurl(props.uploadFile?.data.fileupload);
     }
-    console.log(props, "prop")
+
     if (createContent?.success) {
       handleClosevideo();
       handleClosecontent();
@@ -218,7 +222,7 @@ const ContentPage = (props) => {
                   </svg>
                     Upload nieuwe video
                   </p>
-                  <button className="content-upload-btn" data-bs-toggle="modal" id="videoup" data-bs-target="#video-submit">           {loading ? "Loading...." : "Selecteer een bestand"}</button>
+                  <button className="content-upload-btn" data-bs-toggle="modal" id="videoup" data-bs-target="#video-submit">           {videoLoader ? "Loading...." : "Selecteer een bestand"}</button>
                   <input type="file" onChange={handleChangefile} name="video" placeholder="file" accept="video/mp4" />
                 </div>
                 <div className="content-upload-btns-back">
@@ -226,7 +230,7 @@ const ContentPage = (props) => {
                     <path d="M33.75 9.6875H28.4375L27.1719 6.14063C27.0844 5.89792 26.9242 5.68813 26.7131 5.53991C26.5019 5.39169 26.2502 5.31227 25.9922 5.3125H14.0078C13.4805 5.3125 13.0078 5.64453 12.832 6.14063L11.5625 9.6875H6.25C4.52344 9.6875 3.125 11.0859 3.125 12.8125V30.625C3.125 32.3516 4.52344 33.75 6.25 33.75H33.75C35.4766 33.75 36.875 32.3516 36.875 30.625V12.8125C36.875 11.0859 35.4766 9.6875 33.75 9.6875ZM34.0625 30.625C34.0625 30.7969 33.9219 30.9375 33.75 30.9375H6.25C6.07812 30.9375 5.9375 30.7969 5.9375 30.625V12.8125C5.9375 12.6406 6.07812 12.5 6.25 12.5H13.543L14.2109 10.6328L15.1055 8.125H24.8906L25.7852 10.6328L26.4531 12.5H33.75C33.9219 12.5 34.0625 12.6406 34.0625 12.8125V30.625ZM20 15C16.5469 15 13.75 17.7969 13.75 21.25C13.75 24.7031 16.5469 27.5 20 27.5C23.4531 27.5 26.25 24.7031 26.25 21.25C26.25 17.7969 23.4531 15 20 15ZM20 25C17.9297 25 16.25 23.3203 16.25 21.25C16.25 19.1797 17.9297 17.5 20 17.5C22.0703 17.5 23.75 19.1797 23.75 21.25C23.75 23.3203 22.0703 25 20 25Z" fill="#000" />
                   </svg>
                     Upload nieuwe foto</p>
-                  <button className="content-upload-btn" data-bs-toggle="modal" id="imageup" data-bs-target="#photo-submit">   {loading ? "Loading...." : "Selecteer een bestand"}</button>
+                  <button className="content-upload-btn" data-bs-toggle="modal" id="imageup" data-bs-target="#photo-submit">   {imageLoader ? "Loading...." : "Selecteer een bestand"}</button>
                   <input type="file" onChange={handleChangefile} name="image" />
                 </div>
                 <div className="content-upload-btns-back">

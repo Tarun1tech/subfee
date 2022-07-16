@@ -1,6 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { create_profile, get_profile_data } from "../../redux/settings/actions";
+import Thema from "./thema";
 
-const DashContentSide = () => {
+const DashContentSide = (props) => {
+  const profileFields = {
+    website_name: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    current_password: "",
+    old_password: "",
+    video_desc: "",
+    instagram_url: "",
+    twitter_url: "",
+    facebook_url: "",
+    youtube_url: "",
+    terms_condition: "",
+    privacy_statement: ""
+  }
+  const [inputs, setInputs] = useState(profileFields);
+  const token = localStorage.getItem("access_token")
+  useEffect(() => {
+    props.get_profile_data();
+  }, [token]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  }
+
+
+  const handleSubmit = (e) => {
+    // setFormErrors(validate(inputs));
+    e.preventDefault();
+    const payload = {
+      name: inputs.website_name || props.profileData?.name,
+      first_name: inputs.first_name || props.profileData?.first_name,
+      last_name: inputs.last_name || props.profileData?.last_name,
+      email: inputs.email || props.profileData?.email,
+      newpassword: inputs.current_password,
+      oldpassword: inputs.old_password,
+      default_video_descriptions: inputs.video_desc || props.profileData?.default_video_descriptions,
+      instagram_url: inputs.instagram_url || props.profileData?.instagram_url,
+      twitter_url: inputs.twitter_url || props.profileData?.twitter_url,
+      facebook_url: inputs.facebook_url || props.profileData?.facebook_url,
+      youtube_url: inputs.youtube_url || props.profileData?.youtube_url,
+      legal_information: inputs.terms_condition || props.profileData?.terms_condition,
+      privacy_statement: inputs.privacy_statement || props.profileData?.privacy_statement
+    }
+    props.create_profile(payload);
+    document.getElementById("profileForm").reset();
+
+  }
+
+
+  
+
   return (
     <div>
       <div className="dash-content-side">
@@ -84,25 +142,39 @@ const DashContentSide = () => {
                     <div className="col-md-12">
                       <div className="setting-tab-content">
                         <div className="container-fluid">
-                          <form>
+                          <form id="profileForm" onSubmit={handleSubmit}>
                             <div className="row justify-content-between">
                               <div className="col-md-7">
                                 <h6>Websitegegevens</h6>
                                 <label>Websitenaam</label>
-                                <input type="text" name="Websitenaam" />
+                                <input type="text" name="website_name" onChange={handleChange} defaultValue={props.profileData?.name} />
                                 <div className="d-flex justify-content-between align-items-center">
                                   <div className="pe-3">
                                     <label>Voornaam</label>
-                                    <input type="text" name="Voornaam" />
+                                    <input type="text" name="first_name" onChange={handleChange} defaultValue={props.profileData?.first_name} />
                                   </div>
                                   <div className="ps-3">
                                     <label>Achternaam</label>
-                                    <input type="text" name="Achternaam" />
+                                    <input type="text" name="last_name" onChange={handleChange} defaultValue={props.profileData?.last_name} />
                                   </div>
                                 </div>
                                 <label>E-mailadres</label>
-                                <input type="email" name="E-mailadres" />
+                                <input type="email" name="email" onChange={handleChange} defaultValue={props.profileData?.email} />
+                                <div>
+                                  <label>Wachtwoord wijzigen</label>
+                                  <input type="text" name="old_password" placeholder="Oude wachtwoord" onChange={handleChange} />
+                                  <input type="text" name="current_password" placeholder="Nieuwe wachtwoord" className="mt-4" onChange={handleChange} />
+                                </div>
+                                <div className="mb-4">
+                                  <input
+                                    className="form-submit"
+                                    type="submit"
+                                    value="Wijzigen"
+                                    onClick={handleSubmit}
+                                  />
+                                </div>
                               </div>
+
                               <div className="col-md-4">
                                 <h6>Videobeschrijvingen</h6>
                                 <span>
@@ -113,33 +185,34 @@ const DashContentSide = () => {
                                   onder elke video wilt plaatsen. Denk aan een
                                   bedankje aan je fans, social media etc.
                                 </p>
-                                <textarea name="video-text" />
+                                <textarea name="video_desc" onChange={handleChange} defaultValue={props.profileData?.default_video_descriptions} />
                               </div>
                             </div>
+
                             <div className="row">
                               <div className="col-md-12">
-                              <h6>Social media</h6>
-                              <label>Instagram URL</label>
-                              <input type="text" name="instagam_url" />
-                              <label>Twitter URL</label>
-                              <input type="text" name="twitter_url" />
-                              <label>Facebook URL</label>
-                              <input type="text" name="facebook_url" />
-                              <label>Youtube URL</label>
-                              <input type="text" name="youtube_url" />
+                                <h6>Social media</h6>
+                                <label>Instagram URL</label>
+                                <input type="text" name="instagram_url" onChange={handleChange} defaultValue={props.profileData?.instagram_url} />
+                                <label>Twitter URL</label>
+                                <input type="text" name="twitter_url" onChange={handleChange} defaultValue={props.profileData?.twitter_url} />
+                                <label>Facebook URL</label>
+                                <input type="text" name="facebook_url" onChange={handleChange} defaultValue={props.profileData?.facebook_url} />
+                                <label>Youtube URL</label>
+                                <input type="text" name="youtube_url" onChange={handleChange} defaultValue={props.profileData?.youtube_url} />
                               </div>
                             </div>
                             <div className="row mt-3">
                               <div className="col-md-12 mt-5">
                                 <h6>Wettelijke gegevens</h6>
                                 <label>Algemene voorwaarden</label>
-                                <textarea name="Algemene-voorwaarden" />
+                                <textarea name="terms_condition" onChange={handleChange} defaultValue={props.profileData?.legal_information} />
                                 <label>Privacy statement</label>
-                                <textarea name="Privacy-statement" />
+                                <textarea name="privacy_statement" onChange={handleChange} defaultValue={props.profileData?.privacy_statement} />
                               </div>
                             </div>
                             <div className="text-end">
-                              <input className="form-submit" type="submit" value="Opslaan"/>
+                              <input className="form-submit" type="submit" value="Opslaan" />
                             </div>
                           </form>
                         </div>
@@ -152,11 +225,12 @@ const DashContentSide = () => {
                     role="tabpanel"
                     aria-labelledby="nav-profile-tab"
                   >
-                    <div className="col-md-9">
+                    <Thema/>
+                    {/* <div className="col-md-9">
                       <div className="setting-tab-content">
                         <div className="container-fluid">
-                          {/*  */}
-                          <form>
+                      
+                          <form onSubmit={handleThemeSubmit}>
                             <div className="row justify-content-between">
                               <div className="col-md-12">
                                 <h6>Grafische vormgeving</h6>
@@ -165,42 +239,44 @@ const DashContentSide = () => {
                                   Het logo voor op je website (moet een
                                   transparante .png zijn)
                                 </p>
-                                <input type="file" name="Logo" />
+                                <input type="file" name="logo" onChange={handleThemeChange}/>
                                 <label>Log-in scherm achtergrond</label>
                                 <p>
-                                De afbeelding die getoond wordt achter de log-in module 
+                                  De afbeelding die getoond wordt achter de log-in module
                                 </p>
-                                <input type="file" name="login-background" />
+                                <input type="file" name="login_background_image" onChange={handleThemeChange}/>
                                 <label>Headerafbeelding</label>
                                 <p>
                                   De headerafbeelding voor bovenaan de dashboard
                                   pagina (max. 3000x750px)
                                 </p>
-                                <input type="file" name="Headerafbeelding" />
+                                <input type="file" name="header_image" onChange={handleThemeChange}/>
                                 <label>Profielfoto</label>
                                 <p>
                                   De profielfoto die wordt getoond wanneer je
                                   een nieuwe video upload (max. 1500x1500px)
                                 </p>
-                                <input type="file" name="Profielfoto" />
+                                <input type="file" name="profile_image" onChange={handleThemeChange} />
                                 <label>Favicon</label>
                                 <p>
                                   De afbeelding die wordt gebruikt in het
                                   browsertabblad
                                 </p>
-                                <input type="file" name="Favicon" />
+                                <input type="file" name="favicon" onChange={handleThemeChange} />
                                 <h6 className="mt-5">Kleuren aanpassen</h6>
                                 <label>Primaire kleur</label>
                                 <input
                                   type="color"
-                                  name="primary-color"
+                                  name="primary_color"
                                   value="#65006B"
+                                  onChange={handleThemeChange}
                                 />
                                 <label>Secundaire kleur</label>
                                 <input
                                   type="color"
-                                  name="secondry-color"
+                                  name="secondry_color"
                                   value="#FE6A6A"
+                                  onChange={handleThemeChange}
                                 />
                               </div>
                             </div>
@@ -214,7 +290,7 @@ const DashContentSide = () => {
                           </form>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div
                     className="tab-pane fade"
@@ -245,9 +321,14 @@ const DashContentSide = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 
-export default DashContentSide;
+const mapStateToProps = state => ({
+  ...state,
+  profileData: state.setting.profile_data?.data,
+});
+
+export default connect(mapStateToProps, { create_profile, get_profile_data })(DashContentSide);
