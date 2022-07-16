@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import DashLogo from "../../assets/images/dash-logo.png";
 import UserImg from "../../assets/images/user.png";
@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from "react-redux";
 import { reset_app } from "../../redux/content/actions";
+import { get_profile_data } from "../../redux/settings/actions";
+
 const DashSidebar = (props) => {
   let url = window.location.pathname;
   let history = useHistory();
@@ -15,6 +17,9 @@ const DashSidebar = (props) => {
     history.push(`${url}`);
   };
   const token = localStorage.getItem("access_token")
+  useEffect(() => {
+    props.get_profile_data();
+  }, [token]);
   const _nav = [
     {
       type: "",
@@ -209,11 +214,12 @@ const DashSidebar = (props) => {
         </div>
         <div className="user-detail d-flex justify-content-start align-items-center">
           <div>
-            <img src={UserImg} alt="user" />
+          <img src={props.profileData?.profile_image === null? UserImg: `https://subfee.techstriker.com/backend/public/${props.profileData?.profile_image}`} alt="user" />
+            
           </div>
           <div>
-            <p>User Name</p>
-            <span>1750 Subscribers</span>
+            <p>{props.profileData?.first_name}</p>
+            <span>{props.profileData?.total_subscribers} Subscribers</span>
           </div>
         </div>
         <div className="logout-btn" onClick={logOut}>
@@ -231,7 +237,7 @@ const DashSidebar = (props) => {
 
 const mapStateToProps = state => ({
   ...state,
-
+  profileData: state.setting.profile_data?.data,
 });
 
-export default connect(mapStateToProps, { reset_app })(DashSidebar);
+export default connect(mapStateToProps, { reset_app,get_profile_data })(DashSidebar);

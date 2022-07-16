@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { create_profile, get_profile_data } from "../../redux/settings/actions";
+import Thema from "./thema";
 
 const DashContentSide = (props) => {
   const profileFields = {
@@ -55,18 +56,9 @@ const DashContentSide = (props) => {
 
   }
 
-  // Theme Setting
-  const [theme, setTheme] = useState({
-    logo: ""
-  })
-  // const handleThemeChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setTheme({
-  //     ...theme,
-  //     [name]: value,
-  //   });
-  // }
-  console.log(theme)
+
+  
+
   return (
     <div>
       <div className="dash-content-side">
@@ -233,11 +225,12 @@ const DashContentSide = (props) => {
                     role="tabpanel"
                     aria-labelledby="nav-profile-tab"
                   >
-                    <div className="col-md-9">
+                    <Thema/>
+                    {/* <div className="col-md-9">
                       <div className="setting-tab-content">
                         <div className="container-fluid">
-                          {/*  */}
-                          <form>
+                      
+                          <form onSubmit={handleThemeSubmit}>
                             <div className="row justify-content-between">
                               <div className="col-md-12">
                                 <h6>Grafische vormgeving</h6>
@@ -246,42 +239,44 @@ const DashContentSide = (props) => {
                                   Het logo voor op je website (moet een
                                   transparante .png zijn)
                                 </p>
-                                <input type="file" name="logo" />
+                                <input type="file" name="logo" onChange={handleThemeChange}/>
                                 <label>Log-in scherm achtergrond</label>
                                 <p>
                                   De afbeelding die getoond wordt achter de log-in module
                                 </p>
-                                <input type="file" name="login-background" />
+                                <input type="file" name="login_background_image" onChange={handleThemeChange}/>
                                 <label>Headerafbeelding</label>
                                 <p>
                                   De headerafbeelding voor bovenaan de dashboard
                                   pagina (max. 3000x750px)
                                 </p>
-                                <input type="file" name="Headerafbeelding" />
+                                <input type="file" name="header_image" onChange={handleThemeChange}/>
                                 <label>Profielfoto</label>
                                 <p>
                                   De profielfoto die wordt getoond wanneer je
                                   een nieuwe video upload (max. 1500x1500px)
                                 </p>
-                                <input type="file" name="Profielfoto" />
+                                <input type="file" name="profile_image" onChange={handleThemeChange} />
                                 <label>Favicon</label>
                                 <p>
                                   De afbeelding die wordt gebruikt in het
                                   browsertabblad
                                 </p>
-                                <input type="file" name="Favicon" />
+                                <input type="file" name="favicon" onChange={handleThemeChange} />
                                 <h6 className="mt-5">Kleuren aanpassen</h6>
                                 <label>Primaire kleur</label>
                                 <input
                                   type="color"
-                                  name="primary-color"
+                                  name="primary_color"
                                   value="#65006B"
+                                  onChange={handleThemeChange}
                                 />
                                 <label>Secundaire kleur</label>
                                 <input
                                   type="color"
-                                  name="secondry-color"
+                                  name="secondry_color"
                                   value="#FE6A6A"
+                                  onChange={handleThemeChange}
                                 />
                               </div>
                             </div>
@@ -295,7 +290,7 @@ const DashContentSide = (props) => {
                           </form>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div
                     className="tab-pane fade"
