@@ -95,14 +95,14 @@ const Thema = (props) => {
                                 <input
                                   type="color"
                                   name="primary_color"
-                                  value={primaryColor}
+                                  defaultValue={primaryColor}
                                   onChange={(e)=>setPrimaryColor(e.target.value)}
                                 />
                                 <label>Secundaire kleur</label>
                                 <input
                                   type="color"
                                   name="secondry_color"
-                                  value={secondaryColor}
+                                  defaultValue={secondaryColor}
                                   onChange={(e)=>setSecondaryColor(e.target.value)}
                                 />
                               </div>
