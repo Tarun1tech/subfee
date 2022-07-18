@@ -154,7 +154,7 @@ const DashSidebar = (props) => {
     {
       type: "",
       name: `Naar je platform`,
-      to: "#",
+      to: "/naar",
       icon: (
         <div className="mr-4">
           <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">

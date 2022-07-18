@@ -5,6 +5,7 @@ import Sidebar from "./layouts/sidebar/sidebar";
 import ContentPage from "./pages/dashboard/content/content";
 import Dashboard from "./pages/dashboard/dashboard";
 import Finanical from "./pages/dashboard/finanical";
+import Naar from "./pages/dashboard/naar";
 import DashContentSide from "./pages/dashboard/settings";
 import Statistics from "./pages/dashboard/statistics/index";
 import Subscribers from "./pages/dashboard/subscribers";
@@ -26,6 +27,7 @@ const Router = (data) => {
       <PrivateRoute exact path="/content" component={ContentPage} />
       <PrivateRoute exact path="/statistics" component={Statistics} />
       <PrivateRoute exact path="/finanical" component={Finanical} />
+      <PrivateRoute exact path="/naar" component={Naar}/>
     </Switch>
   );
 };

@@ -31,6 +31,7 @@
   $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   $danger: #FF0000;
   $grey: #e9ecef;
+  $sub-pink: #E10051;
 
   ::selection {
     background: $purple;
@@ -1277,4 +1278,254 @@
         }
       }
     }
+  }
+  
+  
+  
+  // naar
+  .creator-video {
+    width: 100%;
+    padding: 40px;
+    border-radius: 20px;
+    background: $white;
+  
+    .creator-nm-detail {
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+  
+      p {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  
+    .comments-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: $sub-pink;
+      margin-top: 20px;
+      transition: .25s;
+      cursor: pointer;
+    }
+  
+    .collapsed {
+      color: #999 !important;
+    }
+  }
+  .single-video {
+    margin-top: 20px;
+  
+    img {
+      border-radius: 20px;
+    }
+  
+    .react-player__preview {
+      border-radius: 20px;
+    }
+  }
+  .video-title {
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: 700;
+    color: $dark;
+  }
+  
+  .video-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: #3d3d3d;
+  }
+  
+  .dash-latest-comment {
+    margin-top: 20px;
+  
+    ul {
+      padding-left: 0;
+  
+      li {
+        list-style-type: none;
+        margin: 22px 0;
+  
+        .notif-img {
+          width: 18%;
+          position: relative;
+          margin-right: 10px;
+  
+          img {
+            width: 39px;
+            height: 39px;
+            border-radius: 50%;
+          }
+  
+          .notification-alert {
+            position: absolute;
+            top: -4px;
+            right: -5px;
+  
+            span {
+              width: 16px;
+              height: 16px;
+              border-radius: 50%;
+            }
+  
+            .blue {
+              background-color: #00B2FF;
+            }
+  
+            .red {
+              background-color: #F50000;
+            }
+          }
+        }
+  
+        .notif-content {
+          width: 82%;
+  
+          h6 {
+            font-size: 13px;
+            font-weight: 600;
+            color: $dark;
+            margin-bottom: 0;
+          }
+  
+          span {
+            font-size: 10px;
+            font-weight: 400;
+            color: #808080;
+          }
+  
+          p {
+            font-size: 12px;
+            font-weight: 400;
+            color: $dark;
+            margin-bottom: 0;
+            height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+  
+            span {
+              color: $pink;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .video-like-btn {
+    margin-top: 15px;
+  
+    /* button {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #adadad;
+      margin-right: 10px;
+      background-color: $white;
+      transition: .5s;
+  
+      &:hover {
+        background-color: $white;
+        border-color: $sub-pink;
+        transition: .25s;
+      }
+  
+      &:hover path {
+        fill: $sub-pink;
+        transition: .25s;
+      }
+    } */
+  
+    button {
+      border: none;
+      background-color: $white;
+  
+      svg {
+        width: 28px;
+        height: 28px;
+        padding: 4px;
+        border: 1px solid #adadad;
+        margin-right: 10px;
+        border-radius: 50%;
+        transition: .4s ease-in-out;
+  
+        &:hover {
+          transition: .4s ease-in-out;
+          border: 1px solid $sub-pink;
+        }
+  
+        &:hover path {
+          fill: $sub-pink;
+          transition: .25s ease-in-out;
+        }
+  
+      }
+  
+      .after-like {
+        border: 1px solid $sub-pink;
+      }
+    }
+  
+  
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      color: #adadad;
+      margin-bottom: 0;
+    }
+  }
+  
+  .comment-box {
+    background-color: $sub-pink;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 10px;
+  
+    img {
+      width: 28px;
+      height: 28px;
+      margin-right: 14px;
+    }
+  
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      ::placeholder {
+        color: $white;
+      }
+  
+      input {
+        border: none;
+        background-color: transparent;
+        color: $white  !important;
+        font-size: 12px;
+        font-weight: 500;
+        width: 100%;
+        outline: none;
+      }
+  
+      button {
+        border: none;
+        background-color: transparent;
+      }
+    }
+  }
+  
+  .small-vdeo {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: $white;
+  
+    video {
+      width: 100%;
+    }
+  }
+  img {
+    width: 100%;
   }
