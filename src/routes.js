@@ -5,9 +5,9 @@ import Sidebar from "./layouts/sidebar/sidebar";
 import ContentPage from "./pages/dashboard/content/content";
 import Dashboard from "./pages/dashboard/dashboard";
 import Finanical from "./pages/dashboard/finanical";
+import Naar from "./pages/dashboard/naar";
 import DashContentSide from "./pages/dashboard/settings";
 import Subscribers from "./pages/dashboard/subscribers";
-import CreatorPlatform from "./pages/dashboard/creator-platform";
 import EmailVerification from "./pages/email-verification";
 import ForgotPassword from "./pages/forgot-password";
 
@@ -25,7 +25,7 @@ const Router = (data) => {
       <PrivateRoute exact path="/settings" component={DashContentSide} />
       <PrivateRoute exact path="/content" component={ContentPage} />
       <PrivateRoute exact path="/finanical" component={Finanical} />
-      <PrivateRoute exact path="/creator-platform" component={CreatorPlatform} />
+      <PrivateRoute exact path="/naar" component={Naar}/>
     </Switch>
   );
 };

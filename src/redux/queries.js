@@ -144,3 +144,17 @@ export const themeData = (data) => {
     .then((response) => response)
     .catch((err) => err.response);
 };
+
+// Comment API
+
+export const feedData = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getfeedsbycreator`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};

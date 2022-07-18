@@ -32,6 +32,7 @@
   $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   $danger: #FF0000;
   $grey: #e9ecef;
+  $sub-pink: #E10051;
 
   ::selection {
     background: $pink;
@@ -1435,6 +1436,10 @@
       }
     }
   }
+  
+  
+  
+  // naar
 
   /* video component */
   .creator-video {
@@ -1677,4 +1682,17 @@
         background-color: transparent;
       }
     }
+  }
+  
+  .small-vdeo {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: $white;
+  
+    video {
+      width: 100%;
+    }
+  }
+  img {
+    width: 100%;
   }
