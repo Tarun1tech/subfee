@@ -12,10 +12,17 @@ const Subscribers = () => {
             <div className="col-md-12">
               <div className="setting-tab subs-page">
                 <div className="d-flex justify-content-between align-items-center">
-                  <div>
+                  <div className="col-md-3">
                     <h6 className="stats-page-title">Alle subscribers</h6>
                   </div>
-                  <div>
+                  <div className="col-md-4">
+                    <form>
+                      <input type="search" placeholder="Zoeken...." name="subscriber-search" className="subscriber-search" />
+                    </form>
+                  </div>
+                  <div className="col-md-4 text-end"> 
+                    <button className="table-header-active me-2">Actief</button>
+                    <button className="table-header-inactive me-5">Inactief</button>
                     <button className="export-subscribers-btn" type="button" data-bs-toggle="modal" data-bs-target="#exportSubs">Exporteren</button>
                     <div class="modal fade" id="exportSubs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-modal-size">
@@ -31,7 +38,7 @@ const Subscribers = () => {
                               <input type="checkbox"/>
                               <div className="file-icon"><img src={Csv} /> CSV</div>
                               </div>
-                            </label>                          
+                            </label>                            
                             </div>
                             <div>
                             <label class="custom-export-select">
@@ -48,7 +55,7 @@ const Subscribers = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>                  
                 </div>
                 <table className="table">
                   <thead>
@@ -57,6 +64,7 @@ const Subscribers = () => {
                       <th></th>
                       <th>E-mailadres</th>
                       <th>Lid sinds</th>
+                      <th>Abonnement status</th>
                       <th>
                         <svg
                           width="15"
@@ -91,6 +99,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="active-one">Actief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -110,6 +119,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="active-one">Actief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -129,6 +139,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="inactive-one">Inactief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -148,6 +159,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="active-one">Actief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -167,6 +179,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="active-one">Actief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -186,6 +199,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="inactive-one">Inactief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -205,6 +219,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="inactive-one">Inactief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -224,6 +239,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="inactive-one">Inactief</button></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -243,6 +259,7 @@ const Subscribers = () => {
                       </td>
                       <td>johndoe92@gmail.com</td>
                       <td>21-03-2021</td>
+                      <td><button className="inactive-one">Inactief</button></td>
                       <td></td>
                     </tr>
                   </tbody>

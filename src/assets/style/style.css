@@ -23,11 +23,13 @@ body {
 }
 
 ::-moz-selection {
-  background: #320035;
+  background: #c205a3;
+  color: #fff;
 }
 
 ::selection {
-  background: #320035;
+  background: #c205a3;
+  color: #fff;
 }
 
 .small_heading {
@@ -251,11 +253,19 @@ body {
   border-radius: 10px;
   margin: 14px 0;
   cursor: pointer;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .sidebar .sidenav ul li svg {
   width: 20px;
   margin-right: 8px;
+}
+
+.sidebar .sidenav ul li:hover {
+  background-color: #462348;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .sidebar .user-detail {
@@ -550,6 +560,32 @@ table td {
 
 table .icon_setting {
   cursor: pointer;
+}
+
+.subscriber-search {
+  padding: 8px 20px;
+  border: 1px solid #a4a4a4;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.table-header-active {
+  padding: 8px 12px;
+  background-color: #FE6A6A;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
+  border: none;
+}
+
+.table-header-inactive {
+  padding: 7px 12px;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  border: 1px solid #a4a4a4;
+  border-radius: 10px;
 }
 
 .export-subscribers-btn {
@@ -1001,6 +1037,136 @@ table .icon_setting {
   padding: 30px;
 }
 
+.dash-calender-btn {
+  color: #65006B;
+  padding: 8px 18px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.dash-card {
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.dash-card h2 {
+  color: #fff;
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.dash-card p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.dash-card svg {
+  width: 50px;
+}
+
+.dc-one {
+  background-color: #FF6A6A;
+}
+
+.dc-two {
+  background-color: #65006B;
+}
+
+.dc-three {
+  background-color: #320035;
+}
+
+.video-stats {
+  margin: 10px 0;
+}
+
+.video-stats .vs-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.video-stats .vs-one {
+  background-color: #65006B;
+}
+
+.video-stats .vs-two {
+  background-color: #FF2525;
+}
+
+.video-stats .vs-three {
+  background-color: #0049D6;
+}
+
+.video-stats small {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.video-stats h6 {
+  font-size: 27px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 0;
+}
+
+.support-banner {
+  padding: 40px 60px;
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+.support-banner h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  line-height: 28px;
+}
+
+.support-banner h2 span {
+  font-weight: 500 !important;
+}
+
+.colored-btn a {
+  padding: 13px 30px;
+  color: #fff;
+  background-image: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.light-btn a {
+  padding: 12px 30px;
+  border: 1px solid #787878;
+  color: #787878;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.active-one {
+  margin-left: 35px;
+  padding: 5px 18px;
+  border-radius: 8px;
+  background-color: #A6F2B2;
+  font-size: 10px;
+  font-weight: 400;
+  border: none;
+}
+
+.inactive-one {
+  margin-left: 35px;
+  padding: 5px 13px;
+  border-radius: 8px;
+  background-color: #FFCCCC;
+  font-size: 10px;
+  font-weight: 400;
+  border: none;
+}
+
 .dash-bottom-one {
   margin-top: 20px;
 }
@@ -1210,6 +1376,7 @@ g.highcharts-legend-item {
   border-right-color: #888;
   border-radius: 22px;
   -webkit-animation: rotate 1s infinite linear;
+          animation: rotate 1s infinite linear;
   /* left, top and position just for the demo! */
   position: absolute;
   left: 50%;
@@ -1217,6 +1384,14 @@ g.highcharts-legend-item {
 }
 
 @-webkit-keyframes rotate {
+  /* 100% keyframe for  clockwise. 
+      use 0% instead for anticlockwise */
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
   /* 100% keyframe for  clockwise. 
       use 0% instead for anticlockwise */
   100% {
@@ -1257,6 +1432,7 @@ g.highcharts-legend-item {
   width: 50%;
 }
 
+/* video component */
 .creator-video {
   width: 100%;
   padding: 40px;
@@ -1299,6 +1475,12 @@ g.highcharts-legend-item {
 
 .single-video .react-player__preview {
   border-radius: 20px;
+}
+
+.notification-box {
+  padding: 40px;
+  border-radius: 20px;
+  background: #fff;
 }
 
 .video-title {
