@@ -27,13 +27,15 @@
   $white: #fff;
   $dark: #000;
   $pink: #c205a3;
+  $sub-pink: #E10051;
   $purple: #320035;
   $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   $danger: #FF0000;
   $grey: #e9ecef;
 
   ::selection {
-    background: $purple;
+    background: $pink;
+    color: $white;
   }
 
   .small_heading {
@@ -249,10 +251,15 @@
           border-radius: 10px;
           margin: 14px 0;
           cursor: pointer;
+          transition: all .2s ease-in-out;
 
           svg {
             width: 20px;
             margin-right: 8px;
+          }
+          &:hover{
+            background-color: #462348;
+            transition: all .2s ease-in-out ;
           }
         }
       }
@@ -546,6 +553,10 @@
   table {
     width: 100%;
 
+    th{
+
+    }
+
     td {
       vertical-align: middle;
       padding: 18px 0 !important;
@@ -556,6 +567,32 @@
     .icon_setting {
       cursor: pointer;
     }
+  }
+
+  .subscriber-search{
+    padding: 8px 20px;
+    border: 1px solid #a4a4a4;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .table-header-active{
+    padding: 8px 12px;
+    background-color: #FE6A6A;
+    color: $white;
+    font-size: 14px;
+    border-radius: 10px;
+    border: none;
+  }
+
+  .table-header-inactive{
+    padding: 7px 12px;
+    background-color: $white;
+    color: $dark;
+    font-size: 14px;
+    border: 1px solid #a4a4a4;
+    border-radius: 10px;
   }
 
   .export-subscribers-btn {
@@ -1012,6 +1049,126 @@
     }
   }
 
+  .dash-calender-btn{
+    color: #65006B;
+    padding: 8px 18px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    background-color: transparent;
+  }
+
+  .dash-card {
+    padding: 20px;
+    border-radius: 15px;
+    h2{
+      color: $white;
+      font-size: 42px;
+      font-weight: 600;
+    }
+    p{
+      font-size: 15px;
+      font-weight: 400;
+      color: $white;
+    }
+    svg{
+      width: 50px;
+    }
+  }
+
+  .dc-one{
+    background-color: #FF6A6A;
+  }
+  .dc-two{
+    background-color: #65006B;
+  }
+  .dc-three{
+    background-color: #320035;
+  }
+
+  .video-stats{
+    margin: 10px 0;
+    .vs-icon{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+    .vs-one{
+      background-color: #65006B;
+    }
+    .vs-two{
+      background-color: #FF2525;
+    }
+    .vs-three{
+      background-color: #0049D6;
+    }
+    small{
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    h6{
+      font-size: 27px;
+      font-weight: 500;
+      color: $dark;
+      margin-bottom: 0;
+    }
+  }
+
+  .support-banner{
+    padding: 40px 60px;
+    border-radius: 15px;
+    background-color: $white;
+    h2{
+      font-size: 20px;
+      font-weight: 700;
+      color: $dark;
+      line-height: 28px;
+      span{
+        font-weight: 500 !important;
+      }
+    }
+  }
+
+  .colored-btn{
+    a{
+      padding: 13px 30px;
+      color: $white;
+      background-image: $My-gradient;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+  }
+  .light-btn{
+    a{
+      padding: 12px 30px;
+      border: 1px solid #787878;
+      color: #787878;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+  }
+
+  .active-one{
+    margin-left: 35px;
+    padding: 5px 18px;
+    border-radius: 8px;
+    background-color: #A6F2B2;
+    font-size: 10px;
+    font-weight: 400;
+    border: none;
+  }
+
+  .inactive-one{
+    margin-left: 35px;
+    padding: 5px 13px;
+    border-radius: 8px;
+    background-color: #FFCCCC;
+    font-size: 10px;
+    font-weight: 400;
+    border: none;
+  }
+
   .dash-bottom-one {
     margin-top: 20px;
 
@@ -1226,14 +1383,14 @@
     border: 6px solid #ccc;
     border-right-color: #888;
     border-radius: 22px;
-    -webkit-animation: rotate 1s infinite linear;
+    animation: rotate 1s infinite linear;
     /* left, top and position just for the demo! */
     position: absolute;
     left: 50%;
     top: 50%;
   }
 
-  @-webkit-keyframes rotate {
+  @keyframes rotate {
 
     /* 100% keyframe for  clockwise. 
       use 0% instead for anticlockwise */
@@ -1275,6 +1432,249 @@
         button {
           width: 50%;
         }
+      }
+    }
+  }
+
+  /* video component */
+  .creator-video {
+    width: 100%;
+    padding: 40px;
+    border-radius: 20px;
+    background: $white;
+  
+    .creator-nm-detail {
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+  
+      p {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  
+    .comments-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: $sub-pink;
+      margin-top: 20px;
+      transition: .25s;
+      cursor: pointer;
+    }
+  
+    .collapsed {
+      color: #999 !important;
+    }
+  }
+
+  .single-video {
+    margin-top: 20px;
+  
+    img {
+      border-radius: 20px;
+    }
+  
+    .react-player__preview {
+      border-radius: 20px;
+    }
+  }
+  
+  .notification-box {
+    padding: 40px;
+    border-radius: 20px;
+    background: $white;
+  }
+  
+  .video-title {
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: 700;
+    color: $dark;
+  }
+  
+  .video-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: #3d3d3d;
+  }
+  
+  .dash-latest-comment {
+    margin-top: 20px;
+  
+    ul {
+      padding-left: 0;
+  
+      li {
+        list-style-type: none;
+        margin: 22px 0;
+  
+        .notif-img {
+          width: 18%;
+          position: relative;
+          margin-right: 10px;
+  
+          img {
+            width: 39px;
+            height: 39px;
+            border-radius: 50%;
+          }
+  
+          .notification-alert {
+            position: absolute;
+            top: -4px;
+            right: -5px;
+  
+            span {
+              width: 16px;
+              height: 16px;
+              border-radius: 50%;
+            }
+  
+            .blue {
+              background-color: #00B2FF;
+            }
+  
+            .red {
+              background-color: #F50000;
+            }
+          }
+        }
+  
+        .notif-content {
+          width: 82%;
+  
+          h6 {
+            font-size: 13px;
+            font-weight: 600;
+            color: $dark;
+            margin-bottom: 0;
+          }
+  
+          span {
+            font-size: 10px;
+            font-weight: 400;
+            color: #808080;
+          }
+  
+          p {
+            font-size: 12px;
+            font-weight: 400;
+            color: $dark;
+            margin-bottom: 0;
+            height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+  
+            span {
+              color: $pink;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .video-like-btn {
+    margin-top: 15px;
+  
+    /* button {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #adadad;
+      margin-right: 10px;
+      background-color: $white;
+      transition: .5s;
+  
+      &:hover {
+        background-color: $white;
+        border-color: $sub-pink;
+        transition: .25s;
+      }
+  
+      &:hover path {
+        fill: $sub-pink;
+        transition: .25s;
+      }
+    } */
+  
+    button {
+      border: none;
+      background-color: $white;
+  
+      svg {
+        width: 28px;
+        height: 28px;
+        padding: 4px;
+        border: 1px solid #adadad;
+        margin-right: 10px;
+        border-radius: 50%;
+        transition: .4s ease-in-out;
+  
+        &:hover {
+          transition: .4s ease-in-out;
+          border: 1px solid $sub-pink;
+        }
+  
+        &:hover path {
+          fill: $sub-pink;
+          transition: .25s ease-in-out;
+        }
+  
+      }
+  
+      .after-like {
+        border: 1px solid $sub-pink;
+      }
+    }
+  
+  
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      color: #adadad;
+      margin-bottom: 0;
+    }
+  }
+  
+  .comment-box {
+    background-color: $sub-pink;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 10px;
+  
+    img {
+      width: 28px;
+      height: 28px;
+      margin-right: 14px;
+    }
+  
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      ::placeholder {
+        color: $white;
+      }
+  
+      input {
+        border: none;
+        background-color: transparent;
+        color: $white  !important;
+        font-size: 12px;
+        font-weight: 500;
+        width: 100%;
+        outline: none;
+      }
+  
+      button {
+        border: none;
+        background-color: transparent;
       }
     }
   }
