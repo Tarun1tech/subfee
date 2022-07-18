@@ -23,14 +23,16 @@ const Thema = (props) => {
     const [header, setHeader] = useState(null);
     const [profile, setProfile] = useState(null);
     const [favicon, setFavicon] = useState(null);
-    const [primaryColor, setPrimaryColor] = useState("");
-    const [secondaryColor, setSecondaryColor] = useState("");
+    const [primaryColor, setPrimaryColor] = useState(null);
+    const [secondaryColor, setSecondaryColor] = useState(null);
     useEffect(() => {
-        if (props?.themeData !== undefined || props.themeData?.length > 0) {
-            setPrimaryColor(props.themeData?.primary_color);
+      if (props?.themeData !== undefined || props.themeData?.length > 0) {
+          console.log(props?.themeData)
+            setPrimaryColor(props.themeData?.primary_color !==null || props.themeData?.primary_color ==="undefined" && props.themeData?.primary_color);
             setSecondaryColor(props.themeData?.secondary_color)
       }
-  })
+  },[])
+  console.log(primaryColor,"pr")
     const handleThemeSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
