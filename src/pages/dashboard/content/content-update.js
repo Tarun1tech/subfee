@@ -141,7 +141,6 @@ const ContentUpdate = props => {
   );
 
   const handlecheckbox = (e) => {
-    console.log(commentValue,"commmentValue")
     if ((e.target.checked)) {
       setcommentValue(!commentValue);
     }
