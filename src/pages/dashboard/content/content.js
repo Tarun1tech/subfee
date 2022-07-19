@@ -188,8 +188,8 @@ const ContentPage = (props) => {
 
     if (extensionFile === "mp4" || extensionFile === "mov" || extensionFile === "wmv" || extensionFile === "avi" || extensionFile === "webm") {
       setShowvideo(true);
-      setVideourl(`https://subfee.techstriker.com/backend/public/${props.uploadFile.data.fileupload}`);
-      setMainvideourl(props.uploadFile.data.fileupload);
+      setVideourl(`https://subfee.techstriker.com/backend/public/${props.uploadFile?.data.fileupload}`);
+      setMainvideourl(props.uploadFile?.data.fileupload);
     } else if (extensionFile === "jpeg" || extensionFile === "jpg" || extensionFile === "png" || extensionFile === "webp" || extensionFile === "svg") {
       setShowimage(true);
       setImageurl(`https://subfee.techstriker.com/backend/public/${props.uploadFile?.data.fileupload}`);
