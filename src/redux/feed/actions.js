@@ -25,7 +25,6 @@ export const get_feed_data = payload => async dispatch => {
 
 
 export const reset_app = payload => async dispatch => {
-    console.log("dsfsdfsdf", payload)
     dispatch({
         type: "RESET_APP",
         payload: {}

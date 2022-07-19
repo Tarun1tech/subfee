@@ -1,7 +1,7 @@
   import React, { useState, useEffect } from "react";
   import { connect } from "react-redux";
   import { create_theme,get_theme_data } from "../../redux/settings/actions";
-
+  import { Image } from 'antd';
   const Thema = (props) => {
       
     // Theme Setting
@@ -27,7 +27,6 @@
       // const [secondaryColor, setSecondaryColor] = useState(null);
       useEffect(() => {
         if (props?.themeData !== undefined || props.themeData?.length > 0) {
-            console.log(props?.themeData)
               setPrimaryColor(props.themeData?.primary_color !==null || props.themeData?.primary_color ==="undefined" && props.themeData?.primary_color);
               // setSecondaryColor(props.themeData?.secondary_color)
         }
@@ -56,40 +55,85 @@
                                 <div className="col-md-12">
                                   <h6>Grafische vormgeving</h6>
                                   <label>Logo</label>
-                                  <p>
+                      <div className="d-flex justify-content-between align-items-center mb-3">          
+                      <p>
                                     Het logo voor op je website (moet een
                                     transparante .png zijn)
-                                  </p>
+                      </p>
+                       <Image
+    width={100}
+    src={`https://subfee.techstriker.com/backend/public${props.themeData?.logo}`}
+    preview={{
+      src: `https://subfee.techstriker.com/backend/public${props.themeData?.logo}`,
+    }}
+                        />
+                        </div>
                                   <input type="file" name="logo" onChange={(e)=>setLogo(e.target.files[0])} />
                                   <label>Log-in scherm achtergrond</label>
-                                  <p>
+                                  <div className="d-flex justify-content-between align-items-center mb-3">                
+                      <p>
                                     De afbeelding die getoond wordt achter de log-in module
-                                  </p>
+                        </p>
+                        <Image
+    width={100}
+    src={`https://subfee.techstriker.com/backend/public${props.themeData?.login_screen_background}`}
+    preview={{
+      src: `https://subfee.techstriker.com/backend/public${props.themeData?.login_screen_background}`,
+    }}
+                        />
+                        </div>
                                   <input type="file" name="login_background_image" onChange={(e)=>setBackgroundLogo(e.target.files[0])} />
                                   <label>Headerafbeelding</label>
-                                  <p>
+                                  <div className="d-flex justify-content-between align-items-center mb-3">             
+                      <p>
                                     De headerafbeelding voor bovenaan de dashboard
                                     pagina (max. 3000x750px)
-                                  </p>
+                      </p>
+                      <Image
+    width={100}
+    src={`https://subfee.techstriker.com/backend/public${props.themeData?.header_image}`}
+    preview={{
+      src: `https://subfee.techstriker.com/backend/public${props.themeData?.header_image}`,
+    }}
+                        />
+                        </div>
                                   <input type="file" name="header_image" onChange={(e)=>setHeader(e.target.files[0])} />
                                   <label>Profielfoto</label>
-                                  <p>
+                                  <div className="d-flex justify-content-between align-items-center mb-3">            
+                      <p>
                                     De profielfoto die wordt getoond wanneer je
                                     een nieuwe video upload (max. 1500x1500px)
-                                  </p>
+                        </p>
+                        <Image
+    width={100}
+    src={`https://subfee.techstriker.com/backend/public${props.themeData?.profile_image}`}
+    preview={{
+      src: `https://subfee.techstriker.com/backend/public${props.themeData?.profile_image}`,
+    }}
+                        />
+                        </div>
                                   <input type="file" name="profile_image" onChange={(e)=>setProfile(e.target.files[0])} />
-                                  <label>Favicon</label>
+                        <label>Favicon</label>
+                           <div className="d-flex justify-content-between align-items-center mb-3">
                                   <p>
                                     De afbeelding die wordt gebruikt in het
                                     browsertabblad
-                                  </p>
+                    </p>
+                    <Image
+    width={100}
+    src={`https://subfee.techstriker.com/backend/public${props.themeData?.fav_icon}`}
+    preview={{
+      src: `https://subfee.techstriker.com/backend/public${props.themeData?.fav_icon}`,
+    }}
+                        />
+                        </div>
                                   <input type="file" name="favicon" onChange={(e)=>setFavicon(e.target.files[0])} />
                                   <h6 className="mt-5">Kleuren aanpassen</h6>
                                   <label>Primaire kleur</label>
                                   <input
                                     type="color"
                                     name="primary_color"
-                                    defaultValue={primaryColor}
+                                    defaultValue={ props.themeData?.primary_color}
                                     onChange={(e)=>setPrimaryColor(e.target.value)}
                                   />
                                   {/* <label>Secundaire kleur</label>

@@ -19,7 +19,6 @@ const Naar = (props) => {
     useEffect(() => {
         props.get_feed_data();
     }, [token]);
-    console.log(props.feedlist,"feeldi")
     return (
         <>
             <div className="dash-content-side">

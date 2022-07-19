@@ -166,7 +166,6 @@ const ContentPage = (props) => {
     } else {
       payload.thumbnail = mainimageurl
     }
-    console.log(payload, "payload")
     if (Object.keys(validate(contentInputs)).length === 0) {
       props.create_content(payload);
     }
