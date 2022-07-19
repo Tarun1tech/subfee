@@ -1,6 +1,5 @@
-import { feedData, feedCommentData, createComment, createLike, createCount } from '../queries';
+import { feedData } from '../queries';
 import { checkResponse } from "../../constants/index";
-import { toast } from "react-toastify";
 
 
 /* LISTCLIENT */

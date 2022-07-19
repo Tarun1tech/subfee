@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import { ToastContainer } from "react-toastify";
 import Auth from "./Auth";
+import 'antd/dist/antd.css';
 function App() {
   function clearStorage() {
     let session = sessionStorage.getItem("ref");

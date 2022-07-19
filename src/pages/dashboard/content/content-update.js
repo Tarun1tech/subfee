@@ -141,6 +141,7 @@ const ContentUpdate = props => {
   );
 
   const handlecheckbox = (e) => {
+    console.log(commentValue,"commmentValue")
     if ((e.target.checked)) {
       setcommentValue(!commentValue);
     }
@@ -195,7 +196,7 @@ const ContentUpdate = props => {
                           <p>Wil je toestaan dat subscribers onder deze video een comment kunnen plaatsen?</p>
                           <div className="custom-comment-switch">
                             <label className="switch">
-                              <input type="checkbox" name="videoComments" onChange={handlecheckbox} checked={commentValue} />
+                              <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
                               <span className="slider round"></span>
                               <span className="ja">ja</span>
                               <span className="nee">Nee</span>
@@ -265,7 +266,7 @@ const ContentUpdate = props => {
                             <p>Wil je toestaan dat subscribers onder deze video een comment kunnen plaatsen?</p>
                             <div className="custom-comment-switch">
                               <label className="switch">
-                                <input type="checkbox" name="videoComments" onChange={handlecheckbox} checked={commentValue} />
+                                <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
                                 <span className="slider round"></span>
                                 <span className="ja">ja</span>
                                 <span className="nee">Nee</span>
@@ -308,7 +309,7 @@ const ContentUpdate = props => {
                           <div className="video-de ps-3">
                             <div className="custom-comment-switch">
                               <label className="switch">
-                                <input type="checkbox" name="videoComments" onChange={handlecheckbox} checked={commentValue} />
+                                <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
                                 <span className="slider round"></span>
                                 <span className="ja">ja</span>
                                 <span className="nee">Nee</span>

@@ -4,6 +4,7 @@ import { create_profile, get_profile_data } from "../../redux/settings/actions";
 import Thema from "./thema";
 
 const DashContentSide = (props) => {
+  const { createSetting } = props;
   const profileFields = {
     website_name: "",
     first_name: "",
@@ -56,8 +57,12 @@ const DashContentSide = (props) => {
 
   }
 
+  useEffect(() => {
+     if (createSetting?.data.success) {
+        props.get_profile_data();
+    }
+  },[createSetting])
 
-  
 
   return (
     <div>
@@ -329,6 +334,7 @@ const DashContentSide = (props) => {
 const mapStateToProps = state => ({
   ...state,
   profileData: state.setting.profile_data?.data,
+  createSetting:state.setting.create_profile?.data
 });
 
 export default connect(mapStateToProps, { create_profile, get_profile_data })(DashContentSide);
