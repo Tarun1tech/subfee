@@ -259,9 +259,10 @@
             width: 20px;
             margin-right: 8px;
           }
-          &:hover{
+
+          &:hover {
             background-color: #462348;
-            transition: all .2s ease-in-out ;
+            transition: all .2s ease-in-out;
           }
         }
       }
@@ -273,7 +274,7 @@
 
       img {
         width: 42px;
-        height:42px;
+        height: 42px;
         border-radius: 50%;
         margin-right: 14px;
       }
@@ -555,9 +556,7 @@
   table {
     width: 100%;
 
-    th{
-
-    }
+    th {}
 
     td {
       vertical-align: middle;
@@ -571,7 +570,7 @@
     }
   }
 
-  .subscriber-search{
+  .subscriber-search {
     padding: 8px 20px;
     border: 1px solid #a4a4a4;
     border-radius: 10px;
@@ -579,7 +578,7 @@
     width: 100%;
   }
 
-  .table-header-active{
+  .table-header-active {
     padding: 8px 12px;
     background-color: #FE6A6A;
     color: $white;
@@ -588,7 +587,7 @@
     border: none;
   }
 
-  .table-header-inactive{
+  .table-header-inactive {
     padding: 7px 12px;
     background-color: $white;
     color: $dark;
@@ -620,11 +619,19 @@
       font-size: 16px;
       font-weight: 500;
       border: none;
+      text-align: center;
+    }
+
+    a {
+      color: $white  !important;
+      margin: auto;
+
     }
   }
 
   .export-subs-body {
     padding: 35px !important;
+    text-align: left;
 
     .custom-export-select {
       -webkit-user-select: none;
@@ -632,6 +639,10 @@
       -ms-user-select: none;
       user-select: none;
 
+      .icon_csv {
+        width: 25px;
+        height: 25px;
+      }
     }
 
     /* Hide the browser's default checkbox */
@@ -746,6 +757,7 @@
       left: 0;
       bottom: 0;
       height: 48px;
+      cursor: pointer;
     }
 
     p {
@@ -758,6 +770,11 @@
         margin-right: 8px;
         width: 30px;
       }
+    }
+
+    &:hover .content-upload-btn {
+      transition: .4s ease-in-out;
+      background-color: #900099;
     }
   }
 
@@ -1051,7 +1068,7 @@
     }
   }
 
-  .dash-calender-btn{
+  .dash-calender-btn {
     color: #65006B;
     padding: 8px 18px;
     border: 1px solid #d1d1d1;
@@ -1062,54 +1079,65 @@
   .dash-card {
     padding: 20px;
     border-radius: 15px;
-    h2{
+
+    h2 {
       color: $white;
       font-size: 42px;
       font-weight: 600;
     }
-    p{
+
+    p {
       font-size: 15px;
       font-weight: 400;
       color: $white;
     }
-    svg{
+
+    svg {
       width: 50px;
     }
   }
 
-  .dc-one{
+  .dc-one {
     background-color: #FF6A6A;
   }
-  .dc-two{
+
+  .dc-two {
     background-color: #65006B;
   }
-  .dc-three{
+
+  .dc-three {
     background-color: #320035;
   }
 
-  .video-stats{
+  .video-stats {
     margin: 10px 0;
-    .vs-icon{
+
+    .vs-icon {
       width: 32px;
       height: 32px;
       border-radius: 50%;
       margin-right: 20px;
     }
-    .vs-one{
+
+    .vs-one {
       background-color: #65006B;
     }
-    .vs-two{
+
+    .vs-two {
       background-color: #FF2525;
     }
-    .vs-three{
+
+    .vs-three {
       background-color: #0049D6;
     }
-    small{
+
+    small {
       font-size: 11px;
       font-weight: 500;
       margin-bottom: 2px;
     }
-    h6{
+
+    h6 {
       font-size: 27px;
       font-weight: 500;
       color: $dark;
@@ -1117,23 +1145,25 @@
     }
   }
 
-  .support-banner{
+  .support-banner {
     padding: 40px 60px;
     border-radius: 15px;
     background-color: $white;
-    h2{
+
+    h2 {
       font-size: 20px;
       font-weight: 700;
       color: $dark;
       line-height: 28px;
-      span{
+
+      span {
         font-weight: 500 !important;
       }
     }
   }
 
-  .colored-btn{
-    a{
+  .colored-btn {
+    a {
       padding: 13px 30px;
       color: $white;
       background-image: $My-gradient;
@@ -1141,8 +1171,9 @@
       font-size: 12px;
     }
   }
-  .light-btn{
-    a{
+
+  .light-btn {
+    a {
       padding: 12px 30px;
       border: 1px solid #787878;
       color: #787878;
@@ -1151,7 +1182,7 @@
     }
   }
 
-  .active-one{
+  .active-one {
     margin-left: 35px;
     padding: 5px 18px;
     border-radius: 8px;
@@ -1161,7 +1192,7 @@
     border: none;
   }
 
-  .inactive-one{
+  .inactive-one {
     margin-left: 35px;
     padding: 5px 13px;
     border-radius: 8px;
@@ -1437,9 +1468,9 @@
       }
     }
   }
-  
-  
-  
+
+
+
   // naar
 
   /* video component */
@@ -1448,20 +1479,20 @@
     padding: 40px;
     border-radius: 20px;
     background: $white;
-  
+
     .creator-nm-detail {
       img {
         width: 32px;
         height: 32px;
         border-radius: 50%;
       }
-  
+
       p {
         font-size: 16px;
         font-weight: 500;
       }
     }
-  
+
     .comments-count {
       font-size: 12px;
       font-weight: 600;
@@ -1470,7 +1501,7 @@
       transition: .25s;
       cursor: pointer;
     }
-  
+
     .collapsed {
       color: #999 !important;
     }
@@ -1478,93 +1509,93 @@
 
   .single-video {
     margin-top: 20px;
-  
+
     img {
       border-radius: 20px;
     }
-  
+
     .react-player__preview {
       border-radius: 20px;
     }
   }
-  
+
   .notification-box {
     padding: 40px;
     border-radius: 20px;
     background: $white;
   }
-  
+
   .video-title {
     margin-top: 15px;
     font-size: 13px;
     font-weight: 700;
     color: $dark;
   }
-  
+
   .video-desc {
     font-size: 12px;
     font-weight: 300;
     color: #3d3d3d;
   }
-  
+
   .dash-latest-comment {
     margin-top: 20px;
-  
+
     ul {
       padding-left: 0;
-  
+
       li {
         list-style-type: none;
         margin: 22px 0;
-  
+
         .notif-img {
           width: 18%;
           position: relative;
           margin-right: 10px;
-  
+
           img {
             width: 39px;
             height: 39px;
             border-radius: 50%;
           }
-  
+
           .notification-alert {
             position: absolute;
             top: -4px;
             right: -5px;
-  
+
             span {
               width: 16px;
               height: 16px;
               border-radius: 50%;
             }
-  
+
             .blue {
               background-color: #00B2FF;
             }
-  
+
             .red {
               background-color: #F50000;
             }
           }
         }
-  
+
         .notif-content {
           width: 82%;
-  
+
           h6 {
             font-size: 13px;
             font-weight: 600;
             color: $dark;
             margin-bottom: 0;
           }
-  
+
           span {
             font-size: 10px;
             font-weight: 400;
             color: #808080;
           }
-  
+
           p {
             font-size: 12px;
             font-weight: 400;
@@ -1573,7 +1604,7 @@
             height: 18px;
             overflow: hidden;
             text-overflow: ellipsis;
-  
+
             span {
               color: $pink;
             }
@@ -1582,10 +1613,10 @@
       }
     }
   }
-  
+
   .video-like-btn {
     margin-top: 15px;
-  
+
     /* button {
       width: 24px;
       height: 24px;
@@ -1606,11 +1637,11 @@
         transition: .25s;
       }
     } */
-  
+
     button {
       border: none;
       background-color: $white;
-  
+
       svg {
         width: 28px;
         height: 28px;
@@ -1619,25 +1650,25 @@
         margin-right: 10px;
         border-radius: 50%;
         transition: .4s ease-in-out;
-  
+
         &:hover {
           transition: .4s ease-in-out;
           border: 1px solid $sub-pink;
         }
-  
+
         &:hover path {
           fill: $sub-pink;
           transition: .25s ease-in-out;
         }
-  
+
       }
-  
+
       .after-like {
         border: 1px solid $sub-pink;
       }
     }
-  
-  
+
+
     p {
       font-size: 12px;
       font-weight: 600;
@@ -1645,29 +1676,29 @@
       margin-bottom: 0;
     }
   }
-  
+
   .comment-box {
     background-color: $sub-pink;
     padding: 10px;
     border-radius: 15px;
     margin-top: 10px;
-  
+
     img {
       width: 28px;
       height: 28px;
       margin-right: 14px;
     }
-  
+
     form {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-  
+
       ::placeholder {
         color: $white;
       }
-  
+
       input {
         border: none;
         background-color: transparent;
@@ -1677,23 +1708,24 @@
         width: 100%;
         outline: none;
       }
-  
+
       button {
         border: none;
         background-color: transparent;
       }
     }
   }
-  
+
   .small-vdeo {
     padding: 20px;
     border-radius: 15px;
     background-color: $white;
-  
+
     video {
       width: 100%;
     }
   }
+
   img {
     width: 100%;
   }

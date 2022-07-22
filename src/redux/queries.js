@@ -158,3 +158,39 @@ export const feedData = (data) => {
     .then((response) => response)
     .catch((err) => err.response);
 };
+
+//  Subscriber API
+
+export const subscriberData = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getsubscribers/?page=${data.page}&&status=${data.status}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+export const subscriberDelete = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/deletesubscribers`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+export const subscriberSearch = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/getsubscribersbyserach/?page=${data.page}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
