@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 
 /* LISTCLIENT */
 export const get_content_data = payload => async dispatch => {
-    console.log(payload, "pa")
     let response = await contentData(payload);
     response = checkResponse(response);
 
@@ -26,7 +25,6 @@ export const get_content_data = payload => async dispatch => {
 };
 
 export const reset_app = payload => async dispatch => {
-    console.log("dsfsdfsdf", payload)
     dispatch({
         type: "RESET_APP",
         payload: {}

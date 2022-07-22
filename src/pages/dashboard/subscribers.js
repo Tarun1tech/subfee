@@ -1,9 +1,85 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Moment from 'react-moment';
 import SubsImg from "../../assets/images/subs.png";
 import Csv from "../../assets/images/csv.png";
 import Excel from "../../assets/images/excel.png";
+import Pagination from "../../layouts/pagination/pagination";
+import { connect } from "react-redux";
+import { get_subscriber_data, get_subscriber_data_search } from "../../redux/subscriber/actions";
+import { CSVLink } from "react-csv";
+import Modal from "react-bootstrap/Modal";
 
-const Subscribers = () => {
+let PageSize = 10;
+const Subscribers = (props) => {
+  const { get_subscriber_data, get_subscriber_data_search } = props;
+  const token = localStorage.getItem("access_token");
+  const [totalPage, setTotalPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [bodyData, setBodyData] = useState([]);
+  const [stripeStatus, setStripeStatus] = useState("1");
+  const [searchData, setSearchData] = useState("");
+  const [sheetName, setSheetName] = useState("");
+  const [show, setShow] = useState(false)
+  const headers = [
+    { label: 'First Name', key: 'first_name' },
+    { label: 'Last Name', key: 'last_name' },
+    { label: 'Email', key: 'email' },
+    { label: 'Status', key: 'new_status' }
+  ]
+
+  useEffect(() => {
+    get_subscriber_data_search({
+      page: currentPage
+    });
+  }, [token]);
+  const handlePerPage = (page) => {
+    get_subscriber_data_search({
+      page: page
+    });
+    setCurrentPage(page)
+  }
+  useEffect(() => {
+    if (props.subscriberlist?.data?.length > 0) {
+      setTotalPage(props.subscriberlist?.total)
+    }
+  }, [])
+
+  const handleFilter = (data) => {
+    setStripeStatus(data)
+    get_subscriber_data_search({
+      page: currentPage,
+      stripe_status: data
+    });
+  }
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchData(value);
+  };
+  const onglobalSearch = (e) => {
+    e.preventDefault();
+    get_subscriber_data_search({
+      stripe_status: stripeStatus,
+      search_query: e.target.value
+    });
+  }
+  useEffect(() => {
+    if (props.subscriberlist !== undefined && props.subscriberlist?.data?.length > 0) {
+      let bData = [];
+      props.subscriberlist?.data.forEach((e) => {
+        let result = {};
+        let checked = {};
+        result = e;
+        e.checked = false;
+        checked = e.checked;
+        let data = { ...result, checked };
+        bData.push(data);
+        return null;
+      });
+      setBodyData(bData);
+    }
+    //eslint-disable-next-line
+  }, [props.subscriberlist])
+  console.log(props.subscriberlist?.data, "proooo")
   return (
     <div>
       <div className="dash-content-side">
@@ -16,48 +92,72 @@ const Subscribers = () => {
                     <h6 className="stats-page-title">Alle subscribers</h6>
                   </div>
                   <div className="col-md-4">
-                    <form>
-                      <input type="search" placeholder="Zoeken...." name="subscriber-search" className="subscriber-search" />
+                    <form onSubmit={(e) => onglobalSearch(e)}>
+                      <input type="search" placeholder="Zoeken...." name="search" className="subscriber-search" onChange={handleSearch} />
                     </form>
                   </div>
-                  <div className="col-md-4 text-end"> 
-                    <button className="table-header-active me-2">Actief</button>
-                    <button className="table-header-inactive me-5">Inactief</button>
-                    <button className="export-subscribers-btn" type="button" data-bs-toggle="modal" data-bs-target="#exportSubs">Exporteren</button>
-                    <div class="modal fade" id="exportSubs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="col-md-4 text-end">
+                    <button className="table-header-active me-2" onClick={() => handleFilter("1", "active")}>Actief</button>
+                    <button className="table-header-inactive me-5" onClick={() => handleFilter("0", "active")}>Inactief</button>
+                    <button className="export-subscribers-btn" type="button" onClick={() => setShow(true)}>Exporteren</button>
+                    {/* <div class="modal fade" id="exportSubs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-modal-size">
                         <div class="modal-content">
-                          <div class="modal-body export-subs-body">
-                          <h6 className="stats-page-title">Subscribers exporteren</h6>
-                          <p className="mt-3">Bestandsformaat</p>
+                          <div class="modal-body export-subs-body"> */}
+                    <Modal className="modal " show={show} size="md" onHide={() => setShow(false)} backdrop="static"
+                      keyboard={false}>
+                      <div class=" modal-modal-size">
+                        <Modal.Header closeButton>
+                          <div>
+                            <h6 className="stats-page-title">Subscribers exporteren</h6>
+                            <p className="mt-3">Bestandsformaat</p>
+                          </div>
+                        </Modal.Header>
+
+                        <div class="modal-body export-subs-body">
                           <form>
-                          <div className="d-flex justify-content-center align-items-center">
-                            <div>
-                            <label class="custom-export-select">
+                            <div className="d-flex justify-content-center align-items-center">
                               <div>
-                              <input type="checkbox"/>
-                              <div className="file-icon"><img src={Csv} /> CSV</div>
+                                <label class="custom-export-select">
+                                  <div>
+                                    <input type="checkbox" />
+                                    <div className="file-icon" onClick={() => setSheetName("csv")}>
+                                      <img src={Csv} className="icon_csv" />
+                                      CSV</div>
+                                  </div>
+                                </label>
                               </div>
-                            </label>                            
-                            </div>
-                            <div>
-                            <label class="custom-export-select">
                               <div>
-                              <input type="checkbox"/>
-                              <div className="file-icon"><img src={Excel} />XLSX</div>
+                                <label class="custom-export-select">
+                                  <div>
+                                    <input type="checkbox" />
+                                    <div className="file-icon" onClick={() => setSheetName("xls")}><img src={Excel} className="icon_csv" />
+                                      XLSX</div>
+                                  </div>
+                                </label>
                               </div>
-                            </label>
                             </div>
-                          </div>
-                          <button className="chose-btn-export" data-bs-dismiss="modal">Exporteren</button>
+                            <CSVLink data={bodyData}
+                              target="_blank" headers={headers} filename={`subscriber.${sheetName}`}
+                            >
+                              <div className="chose-btn-export" onClick={() => setShow(false)}>
+
+
+                                Exporteren
+
+                              </div>
+                            </CSVLink>
+
                           </form>
-                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>                  
+                    </Modal>
+                    {/*      </div>
+                      </div>
+                    </div> */}
+                  </div>
                 </div>
-                <table className="table">
+                <table className="table" id="tbl_exporttable_to_xls">
                   <thead>
                     <tr>
                       <th></th>
@@ -65,253 +165,60 @@ const Subscribers = () => {
                       <th>E-mailadres</th>
                       <th>Lid sinds</th>
                       <th>Abonnement status</th>
-                      <th>
-                        <svg
-                          width="15"
-                          height="19"
-                          viewBox="0 0 15 19"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M2.5 6.33333H12.5V16.625C12.5 16.835 12.4342 17.0363 12.3169 17.1848C12.1997 17.3333 12.0408 17.4167 11.875 17.4167H3.125C2.95924 17.4167 2.80027 17.3333 2.68306 17.1848C2.56585 17.0363 2.5 16.835 2.5 16.625V6.33333ZM3.75 7.91666V15.8333H11.25V7.91666H3.75ZM5.625 9.49999H6.875V14.25H5.625V9.49999ZM8.125 9.49999H9.375V14.25H8.125V9.49999ZM4.375 3.95833V2.37499C4.375 2.16503 4.44085 1.96367 4.55806 1.8152C4.67527 1.66674 4.83424 1.58333 5 1.58333H10C10.1658 1.58333 10.3247 1.66674 10.4419 1.8152C10.5592 1.96367 10.625 2.16503 10.625 2.37499V3.95833H13.75V5.54166H1.25V3.95833H4.375ZM5.625 3.16666V3.95833H9.375V3.16666H5.625Z"
-                            fill="#C4C4C4"
-                          />
-                        </svg>
-                      </th>
+
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg"/>
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="active-one">Actief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg" />
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="active-one">Actief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg"/>
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="inactive-one">Inactief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg"/>
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="active-one">Actief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg"/>
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="active-one">Actief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg"/>
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="inactive-one">Inactief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg"/>
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="inactive-one">Inactief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg}alt="subsImg" />
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="inactive-one">Inactief</button></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" name="subscriber" />
-                      </td>
-                      <td>
-                        <div className="subs-table-row d-flex justify-content-start align-items-center">
-                          <div>
-                            <img src={SubsImg} alt="subsImg"/>
-                          </div>
-                          <div>
-                            <p>John Doe</p>
-                            <span>@Johndoeissubscribed</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>johndoe92@gmail.com</td>
-                      <td>21-03-2021</td>
-                      <td><button className="inactive-one">Inactief</button></td>
-                      <td></td>
-                    </tr>
+                    {props.subscriberlist?.data.map((item, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>
+                            <input type="checkbox" checked={item.checked} />
+                          </td>
+                          <td>
+                            <div className="subs-table-row d-flex justify-content-start align-items-center">
+                              <div>
+                                {
+                                  (item.profile_image != null ? <img src={`${item?.profile_image}`} /> : <img src={SubsImg} className="d-none" />)
+                                }
+                              </div>
+                              <div>
+                                <p>{item?.first_name}</p>
+                                <span>@{item?.name}</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td>{item?.email}</td>
+                          <td>  <span><Moment format="DD/MM/YYYY">{item.updated_at}</Moment></span></td>
+                          <td><button className={item.stripe_status ? "active-one" : "inactive-one"}>{item.stripe_status ? "Actief" : "InActief"}</button></td>
+                          <td></td>
+                        </tr>
+                      );
+                    })}
+
                   </tbody>
                 </table>
-                <div className="text-center mt-4 pt-4">
-                  <nav aria-label="Page navigation example">
-                    <ul className="pagination justify-content-center">
-                      <li className="page-item active">
-                        <a className="page-link" href="#">
-                          1
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="#">
-                          2
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="#">
-                          3
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="#">
-                          4
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="#">
-                          5
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="#">
-                          6
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link content-next-table" href="#">
-                          Volgende
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+                <Pagination
+                  className="pagination-bar"
+                  currentPage={currentPage}
+                  totalCount={totalPage}
+                  pageSize={PageSize}
+                  onPageChange={page => handlePerPage(page)}
+                />
+
               </div>
             </div>
+
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 
-export default Subscribers;
+const mapStateToProps = state => ({
+  ...state,
+  subscriberlist: state.subscriber?.subscriber_data?.data?.data?.data
+});
+
+export default connect(mapStateToProps, { get_subscriber_data, get_subscriber_data_search })(Subscribers);
