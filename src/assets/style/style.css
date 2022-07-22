@@ -1478,7 +1478,6 @@ g.highcharts-legend-item {
 }
 
 .notification-box {
-  padding: 40px;
   border-radius: 20px;
   background: #fff;
 }
@@ -1490,10 +1489,38 @@ g.highcharts-legend-item {
   color: #000;
 }
 
+.comment_edit_delete {
+  z-index: 9999 !important;
+  padding: 6px !important;
+  min-width: 7rem !important;
+}
+
+.comment_edit_delete li {
+  margin: 4px 0 !important;
+}
+
+.comment_edit_delete li button {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+}
+
+.comment_edit_delete li button svg {
+  width: 11px;
+  margin-right: 4px;
+}
+
 .video-desc {
   font-size: 12px;
   font-weight: 300;
   color: #3d3d3d;
+}
+
+.side-sm-vdo .video-desc {
+  overflow: hidden;
+  max-width: 100ch;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dash-latest-comment {
@@ -1510,7 +1537,7 @@ g.highcharts-legend-item {
 }
 
 .dash-latest-comment ul li .notif-img {
-  width: 18%;
+  width: 8%;
   position: relative;
   margin-right: 10px;
 }

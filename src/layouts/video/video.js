@@ -80,7 +80,7 @@
                 {props.data?.data?.map((item, index) => {
                     return (
                         <>
-                            <div className="creator-video mt-4" data-aos="fade-up" key={index}>
+                            <div className="creator-video side-sm-vdo mt-4" data-aos="fade-up" key={index}>
                                 <div className="creator-nm-detail d-flex justify-content-start align-items-center">
                                     <div><img src={`https://subfee.techstriker.com/backend/public${item?.creator_detail?.profile_image}`} /></div>
                                     <div className="ms-2"><p className="mb-0">{item?.creator_detail?.first_name}</p></div>
@@ -227,7 +227,7 @@
                                                 </div>
                                             </div>
                                         </div> */}
-                                        <div className="comment-box d-flex justify-content-between align-items-center">
+                                        {/* <div className="comment-box d-flex justify-content-between align-items-center">
                                             <img src={Creator} />
                                             <form id="comment_id"
                                                 onSubmit={(e) => handleSubmit(e, 0, item.id)}
@@ -239,7 +239,7 @@
                                                     </svg>
                                                 </button>
                                             </form>
-                                        </div>
+                                        </div> */}
                                     </div>
                     
                                         
