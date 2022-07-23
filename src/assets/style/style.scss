@@ -60,7 +60,7 @@
   .error {
     color: $danger;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 14px !important;
   }
 
   .login_back {

@@ -3,7 +3,9 @@ const INIT_STATE = {
     create_profile: {},
     create_theme: {},
     theme_data: {},
-    error: ""
+    error: "",
+    faq_data: {},
+    create_contact: {}
 };
 
 const settings = (state = INIT_STATE, action) => {
@@ -33,6 +35,19 @@ const settings = (state = INIT_STATE, action) => {
                         theme_data: action.payload,
                         error: "",
                     };
+                    case "FAQ_DATA":
+                        return {
+                            ...state,
+                            faq_data: action.payload,
+                            error: "",
+                        };
+            
+                    case "CREATE_CONTACT_US":
+                        return {
+                            ...state,
+                            create_contact: action.payload,
+                            error: "",
+                        };
         default:
             return state;
     }

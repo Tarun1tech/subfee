@@ -1,4 +1,4 @@
-import { profileData, createProfile,createTheme,themeData } from '../queries';
+import { profileData, createProfile,createTheme,themeData,createContact,faqData } from '../queries';
 import { checkResponse } from "../../constants/index";
 import { toast } from "react-toastify";
 
@@ -75,6 +75,50 @@ export const get_theme_data = payload => async dispatch => {
     if (response.success) {
         dispatch({
             type: "THEME_DATA",
+            payload: response.data.data
+        });
+    } else {
+        dispatch(
+            {
+                type: "ERROR_OCCURED",
+                payload: response.error
+            }
+        )
+    }
+
+};
+
+
+// Conatct us
+
+export const create_contact_us = payload => async dispatch => {
+    let response = await createContact(payload);
+    response = checkResponse(response);
+
+    if (response.success) {
+        toast.success(response.message)
+        dispatch({
+            type: "CREATE_CONTACT_US",
+            payload: response
+        });
+    } else {
+        toast.error(response.error)
+        dispatch(
+            {
+                type: "ERROR_OCCURED",
+                payload: response.error
+            }
+        )
+    }
+
+};
+export const get_faq_data = payload => async dispatch => {
+    let response = await faqData(payload);
+    response = checkResponse(response);
+
+    if (response.success) {
+        dispatch({
+            type: "FAQ_DATA",
             payload: response.data.data
         });
     } else {

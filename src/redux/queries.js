@@ -158,3 +158,26 @@ export const feedData = (data) => {
     .then((response) => response)
     .catch((err) => err.response);
 };
+// COntact us API
+export const createContact = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/support`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+export const faqData = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/faqs`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
