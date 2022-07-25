@@ -58,10 +58,10 @@ const DashContentSide = (props) => {
   }
 
   useEffect(() => {
-     if (createSetting?.data.success) {
-        props.get_profile_data();
+    if (createSetting?.data.success) {
+      props.get_profile_data();
     }
-  },[createSetting])
+  }, [createSetting])
 
 
   return (
@@ -230,7 +230,7 @@ const DashContentSide = (props) => {
                     role="tabpanel"
                     aria-labelledby="nav-profile-tab"
                   >
-                    <Thema/>
+                    <Thema />
                     {/* <div className="col-md-9">
                       <div className="setting-tab-content">
                         <div className="container-fluid">
@@ -334,7 +334,7 @@ const DashContentSide = (props) => {
 const mapStateToProps = state => ({
   ...state,
   profileData: state.setting.profile_data?.data,
-  createSetting:state.setting.create_profile?.data
+  createSetting: state.setting.create_profile?.data
 });
 
 export default connect(mapStateToProps, { create_profile, get_profile_data })(DashContentSide);
