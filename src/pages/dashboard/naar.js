@@ -19,6 +19,7 @@ const Naar = (props) => {
     useEffect(() => {
         props.get_feed_data();
     }, [token]);
+    console.log(props.feedlist, "feeldi")
     return (
         <>
             <div className="dash-content-side">
@@ -30,7 +31,7 @@ const Naar = (props) => {
                         <div className="col-md-8">
                             <Video data={props.feedlist} />
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
