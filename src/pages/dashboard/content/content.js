@@ -118,13 +118,14 @@ const ContentPage = (props) => {
     description: "",
   }
 
-  const [commentValue, setcommentValue] = useState(true);
+  const [commentValue, setcommentValue] = useState(false);
 
   const handlecheckbox = (e) => {
     if ((e.target.checked)) {
       setcommentValue(!commentValue);
     }
   }
+  console.log(commentValue, "commentValue")
   const [formErrors, setFormErrors] = useState({});
   const [contentInputs, setcontentInputs] = useState(contentDetail);
   const validate = (values) => {
@@ -166,7 +167,6 @@ const ContentPage = (props) => {
     } else {
       payload.thumbnail = mainimageurl
     }
-    console.log(payload, "payload")
     if (Object.keys(validate(contentInputs)).length === 0) {
       props.create_content(payload);
     }
@@ -189,8 +189,8 @@ const ContentPage = (props) => {
 
     if (extensionFile === "mp4" || extensionFile === "mov" || extensionFile === "wmv" || extensionFile === "avi" || extensionFile === "webm") {
       setShowvideo(true);
-      setVideourl(`https://subfee.techstriker.com/backend/public/${props.uploadFile.data.fileupload}`);
-      setMainvideourl(props.uploadFile.data.fileupload);
+      setVideourl(`https://subfee.techstriker.com/backend/public/${props.uploadFile?.data.fileupload}`);
+      setMainvideourl(props.uploadFile?.data.fileupload);
     } else if (extensionFile === "jpeg" || extensionFile === "jpg" || extensionFile === "png" || extensionFile === "webp" || extensionFile === "svg") {
       setShowimage(true);
       setImageurl(`https://subfee.techstriker.com/backend/public/${props.uploadFile?.data.fileupload}`);
@@ -231,7 +231,7 @@ const ContentPage = (props) => {
                   </svg>
                     Upload nieuwe foto</p>
                   <button className="content-upload-btn" data-bs-toggle="modal" id="imageup" data-bs-target="#photo-submit">   {imageLoader ? "Loading...." : "Selecteer een bestand"}</button>
-                  <input type="file" onChange={handleChangefile} name="image" />
+                  <input type="file" onChange={handleChangefile} name="image" accept="image/*" />
                 </div>
                 <div className="content-upload-btns-back">
                   <p><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -292,7 +292,7 @@ const ContentPage = (props) => {
                                 <p>Wil je toestaan dat subscribers onder deze video een comment kunnen plaatsen?</p>
                                 <div className="custom-comment-switch">
                                   <label className="switch">
-                                    <input type="checkbox" name="videoComments" onChange={handlecheckbox} />
+                                    <input type="checkbox" name="videoComments" onClick={handlecheckbox} />
                                     <span className="slider round"></span>
                                     <span className="ja">ja</span>
                                     <span className="nee">Nee</span>
@@ -328,7 +328,7 @@ const ContentPage = (props) => {
                               </svg> Thumbnail
                             </p>
                             <p className="mb-1">
-                              {commentValue === 1 ?
+                              {commentValue ?
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M4.409 9.8895L1.22701 6.7075L2.642 5.2925L4.409 7.0645L9.358 2.1105L10.773 3.5255L4.409 9.8895Z" fill="#65006B" />
                                 </svg> :

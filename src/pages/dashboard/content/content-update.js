@@ -30,12 +30,15 @@ const ContentUpdate = props => {
   const [videoupdate, setVideoupdate] = useState(false);
   const [extensionFile, setExtensionFile] = useState("")
   const [videoLoader, setVideoLoader] = useState(false);
-
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
-    // setPreviewImage(file.url || file.preview);
+
+    setPreviewImage(file.url || file.preview);
+    setPreviewVisible(true);
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   useEffect(() => {
@@ -145,13 +148,13 @@ const ContentUpdate = props => {
       setcommentValue(!commentValue);
     }
   }
-
+  console.log(props.data, "dddddddddddddddddddd")
   return (
     <>
       <Modal className="content-upload-popup" show={props.show} size="xl" onHide={props.hide} backdrop="static"
         keyboard={false}>
 
-        {props.data?.video !== null && props.data?.thumbnail !== null ?
+        {props.data?.video !== null ?
           <>
             <Modal.Header closeButton>
               <h6 className="stats-page-title">Je video aanpassen</h6>

@@ -16,7 +16,7 @@ const getBase64 = (file) =>
     });
 
 const Thema = (props) => {
-    const { create_theme } = props
+    const { create_theme, themeData } = props
     // antd upload
     const [previewVisible, setPreviewVisible] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
@@ -90,11 +90,12 @@ const Thema = (props) => {
         let payload = {
             primary_color: primaryColor || props.themeData?.primary_color
         }
-        payload.logo = image[0] || props.themeData?.logo;
-        payload.login_screen_background = logobackgorund[0] || props.themeData?.login_screen_background;
-        payload.header_image = banner[0] || props.themeData?.header_image;
-        payload.fav_icon = fav[0] || props.themeData?.fav_icon;
 
+        payload.logo = fileList.length === 0 ? "" : image[0] || props.themeData?.logo;
+        payload.login_screen_background = fileLists.length === 0 ? "" : logobackgorund[0] || props.themeData?.login_screen_background;
+        payload.header_image = bannerList.length === 0 ? "" : banner[0] || props.themeData?.header_image;
+        payload.fav_icon = favList.length === 0 ? "" : fav[0] || props.themeData?.fav_icon;
+        console.log(payload)
 
         props.create_theme(payload)
     }
@@ -104,8 +105,8 @@ const Thema = (props) => {
 
             props.get_theme_data();
         }
-        if (props.themeData !== undefined) {
-            if (props.themeData?.logo) {
+        if (themeData !== undefined) {
+            if (themeData?.logo) {
                 let images = [];
                 images.push({
                     url: `https://subfee.techstriker.com/backend/public${props.themeData?.logo}`,
@@ -113,7 +114,7 @@ const Thema = (props) => {
                 });
                 setFileList(images);
             }
-            if (props.themeData?.login_screen_background) {
+            if (themeData?.login_screen_background) {
                 let login_background = [];
                 login_background.push({
                     url: `https://subfee.techstriker.com/backend/public${props.themeData?.login_screen_background}`,
@@ -121,7 +122,7 @@ const Thema = (props) => {
                 });
                 setFileLists(login_background);
             }
-            if (props.themeData?.header_image) {
+            if (themeData?.header_image) {
                 let header_image = [];
                 header_image.push({
                     url: `https://subfee.techstriker.com/backend/public${props.themeData?.header_image}`,
@@ -129,7 +130,7 @@ const Thema = (props) => {
                 });
                 setBannerList(header_image);
             }
-            if (props.themeData?.fav_icon) {
+            if (themeData?.fav_icon) {
                 let fav_icon = [];
                 fav_icon.push({
                     url: `https://subfee.techstriker.com/backend/public${props.themeData?.fav_icon}`,
@@ -140,7 +141,7 @@ const Thema = (props) => {
 
 
         }
-    }, [create_theme])
+    }, [create_theme, themeData])
     return (
         <>
             <div className="setting-tab-content">
