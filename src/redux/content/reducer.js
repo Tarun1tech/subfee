@@ -12,6 +12,7 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 upload_file: {},
+                contentlistbyid: {},
                 error: ""
             };
         case "CONTENT_DATA":

@@ -9,7 +9,7 @@ import ContentUpdate from "./content-update";
 let PageSize = 10;
 
 const ContentList = (props) => {
-    const { contentlistbyid, deletelist, get_content_data } = props;
+    const { contentlistbyid, deletelist, get_content_data, contentlist } = props;
     const token = localStorage.getItem("access_token")
     const [totalPage, setTotalPage] = useState(1)
     const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +24,7 @@ const ContentList = (props) => {
         get_content_data({
             page: currentPage
         });
-    }, [token]);
+    }, [token, get_content_data]);
     const handlePerPage = (page) => {
         get_content_data({
             page: page
@@ -32,10 +32,10 @@ const ContentList = (props) => {
         setCurrentPage(page)
     }
     useEffect(() => {
-        if (props.contentlist?.data?.length > 0) {
+        if (contentlist?.data?.length > 0) {
             setTotalPage(props.contentlist?.total)
         }
-    }, [])
+    }, [contentlist])
 
     const handleShowvideo = (id) => {
         props.get_content_by_id_data({
@@ -119,6 +119,7 @@ const ContentList = (props) => {
             page: currentPage
         });
     };
+    console.log(loading, contentlistbyid, "loading")
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">
@@ -229,7 +230,7 @@ const ContentList = (props) => {
             {!loading && props.contentlistbyid &&
                 < ContentUpdate
                     show={showvideo}
-                    hide={() => hidevideo()}
+                    hide={hidevideo}
                     data={props.contentlistbyid}
                 />
             }
