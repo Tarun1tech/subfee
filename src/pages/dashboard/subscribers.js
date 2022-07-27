@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { get_subscriber_data, get_subscriber_data_search } from "../../redux/subscriber/actions";
 import { CSVLink } from "react-csv";
 import Modal from "react-bootstrap/Modal";
+import { setIn } from "immutable";
 
 let PageSize = 10;
 const Subscribers = (props) => {
@@ -16,10 +17,12 @@ const Subscribers = (props) => {
   const [totalPage, setTotalPage] = useState(1)
   const [currentPage, setCurrentPage] = useState(1);
   const [bodyData, setBodyData] = useState([]);
-  const [stripeStatus, setStripeStatus] = useState("1");
+  const [stripeStatus, setStripeStatus] = useState("");
   const [searchData, setSearchData] = useState("");
   const [sheetName, setSheetName] = useState("");
   const [show, setShow] = useState(false)
+  const [active, setActive] = useState(false);
+  const [inactive, setInActive] = useState(false);
   const headers = [
     { label: 'First Name', key: 'first_name' },
     { label: 'Last Name', key: 'last_name' },
@@ -46,6 +49,16 @@ const Subscribers = (props) => {
 
   const handleFilter = (data) => {
     setStripeStatus(data)
+    if (data === "1") {
+      setActive(true);
+      setInActive(false)
+    } else if (data === "0") {
+      setInActive(true);
+      setActive(false);
+    } else {
+      setActive(false);
+      setInActive(false);
+    }
     get_subscriber_data_search({
       page: currentPage,
       stripe_status: data
@@ -59,7 +72,7 @@ const Subscribers = (props) => {
     e.preventDefault();
     get_subscriber_data_search({
       stripe_status: stripeStatus,
-      search_query: e.target.value
+      search_query: searchData
     });
   }
   useEffect(() => {
@@ -79,7 +92,7 @@ const Subscribers = (props) => {
     }
     //eslint-disable-next-line
   }, [props.subscriberlist])
-  console.log(props.subscriberlist?.data, "proooo")
+
   return (
     <div>
       <div className="dash-content-side">
@@ -93,12 +106,12 @@ const Subscribers = (props) => {
                   </div>
                   <div className="col-md-4">
                     <form onSubmit={(e) => onglobalSearch(e)}>
-                      <input type="search" placeholder="Zoeken...." name="search" className="subscriber-search" onChange={handleSearch} />
+                      <input type="search" placeholder="Zoeken...." name="search" className="subscriber-search" onChange={handleSearch} onBlur={(e) => onglobalSearch(e)} />
                     </form>
                   </div>
                   <div className="col-md-4 text-end">
-                    <button className="table-header-active me-2" onClick={() => handleFilter("1", "active")}>Actief</button>
-                    <button className="table-header-inactive me-5" onClick={() => handleFilter("0", "active")}>Inactief</button>
+                    <button className={active ? "table-header-active me-2" : "table-header-inactive me-2"} onClick={() => handleFilter("1", "active")}>Actief</button>
+                    <button className={inactive ? "table-header-active me-5" : "table-header-inactive me-5"} onClick={() => handleFilter("0", "active")}>Inactief</button>
                     <button className="export-subscribers-btn" type="button" onClick={() => setShow(true)}>Exporteren</button>
                     {/* <div class="modal fade" id="exportSubs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-modal-size">
@@ -169,7 +182,7 @@ const Subscribers = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {props.subscriberlist?.data.map((item, index) => {
+                    {props.subscriberlist?.data.length > 0 ? props.subscriberlist?.data.map((item, index) => {
                       return (
                         <tr key={index}>
                           <td>
@@ -194,7 +207,9 @@ const Subscribers = (props) => {
                           <td></td>
                         </tr>
                       );
-                    })}
+                    }) : <tr className="text-center">
+                      No Data Found
+                    </tr>}
 
                   </tbody>
                 </table>

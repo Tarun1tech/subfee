@@ -292,9 +292,11 @@ body {
 
 .profile-update-tab {
   padding: 0 !important;
+  position: fixed;
+  overflow: hidden;
 }
 .profile-update-tab .tab-pane {
-  margin: 80px 100px;
+  margin: 30px 100px;
 }
 
 .setting-tab .sml-heading {
@@ -360,7 +362,7 @@ body {
 }
 .setting-tab .setting-tab-content {
   margin-top: 30px;
-  padding: 70px 40px;
+  padding: 20px 40px;
   border-radius: 20px;
   background-color: #fff;
 }
@@ -582,6 +584,11 @@ table .icon_setting {
   border-radius: 10px;
   border: none;
 }
+.table-header-active::before {
+  background-color: #fff;
+  border: 1px solid #a4a4a4;
+  color: #000;
+}
 
 .table-header-inactive {
   padding: 7px 12px;
@@ -590,6 +597,10 @@ table .icon_setting {
   font-size: 14px;
   border: 1px solid #a4a4a4;
   border-radius: 10px;
+}
+.table-header-inactive:hover {
+  background-color: #FE6A6A;
+  color: #fff;
 }
 
 .export-subscribers-btn {

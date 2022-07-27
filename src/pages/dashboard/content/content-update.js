@@ -22,6 +22,7 @@ const ContentUpdate = props => {
   const { uploadFiles, updateContent } = props;
   const [fileList, setFileList] = useState([]);
   const [commentValue, setcommentValue] = useState(false);
+  const [comment, setComment] = useState("1")
   const [contentInputs, setcontentInputs] = useState(contentDetail);
   const token = localStorage.getItem("access_token");
   const [videourl, setVideourl] = useState("");
@@ -60,6 +61,7 @@ const ContentUpdate = props => {
         setVideoupdate(true)
       }
     }
+    //eslint-disable-next-line
   }, [props])
   const handleChangefile = (e) => {
     e.preventDefault();
@@ -101,7 +103,14 @@ const ContentUpdate = props => {
       [name]: value,
     });
   }
-
+  const handlecheckbox = (e) => {
+    if ((e.target.checked)) {
+      setcommentValue(!commentValue);
+    }
+    if (e.target.checked === false) {
+      setComment("1")
+    }
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     let image = [];
@@ -113,7 +122,7 @@ const ContentUpdate = props => {
       title: contentInputs.title || props.data?.title,
       desc: contentInputs.description || props.data?.desc,
       video: mainvideourl || props.data?.video,
-      comments: commentValue
+      comments: comment
     }
     if (image[0]) {
       payload.thumbnail = image[0] || props.data?.thumbnail
@@ -143,12 +152,8 @@ const ContentUpdate = props => {
     </div>
   );
 
-  const handlecheckbox = (e) => {
-    if ((e.target.checked)) {
-      setcommentValue(!commentValue);
-    }
-  }
-  console.log(props.data, "dddddddddddddddddddd")
+
+
   return (
     <>
       <Modal className="content-upload-popup" show={props.show} size="xl" onHide={props.hide} backdrop="static"
@@ -211,7 +216,7 @@ const ContentUpdate = props => {
 
                       <video src={!videoupdate ? `${videourl}` : `https://subfee.techstriker.com/backend/public${props.data?.video}`} width="320" height="240" controls />
 
-                      <label className="mt-4 mb-3"> Change Video</label>
+                      <label className="mt-4 mb-3"> Video Wijzigen</label>
                       <div className="content-upload">
                         <input type="file" onChange={handleChangefile} name="video" placeholder="file" accept="video/mp4" />
                         {videoLoader && <Loader />}

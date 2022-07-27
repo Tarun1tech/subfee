@@ -35,6 +35,16 @@ export const reset_app = payload => async dispatch => {
 
 };
 
+export const reset_content = payload => async dispatch => {
+
+    dispatch({
+        type: "RESET_CONTENT",
+        payload: {}
+    });
+
+
+};
+
 export const upload_file = payload => async dispatch => {
     let response = await uploadFile(payload);
     response = checkResponse(response);
