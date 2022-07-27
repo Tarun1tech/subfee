@@ -11,11 +11,7 @@ export default (state = INIT_STATE, action) => {
     switch (action.type) {
         case 'RESET_APP':
             return {
-                ...state,
-                // upload_file: {},
-                contentlistbyid: {},
-
-                error: ""
+                ...state, upload_file: null
             };
         case "CONTENT_DATA":
             return {
@@ -60,13 +56,7 @@ export default (state = INIT_STATE, action) => {
                 error: ""
             }
         case 'RESET_CONTENT':
-            return {
-                ...state,
-                create_content: null,
-                // contentlistbyid: {},
-
-                error: ""
-            };
+            return { create_content: null, upload_file: null };
 
         default:
             return state;

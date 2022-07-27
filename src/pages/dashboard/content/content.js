@@ -75,22 +75,25 @@ const ContentPage = (props) => {
   const [showvideo, setShowvideo] = useState(false);
   const [showimage, setShowimage] = useState(false);
   const [showcontent, setShowContent] = useState(false);
-
+  const [contentAdd, setContentAdd] = useState(false);
   const handleClosevideo = () => {
-    // props.reset_app();
-    // setExtensionFile("");
+    props.reset_app();
+    setExtensionFile("");
+    setContentAdd(true);
     setShowvideo(false);
   };
 
   const handleCloseimage = () => {
-    console.log("sdfds")
+
     props.reset_app();
 
-    // setExtensionFile("");
+    setExtensionFile("");
+    setContentAdd(true);
     setShowimage(false);
   }
   const handleClosecontent = () => {
-    setShowContent(false)
+    setShowContent(false);
+    setContentAdd(true);
   }
   const handleContent = () => {
     setShowContent(true);
@@ -98,13 +101,18 @@ const ContentPage = (props) => {
 
   const handleChangefile = (e) => {
     e.preventDefault();
-    console.log(e.target.files)
+    if (contentAdd) {
+      console.log("enter in i")
+      props.reset_content();
+    }
+    setContentAdd(false);
+    console.log(e.target.files, "file===========================")
     let k = e.target.files[0];
     var formdata = new FormData();
     formdata.append("fileupload", k, k.name);
     formdata.append("type", k.type)
 
-    console.log(k, "kk  ")
+
     props.upload_file(formdata);
     if (k.type === "video/mp4" || k.type === "video/mov" || k.type === "video/wmv" || k.type === "video/avi" || k.type === "video/webm") {
       setVideoLoader(true);
@@ -128,7 +136,7 @@ const ContentPage = (props) => {
     if ((e.target.checked)) {
       setcommentValue(!commentValue);
     }
-    console.log(e.target.checked)
+
     if (e.target.checked === false) {
       setComment("1")
     }
@@ -217,10 +225,17 @@ const ContentPage = (props) => {
       props.get_content_data({
         page: 1
       })
-
     }
-  }, [extensionFile, token, uploadFile, createContent]);
 
+
+  }, [extensionFile, token, uploadFile, createContent]);
+  // useEffect(() => {
+  //   if (contentAdd) {
+  //     console.log("enter in i")
+  //     props.reset_content();
+  //   }
+  //   //eslint-disable-next-line
+  // }, [contentAdd])
 
   return (
     <div>

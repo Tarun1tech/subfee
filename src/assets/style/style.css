@@ -292,9 +292,11 @@ body {
 
 .profile-update-tab {
   padding: 0 !important;
+  position: fixed;
+  overflow: hidden;
 }
 .profile-update-tab .tab-pane {
-  margin: 80px 100px;
+  margin: 30px 100px;
 }
 
 .setting-tab .sml-heading {
@@ -360,7 +362,7 @@ body {
 }
 .setting-tab .setting-tab-content {
   margin-top: 30px;
-  padding: 70px 40px;
+  padding: 20px 40px;
   border-radius: 20px;
   background-color: #fff;
 }

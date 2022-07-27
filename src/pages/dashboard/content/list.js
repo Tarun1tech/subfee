@@ -122,7 +122,7 @@ const ContentList = (props) => {
             page: currentPage
         });
     };
-    console.log(props.contentlistbyid, "content by id")
+
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">
