@@ -3,7 +3,7 @@
     import ReactPlayer from "react-player";
     import notifImg from "../../assets/images/subs.png";
     import { connect } from "react-redux";
-    import {   get_feed_data, get_Naar } from "../../redux/feed/actions";
+    import {   get_feed_data, get_Naar, list_Comment, } from "../../redux/feed/actions";
     import Aos from 'aos';
     import "aos/dist/aos.css";
 
@@ -13,7 +13,7 @@
             Aos.init({ duration: 1400 });
         }, []);
 
-        const { commentadd, getnaardata } = props
+        const { commentadd, getnaardata, listComment } = props
         const [postId, setPostId] = useState("")
         const [commentshow, setCommentShow] = useState(false);
         const [subcommentShow, setSubCommentId] = useState("");
@@ -72,18 +72,24 @@
             if (commentadd?.success) {
                 props.get_feed_comment_data({
                     post_id: postId
-                });                
+                });
+                console.log("I want to get post id")
             }
             if(props.data?.data){
-                console.log(props.data)
+                console.log(props.data, "datadata")
             setInitial_data(props.data?.data[0]);
             }
         }, [commentadd,props])
         const handleGet=(id)=>{
             props.get_Naar({
                 id: id
+            })          
+        }
+        const getComments = (id) => {
+            props.list_Comment({
+                post_id: id
             })
-            console.log(id, getnaardata, "skjfkaj")
+            console.log(listComment, "list-comment")
         }
         useEffect(() => {
             if ( getnaardata !==undefined) {
@@ -91,7 +97,7 @@
             }
             
         },[getnaardata])
-        console.log( initial_data, "testing data");
+        console.log( getnaardata, listComment, "testing data");
         return (
             <>
             <div className="row mt-5">
@@ -129,55 +135,68 @@
                             <h6 className="mt-3">{initial_data?.title}</h6>
                             <p className="video-desc">{initial_data?.desc}</p>
                             
-                                <span className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Bekijk alle 14 comments</span>
+                                <span onClick={() => getComments(initial_data?.id)} className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Bekijk alle {initial_data?.total_comments} comments</span>
                                 <div class="collapse" id="collapseExample">
                                 <div class="card-body">
                                 <div className="notification-box video-comments">
                                     <div className="dash-latest-comment mt-0">
                                         <ul>
-                                        <li>
-                                            <div className="d-flex justify-content-start align-items-top">
-                                            <div className="notif-img">
-                                                <img src={notifImg} alt="notifImg" />
-                                            </div>
-                                            <div className="notif-content">
-                                                <div className="d-flex justify-content-between align-items-center">
-                                                <h6>Subscriber name</h6>
-                                                </div>
-                                                <p>
-                                                Subscriber comment goes here. Subscriber comment goes here
-                                                </p>
-                                                <small data-bs-toggle="collapse" href="#comment-reply" role="button" aria-expanded="false" aria-controls="comment-reply">Beantwoorden</small>
-                                                <div class="collapse" id="comment-reply">
-                                                    <div class="card-body">
-                                                        <div className="notification-box video-comments">
-                                                            <div className="dash-latest-comment mt-0">
-                                                                <ul>
-                                                                    <li>
-                                                                    <div className="d-flex justify-content-start align-items-top">
-                                                                        <div className="notif-img">
-                                                                            <img src={notifImg} alt="notifImg" />
-                                                                        </div>
-                                                                        <div className="notif-content">
-                                                                        <div className="d-flex justify-content-between align-items-center">
-                                                                        <h6>Subscriber name</h6>
-                                                                        </div>
-                                                                        <p>
-                                                                        Subscriber comment goes here. Subscriber comment goes here
-                                                                        </p>
-                                                                        <small>Beantwoorden</small>
+                                            {listComment?.map((item, index) => {
+                                                return(
+                                                    <>
+                                                    <li key={index}>
+                                                        <div className="d-flex justify-content-start align-items-top">
+                                                        <div className="notif-img">
+                                                            <img src={notifImg} alt="notifImg" />
+                                                        </div>
+                                                        <div className="notif-content">
+                                                            <div className="d-flex justify-content-between align-items-center">
+                                                            <h6>{item?.user_info?.[0]?.name}</h6>
+                                                            </div>
+                                                            <p>
+                                                            {item?.comment}
+                                                            </p>
+                                                            <small data-bs-toggle="collapse" href="#comment-reply" role="button" aria-expanded="false" aria-controls="comment-reply">Beantwoorden</small>
+                                                            <div class="collapse" id="comment-reply">
+                                                                <div class="card-body">
+                                                                    <div className="notification-box video-comments">
+                                                                        <div className="dash-latest-comment mt-0">
+                                                                            <ul>
+                                                                                {item?.reply.map((item, index) => {
+                                                                                    return(
+                                                                                        <>
+                                                                                        <li key={index}>
+                                                                                        <div className="d-flex justify-content-start align-items-top">
+                                                                                            <div className="notif-img">
+                                                                                                <img src={notifImg} alt="notifImg" />
+                                                                                            </div>
+                                                                                            <div className="notif-content">
+                                                                                            <div className="d-flex justify-content-between align-items-center">
+                                                                                            <h6>{item?.reply_user_info?.name}</h6>
+                                                                                            </div>
+                                                                                            <p>
+                                                                                            {item?.comment}
+                                                                                            </p>
+                                                                                            <small>Beantwoorden</small>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        </li>
+                                                                                        </>
+                                                                                    )
+                                                                                })}                                                                                
+                                                                            </ul>
                                                                         </div>
                                                                     </div>
-                                                                    </li>
-                                                                </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </li>
-                                        <li>
+                                                        </div>
+                                                    </li>
+                                                    </>
+                                                )
+                                            })}
+
+                                        {/* <li>
                                             <div className="d-flex justify-content-start align-items-top">
                                             <div className="notif-img">
                                                 <img src={notifImg} alt="notifImg" />
@@ -212,7 +231,8 @@
                                             </ul>
                                             </div>
                                             </div>
-                                        </li>
+                                        </li> */}
+                                        
                                         </ul>
                                     </div>
                                 </div>
@@ -237,7 +257,7 @@
                         {props.data?.data?.map((item, index) => {
                     return (
                         <>
-                            <div className="creator-video side-sm-vdo mt-4" data-aos="fade-up" key={index} onClick={()=>handleGet(item?.id)}>
+                            <div className="creator-video side-sm-vdo mt-4" data-aos="fade-up" key={index} onClick={()=>handleGet(item?.id,)}>
                                 <div className="creator-nm-detail d-flex justify-content-start align-items-center">
                                     <div><img src={`https://subfee.techstriker.com/backend/public${item?.creator_detail?.profile_image}`} /></div>
                                     <div className="ms-2"><p className="mb-0">{item?.creator_detail?.first_name}</p></div>
@@ -433,7 +453,8 @@
 
     const mapStateToProps = state => ({
         ...state,
-        getnaardata: state.feed?.naar_info.data,
+        getnaardata: state.feed?.naar_info?.data,
+        listComment: state.feed?.comment_list?.data,
     });
 
-    export default connect(mapStateToProps, {  get_feed_data, get_Naar })(Video);
+    export default connect(mapStateToProps, {  get_feed_data, get_Naar, list_Comment })(Video);

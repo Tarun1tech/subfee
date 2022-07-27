@@ -555,10 +555,6 @@
   table {
     width: 100%;
 
-    th{
-
-    }
-
     td {
       vertical-align: middle;
       padding: 18px 0 !important;
@@ -1442,6 +1438,12 @@
   
   // naar
 
+  .position-sticky {
+      position: sticky;
+      top: 102px;
+      left: 0;
+  }
+
   /* video component */
   .creator-video {
     width: 100%;
@@ -1718,6 +1720,6 @@
       width: 100%;
     }
   }
-  img {
+  .feed-img{
     width: 100%;
   }

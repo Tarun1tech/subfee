@@ -1432,6 +1432,13 @@ g.highcharts-legend-item {
   width: 50%;
 }
 
+.position-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 102px;
+  left: 0;
+}
+
 /* video component */
 .creator-video {
   width: 100%;
@@ -1729,7 +1736,7 @@ g.highcharts-legend-item {
   width: 100%;
 }
 
-img {
+.feed-img {
   width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

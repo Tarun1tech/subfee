@@ -3,6 +3,7 @@ const INIT_STATE = {
     create_feed: {},
     feed_comment_list: {},
     error: "",
+    naar_data: {},
 };
 
 export default (state = INIT_STATE, action) => {
@@ -46,6 +47,18 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 create_count: action.payload,
+                error: '',
+            }
+        case "NAAR_DATA":
+            return {
+                ...state,
+                naar_info: action.payload,
+                error: '',
+            }
+        case "COMMENT_LIST":
+            return {
+                ...state,
+                comment_list: action.payload,
                 error: '',
             }
         default:
