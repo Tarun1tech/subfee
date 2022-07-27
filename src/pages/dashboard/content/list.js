@@ -24,6 +24,7 @@ const ContentList = (props) => {
         get_content_data({
             page: currentPage
         });
+        //eslint-disable-next-line
     }, [token, get_content_data]);
     const handlePerPage = (page) => {
         get_content_data({
@@ -35,6 +36,7 @@ const ContentList = (props) => {
         if (contentlist?.data?.length > 0) {
             setTotalPage(props.contentlist?.total)
         }
+        //eslint-disable-next-line
     }, [contentlist])
 
     const handleShowvideo = (id) => {
@@ -45,7 +47,7 @@ const ContentList = (props) => {
     };
 
     const hidevideo = () => {
-        props.reset_app();
+        // props.reset_app();
         setShowvideo(false);
     }
 
@@ -111,6 +113,7 @@ const ContentList = (props) => {
         } else {
             toast.error(deletelist?.message)
         }
+        //eslint-disable-next-line
     }, [loading, contentlistbyid, deletelist, get_content_data])
     const onHide = () => {
         setBulkShow(false);
@@ -119,7 +122,7 @@ const ContentList = (props) => {
             page: currentPage
         });
     };
-    console.log(loading, contentlistbyid, "loading")
+    console.log(props.contentlistbyid, "content by id")
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">

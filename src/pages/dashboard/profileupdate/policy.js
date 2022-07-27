@@ -15,16 +15,16 @@ const Policy = (props) => {
     get_profile_data();
   }, [token, get_profile_data]);
 
-
+  let data = props?.profileData === undefined ? "<p></p>" : props.profileData?.privacy_statement
   const [contentState, setContentState] = useState(() => EditorState.createWithContent(
     ContentState.createFromBlockArray(
-      convertFromHTML(props?.profileData === undefined ? "<p></p>" : props.profileData?.privacy_statement)
+      convertFromHTML(data)
     )
   ))
-
+  let html = props?.profileData === undefined ? "<p></p>" : props.profileData?.legal_information
   const [editorState, setEditorState] = useState(() => EditorState.createWithContent(
     ContentState.createFromBlockArray(
-      convertFromHTML(props?.profileData === undefined ? "<p></p>" : props.profileData?.legal_information)
+      convertFromHTML(html)
     )
   ))
 

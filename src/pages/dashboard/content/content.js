@@ -5,7 +5,7 @@ import ContentList from "./list";
 import Modal from "react-bootstrap/Modal";
 import { Upload } from 'antd';
 import { connect } from "react-redux";
-import { upload_file, reset_app, create_content, get_content_data } from "../../../redux/content/actions";
+import { upload_file, reset_app, create_content, get_content_data, reset_content } from "../../../redux/content/actions";
 import { extension } from "../../../constants/index";
 import { useHistory } from "react-router-dom";
 
@@ -75,15 +75,18 @@ const ContentPage = (props) => {
   const [showvideo, setShowvideo] = useState(false);
   const [showimage, setShowimage] = useState(false);
   const [showcontent, setShowContent] = useState(false);
+
   const handleClosevideo = () => {
-    props.reset_app();
-    setExtensionFile("");
+    // props.reset_app();
+    // setExtensionFile("");
     setShowvideo(false);
   };
 
   const handleCloseimage = () => {
+    console.log("sdfds")
     props.reset_app();
-    setExtensionFile("");
+
+    // setExtensionFile("");
     setShowimage(false);
   }
   const handleClosecontent = () => {
@@ -95,12 +98,13 @@ const ContentPage = (props) => {
 
   const handleChangefile = (e) => {
     e.preventDefault();
+    console.log(e.target.files)
     let k = e.target.files[0];
     var formdata = new FormData();
     formdata.append("fileupload", k, k.name);
     formdata.append("type", k.type)
 
-
+    console.log(k, "kk  ")
     props.upload_file(formdata);
     if (k.type === "video/mp4" || k.type === "video/mov" || k.type === "video/wmv" || k.type === "video/avi" || k.type === "video/webm") {
       setVideoLoader(true);
@@ -119,15 +123,20 @@ const ContentPage = (props) => {
   }
 
   const [commentValue, setcommentValue] = useState(false);
-
+  const [comment, setComment] = useState("1")
   const handlecheckbox = (e) => {
     if ((e.target.checked)) {
       setcommentValue(!commentValue);
     }
+    console.log(e.target.checked)
+    if (e.target.checked === false) {
+      setComment("1")
+    }
   }
-  console.log(commentValue, "commentValue")
+
   const [formErrors, setFormErrors] = useState({});
   const [contentInputs, setcontentInputs] = useState(contentDetail);
+
   const validate = (values) => {
     let errors = {};
 
@@ -160,7 +169,7 @@ const ContentPage = (props) => {
       title: contentInputs.title,
       desc: contentInputs.description,
       video: mainvideourl,
-      comments: commentValue
+      comments: comment
     }
     if (image[0]) {
       payload.thumbnail = image[0]
@@ -177,12 +186,15 @@ const ContentPage = (props) => {
       page: 1
     });
   }
+
   useEffect(() => {
+    console.log(uploadFile, "uploadFile")
     if (uploadFile?.success) {
       setLoading(false);
       setVideoLoader(false);
       setImageLoader(false);
-      setExtensionFile(extension(uploadFile.data.fileupload))
+      setExtensionFile(extension(uploadFile.data?.fileupload))
+      console.log(extensionFile, "extension(uploadFile.data?.fileupload)")
     } else {
       toast.error(uploadFile?.message)
     }
@@ -197,13 +209,15 @@ const ContentPage = (props) => {
       setMainimageurl(props.uploadFile?.data.fileupload);
     }
 
-    if (createContent?.success) {
+    if (createContent?.success && createContent !== null) {
+
       handleClosevideo();
       handleClosecontent();
       handleCloseimage();
       props.get_content_data({
         page: 1
       })
+
     }
   }, [extensionFile, token, uploadFile, createContent]);
 
@@ -343,7 +357,7 @@ const ContentPage = (props) => {
                     </div>
                   </div>
                 </Modal>
-                <Modal className="content-upload-popup" show={showimage} onHide={() => handleCloseimage()} size="lg" backdrop="static"
+                <Modal className="content-upload-popup" show={showimage} onHide={handleCloseimage} size="lg" backdrop="static"
                   keyboard={false}>
                   <Modal.Header closeButton>
                     <h6 className="stats-page-title">Nieuwe foto uploaden</h6>
@@ -397,7 +411,7 @@ const ContentPage = (props) => {
 
                 </Modal>
 
-                <Modal className="content-upload-popup" show={showcontent} onHide={() => handleClosecontent()} size="lg" backdrop="static"
+                <Modal className="content-upload-popup" show={showcontent} onHide={handleClosecontent} size="lg" backdrop="static"
                   keyboard={false}>
                   <Modal.Header closeButton>
                     <h6 className="stats-page-title">Nieuwe bericht plaatsen</h6>
@@ -463,4 +477,4 @@ const mapStateToProps = state => ({
   createContent: state.content.create_content
 });
 
-export default connect(mapStateToProps, { upload_file, reset_app, create_content, get_content_data })(ContentPage);
+export default connect(mapStateToProps, { upload_file, reset_app, create_content, get_content_data, reset_content })(ContentPage);

@@ -582,6 +582,11 @@ table .icon_setting {
   border-radius: 10px;
   border: none;
 }
+.table-header-active::before {
+  background-color: #fff;
+  border: 1px solid #a4a4a4;
+  color: #000;
+}
 
 .table-header-inactive {
   padding: 7px 12px;
@@ -590,6 +595,10 @@ table .icon_setting {
   font-size: 14px;
   border: 1px solid #a4a4a4;
   border-radius: 10px;
+}
+.table-header-inactive:hover {
+  background-color: #FE6A6A;
+  color: #fff;
 }
 
 .export-subscribers-btn {

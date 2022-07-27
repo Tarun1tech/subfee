@@ -1,9 +1,10 @@
 const INIT_STATE = {
     content_list: {},
-    create_content: {},
+    create_content: null,
     error: "",
     upload_file: {},
     content_delete: {},
+    contentlistbyid: {}
 };
 
 export default (state = INIT_STATE, action) => {
@@ -11,8 +12,9 @@ export default (state = INIT_STATE, action) => {
         case 'RESET_APP':
             return {
                 ...state,
-                upload_file: {},
+                // upload_file: {},
                 contentlistbyid: {},
+
                 error: ""
             };
         case "CONTENT_DATA":
@@ -57,6 +59,15 @@ export default (state = INIT_STATE, action) => {
                 upload_files: action.payload,
                 error: ""
             }
+        case 'RESET_CONTENT':
+            return {
+                ...state,
+                create_content: null,
+                // contentlistbyid: {},
+
+                error: ""
+            };
+
         default:
             return state;
     }
