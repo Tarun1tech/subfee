@@ -1438,11 +1438,11 @@
   
   // naar
 
-  .position-sticky {
-      position: sticky;
-      top: 102px;
+  /* .position-sticky {
+      position: fixed;
+      top: 0;
       left: 0;
-  }
+  } */
 
   /* video component */
   .creator-video {
@@ -1722,4 +1722,11 @@
   }
   .feed-img{
     width: 100%;
+  }
+  /* .comment-sec {
+    height: 300px;
+    overflow-y: scroll;
+  } */
+  .comment_edit_delete {
+      transform: translate(-106px, 24px) !important;
   }

@@ -126,7 +126,7 @@ const Dashboard = () => {
                   <div className="video-stats d-flex justify-content-start align-items-center">
                     <span className="vs-icon vs-two d-flex justify-content-center align-items-center">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.2428 2.19619H3.6791C2.81299 2.19619 2.10864 2.90054 2.10864 3.76665V17.9008L5.24956 14.7599H16.2428C17.1089 14.7599 17.8132 14.0555 17.8132 13.1894V3.76665C17.8132 2.90054 17.1089 2.19619 16.2428 2.19619Z" fill="white"/>
+                    <path d="M6.48514 3.76233C4.10001 3.76233 2.16638 5.69596 2.16638 8.08109C2.16638 12.3998 7.27037 16.326 10.0187 17.2392C12.767 16.326 17.871 12.3998 17.871 8.08109C17.871 5.69596 15.9373 3.76233 13.5522 3.76233C12.0917 3.76233 10.8 4.48749 10.0187 5.59741C9.62043 5.03016 9.09138 4.56722 8.4763 4.24779C7.86122 3.92836 7.17822 3.76184 6.48514 3.76233Z" fill="white" stroke="white" stroke-width="1.57046" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     </span>
                     <div>

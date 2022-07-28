@@ -61,6 +61,24 @@ export default (state = INIT_STATE, action) => {
                 comment_list: action.payload,
                 error: '',
             }
+        case "CREATE_FEED_COMMENT":
+            return {
+                ...state,
+                create_comment: action.payload,
+                error: '',
+            }
+        case "COMMENT_DELETE":
+        return {
+            ...state,
+            comment_delete: action.payload,
+            error: '',
+        }
+        case "EDIT_COMMENT":
+        return {
+            ...state,
+            edit_comment: action.payload,
+            error: '',
+        }
         default:
             return state;
     }
