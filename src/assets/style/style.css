@@ -1268,17 +1268,42 @@ g.highcharts-legend-item {
   width: 50%;
 }
 
-/* .position-sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-} */
+.position-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+.position-sticky .comment-sec {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.comment-sec::-webkit-scrollbar {
+  width: 12px;
+  /* width of the entire scrollbar */
+}
+
+.comment-sec::-webkit-scrollbar-track {
+  background: rgb(249, 249, 249);
+  /* color of the tracking area */
+}
+
+.comment-sec::-webkit-scrollbar-thumb {
+  background-color: rgb(168, 168, 168);
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid rgb(143, 143, 143);
+  /* creates padding around scroll thumb */
+}
+
 /* video component */
 .creator-video {
   width: 100%;
   padding: 40px;
   border-radius: 20px;
   background: #fff;
+  cursor: pointer;
 }
 .creator-video .creator-nm-detail img {
   width: 32px;
