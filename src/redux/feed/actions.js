@@ -25,7 +25,6 @@ export const get_feed_data = payload => async dispatch => {
 
 
 export const reset_app = payload => async dispatch => {
-    console.log("dsfsdfsdf", payload)
     dispatch({
         type: "RESET_APP",
         payload: {}
@@ -74,28 +73,28 @@ export const list_Comment = payload => async dispatch => {
 
 /* create comment */
 export const create_feed_comment = payload => async dispatch => {
-     let response = await createComment(payload);
-     response = checkResponse(response);
+    let response = await createComment(payload);
+    response = checkResponse(response);
 
-     if (response.success) {
-         dispatch({
+    if (response.success) {
+        dispatch({
             type: "CREATE_FEED_COMMENT",
-             payload: response.data.data,
-             create_comment:response.data.data
+            payload: response.data.data,
+            create_comment: response.data.data
         });
-     } else {
-         dispatch(
-             {
-                 type: "ERROR_OCCURED",
-                 payload: response.error
-             }
-         )
-     }
+    } else {
+        dispatch(
+            {
+                type: "ERROR_OCCURED",
+                payload: response.error
+            }
+        )
+    }
 
- };
+};
 
- /* comment delete */
- export const create_comment_delete = payload => async dispatch => {
+/* comment delete */
+export const create_comment_delete = payload => async dispatch => {
     let response = await createCommentDelete(payload);
     response = checkResponse(response);
 

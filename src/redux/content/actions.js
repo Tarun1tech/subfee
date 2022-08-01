@@ -26,9 +26,19 @@ export const get_content_data = payload => async dispatch => {
 };
 
 export const reset_app = payload => async dispatch => {
-    console.log("dsfsdfsdf", payload)
+
     dispatch({
         type: "RESET_APP",
+        payload: {}
+    });
+
+
+};
+
+export const reset_content = payload => async dispatch => {
+
+    dispatch({
+        type: "RESET_CONTENT",
         payload: {}
     });
 

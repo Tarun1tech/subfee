@@ -22,6 +22,7 @@ const ContentUpdate = props => {
   const { uploadFiles, updateContent } = props;
   const [fileList, setFileList] = useState([]);
   const [commentValue, setcommentValue] = useState(false);
+  const [comment, setComment] = useState("1")
   const [contentInputs, setcontentInputs] = useState(contentDetail);
   const token = localStorage.getItem("access_token");
   const [videourl, setVideourl] = useState("");
@@ -30,12 +31,15 @@ const ContentUpdate = props => {
   const [videoupdate, setVideoupdate] = useState(false);
   const [extensionFile, setExtensionFile] = useState("")
   const [videoLoader, setVideoLoader] = useState(false);
-
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
-    // setPreviewImage(file.url || file.preview);
+
+    setPreviewImage(file.url || file.preview);
+    setPreviewVisible(true);
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   useEffect(() => {
@@ -57,6 +61,7 @@ const ContentUpdate = props => {
         setVideoupdate(true)
       }
     }
+    //eslint-disable-next-line
   }, [props])
   const handleChangefile = (e) => {
     e.preventDefault();
@@ -98,7 +103,14 @@ const ContentUpdate = props => {
       [name]: value,
     });
   }
-
+  const handlecheckbox = (e) => {
+    if ((e.target.checked)) {
+      setcommentValue(!commentValue);
+    }
+    if (e.target.checked === false) {
+      setComment("1")
+    }
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     let image = [];
@@ -110,7 +122,7 @@ const ContentUpdate = props => {
       title: contentInputs.title || props.data?.title,
       desc: contentInputs.description || props.data?.desc,
       video: mainvideourl || props.data?.video,
-      comments: commentValue
+      comments: comment
     }
     if (image[0]) {
       payload.thumbnail = image[0] || props.data?.thumbnail
@@ -140,19 +152,14 @@ const ContentUpdate = props => {
     </div>
   );
 
-  const handlecheckbox = (e) => {
-    console.log(commentValue,"commmentValue")
-    if ((e.target.checked)) {
-      setcommentValue(!commentValue);
-    }
-  }
+
 
   return (
     <>
       <Modal className="content-upload-popup" show={props.show} size="xl" onHide={props.hide} backdrop="static"
         keyboard={false}>
 
-        {props.data?.video !== null && props.data?.thumbnail !== null ?
+        {props.data?.video !== null ?
           <>
             <Modal.Header closeButton>
               <h6 className="stats-page-title">Je video aanpassen</h6>
@@ -209,7 +216,7 @@ const ContentUpdate = props => {
 
                       <video src={!videoupdate ? `${videourl}` : `https://subfee.techstriker.com/backend/public${props.data?.video}`} width="320" height="240" controls />
 
-                      <label className="mt-4 mb-3"> Change Video</label>
+                      <label className="mt-4 mb-3"> Video Wijzigen</label>
                       <div className="content-upload">
                         <input type="file" onChange={handleChangefile} name="video" placeholder="file" accept="video/mp4" />
                         {videoLoader && <Loader />}

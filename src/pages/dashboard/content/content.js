@@ -5,7 +5,7 @@ import ContentList from "./list";
 import Modal from "react-bootstrap/Modal";
 import { Upload } from 'antd';
 import { connect } from "react-redux";
-import { upload_file, reset_app, create_content, get_content_data } from "../../../redux/content/actions";
+import { upload_file, reset_app, create_content, get_content_data, reset_content } from "../../../redux/content/actions";
 import { extension } from "../../../constants/index";
 import { useHistory } from "react-router-dom";
 
@@ -75,19 +75,25 @@ const ContentPage = (props) => {
   const [showvideo, setShowvideo] = useState(false);
   const [showimage, setShowimage] = useState(false);
   const [showcontent, setShowContent] = useState(false);
+  const [contentAdd, setContentAdd] = useState(false);
   const handleClosevideo = () => {
     props.reset_app();
     setExtensionFile("");
+    setContentAdd(true);
     setShowvideo(false);
   };
 
   const handleCloseimage = () => {
+
     props.reset_app();
+
     setExtensionFile("");
+    setContentAdd(true);
     setShowimage(false);
   }
   const handleClosecontent = () => {
-    setShowContent(false)
+    setShowContent(false);
+    setContentAdd(true);
   }
   const handleContent = () => {
     setShowContent(true);
@@ -95,6 +101,10 @@ const ContentPage = (props) => {
 
   const handleChangefile = (e) => {
     e.preventDefault();
+    if (contentAdd) {
+      props.reset_content();
+    }
+    setContentAdd(false);
     let k = e.target.files[0];
     var formdata = new FormData();
     formdata.append("fileupload", k, k.name);
@@ -118,15 +128,21 @@ const ContentPage = (props) => {
     description: "",
   }
 
-  const [commentValue, setcommentValue] = useState(true);
-
+  const [commentValue, setcommentValue] = useState(false);
+  const [comment, setComment] = useState("1")
   const handlecheckbox = (e) => {
     if ((e.target.checked)) {
       setcommentValue(!commentValue);
     }
+
+    if (e.target.checked === false) {
+      setComment("1")
+    }
   }
+
   const [formErrors, setFormErrors] = useState({});
   const [contentInputs, setcontentInputs] = useState(contentDetail);
+
   const validate = (values) => {
     let errors = {};
 
@@ -159,14 +175,13 @@ const ContentPage = (props) => {
       title: contentInputs.title,
       desc: contentInputs.description,
       video: mainvideourl,
-      comments: commentValue
+      comments: comment
     }
     if (image[0]) {
       payload.thumbnail = image[0]
     } else {
       payload.thumbnail = mainimageurl
     }
-    console.log(payload, "payload")
     if (Object.keys(validate(contentInputs)).length === 0) {
       props.create_content(payload);
     }
@@ -177,27 +192,29 @@ const ContentPage = (props) => {
       page: 1
     });
   }
+
   useEffect(() => {
     if (uploadFile?.success) {
       setLoading(false);
       setVideoLoader(false);
       setImageLoader(false);
-      setExtensionFile(extension(uploadFile.data.fileupload))
+      setExtensionFile(extension(uploadFile.data?.fileupload))
     } else {
       toast.error(uploadFile?.message)
     }
 
     if (extensionFile === "mp4" || extensionFile === "mov" || extensionFile === "wmv" || extensionFile === "avi" || extensionFile === "webm") {
       setShowvideo(true);
-      setVideourl(`https://subfee.techstriker.com/backend/public/${props.uploadFile.data.fileupload}`);
-      setMainvideourl(props.uploadFile.data.fileupload);
+      setVideourl(`https://subfee.techstriker.com/backend/public/${props.uploadFile?.data.fileupload}`);
+      setMainvideourl(props.uploadFile?.data.fileupload);
     } else if (extensionFile === "jpeg" || extensionFile === "jpg" || extensionFile === "png" || extensionFile === "webp" || extensionFile === "svg") {
       setShowimage(true);
       setImageurl(`https://subfee.techstriker.com/backend/public/${props.uploadFile?.data.fileupload}`);
       setMainimageurl(props.uploadFile?.data.fileupload);
     }
 
-    if (createContent?.success) {
+    if (createContent?.success && createContent !== null) {
+
       handleClosevideo();
       handleClosecontent();
       handleCloseimage();
@@ -205,8 +222,9 @@ const ContentPage = (props) => {
         page: 1
       })
     }
-  }, [extensionFile, token, uploadFile, createContent]);
 
+
+  }, [extensionFile, token, uploadFile, createContent]);
 
   return (
     <div>
@@ -231,7 +249,7 @@ const ContentPage = (props) => {
                   </svg>
                     Upload nieuwe foto</p>
                   <button className="content-upload-btn" data-bs-toggle="modal" id="imageup" data-bs-target="#photo-submit">   {imageLoader ? "Loading...." : "Selecteer een bestand"}</button>
-                  <input type="file" onChange={handleChangefile} name="image" />
+                  <input type="file" onChange={handleChangefile} name="image" accept="image/*" />
                 </div>
                 <div className="content-upload-btns-back">
                   <p><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -292,7 +310,7 @@ const ContentPage = (props) => {
                                 <p>Wil je toestaan dat subscribers onder deze video een comment kunnen plaatsen?</p>
                                 <div className="custom-comment-switch">
                                   <label className="switch">
-                                    <input type="checkbox" name="videoComments" onChange={handlecheckbox} />
+                                    <input type="checkbox" name="videoComments" onClick={handlecheckbox} />
                                     <span className="slider round"></span>
                                     <span className="ja">ja</span>
                                     <span className="nee">Nee</span>
@@ -328,7 +346,7 @@ const ContentPage = (props) => {
                               </svg> Thumbnail
                             </p>
                             <p className="mb-1">
-                              {commentValue === 1 ?
+                              {commentValue ?
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M4.409 9.8895L1.22701 6.7075L2.642 5.2925L4.409 7.0645L9.358 2.1105L10.773 3.5255L4.409 9.8895Z" fill="#65006B" />
                                 </svg> :
@@ -343,7 +361,7 @@ const ContentPage = (props) => {
                     </div>
                   </div>
                 </Modal>
-                <Modal className="content-upload-popup" show={showimage} onHide={() => handleCloseimage()} size="lg" backdrop="static"
+                <Modal className="content-upload-popup" show={showimage} onHide={handleCloseimage} size="lg" backdrop="static"
                   keyboard={false}>
                   <Modal.Header closeButton>
                     <h6 className="stats-page-title">Nieuwe foto uploaden</h6>
@@ -397,7 +415,7 @@ const ContentPage = (props) => {
 
                 </Modal>
 
-                <Modal className="content-upload-popup" show={showcontent} onHide={() => handleClosecontent()} size="lg" backdrop="static"
+                <Modal className="content-upload-popup" show={showcontent} onHide={handleClosecontent} size="lg" backdrop="static"
                   keyboard={false}>
                   <Modal.Header closeButton>
                     <h6 className="stats-page-title">Nieuwe bericht plaatsen</h6>
@@ -463,4 +481,4 @@ const mapStateToProps = state => ({
   createContent: state.content.create_content
 });
 
-export default connect(mapStateToProps, { upload_file, reset_app, create_content, get_content_data })(ContentPage);
+export default connect(mapStateToProps, { upload_file, reset_app, create_content, get_content_data, reset_content })(ContentPage);

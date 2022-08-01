@@ -19,7 +19,6 @@ export const status = {
 
 
 export const checkResponse = (response) => {
-  console.log(response, "const")
   let newResponse = '';
   if (response.data.success === false) {
     newResponse = {

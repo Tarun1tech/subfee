@@ -6,7 +6,8 @@ import ContentPage from "./pages/dashboard/content/content";
 import Dashboard from "./pages/dashboard/dashboard";
 import Finanical from "./pages/dashboard/finanical";
 import Naar from "./pages/dashboard/naar";
-import DashContentSide from "./pages/dashboard/settings";
+// import DashContentSide from "./pages/dashboard/settings";
+import ProfileUpdate from "./pages/dashboard/profileupdate/profileupdate";
 import Subscribers from "./pages/dashboard/subscribers";
 import EmailVerification from "./pages/email-verification";
 import ForgotPassword from "./pages/forgot-password";
@@ -22,10 +23,11 @@ const Router = (data) => {
       <PublicRoute exact path="/forgot-password/:id" component={ForgotPassword} />
       <PrivateRoute exact path="/subscribers" component={Subscribers} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      <PrivateRoute exact path="/settings" component={DashContentSide} />
+      {/* <PrivateRoute exact path="/settings" component={DashContentSide} /> */}
+      <PrivateRoute exact path="/settings" component={ProfileUpdate} />
       <PrivateRoute exact path="/content" component={ContentPage} />
       <PrivateRoute exact path="/finanical" component={Finanical} />
-      <PrivateRoute exact path="/naar" component={Naar}/>
+      <PrivateRoute exact path="/naar" component={Naar} />
     </Switch>
   );
 };

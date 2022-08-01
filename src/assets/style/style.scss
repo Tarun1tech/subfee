@@ -60,7 +60,7 @@
   .error {
     color: $danger;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 14px !important;
   }
 
   .login_back {
@@ -336,14 +336,71 @@
     display: flex;
   }
 
+  // profile-update-tab
+  .profile-update-tab {
+    padding: 0 !important;
+    position: fixed;
+    overflow: hidden;
+
+
+    .tab-pane {
+      margin: 30px 100px;
+    }
+  }
+
   .setting-tab {
+    .sml-heading {
+      margin-top: 30px;
+      font-size: 16px !important;
+      color: $dark  !important;
+      font-weight: 700 !important;
+      margin-bottom: 0;
+    }
+
+    #v-pills-tab {
+      width: 25%;
+    }
+
+    #v-pills-tabContent {
+      width: 75%;
+    }
+
+    .sidenav-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #a5a5a5;
+      margin-top: 30px;
+      padding: 10px 40px;
+    }
+
+    .verti {
+      background-color: $white;
+      height: 100vh;
+    }
+
+    .nav-pills .nav-link {
+      text-align: left;
+      padding: 10px 40px;
+      transition: .4s ease-in-out;
+
+      &:hover {
+        transition: .4s ease-in-out;
+        background-color: #f8f8f8;
+      }
+    }
+
+    .nav-pills .nav-link.active {
+      color: #ff6a6a;
+      background-color: #f6f0f6;
+    }
+
     .nav-link {
       color: $dark;
       border-top: none;
       border-left: none;
       border-right: none;
       border-bottom: 3px transparent;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 500;
 
       &:hover {
@@ -366,10 +423,49 @@
     }
 
     .setting-tab-content {
+
+      .accordion-button:not(.collapsed) {
+        color: #ff6a6a !important;
+        background-color: #fff1f1;
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+      }
+
+      .tele-btn {
+        margin-top: 20px;
+
+        button {
+          font-size: 12px;
+          font-weight: 500;
+          color: $danger;
+          border: 1px solid $danger;
+          padding: 10px;
+          border-radius: 15px;
+          background-color: $white;
+
+          svg {
+            width: 14px;
+          }
+        }
+      }
+
       margin-top: 30px;
-      padding: 70px 40px;
+      padding: 20px 40px;
       border-radius: 20px;
       background-color: $white;
+
+      .ant-upload {
+        width: 100% !important;
+        height: 50px !important;
+      }
+
+      .myantd-btn {
+        color: #8f8f8f;
+        font-size: 10px;
+      }
+
+      .ant-upload {
+        width: 100% !important;
+      }
 
       p {
         font-size: 16px;
@@ -377,7 +473,6 @@
       }
 
       a {
-        color: $white;
         text-decoration: none;
         font-size: 15px;
         font-weight: 500;
@@ -395,7 +490,7 @@
         }
 
         label {
-          font-size: 17px;
+          font-size: 14px;
           font-weight: 500;
           margin-bottom: 10px;
           margin-top: 20px;
@@ -403,9 +498,9 @@
 
         input {
           width: 100%;
-          padding: 12px;
+          padding: 6px;
           border: 1px solid $dark;
-          border-radius: 10px;
+          border-radius: 5px;
         }
 
         span {
@@ -583,6 +678,12 @@
     font-size: 14px;
     border-radius: 10px;
     border: none;
+
+    &::before {
+      background-color: $white;
+      border: 1px solid #a4a4a4;
+      color: $dark;
+    }
   }
 
   .table-header-inactive {
@@ -592,6 +693,11 @@
     font-size: 14px;
     border: 1px solid #a4a4a4;
     border-radius: 10px;
+
+    &:hover {
+      background-color: #FE6A6A;
+      color: $white;
+    }
   }
 
   .export-subscribers-btn {
@@ -743,6 +849,7 @@
       left: 0;
       bottom: 0;
       height: 48px;
+      cursor: pointer;
     }
 
     p {
@@ -755,6 +862,11 @@
         margin-right: 8px;
         width: 30px;
       }
+    }
+
+    &:hover .content-upload-btn {
+      transition: .4s ease-in-out;
+      background-color: #900099;
     }
   }
 
@@ -769,9 +881,15 @@
     background-color: #65006B;
     font-size: 16px;
     font-weight: 500;
+    transition: .4s ease-in-out;
 
     svg {
       margin-right: 8px;
+    }
+
+    &:hover {
+      background-color: #900099;
+      transition: .4s ease-in-out;
     }
   }
 

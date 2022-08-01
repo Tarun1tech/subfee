@@ -98,10 +98,12 @@ const Video = (props) => {
         })
     }
     const getComments = (id) => {
+        setPostId(id)
+        setCommentShow(true);
         props.list_Comment({
             post_id: id
         })
-        console.log(listComment, "list-comment")
+
     }
     useEffect(() => {
         if (getnaardata !== undefined) {
@@ -172,6 +174,7 @@ const Video = (props) => {
             setCommentShow(true);
         }
     }, [editComment, deletedComment])
+    console.log(initial_data.comments !== 0, commentshow, postId === initial_data.id)
     return (
         <>
             <div className="row mt-5">
@@ -209,7 +212,7 @@ const Video = (props) => {
                         <h6 className="mt-3">{initial_data?.title}</h6>
                         <p className="video-desc">{initial_data?.desc}</p>
                         {initial_data.total_comments !== 0 ?
-                            <span onClick={() => getComments(initial_data?.id)} className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style={{ "--sub-pink": `${props.theme_Data?.primary_color}` }}>Bekijk alle {initial_data?.total_comments} comments</span>
+                            <span onClick={() => getComments(initial_data?.id)} className="comments-count" style={{ "--sub-pink": `${props.theme_Data?.primary_color}` }}>Bekijk alle {initial_data?.total_comments} comments</span>
                             : null}
                         {/* <span onClick={() => getComments(initial_data?.id)} className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Bekijk alle {initial_data?.total_comments} comments</span> */}
                         {initial_data.comments !== 0 && commentshow && postId === initial_data.id ?
