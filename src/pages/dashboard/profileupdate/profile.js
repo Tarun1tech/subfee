@@ -8,14 +8,6 @@ const Profile = (props) => {
 
         current_password: "",
         password_confirmation: "",
-        // video_desc: "",
-        // instagram_url: "",
-        // twitter_url: "",
-        // facebook_url: "",
-        // youtube_url: "",
-        // terms_condition: "",
-        // privacy_statement: "",
-        // password_confirmation:""
     }
 
     const [inputs, setInputs] = useState(profileFields);
@@ -53,13 +45,7 @@ const Profile = (props) => {
             oldpassword: inputs.old_password,
             password_confirmation: inputs.password_confirmation,
             phone_number: inputs.phone_number || props.profileData?.phone_number
-            // default_video_descriptions: inputs.video_desc || props.profileData?.default_video_descriptions,
-            // instagram_url: inputs.instagram_url || props.profileData?.instagram_url,
-            // twitter_url: inputs.twitter_url || props.profileData?.twitter_url,
-            // facebook_url: inputs.facebook_url || props.profileData?.facebook_url,
-            // youtube_url: inputs.youtube_url || props.profileData?.youtube_url,
-            // legal_information: inputs.terms_condition || props.profileData?.terms_condition,
-            // privacy_statement: inputs.privacy_statement || props.profileData?.privacy_statement
+
         }
         if (Object.keys(validate(inputs)).length === 0) {
             props.create_profile(payload);

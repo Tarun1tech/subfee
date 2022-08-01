@@ -1571,12 +1571,42 @@
 
   // naar
 
+  .position-sticky {
+    position: sticky;
+    top: 0;
+
+    .comment-sec {
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+  }
+
+  .comment-sec::-webkit-scrollbar {
+    width: 12px;
+    /* width of the entire scrollbar */
+  }
+
+  .comment-sec::-webkit-scrollbar-track {
+    background: rgb(249, 249, 249);
+    /* color of the tracking area */
+  }
+
+  .comment-sec::-webkit-scrollbar-thumb {
+    background-color: rgb(168, 168, 168);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid rgb(143, 143, 143);
+    /* creates padding around scroll thumb */
+  }
+
   /* video component */
   .creator-video {
     width: 100%;
     padding: 40px;
     border-radius: 20px;
     background: $white;
+    cursor: pointer;
 
     .creator-nm-detail {
       img {
@@ -1618,7 +1648,6 @@
   }
 
   .notification-box {
-    padding: 40px;
     border-radius: 20px;
     background: $white;
   }
@@ -1630,10 +1659,38 @@
     color: $dark;
   }
 
+  .comment_edit_delete {
+    z-index: 9999 !important;
+    padding: 6px !important;
+    min-width: 7rem !important;
+
+    li {
+      margin: 4px 0 !important;
+
+      button {
+        font-size: 12px;
+        font-weight: 400;
+        color: $dark;
+
+        svg {
+          width: 11px;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
   .video-desc {
     font-size: 12px;
     font-weight: 300;
     color: #3d3d3d;
+  }
+
+  .side-sm-vdo .video-desc {
+    overflow: hidden;
+    max-width: 100ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .dash-latest-comment {
@@ -1647,7 +1704,7 @@
         margin: 22px 0;
 
         .notif-img {
-          width: 18%;
+          width: 8%;
           position: relative;
           margin-right: 10px;
 
@@ -1826,4 +1883,12 @@
 
   .feed-img {
     width: 100%;
+  }
+
+  /* .comment-sec {
+    height: 300px;
+    overflow-y: scroll;
+  } */
+  .comment_edit_delete {
+    transform: translate(-106px, 24px) !important;
   }

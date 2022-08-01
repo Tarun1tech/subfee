@@ -159,12 +159,38 @@ export const feedData = (data) => {
     .catch((err) => err.response);
 };
 
+
+export const getNaarData = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/getcontentdetails`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+}
 //  Subscriber API
 
 export const subscriberData = (data) => {
   let token = localStorage.getItem("access_token");
   return axios
     .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getsubscribers/?page=${data.page}&&status=${data.status}`, {
+
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+
+export const listCommentByPost = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/list-comments-bypost`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -176,6 +202,20 @@ export const subscriberDelete = (data) => {
   let token = localStorage.getItem("access_token");
   return axios
     .post(`${process.env.REACT_APP_API_ENDPOINT}creator/deletesubscribers`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+
+/* create comment */
+export const createComment = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/addcomments`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -195,6 +235,21 @@ export const createContact = (data) => {
     .then((response) => response)
     .catch((err) => err.response);
 };
+
+
+
+/* DELETE COMMENT */
+export const createCommentDelete = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/deletecomment`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};
 export const subscriberSearch = (data) => {
   let token = localStorage.getItem("access_token");
   return axios
@@ -206,14 +261,31 @@ export const subscriberSearch = (data) => {
     .then((response) => response)
     .catch((err) => err.response);
 };
-export const faqData = (data) => {
+
+
+
+/* edit comment */
+export const editComment = (data) => {
   let token = localStorage.getItem("access_token");
   return axios
-    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/faqs`, {
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/editcomment`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
     .then((response) => response)
     .catch((err) => err.response);
+};
+export const faqData = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/faqs`, {
+
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+
 };

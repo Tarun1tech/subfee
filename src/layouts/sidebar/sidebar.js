@@ -20,6 +20,15 @@ const DashSidebar = (props) => {
   useEffect(() => {
     props.get_profile_data();
   }, [token]);
+
+  console.log(props.profileData, "this is profile data")
+
+  useEffect(() => {
+    if (props.profileData !== undefined){
+      localStorage.setItem("profile-id", props?.profileData?.id);
+    }
+  })
+
   const _nav = [
     {
       type: "",

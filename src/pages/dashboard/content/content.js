@@ -102,11 +102,9 @@ const ContentPage = (props) => {
   const handleChangefile = (e) => {
     e.preventDefault();
     if (contentAdd) {
-      console.log("enter in i")
       props.reset_content();
     }
     setContentAdd(false);
-    console.log(e.target.files, "file===========================")
     let k = e.target.files[0];
     var formdata = new FormData();
     formdata.append("fileupload", k, k.name);
@@ -196,13 +194,11 @@ const ContentPage = (props) => {
   }
 
   useEffect(() => {
-    console.log(uploadFile, "uploadFile")
     if (uploadFile?.success) {
       setLoading(false);
       setVideoLoader(false);
       setImageLoader(false);
       setExtensionFile(extension(uploadFile.data?.fileupload))
-      console.log(extensionFile, "extension(uploadFile.data?.fileupload)")
     } else {
       toast.error(uploadFile?.message)
     }
@@ -229,13 +225,6 @@ const ContentPage = (props) => {
 
 
   }, [extensionFile, token, uploadFile, createContent]);
-  // useEffect(() => {
-  //   if (contentAdd) {
-  //     console.log("enter in i")
-  //     props.reset_content();
-  //   }
-  //   //eslint-disable-next-line
-  // }, [contentAdd])
 
   return (
     <div>

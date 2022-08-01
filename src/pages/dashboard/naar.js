@@ -3,7 +3,9 @@ import SubscriberBanner from "../../layouts/banner/banner";
 import Video from "../../layouts/video/video";
 import notifImg from "../../assets/images/subs.png";
 import { connect } from "react-redux";
-import { get_feed_data } from "../../redux/feed/actions"
+import { get_feed_data } from "../../redux/feed/actions";
+import ReactPlayer from "react-player";
+import Creator from "../../assets/images/user.png";
 
 const Naar = (props) => {
     const formatDate = (date) =>
@@ -24,15 +26,7 @@ const Naar = (props) => {
         <>
             <div className="dash-content-side">
                 <div className="container">
-                    <div className="row">
-                        <SubscriberBanner />
-                    </div>
-                    <div className="row mt-5">
-                        <div className="col-md-8">
-                            <Video data={props.feedlist} />
-                        </div>
-
-                    </div>
+                    <Video data={props.feedlist} />
                 </div>
             </div>
         </>
