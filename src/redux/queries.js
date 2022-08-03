@@ -289,3 +289,16 @@ export const faqData = (data) => {
     .catch((err) => err.response);
 
 };
+
+/* username availability API in setting page */
+export const checkUsername = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+  .post(`${process.env.REACT_APP_API_ENDPOINT}users/checkusername`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((response) => response)
+  .catch((err) => err.response);
+}

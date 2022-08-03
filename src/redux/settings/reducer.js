@@ -48,6 +48,12 @@ const settings = (state = INIT_STATE, action) => {
                 create_contact: action.payload,
                 error: "",
             };
+        case "CHECK_USER_NAME":
+            return {
+                ...state,
+                check_user_name: action.payload,
+                error: "",
+            }
         default:
             return state;
     }

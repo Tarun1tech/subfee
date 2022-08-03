@@ -24,8 +24,8 @@ const Naar = (props) => {
     console.log(props.feedlist, "feeldi")
     return (
         <>
-            <div className="dash-content-side">
-                <div className="container">
+            <div className="dash-content-side p-0">
+                <div className="container-md">
                     <Video data={props.feedlist} />
                 </div>
             </div>

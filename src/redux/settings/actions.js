@@ -1,4 +1,4 @@
-import { profileData, createProfile, createTheme, themeData, createContact, faqData } from '../queries';
+import { profileData, createProfile, createTheme, themeData, createContact, faqData, checkUsername } from '../queries';
 import { checkResponse } from "../../constants/index";
 import { toast } from "react-toastify";
 
@@ -130,4 +130,22 @@ export const get_faq_data = payload => async dispatch => {
         )
     }
 
+};
+
+/* check username api */
+export const check_username = payload => async dispatch => {
+    let response = await checkUsername(payload);
+    response = checkResponse(response);
+    
+    if (response.success) {
+        dispatch({
+            type: "CHECK_USER_NAME",
+            payload: response.data.data
+        });
+    } else {
+        dispatch({
+            type: "ERROR_OCCURED",
+            payload: response.error
+        })
+    }
 };
