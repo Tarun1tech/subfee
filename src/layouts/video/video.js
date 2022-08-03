@@ -16,7 +16,7 @@ const Video = (props) => {
 
     const { commentadd, getnaardata, listComment, editComment, deletedComment } = props
     const [postId, setPostId] = useState("")
-    const [commentshow, setCommentShow] = useState(false);
+    const [commentshow, setCommentShow] = useState(true);
     const [bulkShow, setBulkShow] = useState(false);
     const [subcommentShow, setSubCommentId] = useState("");
     const [inputs, setInputs] = useState({
@@ -83,10 +83,13 @@ const Video = (props) => {
         if (props.data?.data !== undefined) {
             setPostId(props.data?.data[0]?.id)
             setInitial_data(props.data?.data[0]);
+            props.list_Comment({
+                post_id: props.data?.data[0]?.id
+            });
         }
     }, [commentadd, props.data])
 
-    console.log(props.data?.data, "intial data")
+    console.log(props.data?.data, "my data data data")
 
     const handleGet = (id) => {
         setPostId(id)
@@ -98,18 +101,16 @@ const Video = (props) => {
         })
     }
     const getComments = (id) => {
-        setPostId(id)
+        /* setPostId(id)
         setCommentShow(true);
         props.list_Comment({
             post_id: id
-        })
-
+        }) */
     }
     useEffect(() => {
         if (getnaardata !== undefined) {
             setInitial_data(getnaardata);
         }
-
     }, [getnaardata])
     console.log(getnaardata, listComment, "testing data");
     console.log("initial dataa", initial_data)
@@ -175,11 +176,12 @@ const Video = (props) => {
         }
     }, [editComment, deletedComment])
     console.log(initial_data.comments !== 0, commentshow, postId === initial_data.id)
+    
     return (
         <>
             <div className="row mt-5">
                 <div className="col-md-8">
-                    <div className="creator-video position-sticky njp start-0 mt-4" >
+                    <div className="creator-video njp start-0 mt-4" >
                         <div className="creator-nm-detail d-flex justify-content-start align-items-center">
                             <div><img src={`https://subfee.techstriker.com/backend/public${initial_data?.creator_detail?.profile_image}`} alt="user-profile" /></div>
                             <div className="ms-2"><p className="mb-0">{initial_data?.creator_detail?.first_name} {initial_data?.creator_detail?.last_name}</p></div>
@@ -216,7 +218,7 @@ const Video = (props) => {
                             : null}
                         {/* <span onClick={() => getComments(initial_data?.id)} className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Bekijk alle {initial_data?.total_comments} comments</span> */}
                         {initial_data.comments !== 0 && commentshow && postId === initial_data.id ?
-                            <div >
+                            <div>
                                 <div class="card-body p-0">
                                     <div className="notification-box video-comments">
                                         <div className="dash-latest-comment mt-0">
@@ -248,7 +250,7 @@ const Video = (props) => {
                                                                             : <p>{item?.comment}</p>}
 
                                                                         <small data-bs-toggle="collapse" href="#comment-reply" role="button" aria-expanded="false" aria-controls="comment-reply" onClick={() => handleSubComment(item.id)}>Beantwoorden</small>
-                                                                        {subcommentShow === item.id ?
+                                                                        {subcommentShow === item.id  ?
                                                                             <div class="collapse" id="comment-reply">
                                                                                 <div class="card-body p-0">
                                                                                     <div className="notification-box video-comments">
@@ -300,7 +302,7 @@ const Video = (props) => {
                                                                                                     )
                                                                                                 })}
                                                                                                 <div>
-                                                                                                    <div className="comment-box d-flex justify-content-between align-items-center">
+                                                                                                    <div className="comment-box rply d-flex justify-content-between align-items-center">
                                                                                                         <img src={Creator} />
                                                                                                         <form id="comment_id" onSubmit={(e) => handleSubmit(e, item?.post_id, item?.id)}>
                                                                                                             <input type="text" placeholder="Comment plaatsen" name="comment" id="comment" onChange={handleChange} required />
@@ -325,7 +327,6 @@ const Video = (props) => {
                                                                                 <circle cx="1.84211" cy="7" r="1.84211" fill="#BABABA" />
                                                                                 <circle cx="1.84211" cy="12.1579" r="1.84211" fill="#BABABA" />
                                                                             </svg>
-
                                                                         </button>
 
                                                                         <ul className="dropdown-menu comment_edit_delete" aria-labelledby="dropdownMenuButton1">
@@ -339,7 +340,6 @@ const Video = (props) => {
                                                                             </svg>
                                                                                 Verwijderen</button></li>
                                                                         </ul>
-
                                                                     </div>
                                                                 </div>
                                                             </li>
