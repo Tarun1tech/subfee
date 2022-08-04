@@ -3,7 +3,7 @@ import Creator from '../../assets/images/user.png';
 import ReactPlayer from "react-player";
 import notifImg from "../../assets/images/subs.png";
 import { connect } from "react-redux";
-import { get_feed_data, get_Naar, list_Comment, create_feed_comment, create_comment_delete, edit_comment } from "../../redux/feed/actions";
+import { get_feed_data, get_Naar, list_Comment, create_feed_comment, create_comment_delete, edit_comment, get_feed_by_id_data } from "../../redux/feed/actions";
 import Aos from 'aos';
 import "aos/dist/aos.css";
 import CustomModal from "../modal/modal";
@@ -14,9 +14,9 @@ const Video = (props) => {
         Aos.init({ duration: 1400 });
     }, []);
 
-    const { commentadd, getnaardata, listComment, editComment, deletedComment } = props
+    const { commentadd, getnaardata, listComment, editComment, deletedComment, naar_info } = props
     const [postId, setPostId] = useState("")
-    const [commentshow, setCommentShow] = useState(false);
+    const [commentshow, setCommentShow] = useState(true);
     const [bulkShow, setBulkShow] = useState(false);
     const [subcommentShow, setSubCommentId] = useState("");
     const [inputs, setInputs] = useState({
@@ -44,20 +44,18 @@ const Video = (props) => {
             [name]: value,
         });
     };
-    const handleComment = (postId) => {
-        setPostId(postId);
-        props.list_Comment({
-            post_id: postId
-        });
-        setCommentShow(true);
-    }
 
+    useEffect(() => {
+        if (getnaardata !== undefined) {
+            setInitial_data(getnaardata.data[0]);
+        }
+
+    }, [getnaardata])
     const handleSubComment = (id) => {
         setSubCommentId(id)
     }
 
     const handleSubmit = (e, postId, parentId) => {
-        console.log(parentId, postId, "iiii")
         e.preventDefault();
         setPostId(postId);
         props.create_feed_comment({
@@ -65,7 +63,7 @@ const Video = (props) => {
             parent_id: parentId,
             comment: inputs.comment
         })
-        console.log("clicked clicked",)
+
         setCommentShow(true);
         document.getElementById("comment_id").reset();
     }
@@ -77,18 +75,23 @@ const Video = (props) => {
             props.list_Comment({
                 post_id: postId
             });
-            console.log("I want to get post id")
+            setCommentShow(true);
         }
-        console.log(props.data)
-        if (props.data?.data !== undefined) {
-            setPostId(props.data?.data[0]?.id)
-            setInitial_data(props.data?.data[0]);
-        }
-    }, [commentadd, props.data])
 
-    console.log(props.data?.data, "intial data")
+        if (props.getnaardata?.data) {
+            setPostId(props.getnaardata?.data[0]?.id)
+            setInitial_data(props.getnaardata?.data[0]);
+        }
+        if (naar_info !== undefined) {
+            setInitial_data(naar_info);
+            setCommentShow(true);
+        }
+    }, [commentadd, naar_info])
+
+
 
     const handleGet = (id) => {
+
         setPostId(id)
         props.get_Naar({
             id: id
@@ -105,20 +108,13 @@ const Video = (props) => {
         })
 
     }
-    useEffect(() => {
-        if (getnaardata !== undefined) {
-            setInitial_data(getnaardata);
-        }
 
-    }, [getnaardata])
-    console.log(getnaardata, listComment, "testing data");
-    console.log("initial dataa", initial_data)
 
     /* comment delete */
     const [deleteid, setDeleteid] = useState('');
 
     const handleDelete = (id) => {
-        console.log("delete delete", id)
+
         setDeleteid(id);
         setBulkShow(true);
     }
@@ -144,14 +140,14 @@ const Video = (props) => {
         e.preventDefault();
         setIseditcomment(id);
         setIsedit(false);
-        console.log("edit comment", id)
+
     }
 
     const handleCommentediting = (e) => {
         setNewcomment(e.target.value);
     }
 
-    console.log(newcomment, "editeddd")
+
 
     const handleEditedcomment = (e, id) => {
         e.preventDefault();
@@ -174,7 +170,6 @@ const Video = (props) => {
             setCommentShow(true);
         }
     }, [editComment, deletedComment])
-    console.log(initial_data.comments !== 0, commentshow, postId === initial_data.id)
     return (
         <>
             <div className="row mt-5">
@@ -217,17 +212,18 @@ const Video = (props) => {
                         {/* <span onClick={() => getComments(initial_data?.id)} className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Bekijk alle {initial_data?.total_comments} comments</span> */}
                         {initial_data.comments !== 0 && commentshow && postId === initial_data.id ?
                             <div >
-                                <div class="card-body p-0">
+                                <div class="card-body comment-sec p-0">
                                     <div className="notification-box video-comments">
                                         <div className="dash-latest-comment mt-0">
                                             <ul>
                                                 {listComment?.map((item, index) => {
+
                                                     return (
                                                         <>
                                                             <li key={index}>
                                                                 <div className="d-flex justify-content-start align-items-top">
                                                                     <div className="notif-img">
-                                                                        <img src={item?.user_info[0]?.profiles_image === null ? notifImg : item?.user_info[0]?.profiles_image} alt="notifImg" />
+                                                                        <img src={item?.user_info.length !== 0 && item?.user_info[0]?.profiles_image === null ? notifImg : item?.user_info[0]?.profiles_image} alt="notifImg" />
                                                                     </div>
                                                                     <div className="notif-content">
                                                                         <div className="d-flex justify-content-between align-items-center">
@@ -254,13 +250,14 @@ const Video = (props) => {
                                                                                     <div className="notification-box video-comments">
                                                                                         <div className="dash-latest-comment mt-0">
                                                                                             <ul>
-                                                                                                {item?.reply.map((item, index) => {
+                                                                                                {item?.reply?.length > 0 && item?.reply.map((item, index) => {
                                                                                                     return (
                                                                                                         <>
                                                                                                             <li key={index}>
                                                                                                                 <div className="d-flex justify-content-start align-items-top">
                                                                                                                     <div className="notif-img">
-                                                                                                                        <img src={item?.user_info[0]?.profiles_image === null ? notifImg : item?.user_info[0]?.profiles_image} alt="notifImg" />
+                                                                                                                        {/* <img src={item?.user_info || item?.user_info[0]?.profiles_image === null ? notifImg : item?.user_info[0]?.profiles_image} alt="notifImg" /> */}
+                                                                                                                        <img src={notifImg} alt="notifImg" />
                                                                                                                     </div>
                                                                                                                     <div className="notif-content">
                                                                                                                         <div className="d-flex justify-content-between align-items-center">
@@ -486,7 +483,8 @@ const Video = (props) => {
 
 const mapStateToProps = state => ({
     ...state,
-    getnaardata: state.feed?.naar_info?.data,
+    getnaardata: state.feed?.feed_list?.data,
+    naar_info: state.feed?.naar_info?.data,
     listComment: state.feed?.comment_list?.data,
     commentadd: state.feed.create_comment,
     commentdelete: state,

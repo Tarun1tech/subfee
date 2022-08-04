@@ -68,17 +68,18 @@ export default (state = INIT_STATE, action) => {
                 error: '',
             }
         case "COMMENT_DELETE":
-        return {
-            ...state,
-            comment_delete: action.payload,
-            error: '',
-        }
+            return {
+                ...state,
+                comment_delete: action.payload,
+                error: '',
+            }
         case "EDIT_COMMENT":
-        return {
-            ...state,
-            edit_comment: action.payload,
-            error: '',
-        }
+            return {
+                ...state,
+                edit_comment: action.payload,
+                error: '',
+            }
+
         default:
             return state;
     }
