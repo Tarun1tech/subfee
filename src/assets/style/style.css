@@ -951,7 +951,7 @@ table .icon_setting {
   z-index: 99999999 !important;
   position: absolute;
   top: 2px;
-  left: 12px;
+  right: 12px;
   font-size: 12px;
   font-weight: 500;
 }
@@ -960,7 +960,7 @@ table .icon_setting {
   z-index: 99999999 !important;
   position: absolute;
   top: 2px;
-  right: 4px;
+  left: 4px;
   font-size: 12px;
   font-weight: 500;
 }
@@ -1361,6 +1361,35 @@ g.highcharts-legend-item {
 }
 .custom-modal .modal-dialog .modal-button button {
   width: 50%;
+}
+
+.position-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+.position-sticky .comment-sec {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.comment-sec::-webkit-scrollbar {
+  width: 12px;
+  /* width of the entire scrollbar */
+}
+
+.comment-sec::-webkit-scrollbar-track {
+  background: rgb(249, 249, 249);
+  /* color of the tracking area */
+}
+
+.comment-sec::-webkit-scrollbar-thumb {
+  background-color: rgb(168, 168, 168);
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid rgb(143, 143, 143);
+  /* creates padding around scroll thumb */
 }
 
 .rply {

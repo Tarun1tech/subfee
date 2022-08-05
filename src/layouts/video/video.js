@@ -4,24 +4,28 @@ import ReactPlayer from "react-player";
 import notifImg from "../../assets/images/subs.png";
 import { connect } from "react-redux";
 import { get_feed_data, get_Naar, list_Comment, create_feed_comment, create_comment_delete, edit_comment } from "../../redux/feed/actions";
-import Aos from 'aos';
-import "aos/dist/aos.css";
 import CustomModal from "../modal/modal";
 
 const Video = (props) => {
 
-    useEffect(() => {
-        Aos.init({ duration: 1400 });
-    }, []);
-
-    const { commentadd, getnaardata, listComment, editComment, deletedComment } = props
+    const { commentadd, getnaardata, listComment, editComment, deletedComment, feedlist } = props
     const [postId, setPostId] = useState("")
     const [commentshow, setCommentShow] = useState(true);
     const [bulkShow, setBulkShow] = useState(false);
     const [subcommentShow, setSubCommentId] = useState("");
+    const [subshow, setSubShow] = useState(false)
     const [inputs, setInputs] = useState({
         comment: ""
     });
+    let token = localStorage.getItem("token");
+    const [initial_data, setInitial_data] = useState({});
+    const [isedit, setIsedit] = useState(true);
+    const [iseditcomment, setIseditcomment] = useState('');
+    const [issubedit, setIssubedit] = useState(true);
+    const [issubeditcomment, setIssubeditcomment] = useState('');
+    const [newcomment, setNewcomment] = useState('');
+    const [deleteid, setDeleteid] = useState('');
+
     const handleLikes = (postId, userId) => {
         props.create_feed_like({
             content_id: postId,
@@ -53,43 +57,46 @@ const Video = (props) => {
     }
 
     const handleSubComment = (id) => {
-        setSubCommentId(id)
+        setSubCommentId(id);
+        setSubShow(true);
     }
 
     const handleSubmit = (e, postId, parentId) => {
-        console.log(parentId, postId, "iiii")
         e.preventDefault();
         setPostId(postId);
+        setSubCommentId(parentId)
         props.create_feed_comment({
             post_id: postId,
             parent_id: parentId,
             comment: inputs.comment
         })
-        console.log("clicked clicked",)
         setCommentShow(true);
+        setSubShow(true);
         document.getElementById("comment_id").reset();
     }
 
-    const [initial_data, setInitial_data] = useState({});
+    useEffect(() => {
+        props.get_feed_data();
+    }, [token]);
+
+
+    useEffect(() => {
+        if (feedlist?.data) {
+            setPostId(feedlist?.data[0]?.id)
+            setInitial_data(feedlist?.data[0]);
+            props.list_Comment({
+                post_id: props.data?.data[0]?.id
+            });
+        }
+    }, [feedlist])
 
     useEffect(() => {
         if (commentadd?.success) {
             props.list_Comment({
                 post_id: postId
             });
-            console.log("I want to get post id")
         }
-        console.log(props.data)
-        if (props.data?.data !== undefined) {
-            setPostId(props.data?.data[0]?.id)
-            setInitial_data(props.data?.data[0]);
-            props.list_Comment({
-                post_id: props.data?.data[0]?.id
-            });
-        }
-    }, [commentadd, props.data])
-
-    console.log(props.data?.data, "my data data data")
+    }, [commentadd])
 
     const handleGet = (id) => {
         setPostId(id)
@@ -100,35 +107,37 @@ const Video = (props) => {
             post_id: id
         })
     }
+
     const getComments = (id) => {
+        setCommentShow(true);
+        setPostId(id)
         /* setPostId(id)
         setCommentShow(true);
         props.list_Comment({
             post_id: id
         }) */
     }
+
     useEffect(() => {
         if (getnaardata !== undefined) {
             setInitial_data(getnaardata);
         }
     }, [getnaardata])
-    console.log(getnaardata, listComment, "testing data");
-    console.log("initial dataa", initial_data)
 
     /* comment delete */
-    const [deleteid, setDeleteid] = useState('');
 
     const handleDelete = (id) => {
-        console.log("delete delete", id)
         setDeleteid(id);
         setBulkShow(true);
     }
+
     const confirmDelete = () => {
         props.create_comment_delete({
             id: deleteid
         });
         setBulkShow(false);
     }
+
     const onHide = () => {
         setBulkShow(false);
         props.list_Comment({
@@ -137,36 +146,40 @@ const Video = (props) => {
     };
 
     /* comment edit */
-    const [isedit, setIsedit] = useState('true');
-    const [iseditcomment, setIseditcomment] = useState('');
-    const [newcomment, setNewcomment] = useState('');
-
+    // const [editcomment, setEditcomment] = useState("");
     const handleEdit = (e, id) => {
         e.preventDefault();
         setIseditcomment(id);
         setIsedit(false);
-        console.log("edit comment", id)
+
     }
 
+    const handleSubEdit = (e, id) => {
+        e.preventDefault();
+        setIssubeditcomment(id);
+        setIssubedit(false);
+
+    }
     const handleCommentediting = (e) => {
         setNewcomment(e.target.value);
     }
 
-    console.log(newcomment, "editeddd")
-
     const handleEditedcomment = (e, id) => {
+
         e.preventDefault();
         props.edit_comment({
             id: id,
             comment: newcomment
         })
     }
+
     useEffect(() => {
         if (editComment?.data?.success) {
             props.list_Comment({
                 post_id: postId
             });
             setIsedit(true);
+            setIssubedit(true);
         }
         if (deletedComment?.data?.success) {
             props.list_Comment({
@@ -175,8 +188,9 @@ const Video = (props) => {
             setCommentShow(true);
         }
     }, [editComment, deletedComment])
-    console.log(initial_data.comments !== 0, commentshow, postId === initial_data.id)
-    
+
+    console.log(iseditcomment, isedit, "adasd")
+
     return (
         <>
             <div className="row mt-5">
@@ -186,34 +200,35 @@ const Video = (props) => {
                             <div><img src={`https://subfee.techstriker.com/backend/public${initial_data?.creator_detail?.profile_image}`} alt="user-profile" /></div>
                             <div className="ms-2"><p className="mb-0">{initial_data?.creator_detail?.first_name} {initial_data?.creator_detail?.last_name}</p></div>
                         </div>
-                        <div className="single-video">
-                            {initial_data?.video !== null ?
+
+                        {initial_data?.video !== null ?
+                            <div className="single-video">
                                 <ReactPlayer
                                     className="videoFrame"
                                     url={`https://subfee.techstriker.com/backend/public${initial_data?.video}`}
                                     light={`https://subfee.techstriker.com/backend/public${initial_data?.thumbnail}`}
                                     playing
                                     controls
-                                    width="100" /> :
-                                initial_data?.thumbnail !== null ?
-                                    <img src={`https://subfee.techstriker.com/backend/public${initial_data?.thumbnail}`} className="feed-img" /> : null
+                                    width="100" />
+                            </div> :
+                            initial_data?.thumbnail !== null ?
+                                <div className="single-video">  <img src={`https://subfee.techstriker.com/backend/public${initial_data?.thumbnail}`} className="feed-img" />
+                                </div> : null
 
-                            }
-
-                        </div>
+                        }
 
                         {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
-                            <button className="d-flex justify-content-center align-items-center">
-                                <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" fill="red" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#E10051" />
-                                </svg>
-                            </button>
-                            <p>{initial_data?.likes} Likes</p>
-                        </div> */}
+                                    <button className="d-flex justify-content-center align-items-center">
+                                        <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#E10051" />
+                                        </svg>
+                                    </button>
+                                    <p>{initial_data?.likes} Likes</p>
+                                </div> */}
 
                         <h6 className="mt-3">{initial_data?.title}</h6>
                         <p className="video-desc">{initial_data?.desc}</p>
-                        {initial_data.total_comments !== 0 ?
+                        {initial_data.comments !== 0 ?
                             <span onClick={() => getComments(initial_data?.id)} className="comments-count" style={{ "--sub-pink": `${props.theme_Data?.primary_color}` }}>Bekijk alle {initial_data?.total_comments} comments</span>
                             : null}
                         {/* <span onClick={() => getComments(initial_data?.id)} className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Bekijk alle {initial_data?.total_comments} comments</span> */}
@@ -249,28 +264,39 @@ const Video = (props) => {
                                                                                 </div>}</div>
                                                                             : <p>{item?.comment}</p>}
 
-                                                                        <small data-bs-toggle="collapse" href="#comment-reply" role="button" aria-expanded="false" aria-controls="comment-reply" onClick={() => handleSubComment(item.id)}>Beantwoorden</small>
-                                                                        {subcommentShow === item.id  ?
-                                                                            <div class="collapse" id="comment-reply">
+                                                                        {!isedit && iseditcomment === item.id ? null : <small role="button" onClick={() => handleSubComment(item.id)}>{item?.reply.length > 0 ? `View ${item?.reply.length} antwoorden` : " Beantwoorden"}</small>}
+                                                                        {isedit && subshow && subcommentShow === item.id ?
+                                                                            <div >
                                                                                 <div class="card-body p-0">
                                                                                     <div className="notification-box video-comments">
                                                                                         <div className="dash-latest-comment mt-0">
                                                                                             <ul>
                                                                                                 {item?.reply.map((item, index) => {
+
                                                                                                     return (
                                                                                                         <>
                                                                                                             <li key={index}>
                                                                                                                 <div className="d-flex justify-content-start align-items-top">
                                                                                                                     <div className="notif-img">
-                                                                                                                        <img src={item?.user_info[0]?.profiles_image === null ? notifImg : item?.user_info[0]?.profiles_image} alt="notifImg" />
+                                                                                                                        <img src={item?.reply_user_info?.profiles_image === null ? notifImg : item?.reply_user_info?.profiles_image} alt="notifImg" />
                                                                                                                     </div>
                                                                                                                     <div className="notif-content">
                                                                                                                         <div className="d-flex justify-content-between align-items-center">
                                                                                                                             <h6>{item?.reply_user_info?.name}</h6>
                                                                                                                         </div>
-                                                                                                                        <p>
-                                                                                                                            {item?.comment}
-                                                                                                                        </p>
+                                                                                                                        {issubeditcomment === item?.id ?
+                                                                                                                            <div>{issubedit ? <p>{item?.comment}</p>
+                                                                                                                                : <div className="comment-box d-flex justify-content-between align-items-center" data-aos="fade">
+                                                                                                                                    <form id="comment_idsss" onSubmit={(e) => handleEditedcomment(e, item.id)}>
+                                                                                                                                        <input type="text" defaultValue={item?.comment} name="comment" id="comment" onChange={handleCommentediting} required />
+                                                                                                                                        <button type="submit">
+                                                                                                                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                                                <path d="M17.6943 3.24003C17.5725 3.15714 17.4312 3.10738 17.2844 3.09565C17.1376 3.08392 16.9902 3.11062 16.8568 3.17313L2.46145 9.94741C2.3143 10.0168 2.19024 10.127 2.1041 10.265C2.01796 10.403 1.97338 10.5629 1.9757 10.7255C1.97803 10.8882 2.02715 11.0467 2.11719 11.1822C2.20724 11.3176 2.3344 11.4243 2.48347 11.4894L7.05611 13.4904V19.1825L11.9979 15.6531L16.032 17.4178C16.1566 17.4723 16.2924 17.4961 16.4281 17.487C16.5637 17.478 16.6952 17.4364 16.8114 17.3658C16.9276 17.2952 17.0251 17.1976 17.0957 17.0814C17.1662 16.9652 17.2077 16.8337 17.2167 16.698L18.0635 3.99621C18.0727 3.84898 18.0436 3.70186 17.9789 3.56929C17.9141 3.43672 17.8161 3.32326 17.6943 3.24003V3.24003ZM15.6061 15.3829L11.1444 13.4302L13.8304 8.17425L7.35333 11.7731L4.87055 10.6867L16.2776 5.31804L15.6061 15.3829V15.3829Z" fill="white" />
+                                                                                                                                            </svg>
+                                                                                                                                        </button>
+                                                                                                                                    </form>
+                                                                                                                                </div>}</div>
+                                                                                                                            : <p>{item?.comment}</p>}
                                                                                                                         {/* <small>Beantwoorden</small> */}
                                                                                                                     </div>
                                                                                                                     <div className="dropdown ms-auto float-end">
@@ -284,7 +310,7 @@ const Video = (props) => {
                                                                                                                         </button>
 
                                                                                                                         <ul className="dropdown-menu comment_edit_delete" aria-labelledby="dropdownMenuButton1">
-                                                                                                                            {localStorage.getItem("profile-id") == item.user_id ? <li><button className="border-0 bg-transparent" onClick={() => handleEdit(item.id)}><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                            {localStorage.getItem("profile-id") == item.user_id ? <li><button className="border-0 bg-transparent" onClick={(e) => handleSubEdit(e, item.id)}><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                                                                 <path d="M12.2308 3.00444L10.1111 0.873881C9.971 0.734516 9.78144 0.656281 9.58385 0.656281C9.38625 0.656281 9.1967 0.734516 9.05663 0.873881L1.5419 8.37777L0.855793 11.3389C0.832124 11.4471 0.832936 11.5593 0.858168 11.6672C0.883399 11.7751 0.932415 11.876 1.00163 11.9625C1.07085 12.049 1.15852 12.119 1.25824 12.1673C1.35796 12.2156 1.46721 12.241 1.57801 12.2417C1.62964 12.2469 1.68166 12.2469 1.73329 12.2417L4.7269 11.5555L12.2308 4.05888C12.3702 3.91881 12.4484 3.72925 12.4484 3.53166C12.4484 3.33407 12.3702 3.14451 12.2308 3.00444ZM4.36579 10.9055L1.55996 11.4942L2.19913 8.74249L7.82163 3.14166L9.98829 5.30833L4.36579 10.9055ZM10.4722 4.78471L8.30551 2.61805L9.56218 1.3686L11.6927 3.53527L10.4722 4.78471Z" fill="black" />
                                                                                                                             </svg>
                                                                                                                                 Bewerken</button></li> : null
@@ -366,7 +392,7 @@ const Video = (props) => {
                                 </div>
                             </div>
                             :
-                            initial_data.comments !== 0 && initial_data.total_comments === 0 ?
+                            initial_data.comments !== 0 && initial_data.total_comments === null ?
                                 <>
                                     <div className="comment-box d-flex justify-content-between align-items-center" style={{ "--sub-pink": `${props.theme_Data?.primary_color}` }}>
                                         <img src={Creator} />
@@ -389,7 +415,7 @@ const Video = (props) => {
                     </div>
                 </div>
                 <div className="col-md-4">
-                    {props.data?.data?.map((item, index) => {
+                    {props.feedlist?.data?.map((item, index) => {
                         return (
                             <>
                                 <div className="creator-video side-sm-vdo mt-4" data-aos="fade-up" key={index} onClick={() => handleGet(item?.id,)}>
@@ -397,21 +423,39 @@ const Video = (props) => {
                                         <div><img src={`https://subfee.techstriker.com/backend/public${item?.creator_detail?.profile_image}`} /></div>
                                         <div className="ms-2"><p className="mb-0">{item?.creator_detail?.first_name}</p></div>
                                     </div>
-                                    <div className="single-video">
-                                        {item.video !== null ?
-                                            <>
-                                                <ReactPlayer
-                                                    className="videoFrame"
-                                                    url={`https://subfee.techstriker.com/backend/public${item.video}`}
-                                                    light={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
-                                                    playing
-                                                    controls
-                                                    onPlay={() => handleViewCount(item.id, item.user_id)}
-                                                    width="100" />
-                                                {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
+
+                                    {item.video !== null ?
+                                        <div className="single-video">
+                                            <ReactPlayer
+                                                className="videoFrame"
+                                                url={`https://subfee.techstriker.com/backend/public${item.video}`}
+                                                light={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
+                                                playing
+                                                controls
+                                                onPlay={() => handleViewCount(item.id, item.user_id)}
+                                                width="100" />
+                                            {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
+                                                            <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
+                                                                {item.like_status ?
+                                                                    <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#E10051" />
+                                                                    </svg>
+                                                                    :
+                                                                    <svg width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#A7A7A7" />
+                                                                    </svg>}
+                                                            </button>
+                                                            <p>{item?.likes} Likes</p>
+                                                        </div> */}
+                                        </div>
+                                        :
+                                        item.thumbnail !== null ?
+                                            <div className="single-video">
+                                                <img src={`https://subfee.techstriker.com/backend/public${item.thumbnail}`} className="feed-img" />
+                                                <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                     <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
                                                         {item.like_status ?
-                                                            <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+                                                            <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" fill="red" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#E10051" />
                                                             </svg>
                                                             :
@@ -420,47 +464,29 @@ const Video = (props) => {
                                                             </svg>}
                                                     </button>
                                                     <p>{item?.likes} Likes</p>
-                                                </div> */}
-                                            </>
-                                            :
-                                            item.thumbnail !== null ?
-                                                <>
-                                                    <img src={`https://subfee.techstriker.com/backend/public${item.thumbnail}`} className="feed-img" />
-                                                    <div className="video-like-btn d-flex justify-content-start align-items-center">
-                                                        <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
-                                                            {item.like_status ?
-                                                                <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" fill="red" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#E10051" />
-                                                                </svg>
-                                                                :
-                                                                <svg width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#A7A7A7" />
-                                                                </svg>}
-                                                        </button>
-                                                        <p>{item?.likes} Likes</p>
-                                                    </div>
-                                                </>
-                                                : null}
+                                                </div>
+                                            </div>
+                                            : null}
 
-                                    </div>
+
 
                                     <h6 className="mt-3">{item?.title}</h6>
                                     <p className="video-desc">{item?.desc}</p>
                                     {/* {item.thumbnail === null && item.video === null ?
-                                        <div className="video-like-btn d-flex justify-content-start align-items-center">
-                                            <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
-                                                {item.like_status ?
-                                                    <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" fill="red" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#E10051" />
-                                                    </svg>
-                                                    :
-                                                    <svg width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#A7A7A7" />
-                                                    </svg>}
-                                            </button>
-                                            <p>{item?.likes} Likes</p>
-                                        </div>
-                                        : null} */}
+                                                <div className="video-like-btn d-flex justify-content-start align-items-center">
+                                                    <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
+                                                        {item.like_status ?
+                                                            <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#E10051" />
+                                                            </svg>
+                                                            :
+                                                            <svg width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M11.2468 6.77549C11.4601 6.49365 11.5781 6.14834 11.5781 5.78906C11.5781 5.21904 11.2595 4.67949 10.7466 4.37861C10.6145 4.30116 10.4642 4.2604 10.3111 4.26054H7.2668L7.34297 2.70029C7.36074 2.32324 7.22744 1.96523 6.96846 1.69228C6.84136 1.55775 6.68802 1.45071 6.51792 1.37778C6.34782 1.30484 6.16457 1.26757 5.97949 1.26826C5.31934 1.26826 4.73535 1.71259 4.56016 2.34863L3.46963 6.29687H3.46582V11.7305H9.46182C9.57861 11.7305 9.69287 11.7076 9.79824 11.6619C10.4025 11.4042 10.7923 10.8139 10.7923 10.1588C10.7923 9.99883 10.7694 9.8414 10.7237 9.68906C10.937 9.40722 11.0551 9.06191 11.0551 8.70263C11.0551 8.54267 11.0322 8.38525 10.9865 8.23291C11.1998 7.95107 11.3179 7.60576 11.3179 7.24648C11.3153 7.08652 11.2925 6.92783 11.2468 6.77549ZM1.42188 6.70312V11.3242C1.42188 11.5489 1.60342 11.7305 1.82812 11.7305H2.65332V6.29687H1.82812C1.60342 6.29687 1.42188 6.47842 1.42188 6.70312Z" fill="#A7A7A7" />
+                                                            </svg>}
+                                                    </button>
+                                                    <p>{item?.likes} Likes</p>
+                                                </div>
+                                                : null} */}
                                     <div>
                                     </div>
                                 </div>
@@ -492,6 +518,7 @@ const mapStateToProps = state => ({
     commentdelete: state,
     deletedComment: state.feed?.comment_delete?.data,
     editComment: state.feed?.edit_comment?.data,
+    feedlist: state.feed?.feed_list?.data,
 });
 
 export default connect(mapStateToProps, { get_feed_data, get_Naar, list_Comment, create_feed_comment, create_comment_delete, edit_comment })(Video);
