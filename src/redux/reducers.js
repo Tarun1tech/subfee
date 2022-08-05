@@ -4,12 +4,14 @@ import content from "./content/reducer";
 import setting from "./settings/reducer";
 import feed from "./feed/reducer";
 import subscriber from "./subscriber/reducer";
+import financial from "./financial/reducers";
 const reducers = combineReducers({
   auth,
   feed,
   content,
   setting,
-  subscriber
+  subscriber,
+  financial
 });
 
 export default reducers;

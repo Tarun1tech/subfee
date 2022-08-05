@@ -14,25 +14,21 @@ const Policy = (props) => {
   useEffect(() => {
     get_profile_data();
   }, [token, get_profile_data]);
+  
+  const termsPolicy = {
+    terms: "",
+    policy: ""
+  }
 
-  let data = props?.profileData === undefined ? "<p></p>" : props.profileData?.privacy_statement
-  const [contentState, setContentState] = useState(() => EditorState.createWithContent(
-    ContentState.createFromBlockArray(
-      convertFromHTML(data)
-    )
-  ))
-  let html = props?.profileData === undefined ? "<p></p>" : props.profileData?.legal_information
-  const [editorState, setEditorState] = useState(() => EditorState.createWithContent(
-    ContentState.createFromBlockArray(
-      convertFromHTML(html)
-    )
-  ))
+  const [inputs, setInputs] = useState(termsPolicy);
 
-  const onEditorStateChange = (editorState) => {
-    setEditorState(editorState);
-  };
-  const onPrivacyChange = (contentState) => {
-    setContentState(contentState);
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    })   
+
   }
 
   const handleSubmit = (e) => {
@@ -40,8 +36,8 @@ const Policy = (props) => {
     const payload = {
       name: props.profileData?.name,
       first_name: props.profileData?.first_name,
-      legal_information: draftToHtml(convertToRaw(editorState.getCurrentContent())) || profileData?.legal_information,
-      privacy_statement: draftToHtml(convertToRaw(contentState.getCurrentContent())) || props.profileData?.privacy_statement
+      legal_information: inputs.terms || profileData?.legal_information,
+      privacy_statement: inputs.policy || props.profileData?.privacy_statement
     }
     props.create_profile(payload);
     document.getElementById("profileForm").reset();
@@ -63,26 +59,13 @@ const Policy = (props) => {
             Deze worden getoond op de algemene voorwaarden pagina op jouw
             platform.
           </p>
-
-          <Editor
-            defaultEditorState={editorState}
-            editorState={editorState}
-            wrapperClassName="demo-wrapper"
-            editorClassName="demo-editor"
-            onEditorStateChange={onEditorStateChange}
-          />
+          <textarea name="terms" onChange={handleChange} defaultValue={props.profileData?.legal_information} />
 
           <p className="sml-heading">Privacy statement</p>
           <p>
             Deze worden getoond op de privacy statement pagina op jouw platform.
           </p>
-          <Editor
-            defaultEditorState={editorState}
-            editorState={contentState}
-            wrapperClassName="demo-wrapper"
-            editorClassName="demo-editor"
-            onEditorStateChange={onPrivacyChange}
-          />
+          <textarea name="policy" onChange={handleChange} defaultValue={props.profileData?.privacy_statement} />
 
           <div class="mb-4">
             <input class="form-submit" type="submit" value="Opslaan" />

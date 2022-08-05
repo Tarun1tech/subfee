@@ -3,9 +3,46 @@ import { connect } from "react-redux";
 import { create_profile, get_profile_data, check_username } from "../../../redux/settings/actions";
 
 const Profile = (props) => {
+
+    /* profile image */
+    /* profile upload */
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
+
+    // create a preview as a side effect, whenever selected file is changed
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreview(objectUrl)
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+    const handleRemove = () => {
+        setPreview(props.profileData.profiles_image)
+    }
+
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+    }
+
+    console.log(selectedFile, "selected filee")
+    
+
     const { createSetting } = props;
     const profileFields = {
-
+        name: "",
         current_password: "",
         password_confirmation: "",
     }
@@ -41,22 +78,20 @@ const Profile = (props) => {
     const handleSubmit = (e) => {
         setFormErrors(validate(inputs));
         e.preventDefault();
-        const payload = {
-            name: inputs.username || props.profileData?.name,
-            first_name: inputs.first_name || props.profileData?.first_name,
-            last_name: inputs.last_name || props.profileData?.last_name,
-            email: inputs.email || props.profileData?.email,
-            newpassword: inputs.current_password,
-            oldpassword: inputs.old_password,
-            password_confirmation: inputs.password_confirmation,
-            phone_number: inputs.phone_number || props.profileData?.phone_number
-
-        }
+        const formdata = new FormData();
+        formdata.append("name", inputs.name || props.profileData.name);
+        formdata.append("first_name", inputs.first_name || props.profileData.first_name);
+        formdata.append("last_name", inputs.last_name || props.profileData.last_name);
+        formdata.append("email", inputs.email || props.profileData?.email);
+        formdata.append("user_image", selectedFile || props.profileData.profiles_image);
+        formdata.append("phone_number", inputs.phone_number || props.profileData.phone_number);
+        formdata.append("newpassword", inputs.current_password);
+        formdata.append("oldpassword", inputs.old_password);
+        formdata.append("password_confirmation", inputs.password_confirmation);
         if (Object.keys(validate(inputs)).length === 0) {
-            props.create_profile(payload);
+            props.create_profile(formdata);
             document.getElementById("profileForm").reset();
         }
-
     }
 
     useEffect(() => {
@@ -104,10 +139,21 @@ const Profile = (props) => {
                     </div>
                     <label>Gebruikersnaam</label>
                     <input type="text" name="name" onChange={handleUsername} defaultValue={props.profileData?.name} />
+                    <div>
                     {formErrors.username ? (
                     <small style={{color: "red"}}>{formErrors.username}</small>
                     ):
                     <small style={{color: "green"}}>{props.usernData}</small>}
+                    </div>
+                    <label>Profielfoto</label>
+                    <div className="profile-upload">
+                        <div className="pf-outer">
+                            <img src={selectedFile === undefined ? props.profileData?.profiles_image : preview} />
+                        </div>
+                        <input type='file' className="profile-upload" onChange={onSelectFile} />
+                        <span>Aanpassen</span>
+                        <p onClick={handleRemove} className="cancel">Verwijderen</p>
+                    </div>
                     <p className="sml-heading">Persoonlijke gegevens</p>
                     <p>Verander je persoonlijke contactgegevens.</p>
                     <div className="d-flex justify-content-between align-items-center">
@@ -132,15 +178,18 @@ const Profile = (props) => {
                         <div className="ps-3 w-100">
                         </div>
                     </div>
-                    <div className="d-flex justify-content-between align-items-center">
+                    <div className="d-flex justify-content-between align-items-end">
                         <div className="pe-3 w-100">
                             <label>Nieuwe wachtwoord</label>
-                            <input type="text" name="current_password" placeholder="Nieuwe wachtwoord" className="mt-4" onChange={handleChange} />
+                            <input type="text" name="current_password" placeholder="Nieuwe wachtwoord" onChange={handleChange} />
 
                         </div>
-                        <div className="ps-3 w-100">
+                        <div className="px-1 w-100">
                             <label>Herhaal nieuwe wachtwoord</label>
-                            <input type="text" name="password_confirmation" placeholder="Herhaal nieuwe wachtwoord" className="mt-4" onChange={handleChange} />
+                            <input type="text" name="password_confirmation" placeholder="Herhaal nieuwe wachtwoord" onChange={handleChange} />
+                        </div>
+                        <div className="ps-3 w-100">
+                            <button className="border-0 btn-success rounded px-3 py-2">Wachtwoord wijzigen</button>
                         </div>
 
                     </div>
@@ -148,7 +197,7 @@ const Profile = (props) => {
                         <span className="error mt-2">{formErrors.password_confirmation}</span>
                     )}
 
-                    <div class="mb-4"><input class="form-submit" type="submit" value="Wijzigen" /></div>
+                    <div className="mb-4"><input className="form-submit" type="submit" value="Wijzigen" /></div>
                 </form>
             </div>
         </>

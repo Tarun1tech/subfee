@@ -294,10 +294,24 @@ export const faqData = (data) => {
 export const checkUsername = (data) => {
   let token = localStorage.getItem("access_token");
   return axios
-  .post(`${process.env.REACT_APP_API_ENDPOINT}users/checkusername`, data, {
+  .post(`${process.env.REACT_APP_API_ENDPOINT}creator/checkusername`, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+  })
+  .then((response) => response)
+  .catch((err) => err.response);
+}
+
+
+/* financial page get financial data api integration */
+export const getFinancial = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+  .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getfinanical`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },    
   })
   .then((response) => response)
   .catch((err) => err.response);
