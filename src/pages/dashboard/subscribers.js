@@ -24,10 +24,10 @@ const Subscribers = (props) => {
   const [active, setActive] = useState(false);
   const [inactive, setInActive] = useState(false);
   const headers = [
-    { label: 'First Name', key: 'first_name' },
-    { label: 'Last Name', key: 'last_name' },
-    { label: 'Email', key: 'email' },
-    { label: 'Status', key: 'new_status' }
+    { label: 'Voornaam', key: 'first_name' },
+    { label: 'Achternaam', key: 'last_name' },
+    { label: 'E-mailadres', key: 'email' },
+    { label: 'Abonnement status', key: 'new_status' }
   ]
 
   useEffect(() => {
@@ -46,23 +46,51 @@ const Subscribers = (props) => {
       setTotalPage(props.subscriberlist?.total)
     }
   }, [])
-
+  const [actives, setActives] = useState(true);
+  const [inactives, setInActives] = useState(true)
   const handleFilter = (data) => {
+    setActives(!actives)
     setStripeStatus(data)
-    if (data === "1") {
+    console.log(actives, "actives")
+    if (actives) {
       setActive(true);
       setInActive(false)
-    } else if (data === "0") {
-      setInActive(true);
-      setActive(false);
+      get_subscriber_data_search({
+        page: currentPage,
+        stripe_status: 1
+      });
     } else {
-      setActive(false);
       setInActive(false);
+      setActive(false);
+      get_subscriber_data_search({
+        page: currentPage
+      });
     }
-    get_subscriber_data_search({
-      page: currentPage,
-      stripe_status: data
-    });
+    // get_subscriber_data_search({
+    //   page: currentPage,
+    //   stripe_status: data
+    // });
+  }
+  const handleFilterActive = (data) => {
+    setInActives(!inactives)
+    setStripeStatus(data)
+    console.log(inactives, "actives")
+    if (inactives) {
+      setInActive(true)
+      get_subscriber_data_search({
+        page: currentPage,
+        stripe_status: "0"
+      });
+    } else {
+      setInActive(false);
+      get_subscriber_data_search({
+        page: currentPage
+      });
+    }
+    // get_subscriber_data_search({
+    //   page: currentPage,
+    //   stripe_status: data
+    // });
   }
   const handleSearch = (e) => {
     const value = e.target.value;
@@ -111,7 +139,7 @@ const Subscribers = (props) => {
                   </div>
                   <div className="col-md-4 text-end">
                     <button className={active ? "table-header-active me-2" : "table-header-inactive me-2"} onClick={() => handleFilter("1", "active")}>Actief</button>
-                    <button className={inactive ? "table-header-active me-5" : "table-header-inactive me-5"} onClick={() => handleFilter("0", "active")}>Inactief</button>
+                    <button className={inactive ? "table-header-active me-5" : "table-header-inactive me-5"} onClick={() => handleFilterActive("0", "active")}>Inactief</button>
                     <button className="export-subscribers-btn" type="button" onClick={() => setShow(true)}>Exporteren</button>
                     {/* <div class="modal fade" id="exportSubs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-modal-size">
