@@ -292,7 +292,7 @@ body {
 
 .profile-update-tab {
   padding: 0 !important;
-  position: fixed;
+  /* position: fixed; */
   overflow: hidden;
 }
 .profile-update-tab .tab-pane {
@@ -423,7 +423,7 @@ body {
 .setting-tab .setting-tab-content form input {
   width: 100%;
   padding: 6px;
-  border: 1px solid #000;
+  border: 1px solid #C9C9C9;
   border-radius: 5px;
 }
 .setting-tab .setting-tab-content form span {
@@ -440,7 +440,7 @@ body {
   border: 1px solid #000;
   border-radius: 10px;
   width: 100%;
-  min-height: 450px;
+  min-height: 280px;
 }
 .setting-tab .setting-tab-content form input[type=color] {
   height: 56px;
@@ -498,10 +498,10 @@ body {
 }
 .stats-count .total-subs .ts-left {
   position: relative;
-  padding: 18px 14px;
+  padding: 18px 60px 18px 14px;
   border-radius: 10px;
-  background-color: #fff;
-  width: 48%;
+  background-color: transparent;
+  cursor: pointer;
 }
 .stats-count .total-subs .ts-left .count-up {
   color: #4FB665;
@@ -514,9 +514,10 @@ body {
   right: 4px;
 }
 .stats-count .total-subs .ts-right {
-  width: 48%;
-  padding: 18px 14px;
+  padding: 18px 96px 18px 14px;
   position: relative;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .stats-count .total-subs .ts-right .count-fall {
   color: #fe6a6a;
@@ -527,6 +528,51 @@ body {
   position: absolute;
   top: 4px;
   right: 4px;
+}
+
+/* custom checkbox for change graph */
+.change_graph {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.change_graph input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* When the checkbox is checked, add a blue background */
+.change_graph input:checked ~ .change_graph_control {
+  background-color: #fff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.change_graph_control:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.change_graph input:checked ~ .change_graph_control:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.change_graph .change_graph_control:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
 
 .ts-icon {
@@ -1096,6 +1142,9 @@ table .icon_setting {
   border-radius: 12px;
   font-size: 12px;
 }
+.colored-btn a:hover {
+  color: #fff;
+}
 
 .light-btn a {
   padding: 12px 30px;
@@ -1103,6 +1152,9 @@ table .icon_setting {
   color: #787878;
   border-radius: 12px;
   font-size: 12px;
+}
+.light-btn a:hover {
+  color: #787878;
 }
 
 .active-one {
@@ -1223,6 +1275,27 @@ table .icon_setting {
   background-image: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   border-radius: 10px;
   width: 100%;
+  color: #fff;
+}
+
+.connected_account {
+  min-height: 192px;
+  color: #000;
+}
+.connected_account h6 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+.connected_account small {
+  font-size: 14px;
+  font-weight: 500;
+}
+.connected_account .payee {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 text.highcharts-title {
@@ -1657,4 +1730,56 @@ g.highcharts-legend-item {
 } */
 .comment_edit_delete {
   transform: translate(-106px, 24px) !important;
+}
+
+/* profile pic change */
+.profile-upload {
+  position: relative;
+  height: 58px;
+}
+.profile-upload input {
+  width: 100px !important;
+  height: 30px;
+  opacity: 0;
+  z-index: 999;
+  position: absolute;
+  top: 14px;
+  left: 80px;
+  cursor: pointer;
+}
+.profile-upload .pf-outer {
+  width: 60px;
+  height: 60px;
+  padding: 2px;
+  border: 1px solid #c7c7c7;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+.profile-upload .pf-outer img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.profile-upload span {
+  padding: 5px 16px;
+  position: absolute;
+  top: 14px;
+  left: 80px;
+  border: 1px solid #C9C9C9;
+  border-radius: 5px;
+  font-size: 13px !important;
+  cursor: pointer;
+}
+.profile-upload .cancel {
+  font-size: 13px;
+  position: absolute;
+  top: 21px;
+  left: 23%;
+  background: transparent;
+  color: #000 !important;
+  font-weight: 400 !important;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

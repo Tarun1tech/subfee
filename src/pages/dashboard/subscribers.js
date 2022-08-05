@@ -155,7 +155,7 @@ const Subscribers = (props) => {
                           </div>
                         </Modal.Header>
 
-                        <div class="modal-body export-subs-body">
+                        <div class="modal-body export-subs-body pt-0">
                           <form>
                             <div className="d-flex justify-content-center align-items-center">
                               <div>
@@ -181,7 +181,7 @@ const Subscribers = (props) => {
                             <CSVLink data={bodyData}
                               target="_blank" headers={headers} filename={`subscriber.${sheetName}`}
                             >
-                              <div className="chose-btn-export" onClick={() => setShow(false)}>
+                              <div className="chose-btn-export text-center" onClick={() => setShow(false)}>
 
 
                                 Exporteren
