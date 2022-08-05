@@ -21,8 +21,8 @@ const ContentUpdate = props => {
   }
   const { uploadFiles, updateContent } = props;
   const [fileList, setFileList] = useState([]);
-  const [commentValue, setcommentValue] = useState(false);
-  const [comment, setComment] = useState("1")
+  const [commentValue, setcommentValue] = useState();
+  const [comment, setComment] = useState(1)
   const [contentInputs, setcontentInputs] = useState(contentDetail);
   const token = localStorage.getItem("access_token");
   const [videourl, setVideourl] = useState("");
@@ -107,8 +107,9 @@ const ContentUpdate = props => {
     if ((e.target.checked)) {
       setcommentValue(!commentValue);
     }
+    console.log(e.target.checked, "chehh")
     if (e.target.checked === false) {
-      setComment("1")
+      setComment(0)
     }
   }
   const handleSubmit = (e) => {
@@ -206,7 +207,7 @@ const ContentUpdate = props => {
                               <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
                               <span className="slider round"></span>
                               <span className="ja">ja</span>
-                              <span className="nee">Nee</span>
+                              <span className="nee">nee</span>
                             </label>
                           </div>
                         </div>

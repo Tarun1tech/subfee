@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { create_profile, get_profile_data } from "../../../redux/settings/actions";
+import { create_profile, get_profile_data, check_username } from "../../../redux/settings/actions";
 
 const Profile = (props) => {
     const { createSetting } = props;
@@ -28,6 +28,11 @@ const Profile = (props) => {
 
         if (values.current_password !== values.password_confirmation) {
             errors.password_confirmation = `Confirmation and New password must match be same`;
+        }
+
+        const regexUsername = /^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+        if (!values.name || !regexUsername.test(values.name)) {
+            errors.username = `Enter valid username`;
         }
 
         return errors;
@@ -59,6 +64,27 @@ const Profile = (props) => {
             props.get_profile_data();
         }
     }, [createSetting])
+
+    /* check username api*/
+    const handleUsername = (e) => {
+        setFormErrors(validate(inputs));
+        e.preventDefault();
+        const { name, value } = e.target;
+        setInputs({
+            ...inputs,
+            [name]: value,
+        });
+        if (Object.keys(validate(inputs)).length === 0) {
+        props.check_username({
+            "user_name": inputs.name
+        });
+        }
+    }
+
+    
+    console.log(props.usernData, "username message message")
+
+
     return (
         <>
             <div className="setting-tab-content">
@@ -77,7 +103,11 @@ const Profile = (props) => {
                         </div>
                     </div>
                     <label>Gebruikersnaam</label>
-                    <input type="text" name="username" onChange={handleChange} defaultValue={props.profileData?.name} />
+                    <input type="text" name="name" onChange={handleUsername} defaultValue={props.profileData?.name} />
+                    {formErrors.username ? (
+                    <small style={{color: "red"}}>{formErrors.username}</small>
+                    ):
+                    <small style={{color: "green"}}>{props.usernData}</small>}
                     <p className="sml-heading">Persoonlijke gegevens</p>
                     <p>Verander je persoonlijke contactgegevens.</p>
                     <div className="d-flex justify-content-between align-items-center">
@@ -129,7 +159,8 @@ const Profile = (props) => {
 const mapStateToProps = state => ({
     ...state,
     profileData: state.setting.profile_data?.data,
-    createSetting: state.setting.create_profile?.data
+    createSetting: state.setting.create_profile?.data,
+    usernData: state.setting?.check_user_name?.message
 });
 
-export default connect(mapStateToProps, { create_profile, get_profile_data })(Profile);
+export default connect(mapStateToProps, { create_profile, get_profile_data, check_username })(Profile);
