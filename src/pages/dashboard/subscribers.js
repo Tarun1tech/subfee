@@ -77,12 +77,14 @@ const Subscribers = (props) => {
     console.log(inactives, "actives")
     if (inactives) {
       setInActive(true)
+      setActive(false)
       get_subscriber_data_search({
         page: currentPage,
         stripe_status: "0"
       });
     } else {
       setInActive(false);
+      setActive(false)
       get_subscriber_data_search({
         page: currentPage
       });
