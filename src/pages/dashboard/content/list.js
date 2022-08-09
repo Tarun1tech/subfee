@@ -47,7 +47,7 @@ const ContentList = (props) => {
     };
 
     const hidevideo = () => {
-        // props.reset_app();
+        props.reset_app();
         setShowvideo(false);
     }
 
@@ -99,10 +99,11 @@ const ContentList = (props) => {
             ids: bulkDeleteId
         })
     }
-
+    const [dataContent, setDataContent] = useState()
     useEffect(() => {
         if (contentlistbyid !== null || contentlistbyid !== undefined) {
             setLoading(false);
+            setDataContent(props.contentlistbyid)
         }
         if (deletelist?.success) {
             get_content_data({
@@ -122,7 +123,7 @@ const ContentList = (props) => {
             page: currentPage
         });
     };
-
+    console.log(dataContent, "dataContent")
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">
@@ -230,11 +231,11 @@ const ContentList = (props) => {
                     />
                 </div>
             </div>
-            {!loading && props.contentlistbyid &&
+            {!loading && dataContent &&
                 < ContentUpdate
                     show={showvideo}
                     hide={hidevideo}
-                    data={props.contentlistbyid}
+                    data={dataContent}
                 />
             }
 

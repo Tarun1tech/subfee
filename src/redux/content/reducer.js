@@ -11,7 +11,8 @@ export default (state = INIT_STATE, action) => {
     switch (action.type) {
         case 'RESET_APP':
             return {
-                ...state, upload_file: null
+                ...state, upload_file: null,
+                contentlistbyid: {}
             };
         case "CONTENT_DATA":
             return {

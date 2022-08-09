@@ -251,7 +251,9 @@ const Video = (props) => {
                                 </div> */}
 
             <h6 className="mt-3">{initial_data?.title}</h6>
-            <p className="video-desc">{initial_data?.desc}</p>
+            <p className="video-desc" dangerouslySetInnerHTML={{
+              __html: `${initial_data?.desc?.replace(/(?:\r\n|\r|\n)/g, "<br />")}`,
+            }}></p>
             {initial_data.comments !== 0 ? (
               <span
                 onClick={() => getComments(initial_data?.id)}
@@ -863,7 +865,9 @@ const Video = (props) => {
                   ) : null}
 
                   <h6 className="mt-3">{item?.title}</h6>
-                  <p className="video-desc">{item?.desc}</p>
+                  <p className="video-desc" dangerouslySetInnerHTML={{
+                    __html: `${initial_data?.desc?.replace(/(?:\r\n|\r|\n)/g, "<br />")}`,
+                  }}></p>
                   {/* {item.thumbnail === null && item.video === null ?
                                                 <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                     <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
