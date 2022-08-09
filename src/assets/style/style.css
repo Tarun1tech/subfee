@@ -1782,4 +1782,8 @@ g.highcharts-legend-item {
   color: #000 !important;
   font-weight: 400 !important;
   cursor: pointer;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+  display: block;
 }/*# sourceMappingURL=style.css.map */

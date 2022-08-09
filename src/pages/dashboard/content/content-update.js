@@ -104,12 +104,13 @@ const ContentUpdate = props => {
     });
   }
   const handlecheckbox = (e) => {
-    if ((e.target.checked)) {
-      setcommentValue(!commentValue);
-    }
     console.log(e.target.checked, "chehh")
     if (e.target.checked === false) {
-      setComment(0)
+      setcommentValue(false)
+      setComment("0")
+    } else {
+      setcommentValue(true)
+      setComment("1")
     }
   }
   const handleSubmit = (e) => {

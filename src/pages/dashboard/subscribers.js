@@ -57,13 +57,15 @@ const Subscribers = (props) => {
       setInActive(false)
       get_subscriber_data_search({
         page: currentPage,
-        stripe_status: 1
+        stripe_status: 1,
+        search_query: searchData
       });
     } else {
       setInActive(false);
       setActive(false);
       get_subscriber_data_search({
-        page: currentPage
+        page: currentPage,
+        search_query: searchData
       });
     }
     // get_subscriber_data_search({
@@ -80,13 +82,15 @@ const Subscribers = (props) => {
       setActive(false)
       get_subscriber_data_search({
         page: currentPage,
-        stripe_status: "0"
+        stripe_status: "0",
+        search_query: searchData
       });
     } else {
       setInActive(false);
       setActive(false)
       get_subscriber_data_search({
-        page: currentPage
+        page: currentPage,
+        search_query: searchData
       });
     }
     // get_subscriber_data_search({
@@ -135,7 +139,7 @@ const Subscribers = (props) => {
                     <h6 className="stats-page-title">Alle subscribers</h6>
                   </div>
                   <div className="col-md-4">
-                    <form onSubmit={(e) => onglobalSearch(e)}>
+                    <form onSubmit={(e) => onglobalSearch(e)} >
                       <input type="search" placeholder="Zoeken...." name="search" className="subscriber-search" onChange={handleSearch} onBlur={(e) => onglobalSearch(e)} />
                     </form>
                   </div>

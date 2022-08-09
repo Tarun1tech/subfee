@@ -117,6 +117,7 @@ const Video = (props) => {
     props.list_Comment({
       post_id: id,
     });
+    window.scrollTo(0, 10)
   };
 
   const getComments = (id) => {
@@ -262,8 +263,8 @@ const Video = (props) => {
             ) : null}
             {/* <span onClick={() => getComments(initial_data?.id)} className="comments-count" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Bekijk alle {initial_data?.total_comments} comments</span> */}
             {initial_data.comments !== 0 &&
-            commentshow &&
-            postId === initial_data.id ? (
+              commentshow &&
+              postId === initial_data.id ? (
               <div>
                 <div class="card-body p-0">
                   <div className="notification-box video-comments">
@@ -278,7 +279,7 @@ const Video = (props) => {
                                     <img
                                       src={
                                         item?.user_info[0]?.profiles_image ===
-                                        null
+                                          null
                                           ? notifImg
                                           : item?.user_info[0]?.profiles_image
                                       }
@@ -335,7 +336,7 @@ const Video = (props) => {
                                     )}
 
                                     {!isedit &&
-                                    iseditcomment === item.id ? null : (
+                                      iseditcomment === item.id ? null : (
                                       <small
                                         role="button"
                                         onClick={() =>
@@ -348,8 +349,8 @@ const Video = (props) => {
                                       </small>
                                     )}
                                     {isedit &&
-                                    subshow &&
-                                    subcommentShow === item.id ? (
+                                      subshow &&
+                                      subcommentShow === item.id ? (
                                       <div>
                                         <div class="card-body p-0">
                                           <div className="notification-box video-comments">
@@ -367,11 +368,11 @@ const Video = (props) => {
                                                                   item
                                                                     ?.reply_user_info
                                                                     ?.profiles_image ===
-                                                                  null
+                                                                    null
                                                                     ? notifImg
                                                                     : item
-                                                                        ?.reply_user_info
-                                                                        ?.profiles_image
+                                                                      ?.reply_user_info
+                                                                      ?.profiles_image
                                                                 }
                                                                 alt="notifImg"
                                                               />
@@ -387,7 +388,7 @@ const Video = (props) => {
                                                                 </h6>
                                                               </div>
                                                               {issubeditcomment ===
-                                                              item?.id ? (
+                                                                item?.id ? (
                                                                 <div>
                                                                   {issubedit ? (
                                                                     <p>
@@ -493,7 +494,7 @@ const Video = (props) => {
                                                                 {localStorage.getItem(
                                                                   "profile-id"
                                                                 ) ==
-                                                                item.user_id ? (
+                                                                  item.user_id ? (
                                                                   <li>
                                                                     <button
                                                                       className="border-0 bg-transparent"
@@ -640,7 +641,7 @@ const Video = (props) => {
                                       aria-labelledby="dropdownMenuButton1"
                                     >
                                       {localStorage.getItem("profile-id") ==
-                                      item.user_id ? (
+                                        item.user_id ? (
                                         <li>
                                           <button
                                             className="border-0 bg-transparent"
@@ -801,7 +802,7 @@ const Video = (props) => {
                         playing={false}
                         // controls
                         // onPlay={() => handleViewCount(item.id, item.user_id)}
-                        width="100"       
+                        width="100"
                       />
                       {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                             <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
