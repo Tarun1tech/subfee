@@ -81,6 +81,7 @@ const Video = (props) => {
       post_id: postId,
       parent_id: parentId,
       comment: inputs.comment,
+      user_type: 1
     });
     setCommentShow(true);
     setSubShow(true);
@@ -179,6 +180,7 @@ const Video = (props) => {
     props.edit_comment({
       id: id,
       comment: newcomment,
+      user_type: 1
     });
   };
 
@@ -198,7 +200,9 @@ const Video = (props) => {
     }
   }, [editComment, deletedComment]);
 
-  console.log(iseditcomment, isedit, "adasd");
+  console.log(initial_data.comments,
+    commentshow,
+    postId, initial_data.id, "adasd");
 
   return (
     <>
@@ -251,9 +255,7 @@ const Video = (props) => {
                                 </div> */}
 
             <h6 className="mt-3">{initial_data?.title}</h6>
-            <p className="video-desc" dangerouslySetInnerHTML={{
-              __html: `${initial_data?.desc?.replace(/(?:\r\n|\r|\n)/g, "<br />")}`,
-            }}></p>
+            <p className="video-desc">{initial_data?.desc}</p>
             {initial_data.comments !== 0 ? (
               <span
                 onClick={() => getComments(initial_data?.id)}
@@ -865,9 +867,7 @@ const Video = (props) => {
                   ) : null}
 
                   <h6 className="mt-3">{item?.title}</h6>
-                  <p className="video-desc" dangerouslySetInnerHTML={{
-                    __html: `${initial_data?.desc?.replace(/(?:\r\n|\r|\n)/g, "<br />")}`,
-                  }}></p>
+                  <p className="video-desc">{item?.desc}</p>
                   {/* {item.thumbnail === null && item.video === null ?
                                                 <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                     <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
