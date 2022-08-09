@@ -19,11 +19,21 @@ const Finanical = (props) => {
   }, [token])
 
   useEffect(() => {
-    setThismonth(props.financialData?.this_month_graph);
     setTotalrevenue(props.financialData?.total_revenue_graph);
+    setThismonth(props.financialData?.this_month_graph);
   })
 
   console.log(props.financialData, "here is gonna showing financial data")
+
+  /* const totalRevenue = () => {
+    setThismonth("");
+    setTotalrevenue(props.financialData?.total_revenue_graph);
+  }
+
+  const thisMonth = () => {
+    setTotalrevenue("");
+    setThismonth(props.financialData?.this_month_graph);
+  } */
 
 
   /* highchart */
@@ -52,6 +62,7 @@ const Finanical = (props) => {
       },
     ],
   };
+
 
   return (
     <div>
@@ -101,24 +112,8 @@ const Finanical = (props) => {
                           </h6>
                           <div className="stats-count">
                             <div className="total-subs d-flex justify-content-between align-items-center">
-                              <label className="change_graph">
-                                <input type="checkbox" name="total_month"/>
-                                <div className="ts-left change_graph_control d-flex justify-content-start align-items-top">
-                                <div className="ts-icon">
-                                  <span>
-                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 4.69921C8.17685 4.69921 8.34645 4.62895 8.4715 4.50391C8.59655 4.37886 8.6668 4.20925 8.6668 4.03241C8.6668 3.85556 8.59655 3.68596 8.4715 3.56091C8.34645 3.43586 8.17685 3.36561 8 3.36561C7.82315 3.36561 7.65355 3.43586 7.5285 3.56091C7.40345 3.68596 7.3332 3.85556 7.3332 4.03241C7.3332 4.20925 7.40345 4.37886 7.5285 4.50391C7.65355 4.62895 7.82315 4.69921 8 4.69921ZM12.8 10.672V6.40001H12.8736C13.588 6.40001 13.8816 5.48161 13.2976 5.06801L8.6176 1.74641C8.43717 1.61823 8.22133 1.54936 8 1.54936C7.77867 1.54936 7.56283 1.61823 7.3824 1.74641L2.7008 5.06801C2.1184 5.48161 2.4104 6.39921 3.1248 6.39921H3.2V10.6712C2.7192 10.98 2.4 11.5192 2.4 12.1328V13.1992C2.4 13.3053 2.44214 13.407 2.51716 13.4821C2.59217 13.5571 2.69391 13.5992 2.8 13.5992H13.2C13.3061 13.5992 13.4078 13.5571 13.4828 13.4821C13.5579 13.407 13.6 13.3053 13.6 13.1992V12.1328C13.6 11.5192 13.2816 10.98 12.8 10.672ZM7.8448 2.39921C7.88982 2.36731 7.94363 2.35018 7.9988 2.35018C8.05397 2.35018 8.10778 2.36731 8.1528 2.39921L12.664 5.59921H3.3344L7.8456 2.39921H7.8448ZM11.9984 6.39921V10.404C11.9542 10.4007 11.9099 10.3991 11.8656 10.3992H10.3984V6.40001H11.9984V6.39921ZM4 10.404V6.40001H5.6V10.4H4.1328C4.088 10.4 4.0432 10.4016 3.9992 10.4048L4 10.404ZM4.1336 11.1992H11.8672C12.3824 11.1992 12.8 11.6168 12.8 12.1328V12.7992H3.2V12.1328C3.2 11.6168 3.6184 11.1992 4.1336 11.1992ZM7.6 10.3992H6.4V6.40001H7.6V10.4V10.3992ZM8.4 10.3992V6.40001H9.6V10.4H8.4V10.3992Z" fill="white"/>
-                                </svg>
-                                  </span>
-                                </div>
-                                <div className="ts-text">
-                                  <p>Totale inkomsten</p>
-                                  <h4>€ {props.financialData?.total_revenue}k</h4>
-                                </div>
-                              </div>
-                              </label>
-                              <label className="change_graph">
-                              <input type="checkbox" name="this_month"/>
+                            <label className="change_graph">
+                              <input type="checkbox" name="this_month" checked/>
                                 <div className="ts-right change_graph_control d-flex justify-content-start align-items-top">
                                   <div className="ts-icon">
                                     <span className="purple-icon">
@@ -148,6 +143,22 @@ const Finanical = (props) => {
                                   </span>
                                 </div>
                               </label>
+                              <label className="change_graph">
+                                <input type="checkbox" name="total_month"/>
+                                <div className="ts-left change_graph_control d-flex justify-content-start align-items-top">
+                                <div className="ts-icon">
+                                  <span>
+                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 4.69921C8.17685 4.69921 8.34645 4.62895 8.4715 4.50391C8.59655 4.37886 8.6668 4.20925 8.6668 4.03241C8.6668 3.85556 8.59655 3.68596 8.4715 3.56091C8.34645 3.43586 8.17685 3.36561 8 3.36561C7.82315 3.36561 7.65355 3.43586 7.5285 3.56091C7.40345 3.68596 7.3332 3.85556 7.3332 4.03241C7.3332 4.20925 7.40345 4.37886 7.5285 4.50391C7.65355 4.62895 7.82315 4.69921 8 4.69921ZM12.8 10.672V6.40001H12.8736C13.588 6.40001 13.8816 5.48161 13.2976 5.06801L8.6176 1.74641C8.43717 1.61823 8.22133 1.54936 8 1.54936C7.77867 1.54936 7.56283 1.61823 7.3824 1.74641L2.7008 5.06801C2.1184 5.48161 2.4104 6.39921 3.1248 6.39921H3.2V10.6712C2.7192 10.98 2.4 11.5192 2.4 12.1328V13.1992C2.4 13.3053 2.44214 13.407 2.51716 13.4821C2.59217 13.5571 2.69391 13.5992 2.8 13.5992H13.2C13.3061 13.5992 13.4078 13.5571 13.4828 13.4821C13.5579 13.407 13.6 13.3053 13.6 13.1992V12.1328C13.6 11.5192 13.2816 10.98 12.8 10.672ZM7.8448 2.39921C7.88982 2.36731 7.94363 2.35018 7.9988 2.35018C8.05397 2.35018 8.10778 2.36731 8.1528 2.39921L12.664 5.59921H3.3344L7.8456 2.39921H7.8448ZM11.9984 6.39921V10.404C11.9542 10.4007 11.9099 10.3991 11.8656 10.3992H10.3984V6.40001H11.9984V6.39921ZM4 10.404V6.40001H5.6V10.4H4.1328C4.088 10.4 4.0432 10.4016 3.9992 10.4048L4 10.404ZM4.1336 11.1992H11.8672C12.3824 11.1992 12.8 11.6168 12.8 12.1328V12.7992H3.2V12.1328C3.2 11.6168 3.6184 11.1992 4.1336 11.1992ZM7.6 10.3992H6.4V6.40001H7.6V10.4V10.3992ZM8.4 10.3992V6.40001H9.6V10.4H8.4V10.3992Z" fill="white"/>
+                                </svg>
+                                  </span>
+                                </div>
+                                <div className="ts-text">
+                                  <p>Totale inkomsten</p>
+                                  <h4>€ {props.financialData?.total_revenue}k</h4>
+                                </div>
+                              </div>
+                              </label>                              
                               
                             </div>
                   </div>

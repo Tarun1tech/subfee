@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Subs from "../../../assets/images/subs.png";
 import { connect } from "react-redux";
 import { create_profile, get_profile_data, check_username } from "../../../redux/settings/actions";
 
@@ -8,6 +9,16 @@ const Profile = (props) => {
     /* profile upload */
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
+
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+    }
 
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
@@ -23,19 +34,15 @@ const Profile = (props) => {
         return () => URL.revokeObjectURL(objectUrl)
     }, [selectedFile])
 
+
+    const ref = useRef();
+
     const handleRemove = () => {
-        setPreview(props.profileData.profiles_image)
+        setPreview(props.profileData.profiles_image);
+        ref.current.value = "";
+        setSelectedFile(null);
     }
-
-    const onSelectFile = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setSelectedFile(undefined)
-            return
-        }
-
-        // I've kept this example simple by using the first image instead of multiple
-        setSelectedFile(e.target.files[0])
-    }
+    
 
     console.log(selectedFile, "selected filee")
     
@@ -76,22 +83,20 @@ const Profile = (props) => {
     };
 
     const handleSubmit = (e) => {
-        setFormErrors(validate(inputs));
+        /* setFormErrors(validate(inputs)); */
         e.preventDefault();
         const formdata = new FormData();
         formdata.append("name", inputs.name || props.profileData.name);
         formdata.append("first_name", inputs.first_name || props.profileData.first_name);
         formdata.append("last_name", inputs.last_name || props.profileData.last_name);
         formdata.append("email", inputs.email || props.profileData?.email);
-        formdata.append("user_image", selectedFile || props.profileData.profiles_image);
+        formdata.append("user_image", selectedFile);
         formdata.append("phone_number", inputs.phone_number || props.profileData.phone_number);
         formdata.append("newpassword", inputs.current_password);
         formdata.append("oldpassword", inputs.old_password);
         formdata.append("password_confirmation", inputs.password_confirmation);
-        if (Object.keys(validate(inputs)).length === 0) {
-            props.create_profile(formdata);
-            document.getElementById("profileForm").reset();
-        }
+        props.create_profile(formdata);
+        document.getElementById("profileForm").reset();
     }
 
     useEffect(() => {
@@ -147,11 +152,13 @@ const Profile = (props) => {
                     </div>
                     <label>Profielfoto</label>
                     <div className="profile-upload">
-                        <div className="pf-outer">
-                            <img src={selectedFile === undefined ? props.profileData?.profiles_image : preview} />
+                        <div className="pf-outer me-3">
+                            {props.profileData?.profiles_image === null ? <img src={Subs} /> : <img src={selectedFile === undefined ? props.profileData?.profiles_image : preview} />}
                         </div>
-                        <input type='file' className="profile-upload" onChange={onSelectFile} />
-                        <span>Aanpassen</span>
+                        <div className="fr_up me-3">
+                            <span>Aanpassen</span>
+                            <input type='file' className="profile-upload" ref={ref} onChange={onSelectFile} />
+                        </div>
                         <p onClick={handleRemove} className="cancel">Verwijderen</p>
                     </div>
                     <p className="sml-heading">Persoonlijke gegevens</p>

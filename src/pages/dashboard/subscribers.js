@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Moment from 'react-moment';
 import SubsImg from "../../assets/images/subs.png";
 import Csv from "../../assets/images/csv.png";
@@ -93,6 +93,13 @@ const Subscribers = (props) => {
     //eslint-disable-next-line
   }, [props.subscriberlist])
 
+  const ref = useRef();
+
+  const cleanValue = () => {
+    ref.current.value = "";
+    setSearchData("");
+  }
+
   return (
     <div>
       <div className="dash-content-side">
@@ -104,9 +111,9 @@ const Subscribers = (props) => {
                   <div className="col-md-3">
                     <h6 className="stats-page-title">Alle subscribers</h6>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-4 position-relative">
                     <form onSubmit={(e) => onglobalSearch(e)}>
-                      <input type="search" placeholder="Zoeken...." name="search" className="subscriber-search" onChange={handleSearch} onBlur={(e) => onglobalSearch(e)} />
+                      <input type="search" placeholder="Zoeken...." name="search" className="subscriber-search" onChange={handleSearch} onBlur={(e) => onglobalSearch(e)} ref={ref} />{!searchData ? null : <span className="crossx" onClick={cleanValue}>x</span>}
                     </form>
                   </div>
                   <div className="col-md-4 text-end">

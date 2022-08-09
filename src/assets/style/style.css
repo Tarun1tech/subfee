@@ -622,6 +622,14 @@ table .icon_setting {
   width: 100%;
 }
 
+.crossx {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  font-weight: 700;
+}
+
 .table-header-active {
   padding: 8px 12px;
   background-color: #FE6A6A;
@@ -1705,18 +1713,10 @@ g.highcharts-legend-item {
 
 /* profile pic change */
 .profile-upload {
-  position: relative;
   height: 58px;
-}
-.profile-upload input {
-  width: 100px !important;
-  height: 30px;
-  opacity: 0;
-  z-index: 999;
-  position: absolute;
-  top: 14px;
-  left: 80px;
-  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 .profile-upload .pf-outer {
   width: 60px;
@@ -1724,9 +1724,6 @@ g.highcharts-legend-item {
   padding: 2px;
   border: 1px solid #c7c7c7;
   border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
   background: transparent;
 }
 .profile-upload .pf-outer img {
@@ -1734,23 +1731,30 @@ g.highcharts-legend-item {
   height: 100%;
   border-radius: 50%;
 }
-.profile-upload span {
+.profile-upload .fr_up {
+  position: relative;
+}
+.profile-upload .fr_up span {
   padding: 5px 16px;
-  position: absolute;
-  top: 14px;
-  left: 80px;
   border: 1px solid #C9C9C9;
   border-radius: 5px;
   font-size: 13px !important;
   cursor: pointer;
 }
+.profile-upload .fr_up input {
+  width: 100px !important;
+  height: 30px;
+  opacity: 0;
+  z-index: 999;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+}
 .profile-upload .cancel {
   font-size: 13px;
-  position: absolute;
-  top: 21px;
-  left: 23%;
   background: transparent;
   color: #000 !important;
   font-weight: 400 !important;
   cursor: pointer;
+  margin-bottom: 0;
 }/*# sourceMappingURL=style.css.map */
