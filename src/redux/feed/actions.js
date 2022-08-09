@@ -1,4 +1,4 @@
-import { feedData, getNaarData, listCommentByPost, createComment, createCommentDelete, editComment } from '../queries';
+import { feedData, getNaarData, contentDataById, listCommentByPost, createComment, createCommentDelete, editComment } from '../queries';
 import { checkResponse } from "../../constants/index";
 
 

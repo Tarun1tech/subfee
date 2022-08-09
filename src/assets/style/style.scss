@@ -622,7 +622,7 @@
   }
 
   /* custom checkbox for change graph */
-  .change_graph  {
+  .change_graph {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -631,7 +631,7 @@
   }
 
   /* Hide the browser's default checkbox */
-  .change_graph  input {
+  .change_graph input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -727,7 +727,7 @@
     width: 100%;
   }
 
-  .crossx{
+  .crossx {
     cursor: pointer;
     position: absolute;
     right: 10px;
@@ -1159,7 +1159,7 @@
       z-index: 99999999 !important;
       position: absolute;
       top: 2px;
-      left: 12px;
+      right: 12px;
       font-size: 12px;
       font-weight: 500;
     }
@@ -1169,7 +1169,7 @@
       z-index: 99999999 !important;
       position: absolute;
       top: 2px;
-      right: 4px;
+      left: 4px;
       font-size: 12px;
       font-weight: 500;
     }
@@ -1331,7 +1331,8 @@
       background-image: $My-gradient;
       border-radius: 12px;
       font-size: 12px;
-      &:hover{
+
+      &:hover {
         color: $white;
       }
     }
@@ -1344,7 +1345,8 @@
       color: #787878;
       border-radius: 12px;
       font-size: 12px;
-      &:hover{
+
+      &:hover {
         color: #787878;
       }
     }
@@ -1488,19 +1490,22 @@
     color: $white;
   }
 
-  .connected_account{
+  .connected_account {
     min-height: 192px;
     color: $dark;
-    h6{
+
+    h6 {
       font-size: 20px;
       font-weight: 700;
       margin: 0;
     }
-    small{
+
+    small {
       font-size: 14px;
       font-weight: 500;
     }
-    .payee{
+
+    .payee {
       font-size: 16px;
       font-weight: 500;
       margin-top: 10px;
@@ -1660,8 +1665,40 @@
 
 
 
+  // naar
+
+  .position-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    .comment-sec {
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+  }
+
+  .comment-sec::-webkit-scrollbar {
+    width: 12px;
+    /* width of the entire scrollbar */
+  }
+
+  .comment-sec::-webkit-scrollbar-track {
+    background: rgb(249, 249, 249);
+    /* color of the tracking area */
+  }
+
+  .comment-sec::-webkit-scrollbar-thumb {
+    background-color: rgb(168, 168, 168);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid rgb(143, 143, 143);
+    /* creates padding around scroll thumb */
+  }
+
   .rply {
-      background-color: #cfcfcf !important;
+    background-color: #cfcfcf !important;
   }
 
   /* video component */
@@ -1961,11 +1998,12 @@
   }
 
   /* profile pic change */
-  .profile-upload{
+  .profile-upload {
     height: 58px;
     display: flex;
     justify-content: start;
-    align-items: center;    
+    align-items: center;
+
     .pf-outer {
       width: 60px;
       height: 60px;
@@ -1973,22 +2011,26 @@
       border: 1px solid #c7c7c7;
       border-radius: 50%;
       background: transparent;
-      img{      
+
+      img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
       }
     }
-    .fr_up{
+
+    .fr_up {
       position: relative;
-      span{
+
+      span {
         padding: 5px 16px;
         border: 1px solid #C9C9C9;
         border-radius: 5px;
         font-size: 13px !important;
         cursor: pointer;
       }
-      input{
+
+      input {
         width: 100px !important;
         height: 30px;
         opacity: 0;
@@ -1997,8 +2039,9 @@
         position: absolute;
         top: 0;
       }
-    }    
-    .cancel{
+    }
+
+    .cancel {
       font-size: 13px;
       background: transparent;
       color: #000 !important;
@@ -2006,4 +2049,8 @@
       cursor: pointer;
       margin-bottom: 0;
     }
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    display: block;
   }

@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
-import SubscriberBanner from "../../layouts/banner/banner";
+import React from "react";
 import Video from "../../layouts/video/video";
-import notifImg from "../../assets/images/subs.png";
 import { connect } from "react-redux";
 import { get_feed_data } from "../../redux/feed/actions";
-import ReactPlayer from "react-player";
-import Creator from "../../assets/images/user.png";
 
 const Naar = (props) => {
     const formatDate = (date) =>
@@ -18,15 +14,12 @@ const Naar = (props) => {
             // second: "2-digit",
         })} `;
     const token = localStorage.getItem("access_token")
-    useEffect(() => {
-        props.get_feed_data();
-    }, [token]);
-    console.log(props.feedlist, "feeldi")
+
     return (
         <>
             <div className="dash-content-side p-0">
                 <div className="container-md">
-                    <Video data={props.feedlist} />
+                    <Video />
                 </div>
             </div>
         </>
@@ -34,7 +27,6 @@ const Naar = (props) => {
 }
 const mapStateToProps = state => ({
     ...state,
-    feedlist: state.feed?.feed_list?.data,
 });
 
 export default connect(mapStateToProps, { get_feed_data })(Naar);

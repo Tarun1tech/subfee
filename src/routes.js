@@ -17,8 +17,9 @@ import Login from "./pages/login";
 const Router = (data) => {
   return (
     <Switch>
+       
       <PublicRoute exact path="/login" component={Login} />
-      <PublicRoute exact path="/" component={Login} />
+    
       <PublicRoute exact path="/email-verification" component={EmailVerification} />
       <PublicRoute exact path="/forgot-password/:id" component={ForgotPassword} />
       <PrivateRoute exact path="/subscribers" component={Subscribers} />
@@ -28,6 +29,7 @@ const Router = (data) => {
       <PrivateRoute exact path="/content" component={ContentPage} />
       <PrivateRoute exact path="/finanical" component={Finanical} />
       <PrivateRoute exact path="/naar" component={Naar} />
+      <Route exact path="*" component={Login} />
     </Switch>
   );
 };

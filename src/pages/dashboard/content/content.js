@@ -81,6 +81,7 @@ const ContentPage = (props) => {
     setExtensionFile("");
     setContentAdd(true);
     setShowvideo(false);
+    setFileList([]);
   };
 
   const handleCloseimage = () => {
@@ -128,14 +129,18 @@ const ContentPage = (props) => {
     description: "",
   }
 
-  const [commentValue, setcommentValue] = useState(false);
+  const [commentValue, setcommentValue] = useState(true);
   const [comment, setComment] = useState("1")
   const handlecheckbox = (e) => {
-    if ((e.target.checked)) {
-      setcommentValue(!commentValue);
-    }
+    // if ((e.target.checked)) {
+    //   setcommentValue(!commentValue);
+    // }
 
     if (e.target.checked === false) {
+      setcommentValue(false)
+      setComment("0")
+    } else {
+      setcommentValue(true)
       setComment("1")
     }
   }
@@ -182,6 +187,7 @@ const ContentPage = (props) => {
     } else {
       payload.thumbnail = mainimageurl
     }
+    console.log(payload, "payload")
     if (Object.keys(validate(contentInputs)).length === 0) {
       props.create_content(payload);
     }
@@ -310,10 +316,10 @@ const ContentPage = (props) => {
                                 <p>Wil je toestaan dat subscribers onder deze video een comment kunnen plaatsen?</p>
                                 <div className="custom-comment-switch">
                                   <label className="switch">
-                                    <input type="checkbox" name="videoComments" onClick={handlecheckbox} />
+                                    <input type="checkbox" name="videoComments" onClick={handlecheckbox} defaultChecked={commentValue} />
                                     <span className="slider round"></span>
                                     <span className="ja">ja</span>
-                                    <span className="nee">Nee</span>
+                                    <span className="nee">nee</span>
                                   </label>
                                 </div>
                               </div>
@@ -398,10 +404,10 @@ const ContentPage = (props) => {
                                 <p>Wil je toestaan dat subscribers onder deze video een comment kunnen plaatsen?</p>
                                 <div className="custom-comment-switch">
                                   <label className="switch">
-                                    <input type="checkbox" name="videoComments" onChange={handlecheckbox} />
+                                    <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
                                     <span className="slider round"></span>
                                     <span className="ja">ja</span>
-                                    <span className="nee">Nee</span>
+                                    <span className="nee">nee</span>
                                   </label>
                                 </div>
                               </div>
@@ -448,10 +454,10 @@ const ContentPage = (props) => {
                               <div className="video-de ps-3">
                                 <div className="custom-comment-switch">
                                   <label className="switch">
-                                    <input type="checkbox" name="videoComments" onChange={handlecheckbox} />
+                                    <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
                                     <span className="slider round"></span>
                                     <span className="ja">ja</span>
-                                    <span className="nee">Nee</span>
+                                    <span className="nee">nee</span>
                                   </label>
                                 </div>
                               </div>
