@@ -23,7 +23,7 @@ const Profile = (props) => {
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
         if (!selectedFile) {
-            setPreview(undefined)
+            setPreview(Subs)
             return
         }
 
@@ -38,9 +38,9 @@ const Profile = (props) => {
     const ref = useRef();
 
     const handleRemove = () => {
-        setPreview(props.profileData.profiles_image);
+        setPreview(Subs);
         ref.current.value = "";
-        setSelectedFile(null);
+        setSelectedFile("");
     }
     
 
@@ -153,7 +153,7 @@ const Profile = (props) => {
                     <label>Profielfoto</label>
                     <div className="profile-upload">
                         <div className="pf-outer me-3">
-                            {props.profileData?.profiles_image === null ? <img src={Subs} /> : <img src={selectedFile === undefined ? props.profileData?.profiles_image : preview} />}
+                            {props.profileData?.profile_image === null ? <img src={selectedFile === undefined ? Subs : preview} /> : <img src={selectedFile === undefined ? props.profileData?.profiles_image : preview} />}
                         </div>
                         <div className="fr_up me-3">
                             <span>Aanpassen</span>
