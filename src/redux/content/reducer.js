@@ -3,8 +3,7 @@ const INIT_STATE = {
     create_content: null,
     error: "",
     upload_file: {},
-    content_delete: {},
-    contentlistbyid: {}
+    content_delete: {}
 };
 
 export default (state = INIT_STATE, action) => {
@@ -12,7 +11,6 @@ export default (state = INIT_STATE, action) => {
         case 'RESET_APP':
             return {
                 ...state, upload_file: null,
-                contentlistbyid: {}
             };
         case "CONTENT_DATA":
             return {
