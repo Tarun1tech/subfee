@@ -282,17 +282,17 @@ const Video = (props) => {
                                   <div className="notif-img">
                                     <img
                                       src={
-                                        item?.user_info[0]?.profiles_image ===
+                                        item?.user_info.profiles_image ===
                                           null
                                           ? notifImg
-                                          : item?.user_info[0]?.profiles_image
+                                          : item?.user_info.profiles_image
                                       }
                                       alt="notifImg"
                                     />
                                   </div>
                                   <div className="notif-content">
                                     <div className="d-flex justify-content-between align-items-center">
-                                      <h6>{item?.user_info?.[0]?.name}</h6>
+                                      <h6>{item?.user_info.name}</h6>
                                     </div>
                                     {iseditcomment === item.id ? (
                                       <div>
