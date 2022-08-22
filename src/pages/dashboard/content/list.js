@@ -129,6 +129,7 @@ const ContentList = (props) => {
             <div className="setting-tab">
                 <div className="setting-tab-content">
                     <h6 className="stats-page-title">Recent geüploade content</h6>
+                    <div className="table_outer">
                     <table className="table">
                         <thead>
                             <tr>
@@ -169,7 +170,7 @@ const ContentList = (props) => {
                                                         (item.thumbnail != null ? <img src={`https://subfee.techstriker.com/backend/public/${item?.thumbnail}`} /> : <img src="" className="d-none" />)
                                                     }
                                                 </div>
-                                                <div>
+                                                <div className="content_title_date">
                                                     <p>{item.title}</p>
                                                     <span><Moment format="DD/MM/YYYY">{item.updated_at}</Moment></span>
                                                 </div>
@@ -191,6 +192,7 @@ const ContentList = (props) => {
                                             </svg>
                                             {item.likes} likes
                                         </td>
+                                        
                                         <td>
                                             {item?.video !== null ?
                                                 <>
@@ -221,6 +223,7 @@ const ContentList = (props) => {
                             })}
                         </tbody>
                     </table>
+                    </div>
 
                     <Pagination
                         className="pagination-bar"

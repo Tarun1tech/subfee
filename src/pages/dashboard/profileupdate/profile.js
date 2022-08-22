@@ -120,10 +120,7 @@ const Profile = (props) => {
         });
         }
     }
-
     
-    console.log(props.usernData, "username message message")
-
 
     return (
         <>
@@ -179,23 +176,23 @@ const Profile = (props) => {
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="pe-3 w-100">
                             <label>Oude wachtwoord</label>
-                            <input type="text" name="old_password" placeholder="Oude wachtwoord" onChange={handleChange} />
+                            <input type="password" maxLength={15} name="old_password" placeholder="Oude wachtwoord" onChange={handleChange} />
 
                         </div>
                         <div className="ps-3 w-100">
                         </div>
                     </div>
-                    <div className="d-flex justify-content-between align-items-end">
+                    <div className="password_change justify-content-between align-items-end">
                         <div className="pe-3 w-100">
                             <label>Nieuwe wachtwoord</label>
-                            <input type="text" name="current_password" placeholder="Nieuwe wachtwoord" onChange={handleChange} />
+                            <input type="password" maxLength={15} name="current_password" placeholder="Nieuwe wachtwoord" onChange={handleChange} />
 
                         </div>
                         <div className="px-1 w-100">
                             <label>Herhaal nieuwe wachtwoord</label>
-                            <input type="text" name="password_confirmation" placeholder="Herhaal nieuwe wachtwoord" onChange={handleChange} />
+                            <input type="password" maxLength={15} name="password_confirmation" placeholder="Herhaal nieuwe wachtwoord" onChange={handleChange} />
                         </div>
-                        <div className="ps-3 w-100">
+                        <div className="change_pass ps-3 w-100">
                             <button className="border-0 btn-success rounded px-3 py-2">Wachtwoord wijzigen</button>
                         </div>
 

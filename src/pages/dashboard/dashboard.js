@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import notifImg from "../../assets/images/subs.png";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import { get_dashboard_data } from "../../redux/dashboard/actions";
+import { connect } from "react-redux";
+import DatePicker from "react-multi-date-picker";
 
-const Dashboard = () => {
+
+const Dashboard = (props) => {
+
+  /* api integration */
+  let date = "20/08/2022"; 
+
+  const [values, setValues] = useState([
+    date
+  ])
+  const [value_one, setValue_one] = useState();
+  const [value_two, setValue_two] = useState();
+
+  /* get dashboard data */
+  const token = localStorage.getItem("access_token");
+  useEffect(() => {
+    props.get_dashboard_data({
+      /* date: date */
+    });
+  }, [token])
+
+  useEffect(() => {
+    setValue_one(props.dashboardData?.val1);
+    setValue_two(props.dashboardData?.val2);
+  })
+
+  console.log("Here is showing all dashboard data", values);
+
   const options = {
     chart: {
       height: (230) + 'px',
@@ -32,14 +61,15 @@ const Dashboard = () => {
     series: [
       {
         name: "Installation",
-        data: [1200, 2000, 3500, 4200, 4700],
+        data: value_one,
       },
       {
         name: "Manufacturing",
-        data: [1500, 2100, 3600, 4000, 5000],
+        data: value_two,
       },
     ],
   };
+  
 
   return (
     <div>
@@ -53,15 +83,22 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="col-md-12 text-end mb-4">
-              <button className="dash-calender-btn"><svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button className="dash-calender-btn">
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.7656 4.13281H15.9922V2.69531C15.9922 2.59648 15.9113 2.51562 15.8125 2.51562H14.5547C14.4559 2.51562 14.375 2.59648 14.375 2.69531V4.13281H8.625V2.69531C8.625 2.59648 8.54414 2.51562 8.44531 2.51562H7.1875C7.08867 2.51562 7.00781 2.59648 7.00781 2.69531V4.13281H3.23438C2.83682 4.13281 2.51562 4.454 2.51562 4.85156V19.7656C2.51562 20.1632 2.83682 20.4844 3.23438 20.4844H19.7656C20.1632 20.4844 20.4844 20.1632 20.4844 19.7656V4.85156C20.4844 4.454 20.1632 4.13281 19.7656 4.13281ZM18.8672 18.8672H4.13281V10.332H18.8672V18.8672ZM4.13281 8.80469V5.75H7.00781V6.82812C7.00781 6.92695 7.08867 7.00781 7.1875 7.00781H8.44531C8.54414 7.00781 8.625 6.92695 8.625 6.82812V5.75H14.375V6.82812C14.375 6.92695 14.4559 7.00781 14.5547 7.00781H15.8125C15.9113 7.00781 15.9922 6.92695 15.9922 6.82812V5.75H18.8672V8.80469H4.13281Z" fill="#65006B"/>
-              </svg> 13-01-22 - 17-01-22
+              </svg> <DatePicker
+                        value={values}
+                        onChange={setValues}
+                        format="DD/MM/YYYY"
+                        maxDate={new Date()}
+                        range
+                      />
               </button>
             </div>
             <div className="col-md-4">
               <div className="dash-card dc-one d-flex align-items-center justify-content-between">
                 <div>
-                  <h2>2.547</h2>
+                  <h2>{props.dashboardData?.number_subscribers}</h2>
                   <p>Aantal subscribers</p>
                 </div>
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +110,7 @@ const Dashboard = () => {
             <div className="col-md-4">
               <div className="dash-card dc-two d-flex align-items-center justify-content-between">
                 <div>
-                  <h2>2.547</h2>
+                  <h2>{props.dashboardData?.new_subscribers}</h2>
                   <p>Nieuwe subscribers</p>
                 </div>
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +122,7 @@ const Dashboard = () => {
             <div className="col-md-4">
               <div className="dash-card dc-three d-flex align-items-center justify-content-between">
                 <div>
-                  <h2>€ 8.549</h2>
+                  <h2>€ {props.dashboardData?.turnover_achieved}</h2>
                   <p>Behaalde omzet</p>
                 </div>
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +157,7 @@ const Dashboard = () => {
                     </span>
                     <div>
                       <small>Aantal views</small>
-                      <h6>12.573</h6>
+                      <h6>{props.dashboardData?.number_views}</h6>
                     </div>
                   </div>
                   <div className="video-stats d-flex justify-content-start align-items-center">
@@ -131,7 +168,7 @@ const Dashboard = () => {
                     </span>
                     <div>
                       <small>Aantal likes</small>
-                      <h6>283</h6>
+                      <h6>{props.dashboardData?.number_likes}</h6>
                     </div>
                   </div>
                   <div className="video-stats d-flex justify-content-start align-items-center">
@@ -142,7 +179,7 @@ const Dashboard = () => {
                     </span>
                     <div>
                       <small>Aantal comments</small>
-                      <h6>114</h6>
+                      <h6>{props.dashboardData?.number_comments}</h6>
                     </div>
                   </div>
                 </div>
@@ -150,12 +187,12 @@ const Dashboard = () => {
             </div>
 
             <div className="col-md-12 mt-4">
-              <div className="support-banner d-flex justify-content-between align-items-center">
+              <div className="support-banner justify-content-between align-items-center">
                 <h2>
                   Heb je vragen of kom je ergens niet uit? <br/>
                   <span>Neem contact op met onze support!</span>
                 </h2>
-                <div className="d-flex justify-content-center align-items-center">
+                <div className="support_banner_btns align-items-center">
                   <div className="colored-btn me-4">
                     <a href="#">E-mail support</a>
                   </div>
@@ -172,4 +209,9 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = state => ({
+  ...state,
+  dashboardData: state.dashboard?.dashboard_data?.data,
+})
+
+export default connect(mapStateToProps, {get_dashboard_data}) (Dashboard);

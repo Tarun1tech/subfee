@@ -3,6 +3,7 @@ import Highcharts, { map } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { connect } from "react-redux";
 import { get_Financial_Data } from "../../redux/financial/actions";
+import { get_profile_data } from "../../redux/settings/actions";
 
 
 
@@ -63,14 +64,16 @@ const Finanical = (props) => {
     ],
   };
 
+  console.log(props.profileData, "here is gonna profile data")
+
 
   return (
     <div>
       <div className="dash-content-side">
         <div className="container-fluid">
-          <div className="row justify-content-start dashb mt-5 pt-5">
+          <div className="financial_block_outer row justify-content-start dashb">
             <div className="col-md-6">
-              {props.financialData?.stripe_status === 1 ?
+              {props.profileData?.connect_stripe_status === 1 ?
                 <div className="setting-tab">
                   <div className="setting-tab-content">
                     <h6 className="stats-page-title">
@@ -97,7 +100,7 @@ const Finanical = (props) => {
                       Verbinden met Stripe
                     </h6>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ornare, elit quis ultricies convallis, dolor purus aliquam dui, sed auctor purus leo nec nisl. Praesent maximus hendrerit magna quis sollicitudin. Aliquam et semper ligula. Nam ac tellus ultricies, rutrum dui et, malesuada arcu. Nulla congue at nisl quis semper. Vestibulum scelerisque mi sit amet sodales aliquam. Sed accumsan luctus venenatis. Proin et luctus massa. </p>
-                    <a href="#"><div className="page-direc text-center">Verbinden met jouw Stripe account</div></a>
+                    <a href={props.profileData?.connect_stripe_url}><div className="page-direc text-center">Verbinden met jouw Stripe account</div></a>
                   </div>
                 </div>
 
@@ -111,7 +114,7 @@ const Finanical = (props) => {
                     Inkomstenrapport
                   </h6>
                   <div className="stats-count">
-                    <div className="total-subs d-flex justify-content-between align-items-center">
+                    <div className="total-subs justify-content-between align-items-center">
                       <label className="change_graph">
                         <input type="checkbox" name="this_month" checked />
                         <div className="ts-right change_graph_control d-flex justify-content-start align-items-top">
@@ -209,8 +212,8 @@ const Finanical = (props) => {
                                 <span>{item.starts_at}</span>
                               </div>
                             </td>
-                            <td>NL12 RABO 12345678</td>
-                            <td>Transactie bekijken</td>
+                            <td><span className="tbmargin">NL12 RABO 12345678</span></td>
+                            <td><span className="tbmargin">Transactie bekijken</span></td>
                             <td></td>
                           </tr>
                         )
@@ -232,6 +235,7 @@ const Finanical = (props) => {
 const mapStateToProps = state => ({
   ...state,
   financialData: state.financial.financial_data?.data,
+  profileData: state.setting.profile_data?.data,
 })
 
-export default connect(mapStateToProps, { get_Financial_Data })(Finanical);
+export default connect(mapStateToProps, { get_Financial_Data, get_profile_data })(Finanical);

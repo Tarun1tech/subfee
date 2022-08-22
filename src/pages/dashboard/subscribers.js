@@ -132,6 +132,11 @@ const Subscribers = (props) => {
   const cleanValue = () => {
     ref.current.value = "";
     setSearchData("");
+    get_subscriber_data_search({
+      page: currentPage
+    });
+    setActive(false);
+    setInActive(false);
   }
 
   return (
@@ -141,7 +146,7 @@ const Subscribers = (props) => {
           <div className="row">
             <div className="col-md-12">
               <div className="setting-tab subs-page">
-                <div className="d-flex justify-content-between align-items-center">
+                <div className="subs_table_outer justify-content-between align-items-center">
                   <div className="col-md-3">
                     <h6 className="stats-page-title">Alle subscribers</h6>
                   </div>
@@ -150,7 +155,7 @@ const Subscribers = (props) => {
                       <input type="search" placeholder="Zoeken...." name="search" className="subscriber-search" onChange={handleSearch} onBlur={(e) => onglobalSearch(e)} ref={ref} />{!searchData ? null : <span className="crossx" onClick={cleanValue}>x</span>}
                     </form>
                   </div>
-                  <div className="col-md-4 text-end">
+                  <div className="subs_handle_btns col-md-4 text-end">
                     <button className={active ? "table-header-active me-2" : "table-header-inactive me-2"} onClick={() => handleFilter("1", "active")}>Actief</button>
                     <button className={inactive ? "table-header-active me-5" : "table-header-inactive me-5"} onClick={() => handleFilterActive("0", "active")}>Inactief</button>
                     <button className="export-subscribers-btn" type="button" onClick={() => setShow(true)}>Exporteren</button>
@@ -163,8 +168,8 @@ const Subscribers = (props) => {
                       <div class=" modal-modal-size">
                         <Modal.Header closeButton>
                           <div>
-                            <h6 className="stats-page-title">Subscribers exporteren</h6>
-                            <p className="mt-3">Bestandsformaat</p>
+                            <h6 className="stats-page-title export-popup-title">Subscribers exporteren</h6>
+                            <p className="export_popup_title">Bestandsformaat</p>
                           </div>
                         </Modal.Header>
 
@@ -211,6 +216,7 @@ const Subscribers = (props) => {
                     </div> */}
                   </div>
                 </div>
+                <div className="table_outer">
                 <table className="table" id="tbl_exporttable_to_xls">
                   <thead>
                     <tr>
@@ -242,7 +248,7 @@ const Subscribers = (props) => {
                               </div>
                             </div>
                           </td>
-                          <td>{item?.email}</td>
+                          <td className="subs_email_block">{item?.email}</td>
                           <td>  <span><Moment format="DD/MM/YYYY">{item.updated_at}</Moment></span></td>
                           <td><button className={item.stripe_status ? "active-one" : "inactive-one"}>{item.stripe_status ? "Actief" : "InActief"}</button></td>
                           <td></td>
@@ -254,6 +260,7 @@ const Subscribers = (props) => {
 
                   </tbody>
                 </table>
+                </div>
                 <Pagination
                   className="pagination-bar"
                   currentPage={currentPage}

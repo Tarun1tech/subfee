@@ -316,3 +316,16 @@ export const getFinancial = (data) => {
   .then((response) => response)
   .catch((err) => err.response);
 }
+
+/* get dashboard data api */
+export const getDashboard = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+  .post(`${process.env.REACT_APP_API_ENDPOINT}creator/getdashboard`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((response) => response)
+  .catch((err) => err.response);
+}

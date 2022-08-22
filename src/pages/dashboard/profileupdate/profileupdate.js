@@ -56,7 +56,7 @@ const ProfileUpdate = () => {
           <div className="row">
             <div className="col-md-12 p-0">
               <div className="setting-tab">
-                <div class="d-flex align-items-start">
+                <div class="profile_update_tabs align-items-start">
                   <div class="nav verti flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <span className="sidenav-title">PROFIEL</span>
                     <button class="nav-link active" id="account-details" data-bs-toggle="pill" data-bs-target="#account-details-tab" type="button" role="tab" aria-controls="account-details-tab" aria-selected="true">Accountgegevens</button>

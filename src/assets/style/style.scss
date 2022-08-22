@@ -233,8 +233,6 @@
     }
 
     .sidenav {
-      padding-bottom: 30px;
-      border-bottom: 1px solid #65006b;
 
       ul {
         padding-left: 0;
@@ -271,6 +269,8 @@
     .user-detail {
       color: $white;
       padding: 30px 20px;
+      border-top: 1px solid #65006b;
+      margin-top: 40px;
 
       img {
         width: 42px;
@@ -346,6 +346,10 @@
     .tab-pane {
       margin: 30px 100px;
     }
+  }
+
+  .profile_update_tabs{
+    display: flex;
   }
 
   .setting-tab {
@@ -576,6 +580,7 @@
     background-color: #eee;
 
     .total-subs {
+      display: flex;
       background-color: #eee;
       padding: 10px;
       border-radius: 10px;
@@ -774,6 +779,10 @@
     background-color: transparent;
   }
 
+  .export_popup_title{
+    margin-top: 16px;
+  }
+
   .modal-modal-size {
     max-width: 609px;
 
@@ -896,6 +905,14 @@
       margin-right: 0;
       border-radius: 10px;
     }
+  }
+
+  .financial_block_outer{
+    margin-top: 96px !important;
+  }
+
+  .content_uploads_btns{
+    display: flex;
   }
 
   .content-upload-btns-back {
@@ -1110,6 +1127,9 @@
 
     .sbmit-right {
       margin-top: 32px;
+      svg{
+        margin-right: 8px;
+      }
     }
   }
 
@@ -1210,6 +1230,10 @@
     }
   }
 
+  .subs_table_outer{
+    display: flex;
+  }
+
   .user-welcome {
     p {
       font-size: 22px;
@@ -1236,6 +1260,11 @@
     border: 1px solid #d1d1d1;
     border-radius: 10px;
     background-color: transparent;
+    input{
+      background-color: transparent;
+      border: none;
+      padding: 4px 10px;
+    }
   }
 
   .dash-card {
@@ -1308,6 +1337,7 @@
   }
 
   .support-banner {
+    display: flex;
     padding: 40px 60px;
     border-radius: 15px;
     background-color: $white;
@@ -1322,6 +1352,11 @@
         font-weight: 500 !important;
       }
     }
+  }
+
+  .support_banner_btns{
+    display: flex;
+    justify-content: center;
   }
 
   .colored-btn {
@@ -1739,7 +1774,7 @@
   .single-video {
     margin-top: 20px;
     width: 100%;
-    height: 360px;
+    /* height: 360px; */
     overflow: hidden;
 
     img {
@@ -2053,4 +2088,209 @@
 
   input[type="search"]::-webkit-search-cancel-button {
     display: block;
+  }
+
+
+  .navbar {
+    display: block !important;
+  }
+  #navbarNav ul{
+    width: 100% !important;
+  }
+  .password_change{
+    display: flex;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .sidenav {
+      margin: 0 15px 0 15px;
+    }
+    .navbar{
+      position: unset !important;
+    }
+    .sidebar {
+      position: relative;
+      padding: 10px 15px;
+      width: 100%;
+      height: auto;
+      float: unset;
+      border-right: unset;
+    }
+    .navbar-toggler {
+      position: absolute;
+      top: 20px;
+      right: 15px;
+    }
+    .dash-content-side {
+      position: unset;
+      width: 100%;
+      min-height: unset;
+      float: left;
+      padding: 40px 0px 40px 0px;
+    }
+    .dash-card{
+      margin-bottom: 12px;
+    }
+    .dashb .setting-tab-content {
+      padding: 20px;
+    }
+    .support-banner {
+      padding: 20px;
+      display: block;
+    }
+    .support_banner_btns{
+      margin-top: 20px;
+      justify-content: start;
+    }
+    .colored-btn{
+      margin-right: 12px !important;
+    }
+    .colored-btn a{
+      padding: 10px 24px;
+    }
+    .light-btn a{
+      padding: 9px 24px;
+    }
+    .content-first-row-gap {
+      margin-top: 0 !important;
+    }
+    .content_uploads_btns {
+      display: block;
+    }
+    .content-upload-btns-back{
+      width: 100%;
+      margin-bottom: 14px;
+    }
+    .setting-tab-content{
+      padding: 20px !important;
+    }
+    .video-thumb-sec {
+      min-width: 80px !important;
+      min-height: 46px !important;
+      margin-right: 10px;
+      margin-left: 4px;
+      width: 80px !important;
+      height: 46px !important;
+      img{
+        min-width: 80px !important;
+        min-height: 46px !important;
+        width: 80px !important;
+        height: 46px !important;
+      }
+    }
+    .subs-table-row p {
+      font-size: 14px !important;
+      height: 22px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .subs-table-row span{
+      font-size: 12px;
+    }
+    .content_title_date{
+      margin: 0 10px;
+    }
+    .subs-page{
+      margin-top: 0;
+      padding: 20px;
+    }
+    .subs_table_outer {
+      display: block;
+    }
+    .subs_handle_btns{
+      display: flex;
+      justify-content: flex-start;
+    }
+    .subscriber-search{
+      margin-bottom: 10px;
+    }
+    .export-subscribers-btn{
+      margin-bottom: 0;
+    }
+    .table-header-inactive {
+      margin-right: 10px !important;
+      padding: 1px 10px !important;
+      font-size: 13px !important;
+    }
+    .export-subscribers-btn{
+      font-size: 13px !important;
+    }
+    .table_outer{
+      overflow-x: scroll;
+    }
+    .subs_email_block{
+      margin: 0 8px;
+    }
+    .financial_block_outer{
+      margin-top: 0 !important;
+    }
+    .total-subs {
+      display: block !important;
+    }
+    .change_graph {
+      width: 100% !important;
+    }
+    .tbmargin{
+      margin: 0 10px;
+    }
+    .profile_update_tabs{
+      display: block;
+    }
+    .setting-tab #v-pills-tab {
+      width: 100%;
+    }
+    .setting-tab .verti {
+      height: auto;
+    }
+    .setting-tab #v-pills-tabContent {
+      width: 100%;
+    }
+    .profile-update-tab .tab-pane {
+      margin: 20px 15px;
+    }
+    .password_change{
+      display: block;
+    }
+    .change_pass {
+      margin-top: 14px;
+      margin-left: -12px;
+    }
+    .single-video{
+      height: 200px;
+    }
+    .video-submit-model {
+      padding: 0;
+    }
+    .content-upload-popup .modal-header {
+      padding: 15px !important;
+    }
+    .form-submit {
+      width: 100% !important;
+    }
+    .pagination {
+      width: 100%;
+      display: inline-block !important;
+    }
+    .pagination .page-link {
+      float: left;
+      margin: 4px 4px !important;
+    }
+    .page-item:not(:first-child) .page-link {
+      margin-left: unset;
+    }
+    .export_popup_title{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .export-popup-title{
+      margin-bottom: 15px !important;
+    }
+    .export-subs-body .file-icon{
+      width: 130px;
+      height: 50px;
+    }
+    .login_back .login_card {
+      padding: 26px;
+      width: 340px;
+    }
   }

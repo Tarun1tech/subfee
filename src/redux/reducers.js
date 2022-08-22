@@ -5,13 +5,15 @@ import setting from "./settings/reducer";
 import feed from "./feed/reducer";
 import subscriber from "./subscriber/reducer";
 import financial from "./financial/reducers";
+import dashboard from "./dashboard/reducer";
 const reducers = combineReducers({
   auth,
   feed,
   content,
   setting,
   subscriber,
-  financial
+  financial,
+  dashboard,
 });
 
 export default reducers;

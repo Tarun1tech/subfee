@@ -109,9 +109,8 @@ const ContentPage = (props) => {
     let k = e.target.files[0];
     var formdata = new FormData();
     formdata.append("fileupload", k, k.name);
-    formdata.append("type", k.type)
-
-
+    formdata.append("type", k.type);
+    
     props.upload_file(formdata);
     if (k.type === "video/mp4" || k.type === "video/mov" || k.type === "video/wmv" || k.type === "video/avi" || k.type === "video/webm") {
       setVideoLoader(true);
@@ -157,7 +156,7 @@ const ContentPage = (props) => {
     if (!values.description) {
       errors.description = `Description is required`;
     }
-
+    
     return errors;
   };
   const handleContentChange = (e) => {
@@ -239,7 +238,7 @@ const ContentPage = (props) => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12 content-first-row-gap">
-              <div className="d-flex justify-content-between align-items-enter">
+              <div className="content_uploads_btns justify-content-between align-items-enter">
                 <div className="content-upload-btns-back">
                   <p> <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M30 11.6667C30 9.82834 28.505 8.33334 26.6667 8.33334H6.66668C4.82834 8.33334 3.33334 9.82834 3.33334 11.6667V28.3333C3.33334 30.1717 4.82834 31.6667 6.66668 31.6667H26.6667C28.505 31.6667 30 30.1717 30 28.3333V22.7783L36.6667 28.3333V11.6667L30 17.2217V11.6667ZM26.67 28.3333H6.66668V11.6667H26.6667L26.6683 19.9983L26.6667 20L26.6683 20.0017L26.67 28.3333Z" fill="#000" />
