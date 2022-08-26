@@ -91,7 +91,7 @@ const Finanical = (props) => {
                         <p className="payee">{props.financialData?.stripe_user_details?.name}</p>
                       </div>
                     </div>
-                    <a href={props.financialData?.link}><div className="page-direc text-center">Verbinden met jouw Stripe account</div></a>
+                    <a href="#"/* {props.financialData?.link} */><div className="page-direc text-center">Verbinden met jouw Stripe account</div></a>
                   </div>
                 </div> :
                 <div className="setting-tab">

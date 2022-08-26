@@ -448,6 +448,10 @@ body {
   height: 56px;
 }
 
+.extra-info-form {
+  width: 60%;
+}
+
 .form-submit {
   background: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   color: #fff;

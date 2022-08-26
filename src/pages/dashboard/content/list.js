@@ -19,7 +19,7 @@ const ContentList = (props) => {
     const [bulkDeleteId, setBulkDeleteId] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showvideo, setShowvideo] = useState(false);
-
+    
     useEffect(() => {
         get_content_data({
             page: currentPage
@@ -123,7 +123,7 @@ const ContentList = (props) => {
             page: currentPage
         });
     };
-    console.log(dataContent, "dataContent")
+    console.log(contentlist, "content listttttt")
     return (
         <div className="col-md-12 mt-4">
             <div className="setting-tab">
