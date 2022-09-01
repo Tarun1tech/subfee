@@ -1,7 +1,7 @@
 import React,{useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import DashLogo from "../../assets/images/dash-logo.png";
-import UserImg from "../../assets/images/user.png";
+import UserImg from "../../assets/images/subs.png";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -179,44 +179,54 @@ const DashSidebar = (props) => {
       <div className="sidebar">
         <img className="dash-logo" src={DashLogo} alt="logo" />
         <div className="sidenav">
-          <ul>
-            {_nav.map((item, index) => {
-              return (
-                <>
-                  <div
-                    onClick={() => sidebarToggle(item.to)}
-                    className="c-sidebar-nav-item"
-                    key={index}
-                  >
-                    <li className={item.to === url ? "active" : ""} key={index}>
-                      <div className="sidebar_list">
-                        {item.icon}
-                        {item.name}
+        <nav className="navbar navbar-expand-lg navbar-dark">
+            <div>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarNav">
+              <ul>
+                {_nav.map((item, index) => {
+                  return (
+                    <>
+                      <div
+                        onClick={() => sidebarToggle(item.to)}
+                        className="c-sidebar-nav-item"
+                        key={index}
+                      >
+                        <li className={item.to === url ? "active" : ""} key={index}>
+                          <div className="sidebar_list">
+                            {item.icon}
+                            {item.name}
+                          </div>
+                        </li>
                       </div>
-                    </li>
+                    </>
+                  );
+                })}
+                <div className="user-detail d-flex justify-content-start align-items-center">
+                  <div>
+                  <img src={props.profileData?.profile_image === null? UserImg: `https://subfee.techstriker.com/backend/public/${props.profileData?.profile_image}`} alt="user" />
+                    
                   </div>
-                </>
-              );
-            })}
-          </ul>
+                  <div>
+                    <p>{props.profileData?.first_name}</p>
+                    <span>{props.profileData?.total_subscribers} Subscribers</span>
+                  </div>
+                </div>
+                <div className="logout-btn" onClick={logOut}>
+                  <p><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.75 18.75H11.25C11.5814 18.7497 11.8992 18.6179 12.1335 18.3835C12.3679 18.1492 12.4997 17.8314 12.5 17.5V15.625H11.25V17.5H3.75V2.5H11.25V4.375H12.5V2.5C12.4997 2.16858 12.3679 1.85083 12.1335 1.61648C11.8992 1.38213 11.5814 1.25033 11.25 1.25H3.75C3.41858 1.25033 3.10083 1.38213 2.86648 1.61648C2.63213 1.85083 2.50033 2.16858 2.5 2.5V17.5C2.50033 17.8314 2.63213 18.1492 2.86648 18.3835C3.10083 18.6179 3.41858 18.7497 3.75 18.75Z" fill="white" />
+                    <path d="M12.8663 12.8663L15.1075 10.625H6.25V9.375H15.1075L12.8663 7.13375L13.75 6.25L17.5 10L13.75 13.75L12.8663 12.8663Z" fill="white" />
+                  </svg> Uitloggen
+                  </p>
+                </div>
+              </ul>
+              </div>
+            </div>
+          </nav>          
         </div>
-        <div className="user-detail d-flex justify-content-start align-items-center">
-          <div>
-          <img src={props.profileData?.profile_image === null? UserImg: `https://subfee.techstriker.com/backend/public/${props.profileData?.profile_image}`} alt="user" />
-            
-          </div>
-          <div>
-            <p>{props.profileData?.first_name}</p>
-            <span>{props.profileData?.total_subscribers} Subscribers</span>
-          </div>
-        </div>
-        <div className="logout-btn" onClick={logOut}>
-          <p><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.75 18.75H11.25C11.5814 18.7497 11.8992 18.6179 12.1335 18.3835C12.3679 18.1492 12.4997 17.8314 12.5 17.5V15.625H11.25V17.5H3.75V2.5H11.25V4.375H12.5V2.5C12.4997 2.16858 12.3679 1.85083 12.1335 1.61648C11.8992 1.38213 11.5814 1.25033 11.25 1.25H3.75C3.41858 1.25033 3.10083 1.38213 2.86648 1.61648C2.63213 1.85083 2.50033 2.16858 2.5 2.5V17.5C2.50033 17.8314 2.63213 18.1492 2.86648 18.3835C3.10083 18.6179 3.41858 18.7497 3.75 18.75Z" fill="white" />
-            <path d="M12.8663 12.8663L15.1075 10.625H6.25V9.375H15.1075L12.8663 7.13375L13.75 6.25L17.5 10L13.75 13.75L12.8663 12.8663Z" fill="white" />
-          </svg> Uitloggen
-          </p>
-        </div>
+
       </div>
     </div>
   );

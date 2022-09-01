@@ -348,7 +348,7 @@ const Video = (props) => {
                                         }
                                       >
                                         {item?.reply.length > 0
-                                          ? `View ${item?.reply.length} antwoorden`
+                                          ? `Bekijk ${item?.reply.length} antwoorden`
                                           : " Beantwoorden"}
                                       </small>
                                     )}

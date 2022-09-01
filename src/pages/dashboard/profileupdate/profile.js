@@ -23,7 +23,7 @@ const Profile = (props) => {
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
         if (!selectedFile) {
-            setPreview(undefined)
+            setPreview(Subs)
             return
         }
 
@@ -38,9 +38,9 @@ const Profile = (props) => {
     const ref = useRef();
 
     const handleRemove = () => {
-        setPreview(props.profileData.profiles_image);
+        setPreview(Subs);
         ref.current.value = "";
-        setSelectedFile(null);
+        setSelectedFile("");
     }
     
 
@@ -120,10 +120,7 @@ const Profile = (props) => {
         });
         }
     }
-
     
-    console.log(props.usernData, "username message message")
-
 
     return (
         <>
@@ -153,7 +150,7 @@ const Profile = (props) => {
                     <label>Profielfoto</label>
                     <div className="profile-upload">
                         <div className="pf-outer me-3">
-                            {props.profileData?.profiles_image === null ? <img src={Subs} /> : <img src={selectedFile === undefined ? props.profileData?.profiles_image : preview} />}
+                            {props.profileData?.profile_image === null ? <img src={selectedFile === undefined ? Subs : preview} /> : <img src={selectedFile === undefined ? props.profileData?.profiles_image : preview} />}
                         </div>
                         <div className="fr_up me-3">
                             <span>Aanpassen</span>
@@ -179,23 +176,23 @@ const Profile = (props) => {
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="pe-3 w-100">
                             <label>Oude wachtwoord</label>
-                            <input type="text" name="old_password" placeholder="Oude wachtwoord" onChange={handleChange} />
+                            <input type="password" maxLength={15} name="old_password" placeholder="Oude wachtwoord" onChange={handleChange} />
 
                         </div>
                         <div className="ps-3 w-100">
                         </div>
                     </div>
-                    <div className="d-flex justify-content-between align-items-end">
+                    <div className="password_change justify-content-between align-items-end">
                         <div className="pe-3 w-100">
                             <label>Nieuwe wachtwoord</label>
-                            <input type="text" name="current_password" placeholder="Nieuwe wachtwoord" onChange={handleChange} />
+                            <input type="password" maxLength={15} name="current_password" placeholder="Nieuwe wachtwoord" onChange={handleChange} />
 
                         </div>
                         <div className="px-1 w-100">
                             <label>Herhaal nieuwe wachtwoord</label>
-                            <input type="text" name="password_confirmation" placeholder="Herhaal nieuwe wachtwoord" onChange={handleChange} />
+                            <input type="password" maxLength={15} name="password_confirmation" placeholder="Herhaal nieuwe wachtwoord" onChange={handleChange} />
                         </div>
-                        <div className="ps-3 w-100">
+                        <div className="change_pass ps-3 w-100">
                             <button className="border-0 btn-success rounded px-3 py-2">Wachtwoord wijzigen</button>
                         </div>
 

@@ -9,6 +9,7 @@ import Thema from "./thema";
 import VideoDescription from "./videoDescription";
 import ContactUs from "./contactus";
 import FAQ from "./faq";
+import ExtraInfo from "./extrainfo";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -56,7 +57,7 @@ const ProfileUpdate = () => {
           <div className="row">
             <div className="col-md-12 p-0">
               <div className="setting-tab">
-                <div class="d-flex align-items-start">
+                <div class="profile_update_tabs align-items-start">
                   <div class="nav verti flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <span className="sidenav-title">PROFIEL</span>
                     <button class="nav-link active" id="account-details" data-bs-toggle="pill" data-bs-target="#account-details-tab" type="button" role="tab" aria-controls="account-details-tab" aria-selected="true">Accountgegevens</button>
@@ -65,6 +66,7 @@ const ProfileUpdate = () => {
                     <span className="sidenav-title">PLATFORM</span>
                     <button class="nav-link" id="platform-appearance" data-bs-toggle="pill" data-bs-target="#platform-appearance-tab" type="button" role="tab" aria-controls="platform-appearance-tab" aria-selected="false">Uiterlijk van je platform </button>
                     <button class="nav-link" id="video-desc" data-bs-toggle="pill" data-bs-target="#video-desc-tab" type="button" role="tab" aria-controls="video-desc-tab" aria-selected="false">Videobeschrijvingen</button>
+                    <button class="nav-link" id="extra-info" data-bs-toggle="pill" data-bs-target="#extra-info-tab" type="button" role="tab" aria-controls="extra-info-tab" aria-selected="false">Extra informatie</button>
                     <span className="sidenav-title">ONDERSTEUNING</span>
                     <button class="nav-link" id="contact-support" data-bs-toggle="pill" data-bs-target="#contact-support-tab" type="button" role="tab" aria-controls="contact-support-tab" aria-selected="false">Contact support</button>
                     <button class="nav-link" id="faq" data-bs-toggle="pill" data-bs-target="#faq-tab" type="button" role="tab" aria-controls="faq-tab" aria-selected="false">Veelgestelde vragen</button>
@@ -84,6 +86,9 @@ const ProfileUpdate = () => {
                     </div>
                     <div class="tab-pane fade" id="video-desc-tab" role="tabpanel" aria-labelledby="video-desc">
                       <VideoDescription />
+                    </div>
+                    <div class="tab-pane fade" id="extra-info-tab" role="tabpanel" aria-labelledby="video-desc">
+                      <ExtraInfo/>
                     </div>
                     <div class="tab-pane fade" id="contact-support-tab" role="tabpanel" aria-labelledby="contact-support">
                       <ContactUs />
