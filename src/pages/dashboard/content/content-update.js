@@ -33,14 +33,24 @@ const ContentUpdate = props => {
   const [videoLoader, setVideoLoader] = useState(false);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+  const [imageshow, setImageshow] = useState(false);
+  const handleClosethumb = () => setImageshow(false);
+  const handleShowthumb = () => setImageshow(true);
+
+
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
 
     setPreviewImage(file.url || file.preview);
-    setPreviewVisible(true);
+    setImageshow(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
+
+  const handleCancel = () => setPreviewVisible(false);
+
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   useEffect(() => {
     if (props.data !== undefined) {
@@ -104,7 +114,7 @@ const ContentUpdate = props => {
     });
   }
   const handlecheckbox = (e) => {
-    console.log(e.target.checked, "chehh")
+    console.log(comment, "chehh")
     if (e.target.checked === false) {
       setcommentValue(false)
       setComment("0")
@@ -154,6 +164,8 @@ const ContentUpdate = props => {
     </div>
   );
 
+  
+
 
 
   return (
@@ -181,7 +193,7 @@ const ContentUpdate = props => {
                       <div className="d-flex justify-content-between align-item-start mt-4">
                         <div className="video-de pe-3">
                           <label>Thumbnail</label>
-                          <p>Selecteer hier een afbeelding waarop goed te zien is waar jouw video over gaat.</p>
+                          <p>Selecteer hier een afbeelding waarop goed te zien is waar jouw video over gaat. (Grootte moet 1280x720 pixels zijn)</p>
                           {/* antd image upload */}
                           <>
                             <Upload
@@ -198,6 +210,13 @@ const ContentUpdate = props => {
                             >
                               {fileList.length >= 1 ? null : uploadButton}
                             </Upload>
+                            <Modal show={imageshow} onHide={handleClosethumb} class="thumbnail-popup">
+                              <Modal.Header closeButton>
+                                <Modal.Title>{previewTitle}</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body><img alt="example" style={{ width: '100%',}} src={previewImage} /></Modal.Body>
+                            </Modal>
+                                
                           </>
                         </div>
                         <div className="video-de ps-3">
@@ -208,7 +227,7 @@ const ContentUpdate = props => {
                               <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
                               <span className="slider round"></span>
                               <span className="ja">ja</span>
-                              <span className="nee">nee</span>
+                              <span className="nee">Nee</span>
                             </label>
                           </div>
                         </div>
@@ -253,7 +272,7 @@ const ContentUpdate = props => {
                         <div className="d-flex justify-content-between align-item-start mt-4">
                           <div className="video-de pe-3">
                             <label>Foto uploaden</label>
-                            <p>Selecteer hier een afbeelding die je op de feed van je subscribers wilt laten zien.</p>
+                            <p>Selecteer hier een afbeelding die je op de feed van je subscribers wilt laten zien. (Grootte moet 1280x720 pixels zijn)</p>
                             <Upload
                               action="https://subfee.techstriker.com/backend/api/creator/upload-file"
                               accept="image/png, image/jpeg"
@@ -268,6 +287,12 @@ const ContentUpdate = props => {
                             >
                               {fileList.length >= 1 ? null : uploadButton}
                             </Upload>
+                            <Modal show={imageshow} onHide={handleClosethumb} class="thumbnail-popup">
+                              <Modal.Header closeButton>
+                                <Modal.Title>{previewTitle}</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body><img alt="example" style={{ width: '100%',}} src={previewImage} /></Modal.Body>
+                            </Modal>
 
                           </div>
                           <div className="video-de ps-3">
@@ -315,7 +340,7 @@ const ContentUpdate = props => {
                             <label>Comments</label>
                             <p>Wil je toestaan dat subscribers onder deze video een comment kunnen plaatsen?</p>
                           </div>
-                          <div className="video-de ps-3">
+                          <div className="video-de-comment">
                             <div className="custom-comment-switch">
                               <label className="switch">
                                 <input type="checkbox" name="videoComments" onChange={handlecheckbox} defaultChecked={commentValue} />
