@@ -40,6 +40,21 @@
     color: $white;
   }
 
+  .dot-pulse{
+    left: -9973px !important;
+    color: $white;
+    background-color: $white !important;
+    color: $white !important;
+    &::after{
+      background-color: $white !important;
+      color: $white !important;
+    }
+    &::before{
+      background-color: $white !important;
+      color: $white !important;
+    }
+  }
+
   .small_heading {
     font-size: 30px;
     font-weight: 700;
@@ -367,6 +382,8 @@
 
     #v-pills-tabContent {
       width: 75%;
+      height: 100vh;
+      overflow-y: scroll;
     }
 
     .sidenav-title {
@@ -1264,10 +1281,26 @@
     border: 1px solid #d1d1d1;
     border-radius: 10px;
     background-color: transparent;
+    display: inline-block;
+    position: relative;
+    width: 22%;
+    text-align: left;
     input{
       background-color: transparent;
       border: none;
       padding: 4px 10px;
+    }
+    .rmdp-container {
+      position: absolute;
+      left: 10px;
+      width: 100%;
+      .rmdp-input{
+        padding: 10px 40px !important;
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        cursor: pointer;
+      }
     }
   }
 
@@ -1370,9 +1403,14 @@
       background-image: $My-gradient;
       border-radius: 12px;
       font-size: 12px;
-
+      border: 1px solid transparent;
+      transition: .4s ease-in-out;
       &:hover {
-        color: $white;
+        background-image: none;
+        background-color: #fff;
+        border: 1px solid #787878;
+        transition: .4s ease-in-out;
+        color: #787878;
       }
     }
   }
@@ -1384,9 +1422,12 @@
       color: #787878;
       border-radius: 12px;
       font-size: 12px;
+      transition: .4s ease-in-out;
 
       &:hover {
-        color: #787878;
+        background-image: $My-gradient;
+        border: transparent;
+        color: $white;
       }
     }
   }

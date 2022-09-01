@@ -91,7 +91,7 @@ const Finanical = (props) => {
                         <p className="payee">{props.financialData?.stripe_user_details?.name}</p>
                       </div>
                     </div>
-                    <a href="#"/* {props.financialData?.link} */><div className="page-direc text-center">Verbinden met jouw Stripe account</div></a>
+                    <a href="#"/* {props.financialData?.link} */><div className="page-direc text-center">Ga naar jouw Stripe account</div></a>
                   </div>
                 </div> :
                 <div className="setting-tab">
@@ -111,7 +111,7 @@ const Finanical = (props) => {
               <div className="setting-tab">
                 <div className="setting-tab-content pb-0">
                   <h6 className="stats-page-title">
-                    Inkomstenrapport
+                    Omzetrapport
                   </h6>
                   <div className="stats-count">
                     <div className="total-subs justify-content-between align-items-center">
@@ -156,7 +156,7 @@ const Finanical = (props) => {
                             </span>
                           </div>
                           <div className="ts-text">
-                            <p>Totale inkomsten</p>
+                            <p>Totale omzet</p>
                             <h4>€ {props.financialData?.total_revenue}k</h4>
                           </div>
                         </div>
@@ -180,32 +180,15 @@ const Finanical = (props) => {
                     <thead>
                       <tr>
                         <th></th>
-                        <th></th>
                         <th>Naar</th>
                         <th>Opties</th>
-                        <th>
-                          <svg
-                            width="15"
-                            height="19"
-                            viewBox="0 0 15 19"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M2.5 6.33333H12.5V16.625C12.5 16.835 12.4342 17.0363 12.3169 17.1848C12.1997 17.3333 12.0408 17.4167 11.875 17.4167H3.125C2.95924 17.4167 2.80027 17.3333 2.68306 17.1848C2.56585 17.0363 2.5 16.835 2.5 16.625V6.33333ZM3.75 7.91666V15.8333H11.25V7.91666H3.75ZM5.625 9.49999H6.875V14.25H5.625V9.49999ZM8.125 9.49999H9.375V14.25H8.125V9.49999ZM4.375 3.95833V2.37499C4.375 2.16503 4.44085 1.96367 4.55806 1.8152C4.67527 1.66674 4.83424 1.58333 5 1.58333H10C10.1658 1.58333 10.3247 1.66674 10.4419 1.8152C10.5592 1.96367 10.625 2.16503 10.625 2.37499V3.95833H13.75V5.54166H1.25V3.95833H4.375ZM5.625 3.16666V3.95833H9.375V3.16666H5.625Z"
-                              fill="#C4C4C4"
-                            />
-                          </svg>
-                        </th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       {props.financialData?.recent_payments.map((item, index) => {
                         return (
                           <tr key={index}>
-                            <td>
-                              <input type="checkbox" name="subscriber" />
-                            </td>
                             <td className="td-long">
                               <div className="financial-data">
                                 <p>€ {item.stripe_price}</p>

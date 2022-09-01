@@ -233,13 +233,13 @@ const Subscribers = (props) => {
                       return (
                         <tr key={index}>
                           <td>
-                            <input type="checkbox" checked={item.checked} />
+                            <input type="checkbox"/>
                           </td>
                           <td>
                             <div className="subs-table-row d-flex justify-content-start align-items-center">
                               <div>
                                 {
-                                  (item.profile_image != null ? <img src={`${item?.profile_image}`} /> : <img src={SubsImg} className="d-none" />)
+                                  (item.profile_image != null ? <img src={`${item?.profile_image}`} alt="profile-image" /> : <img src={SubsImg} className="d-none" alt="profile-image" />)
                                 }
                               </div>
                               <div>

@@ -9547,6 +9547,11 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
+"three-dots@^0.2.3":
+  "integrity" "sha512-lbHq4a1/YC1Lo6JNopkyj2qShdc9SxpGVfYp6P4kmCUiGJx1Q3jnX/icsLjo/aQaD9WfcSq+X6pouDpXBXQ1Og=="
+  "resolved" "https://registry.npmjs.org/three-dots/-/three-dots-0.2.3.tgz"
+  "version" "0.2.3"
+
 "throat@^6.0.1":
   "integrity" "sha512-8hmiGIJMDlwjg7dlJ4yKGLK8EsYqKgPWbG3b4wjJddKNwc7N7Dpn08Df4szr/sZdMVeOstrdYSsqzX6BYbcB+w=="
   "resolved" "https://registry.npmjs.org/throat/-/throat-6.0.1.tgz"
