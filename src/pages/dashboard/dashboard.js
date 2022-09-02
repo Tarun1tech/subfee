@@ -5,7 +5,7 @@ import HighchartsReact from "highcharts-react-official";
 import { get_dashboard_data } from "../../redux/dashboard/actions";
 import { connect } from "react-redux";
 import DatePicker from "react-multi-date-picker";
-
+import CountUp from 'react-countup';
 
 const Dashboard = (props) => {
 
@@ -98,7 +98,8 @@ const Dashboard = (props) => {
             <div className="col-md-4">
               <div className="dash-card dc-one d-flex align-items-center justify-content-between">
                 <div>
-                  <h2>{props.dashboardData?.number_subscribers}</h2>
+                <CountUp end={props.dashboardData?.number_subscribers} className="counter"/>
+                  {/* <h2>{props.dashboardData?.number_subscribers}</h2> */}
                   <p>Totaal aantal subscribers</p>
                 </div>
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +111,8 @@ const Dashboard = (props) => {
             <div className="col-md-4">
               <div className="dash-card dc-two d-flex align-items-center justify-content-between">
                 <div>
-                  <h2>{props.dashboardData?.new_subscribers}</h2>
+                <CountUp end={props.dashboardData?.new_subscribers} className="counter"/>
+                  {/* <h2>{props.dashboardData?.new_subscribers}</h2> */}
                   <p>Nieuwe subscribers</p>
                 </div>
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +124,8 @@ const Dashboard = (props) => {
             <div className="col-md-4">
               <div className="dash-card dc-three d-flex align-items-center justify-content-between">
                 <div>
-                  <h2>€ {props.dashboardData?.turnover_achieved}</h2>
+                 <h2>  €   <CountUp end={props.dashboardData?.turnover_achieved} className="counter"/></h2>
+                  {/* <h2>€ {props.dashboardData?.turnover_achieved}</h2> */}
                   <p>Behaalde omzet</p>
                 </div>
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
