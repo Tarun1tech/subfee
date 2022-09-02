@@ -502,6 +502,13 @@ body {
   border: 5px solid #320035;
 }
 
+.modal {
+  background: rgba(0, 0, 0, 0.5490196078) !important;
+}
+.modal .modal-title {
+  font-size: 16px !important;
+}
+
 .content-upload-popup .modal-header {
   padding: 36px 57px 0 57px !important;
 }
@@ -1004,7 +1011,9 @@ table .icon_setting {
 
 /* custom switch for video comment on off */
 .custom-comment-switch {
-  /* Rounded sliders */
+  /* input:focus+.slider {
+    box-shadow: 0 0 1px $purple;
+  } */
 }
 .custom-comment-switch .switch {
   position: relative;
@@ -1021,7 +1030,7 @@ table .icon_setting {
   position: absolute;
   cursor: pointer;
   top: 0;
-  left: 0;
+  left: 32px;
   right: 0;
   bottom: 0;
   height: 24px;
@@ -1032,45 +1041,57 @@ table .icon_setting {
   position: absolute;
   content: "";
   color: #fff;
-  height: 41px;
-  width: 34px;
+  height: 24px;
+  width: 24px;
   left: 0;
-  bottom: -8px;
-  background-color: #320035;
+  bottom: -5px;
+  background-color: #fbfbfb;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
   transition: 0.4s;
 }
 .custom-comment-switch .ja {
-  color: #cccccc;
+  color: #1a1a1a;
   z-index: 99999999 !important;
   position: absolute;
-  top: 2px;
-  right: 12px;
+  top: -2px;
+  right: -38px;
   font-size: 12px;
   font-weight: 500;
 }
 .custom-comment-switch .nee {
-  color: #cccccc;
+  color: #1a1a1a;
   z-index: 99999999 !important;
   position: absolute;
-  top: 2px;
-  left: 4px;
+  top: -2px;
+  left: 0;
   font-size: 12px;
   font-weight: 500;
 }
 .custom-comment-switch input:checked + .slider {
-  background-color: #ccc;
-}
-.custom-comment-switch input:focus + .slider {
-  box-shadow: 0 0 1px #320035;
+  background-color: #8cadd8;
 }
 .custom-comment-switch input:checked + .slider:before {
-  transform: translateX(26px);
+  background-color: #1B6DC2;
+  box-shadow: 1px 2px 8px rgba(27, 109, 194, 0.38);
+}
+.custom-comment-switch input:checked + .slider:before {
+  transform: translateX(22px);
 }
 .custom-comment-switch .slider.round {
   border-radius: 34px;
+  height: 14px;
+  width: 44px;
 }
 .custom-comment-switch .slider.round:before {
-  border-radius: 10px;
+  border-radius: 50%;
+}
+
+.video-de-comment {
+  width: 10%;
+}
+
+.video-de-commentt {
+  width: 15%;
 }
 
 .subs-page {

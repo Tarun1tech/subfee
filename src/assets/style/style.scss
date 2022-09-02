@@ -588,6 +588,13 @@
     }
   }
 
+  .modal {
+    background: #0000008c !important;
+    .modal-title {
+      font-size: 16px !important;
+    }
+  }
+
   .content-upload-popup .modal-header {
     padding: 36px 57px 0 57px !important;
   }
@@ -1173,7 +1180,7 @@
       position: absolute;
       cursor: pointer;
       top: 0;
-      left: 0;
+      left: 32px;
       right: 0;
       bottom: 0;
       height: 24px;
@@ -1186,57 +1193,72 @@
       position: absolute;
       content: "";
       color: $white;
-      height: 41px;
-      width: 34px;
+      height: 24px;
+      width: 24px;
       left: 0;
-      bottom: -8px;
-      background-color: $purple;
+      bottom: -5px;
+      background-color: #fbfbfb;
+      box-shadow: 1px 2px 8px rgba(0,0,0,0.2);
       -webkit-transition: 0.4s;
       transition: 0.4s;
     }
 
     .ja {
-      color: #cccccc;
+      color: #1a1a1a;
       z-index: 99999999 !important;
       position: absolute;
-      top: 2px;
-      right: 12px;
+      top: -2px;
+      right: -38px;
       font-size: 12px;
       font-weight: 500;
     }
 
     .nee {
-      color: #cccccc;
+      color: #1a1a1a;
       z-index: 99999999 !important;
       position: absolute;
-      top: 2px;
-      left: 4px;
+      top: -2px;
+      left: 0;
       font-size: 12px;
       font-weight: 500;
     }
 
     input:checked+.slider {
-      background-color: #ccc;
-    }
-
-    input:focus+.slider {
-      box-shadow: 0 0 1px $purple;
+      background-color: #8cadd8;
     }
 
     input:checked+.slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
+      background-color: #1B6DC2;
+      box-shadow: 1px 2px 8px rgba(27, 109, 194, 38%);
     }
 
-    /* Rounded sliders */
+    /* input:focus+.slider {
+      box-shadow: 0 0 1px $purple;
+    } */
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(22px);
+      -ms-transform: translateX(22px);
+      transform: translateX(22px);
+    }
+
     .slider.round {
       border-radius: 34px;
+      height: 14px;
+      width: 44px;
     }
 
     .slider.round:before {
-      border-radius: 10px;
+      border-radius: 50%;
     }
+  }
+
+  .video-de-comment {
+    width: 10%;
+  }
+
+  .video-de-commentt {
+    width: 15%;
   }
 
   .subs-page {
