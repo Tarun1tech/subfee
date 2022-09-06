@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WhiteLogo from "../assets/images/light-logo.png";
+import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from "react-redux";
@@ -44,17 +45,18 @@ const EmailVerification = (props) => {
                     <img className="light_logo" src={WhiteLogo} alt="logo" />
                     <div className="login_card">
                         <h4 className="small_heading">
-                            Verify your email
+                        Wachtwoord vergeten
                         </h4>
-                        <p className="text">Fill your email on below input box</p>
-                        <form onSubmit={handleSubmit}>
-                            <label>Registered Email</label>
+                        <p className="text">Vul je e-mailadres in en ontvang binnen enkele minuten een link om je wachtwoord in te stellen.</p>
+                        <form onSubmit={handleSubmit} className="mb-2">
+                            <label>E-mailadres</label>
                             <input type="email" name="email" onChange={handleChange} />
                             {formErrors.email && (
                                 <span className="error">{formErrors.email}</span>
                             )}
-                            <input type="submit" className="submit" value="Verify email" />
+                            <input type="submit" className="submit" value="E-mail verifiëren" />
                         </form>
+                        <Link to="/" className="back-to-login">Terug naar Inloggen</Link>
                     </div>
                 </div>
             </div>

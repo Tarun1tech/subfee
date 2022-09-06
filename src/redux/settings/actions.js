@@ -1,4 +1,4 @@
-import { profileData, createProfile, createTheme, themeData, createContact, faqData, checkUsername } from '../queries';
+import { profileData, createProfile, createTheme, themeData, createContact, faqData, checkUsername, createUsp } from '../queries';
 import { checkResponse } from "../../constants/index";
 import { toast } from "react-toastify";
 
@@ -143,6 +143,27 @@ export const check_username = payload => async dispatch => {
             payload: response.data.data
         });
     } else {
+        dispatch({
+            type: "ERROR_OCCURED",
+            payload: response.error
+        })
+    }
+};
+
+
+//create upss
+export const create_ups = payload => async dispatch => {
+    let response = await createUsp(payload);
+    response = checkResponse(response);
+    
+    if (response.success) {
+        toast.success(response.message)
+        dispatch({
+            type: "CREATE_UPS",
+            payload: response.data.data
+        });
+    } else {
+        toast.error(response.error)
         dispatch({
             type: "ERROR_OCCURED",
             payload: response.error
