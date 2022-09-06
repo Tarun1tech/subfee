@@ -391,11 +391,10 @@ const ContentPage = (props) => {
                     <div className="video-submit-model">
                       <div className="row justify-content-between">
                         <div className="col-md-12">
-
                           <h5>Details</h5>
                           <form onSubmit={handleSubmit}>
                             <div className="mb-3">
-                              <input type="text" onChange={handleContentChange} name="title" placeholder="Titel van je foto" />
+                              <input type="text" onChange={handleContentChange} name="title" placeholder="Titel van je foto"/>
                               {formErrors.title && (
                                 <span className="error">{formErrors.title}</span>
                               )}
@@ -410,7 +409,7 @@ const ContentPage = (props) => {
                               <div className="video-de pe-3">
                                 <label>Foto uploaden</label>
                                 <p>Selecteer hier een afbeelding die je op de feed van je subscribers wilt laten zien. (Grootte moet 1280x720 pixels zijn)</p>
-                                <img src={imageurl} width="200" />
+                                <img src={imageurl} width="200"/>
 
                               </div>
                               <div className="video-de ps-3">

@@ -178,7 +178,7 @@
           padding-top: 5px;
         }
 
-        /* Hide the browser's default checkbox */
+        /* Hide the browser's default checkbox */ 
         .mark-container input {
           position: absolute;
           opacity: 0;
@@ -227,6 +227,14 @@
           transform: rotate(45deg);
         }
       }
+    }
+  }
+
+  .back-to-login{
+    color: #000;
+    text-decoration: none;
+    &:hover{
+      color: inherit;
     }
   }
 
@@ -359,7 +367,7 @@
 
 
     .tab-pane {
-      margin: 30px 100px;
+      margin: 80px 100px;
     }
   }
 
@@ -758,6 +766,18 @@
     }
   }
 
+  .setting-tab .setting-tab-content .table_outer th {
+    padding-left: 0 !important;
+  }
+
+  .setting-tab .setting-tab-content .table_outer td svg {
+    margin-right: 4px;
+  }
+
+  .subs-page .table_outer th {
+    padding-left: 0 !important;
+  }
+
   .subscriber-search {
     padding: 8px 20px;
     border: 1px solid #a4a4a4;
@@ -1131,6 +1151,7 @@
       }
 
       .form-submit {
+        width: 100% !important;
         border: none;
         color: $white;
         font-size: 16px;
@@ -1460,6 +1481,15 @@
         color: $white;
       }
     }
+  }
+
+  .new-add-btn a{
+    width: 100% !important;
+    padding: 13px 77px;
+    color: $white;
+    background-image: $My-gradient;
+    font-size: 12px !important;
+    border-radius: 10px;
   }
 
   .active-one {
@@ -2176,6 +2206,11 @@
     display: flex;
   }
 
+  .custom-comment-switch {
+    margin-top: 54px;
+  }
+
+
   @media only screen and (max-width: 480px) {
     .sidenav {
       margin: 0 15px 0 15px;
@@ -2368,4 +2403,240 @@
       padding: 26px;
       width: 340px;
     }
+  }
+
+
+  //for tabs
+  @media screen and (min-width: 480px) and (max-width: 768px) {
+    .sidenav {
+      margin: 0 15px 0 15px;
+    }
+    .navbar{
+      position: unset !important;
+    }
+    .sidebar {
+      position: relative;
+      padding: 10px 15px;
+      width: 100%;
+      height: auto;
+      float: unset;
+      border-right: unset;
+    }
+    .navbar-toggler {
+      position: absolute;
+      top: 20px;
+      right: 15px;
+    }
+    .dash-content-side {
+      position: unset;
+      width: 100%;
+      min-height: unset;
+      float: left;
+      padding: 40px 0px 40px 0px;
+    }
+    .support-banner {
+      padding: 28px 12px;
+    }
+    .light-btn a {
+      padding: 8px 16px;
+    }
+    .colored-btn a {
+      padding: 8px 16px;
+    }
+    .dash-card p {
+      font-size: 12px;
+    }
+    .content-upload-btns-back p {
+      font-size: 12px;
+    }
+    .content-upload-btn {
+      font-size: 12px;
+    }
+    .subs-table-row {
+      margin-left: 10px;
+    }
+    .subs-page {
+      margin-top: 40px;
+      padding: 30px;
+    }
+    .subs_handle_btns {
+      width: auto !important;
+    }
+    .table-header-inactive {
+      margin-right: 12px !important;
+    }
+    .financial_block_outer {
+      margin-top: 40px !important;
+      display: block;
+      .col-md-6{
+        width: 100%;
+      }
+    }
+    .profile_update_tabs.align-items-start {
+      display: block;
+    }
+    .setting-tab #v-pills-tab {
+      width: 100%;
+    }
+    .setting-tab .verti {
+      height: auto;
+    }
+    .setting-tab #v-pills-tabContent {
+      width: 100%;
+    }
+    .profile-update-tab .tab-pane {
+      margin: 20px 15px;
+    }
+  }
+
+
+  // for small screen
+  @media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .sidebar {
+      padding: 20px 10px;
+    }
+    .sidebar .sidenav ul li {
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+    .sidebar .sidenav ul li svg {
+      width: 17px;
+    }
+    .sidebar .user-detail {
+      padding: 18px 12px;
+    }
+    .sidebar .user-detail p {
+      font-size: 15px;
+    }
+    .sidebar .user-detail span {
+      font-size: 11px;
+    }
+    .dash-content-side {
+      padding: 20px 80px 20px 80px;
+    }
+    .user-welcome p {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .user-welcome h1 {
+      font-size: 38px;
+    }
+    .dash-calender-btn {
+      padding: 5px 12px;
+    }
+    .dash-card {
+      padding: 8px 12px;
+    }
+    .dash-card p {
+      font-size: 13px;
+    }
+    .dash-card h2, .dash-card .counter {
+      font-size: 36px;
+    }
+    .dashb .setting-tab-content {
+      padding: 20px;
+    }
+    .support-banner {
+      padding: 18px 28px;
+    }
+    .support-banner h2 {
+      font-size: 18px;
+    }
+    .stats-page-title {
+      font-size: 16px;
+    }
+    .content-upload-btns-back p {
+      font-size: 14px;
+      padding: 18px 0 12px 0;
+    }
+    .content-upload-btn {
+      padding: 10px 34px;
+      font-size: 14px;
+    }
+    .setting-tab .setting-tab-content {
+      padding: 24px 24px;
+    }
+    .setting-tab .setting-tab-content p {
+      font-size: 15px;
+    }
+    .subs-table-row span {
+      font-size: 13px;
+    }
+    .pagination .page-link {
+      font-size: 13px;
+      padding: 8px 16px;
+    }
+    .subs-page {
+      margin-top: 64px;
+      padding: 24px;
+    }
+    .subs_handle_btns {
+      width: auto !important;
+    }
+    .stats-count .total-subs .ts-right {
+      padding: 12px;
+    }
+    .stats-count .total-subs .ts-left {
+      padding: 12px;
+    }
+    .financial_block_outer {
+      margin-top: 38px !important;
+    }
+    .setting-tab #v-pills-tab {
+      width: 23%;
+    }
+    .setting-tab #v-pills-tabContent {
+      width: 77%;
+    }
+    .profile-update-tab .tab-pane {
+      margin: 50px 66px;
+    }
+    .setting-tab .nav-link {
+      font-size: 13px;
+    }
+    .setting-tab .sml-heading {
+      margin-top: 22px;
+      font-size: 15px !important;
+    }
+    .setting-tab .setting-tab-content form label {
+      font-size: 12px;
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+    .dash-calender-btn .rmdp-container .rmdp-input {
+      font-size: 12px;
+    }
+    .dash-calender-btn {
+      width: 24%;
+    }
+    .login_back .light_logo {
+      width: 200px;
+    }
+    .login_back .login_card {
+      padding: 32px;
+      width: 400px;
+    }
+    .export-subscribers-btn {
+      padding: 5px 12px;
+    }
+    .table-header-inactive {
+      padding: 5px 12px;
+    }
+    .video-stats {
+      margin: 4px 0;
+    }
+    .video-stats h6 {
+      font-size: 24px;
+    }
+    .video-submit-model form .form-submit {
+      font-size: 13px;
+    }
+    .content-sub-btns {
+      font-size: 13px !important;
+    }
+    .custom-modal .modal-dialog .modal-button button {
+      font-size: 13px;
+    }
+    
+
   }

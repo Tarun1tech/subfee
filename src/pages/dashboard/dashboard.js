@@ -4,6 +4,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { get_dashboard_data } from "../../redux/dashboard/actions";
 import { connect } from "react-redux";
+import {Link} from "react-router-dom";
 import DatePicker from "react-multi-date-picker";
 import CountUp from 'react-countup';
 
@@ -184,6 +185,9 @@ const Dashboard = (props) => {
                       <small>Aantal comments</small>
                       <h6>{props.dashboardData?.number_comments}</h6>
                     </div>
+                  </div>
+                  <div className="new-add-btn mt-4">
+                    <Link to="/content">Content uploaden</Link>
                   </div>
                 </div>
               </div>

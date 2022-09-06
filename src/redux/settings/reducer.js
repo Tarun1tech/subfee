@@ -5,7 +5,8 @@ const INIT_STATE = {
     theme_data: {},
     error: "",
     faq_data: {},
-    create_contact: {}
+    create_contact: {},
+    create_ups: {},
 };
 
 const settings = (state = INIT_STATE, action) => {
@@ -52,6 +53,12 @@ const settings = (state = INIT_STATE, action) => {
             return {
                 ...state,
                 check_user_name: action.payload,
+                error: "",
+            }
+        case "CREATE_UPS":
+            return {
+                ...state,
+                create_ups: action.payload,
                 error: "",
             }
         default:

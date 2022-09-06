@@ -201,7 +201,7 @@ const Profile = (props) => {
                         <span className="error mt-2">{formErrors.password_confirmation}</span>
                     )}
 
-                    <div className="mb-4"><input className="form-submit" type="submit" value="Wijzigen" /></div>
+                    <div className="mb-4"><input className="form-submit" type="submit" value="Opslaan" /></div>
                 </form>
             </div>
         </>

@@ -329,3 +329,16 @@ export const getDashboard = (data) => {
   .then((response) => response)
   .catch((err) => err.response);
 }
+
+// usp api
+export const createUsp = (data) => {
+  let token = localStorage.getItem("access_token");
+  return axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}creator/createups`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((err) => err.response);
+};

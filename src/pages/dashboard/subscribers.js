@@ -237,11 +237,11 @@ const Subscribers = (props) => {
                           </td>
                           <td>
                             <div className="subs-table-row d-flex justify-content-start align-items-center">
-                              <div>
+                              {/* <div>
                                 {
                                   (item.profile_image != null ? <img src={`${item?.profile_image}`} alt="profile-image" /> : <img src={SubsImg} className="d-none" alt="profile-image" />)
                                 }
-                              </div>
+                              </div> */}
                               <div>
                                 <p>{item?.first_name}</p>
                                 <span>@{item?.name}</span>

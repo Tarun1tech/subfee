@@ -269,7 +269,7 @@ const Thema = (props) => {
                             </Modal>
                         </div>
                     </div>
-                    <p className="small-g">De afbeelding die wordt gebruikt in het browsertabblad.</p>
+                    <p class="sml-heading">Kleuren aanpassen</p>
                     <p>Pas de kleuren aan zodat jouw platform perfect aansluit op jouw huisstijl!</p>
                     <input
                         type="color"
