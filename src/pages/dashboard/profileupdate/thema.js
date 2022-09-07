@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { create_theme, get_theme_data } from "../../../redux/settings/actions";
-
+import Input from "antd/lib/input";
+import Button from "antd/lib/button";
+import Dropdown from "antd/lib/dropdown";
+import Panel from "rc-color-picker/lib/Panel";
+import "antd/dist/antd.css";
+import "rc-color-picker/assets/index.css";
 // antd upload
 import { Modal, Upload } from 'antd';
 
@@ -16,6 +21,27 @@ const getBase64 = (file) =>
     });
 
 const Thema = (props) => {
+    const { color, onChange } = props;
+
+    const [internalColor, setInternalColor] = React.useState(color);
+    const [primaryColor, setPrimaryColor] = useState(color);
+    const handleChange = (color) => {
+        setPrimaryColor(color.color);
+
+        if (onChange) {
+            onChange(color);
+        }
+    };
+    const overlay = (
+        <div>
+            <Panel
+                color={primaryColor}
+                enableAlpha={false}
+                onChange={handleChange}
+            />
+        </div>
+    );
+
     const { create_theme, themeData } = props
     // antd upload
     const [previewVisible, setPreviewVisible] = useState(false);
@@ -59,15 +85,14 @@ const Thema = (props) => {
         props.get_theme_data();
     }, [token]);
 
-    const [primaryColor, setPrimaryColor] = useState(null);
+
 
     useEffect(() => {
-        if (props?.themeData !== undefined || props.themeData?.length > 0) {
-            console.log(props?.themeData)
-            setPrimaryColor(props.themeData?.primary_color);
+        if (themeData !== undefined || themeData?.length > 0) {
+            setPrimaryColor(themeData?.primary_color);
 
         }
-    }, [])
+    }, [themeData])
 
     const handleThemeSubmit = (e) => {
         let image = [];
@@ -95,7 +120,7 @@ const Thema = (props) => {
         payload.login_screen_background = fileLists.length === 0 ? "" : logobackgorund[0] || props.themeData?.login_screen_background;
         payload.header_image = bannerList.length === 0 ? "" : banner[0] || props.themeData?.header_image;
         payload.fav_icon = favList.length === 0 ? "" : fav[0] || props.themeData?.fav_icon;
-        console.log(payload)
+
 
         props.create_theme(payload)
     }
@@ -271,11 +296,20 @@ const Thema = (props) => {
                     </div>
                     <p class="sml-heading">Kleuren aanpassen</p>
                     <p>Pas de kleuren aan zodat jouw platform perfect aansluit op jouw huisstijl!</p>
-                    <input
+                    {/* <input
                         type="color"
                         name="primary_color"
                         defaultValue={primaryColor}
                         onChange={(e) => setPrimaryColor(e.target.value)}
+                    /> */}
+                    <Input
+                        value={primaryColor || "#000000"}
+                        onChange={(e) => setPrimaryColor(e.target.value)}
+                        suffix={
+                            <Dropdown trigger={["click"]} overlay={overlay}>
+                                <Button style={{ background: primaryColor }}> </Button>
+                            </Dropdown>
+                        }
                     />
                     <div class="mb-4"><input class="form-submit" type="submit" value="Opslaan" /></div>
                 </form>
