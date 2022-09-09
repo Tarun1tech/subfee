@@ -1165,7 +1165,7 @@ table .icon_setting {
   background-color: #fff;
   display: inline-block;
   position: relative;
-  width: 22%;
+  width: 25%;
   text-align: left;
 }
 .dash-calender-btn input {
@@ -1278,6 +1278,7 @@ table .icon_setting {
   font-size: 12px;
   border: 1px solid transparent;
   transition: 0.4s ease-in-out;
+  text-decoration: none;
 }
 .colored-btn a:hover {
   background-image: none;
@@ -2372,7 +2373,7 @@ input[type=search]::-webkit-search-cancel-button {
     font-size: 12px;
   }
   .dash-calender-btn {
-    width: 24%;
+    width: 28%;
   }
   .login_back .light_logo {
     width: 200px;

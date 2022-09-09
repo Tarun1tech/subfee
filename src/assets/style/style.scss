@@ -1346,7 +1346,7 @@
     background-color: $white;
     display: inline-block;
     position: relative;
-    width: 22%;
+    width: 25%;
     text-align: left;
 
     input {
@@ -1474,6 +1474,7 @@
       font-size: 12px;
       border: 1px solid transparent;
       transition: .4s ease-in-out;
+      text-decoration: none;
 
       &:hover {
         background-image: none;
@@ -2771,7 +2772,7 @@
     }
 
     .dash-calender-btn {
-      width: 24%;
+      width: 28%;
     }
 
     .login_back .light_logo {
