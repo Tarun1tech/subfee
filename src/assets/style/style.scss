@@ -1345,7 +1345,7 @@
     background-color: $white;
     display: inline-block;
     position: relative;
-    width: 22%;
+    width: 25%;
     text-align: left;
 
     input {
@@ -1474,6 +1474,7 @@
       text-decoration: none;
       border: 1px solid transparent;
       transition: .4s ease-in-out;
+      text-decoration: none;
 
       &:hover {
         background-image: none;
@@ -1507,12 +1508,13 @@
     width: 100% !important;
     padding: 9px 13px;
     color: $white;
-    background-image: $My-gradient;    
+    background-image: $My-gradient;
     border-radius: 10px;
-    color: $white !important;
+    color: $white  !important;
     border: none;
   }
-  .new-add-btn a{
+
+  .new-add-btn a {
     color: #fff;
     font-size: 12px !important;
   }
@@ -1900,7 +1902,7 @@
       color: #999 !important;
     }
   }
-  
+
   .naar-right {
     height: 90vh;
     overflow-y: scroll;
@@ -2532,12 +2534,15 @@
       padding: 26px;
       width: 340px;
     }
+
     .creator-video {
       padding: 16px;
     }
+
     .dash-latest-comment ul li .notif-img {
       width: 13%;
     }
+
     .dash-latest-comment ul li .notif-content {
       width: 87%;
     }

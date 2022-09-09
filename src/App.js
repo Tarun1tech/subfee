@@ -18,6 +18,9 @@ function App() {
     sessionStorage.setItem("ref", 1);
   }
   window.addEventListener("load", clearStorage);
+  window.onbeforeunload = function () {
+    localStorage.clear();
+  }
   return (
     <div className="App">
       <BrowserRouter>

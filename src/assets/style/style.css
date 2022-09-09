@@ -1164,7 +1164,7 @@ table .icon_setting {
   background-color: #fff;
   display: inline-block;
   position: relative;
-  width: 22%;
+  width: 25%;
   text-align: left;
 }
 .dash-calender-btn input {
@@ -1278,6 +1278,7 @@ table .icon_setting {
   text-decoration: none;
   border: 1px solid transparent;
   transition: 0.4s ease-in-out;
+  text-decoration: none;
 }
 .colored-btn a:hover {
   background-image: none;
