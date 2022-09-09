@@ -576,6 +576,7 @@ const Video = (props) => {
           </div>
         </div>
         <div className="col-md-4">
+          <div className="naar-right">
           {props.feedlist?.data?.map((item, index) => {
             return (
               <>
@@ -653,6 +654,7 @@ const Video = (props) => {
               </>
             );
           })}
+          </div>
         </div>
       </div>
 

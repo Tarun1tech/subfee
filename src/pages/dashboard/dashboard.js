@@ -35,7 +35,7 @@ const Dashboard = (props) => {
 
   const options = {
     chart: {
-      height: (230) + 'px',
+      height: (255) + 'px',
     },
     xAxis: {
       gridLineWidth: 1,
@@ -186,7 +186,7 @@ const Dashboard = (props) => {
                     </div>
                   </div>
                   <div className="new-add-btn mt-4">
-                    <Link to="/content">Content uploaden</Link>
+                    <button><Link to="/content">Content uploaden</Link></button>
                   </div>
                 </div>
               </div>

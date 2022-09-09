@@ -853,8 +853,7 @@ table .icon_setting {
   text-align: center;
   width: 28%;
   background: #fff;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-radius: 15px;
 }
 .content-upload-btns-back input[type=file] {
   opacity: 0;
@@ -1276,6 +1275,7 @@ table .icon_setting {
   background-image: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   border-radius: 12px;
   font-size: 12px;
+  text-decoration: none;
   border: 1px solid transparent;
   transition: 0.4s ease-in-out;
   text-decoration: none;
@@ -1293,6 +1293,7 @@ table .icon_setting {
   border: 1px solid #787878;
   color: #787878;
   border-radius: 12px;
+  text-decoration: none;
   font-size: 12px;
   transition: 0.4s ease-in-out;
 }
@@ -1302,13 +1303,19 @@ table .icon_setting {
   color: #fff;
 }
 
-.new-add-btn a {
+.new-add-btn button {
   width: 100% !important;
-  padding: 13px 77px;
+  padding: 9px 13px;
   color: #fff;
   background-image: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
-  font-size: 12px !important;
   border-radius: 10px;
+  color: #fff !important;
+  border: none;
+}
+
+.new-add-btn a {
+  color: #fff;
+  font-size: 12px !important;
 }
 
 .active-one {
@@ -1652,6 +1659,18 @@ g.highcharts-legend-item {
   color: #999 !important;
 }
 
+.naar-right {
+  height: 90vh;
+  overflow-y: scroll;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 7%;
+}
+
+.naar-right::-webkit-scrollbar {
+  display: none;
+}
+
 .single-video {
   width: 100%;
   /* height: 360px; */
@@ -1866,13 +1885,13 @@ g.highcharts-legend-item {
   width: 100%;
 }
 .comment-box form ::-moz-placeholder {
-  color: #fff;
+  color: #282828;
 }
 .comment-box form :-ms-input-placeholder {
-  color: #fff;
+  color: #282828;
 }
 .comment-box form ::placeholder {
-  color: #fff;
+  color: #282828;
 }
 .comment-box form input {
   border: none;
@@ -2031,6 +2050,7 @@ input[type=search]::-webkit-search-cancel-button {
   }
   .light-btn a {
     padding: 9px 24px;
+    text-decoration: none;
   }
   .content-first-row-gap {
     margin-top: 0 !important;
@@ -2058,6 +2078,9 @@ input[type=search]::-webkit-search-cancel-button {
     min-height: 46px !important;
     width: 80px !important;
     height: 46px !important;
+  }
+  .dash-calender-btn {
+    width: 100%;
   }
   .subs-table-row p {
     font-size: 14px !important;
@@ -2173,6 +2196,15 @@ input[type=search]::-webkit-search-cancel-button {
   .login_back .login_card {
     padding: 26px;
     width: 340px;
+  }
+  .creator-video {
+    padding: 16px;
+  }
+  .dash-latest-comment ul li .notif-img {
+    width: 13%;
+  }
+  .dash-latest-comment ul li .notif-content {
+    width: 87%;
   }
 }
 @media screen and (min-width: 480px) and (max-width: 1024px) {
@@ -2373,7 +2405,7 @@ input[type=search]::-webkit-search-cancel-button {
     font-size: 12px;
   }
   .dash-calender-btn {
-    width: 28%;
+    width: 26%;
   }
   .login_back .light_logo {
     width: 200px;
