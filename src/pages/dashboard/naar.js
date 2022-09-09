@@ -17,7 +17,7 @@ const Naar = (props) => {
 
     return (
         <>
-            <div className="dash-content-side p-0">
+            <div className="dash-content-side">
                 <div className="container">
                     <Video />
                 </div>
