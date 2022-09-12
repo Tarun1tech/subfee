@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Highcharts, { map } from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 import { connect } from "react-redux";
 import { get_Financial_Data } from "../../redux/financial/actions";
 import { get_profile_data } from "../../redux/settings/actions";
-
+import { Bar } from 'react-chartjs-2';
 
 
 const Finanical = (props) => {
@@ -36,35 +34,25 @@ const Finanical = (props) => {
     setThismonth(props.financialData?.this_month_graph);
   } */
 
+  const options = {
+    labels: ["Oct", "Nov", "Dec", "Jan", "Feb"],
+    datasets: [
 
-  /* highchart */
-  const BarOption = {
-    chart: {
-      type: "column",
-      height: (195) + 'px'
-    },
-    xAxis: {
-      gridLineWidth: 0,
-      categories: ["Oct", "Nov", "Dec", "Jan", "Feb"],
-    },
-    yAxis: {
-      min: 0,
-      gridLineWidth: 0,
-    },
-    colors: ['#65006B', '#ff6a6a'],
-    series: [
       {
-        name: "Deze maand",
+        label: "Deze maand",
         data: thismonth,
+        fill: false,
+        backgroundColor: "#65006B"
+        ,
       },
       {
-        name: "Totale inkomsten",
+        label: "Totale inkomsten",
         data: totalrevenue,
+        fill: false,
+        backgroundColor: "#FF6A6A"
       },
     ],
   };
-
-  console.log(props.profileData, "here is gonna profile data")
 
 
   return (
@@ -164,10 +152,11 @@ const Finanical = (props) => {
 
                     </div>
                   </div>
-                  <HighchartsReact
+                  {/* <HighchartsReact
                     highcharts={Highcharts}
                     options={BarOption}
-                  />
+                  /> */}
+                  <Bar data={options} />
                 </div>
               </div>
             </div>

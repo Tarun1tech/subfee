@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import notifImg from "../../assets/images/subs.png";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 import { get_dashboard_data } from "../../redux/dashboard/actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import DatePicker from "react-multi-date-picker";
 import CountUp from 'react-countup';
-
+import { Line } from "react-chartjs-2";
 const Dashboard = (props) => {
 
   /* api integration */
@@ -32,45 +30,26 @@ const Dashboard = (props) => {
     setValue_two(props.dashboardData?.val2);
   })
 
-
   const options = {
-    chart: {
-      height: (255) + 'px',
-    },
-    xAxis: {
-      gridLineWidth: 1,
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-    },
-    yAxis: {
-      gridLineWidth: 1,
-    },
-    colors: ['#65006B', '#ff6a6a'],
-    series: [
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    height: 100,
+    datasets: [
+
       {
-        name: "Installation",
+        label: "Installation",
         data: value_one,
+        fill: false,
+        borderColor: "#65006B"
+        ,
       },
       {
-        name: "Manufacturing",
+        label: "Manufacturing",
         data: value_two,
+        fill: false,
+        borderColor: "#FF6A6A"
       },
     ],
   };
-
-
   return (
     <div>
       <div className="dash-content-side">
@@ -135,14 +114,13 @@ const Dashboard = (props) => {
             </div>
             <div className="col-md-8">
               <div className="setting-tab">
-                <div className="setting-tab-content pb-0">
+                <div className="setting-tab-content">
                   <h6 className="stats-page-title">Subscriber groei</h6>
-                  <div className="mt-4">
-                    <HighchartsReact
-                      highcharts={Highcharts}
-                      options={options}
-                    />
+                  <div className="mt-4 line-chart">
+
+                    <Line data={options} responsive={true} />
                   </div>
+
                 </div>
               </div>
             </div>
