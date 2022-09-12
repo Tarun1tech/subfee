@@ -360,6 +360,7 @@
     color: $white  !important;
     text-decoration: none !important;
     display: flex;
+    gap: 10px;
   }
 
   // profile-update-tab
@@ -1797,6 +1798,10 @@
     .dash-content-side {
       padding: 30px 240px 30px 140px;
     }
+
+    .setting-tab-content .line-chart canvas {
+      height: 255px !important;
+    }
   }
 
   .custom-modal {
@@ -2735,6 +2740,12 @@
     .content-upload-btn {
       padding: 10px 34px;
       font-size: 14px;
+    }
+
+    .setting-tab-content {
+      .line-chart canvas {
+        height: 235px !important;
+      }
     }
 
     .setting-tab .setting-tab-content {
