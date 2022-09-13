@@ -1993,6 +1993,18 @@
     white-space: nowrap;
   }
 
+  .feed_pagination{
+    ul{
+      margin-bottom: 0 !important;
+      li span{
+        padding: 5px 11px !important;
+      }
+      .page-link{
+        padding: 4px 12px;
+      }
+    }
+  }
+
   .side-sm-vdo {
     padding: 20px;
 
@@ -2170,6 +2182,7 @@
       width: 28px;
       height: 28px;
       margin-right: 14px;
+      border-radius: 50%;
     }
 
     form {

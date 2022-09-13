@@ -4,6 +4,7 @@ import { checkResponse } from "../../constants/index";
 
 /* LISTCLIENT */
 export const get_feed_data = payload => async dispatch => {
+    console.log(payload,"payload")
     let response = await feedData(payload);
     response = checkResponse(response);
 
