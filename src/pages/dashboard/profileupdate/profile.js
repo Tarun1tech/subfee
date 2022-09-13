@@ -42,10 +42,10 @@ const Profile = (props) => {
         ref.current.value = "";
         setSelectedFile("");
     }
-    
+
 
     console.log(selectedFile, "selected filee")
-    
+
 
     const { createSetting } = props;
     const profileFields = {
@@ -90,7 +90,7 @@ const Profile = (props) => {
         formdata.append("first_name", inputs.first_name || props.profileData.first_name);
         formdata.append("last_name", inputs.last_name || props.profileData.last_name);
         formdata.append("email", inputs.email || props.profileData?.email);
-        formdata.append("user_image", selectedFile);
+        formdata.append("user_image", selectedFile || props.profileData?.profiles_image);
         formdata.append("phone_number", inputs.phone_number || props.profileData.phone_number);
         formdata.append("newpassword", inputs.current_password);
         formdata.append("oldpassword", inputs.old_password);
@@ -115,12 +115,12 @@ const Profile = (props) => {
             [name]: value,
         });
         if (Object.keys(validate(inputs)).length === 0) {
-        props.check_username({
-            "user_name": inputs.name
-        });
+            props.check_username({
+                "user_name": inputs.name
+            });
         }
     }
-    
+
 
     return (
         <>
@@ -142,10 +142,10 @@ const Profile = (props) => {
                     <label>Gebruikersnaam</label>
                     <input type="text" name="name" onChange={handleUsername} defaultValue={props.profileData?.name} />
                     <div>
-                    {formErrors.username ? (
-                    <small style={{color: "red"}}>{formErrors.username}</small>
-                    ):
-                    <small style={{color: "green"}}>{props.usernData}</small>}
+                        {formErrors.username ? (
+                            <small style={{ color: "red" }}>{formErrors.username}</small>
+                        ) :
+                            <small style={{ color: "green" }}>{props.usernData}</small>}
                     </div>
                     <label>Profielfoto</label>
                     <div className="profile-upload">

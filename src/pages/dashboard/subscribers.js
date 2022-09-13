@@ -217,49 +217,49 @@ const Subscribers = (props) => {
                   </div>
                 </div>
                 <div className="table_outer">
-                <table className="table" id="tbl_exporttable_to_xls">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th>E-mailadres</th>
-                      <th>Lid sinds</th>
-                      <th>Abonnement status</th>
+                  <table className="table" id="tbl_exporttable_to_xls">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Naam</th>
+                        <th>E-mailadres</th>
+                        <th>Lid sinds</th>
+                        <th>Abonnement status</th>
 
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {props.subscriberlist?.data.length > 0 ? props.subscriberlist?.data.map((item, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>
-                            <input type="checkbox"/>
-                          </td>
-                          <td>
-                            <div className="subs-table-row d-flex justify-content-start align-items-center">
-                              {/* <div>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {props.subscriberlist?.data.length > 0 ? props.subscriberlist?.data.map((item, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>
+                              <input type="checkbox" />
+                            </td>
+                            <td>
+                              <div className="subs-table-row d-flex justify-content-start align-items-center">
+                                {/* <div>
                                 {
                                   (item.profile_image != null ? <img src={`${item?.profile_image}`} alt="profile-image" /> : <img src={SubsImg} className="d-none" alt="profile-image" />)
                                 }
                               </div> */}
-                              <div>
-                                <p>{item?.first_name}</p>
-                                <span>@{item?.name}</span>
+                                <div>
+                                  <p>{item?.first_name}</p>
+                                  <span>@{item?.name}</span>
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                          <td className="subs_email_block">{item?.email}</td>
-                          <td>  <span><Moment format="DD/MM/YYYY">{item.updated_at}</Moment></span></td>
-                          <td><button className={item.stripe_status ? "active-one" : "inactive-one"}>{item.stripe_status ? "Actief" : "InActief"}</button></td>
-                          <td></td>
-                        </tr>
-                      );
-                    }) : <tr className="text-center">
-                      No Data Found
-                    </tr>}
+                            </td>
+                            <td className="subs_email_block">{item?.email}</td>
+                            <td>  <span><Moment format="DD-MM-YYYY">{item.updated_at}</Moment></span></td>
+                            <td><button className={item.stripe_status ? "active-one" : "inactive-one"}>{item.stripe_status ? "Actief" : "InActief"}</button></td>
+                            <td></td>
+                          </tr>
+                        );
+                      }) : <tr className="text-center">
+                        No Data Found
+                      </tr>}
 
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
                 </div>
                 <Pagination
                   className="pagination-bar"

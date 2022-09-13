@@ -577,16 +577,16 @@ const Video = (props) => {
         </div>
         <div className="col-md-4">
           <div className="naar-right">
-          {props.feedlist?.data?.map((item, index) => {
-            return (
-              <>
-                <div
-                  className="creator-video side-sm-vdo mt-4"
-                  data-aos="fade-up"
-                  key={index}
-                  onClick={() => handleGet(item?.id)}
-                >
-                  {/* <div className="creator-nm-detail d-flex justify-content-start align-items-center">
+            {props.feedlist?.data?.map((item, index) => {
+              return (
+                <>
+                  <div
+                    className="creator-video side-sm-vdo mt-4"
+                    data-aos="fade-up"
+                    key={index}
+                    onClick={() => handleGet(item?.id)}
+                  >
+                    {/* <div className="creator-nm-detail d-flex justify-content-start align-items-center">
                       <div>
                         <img
                           src={`https://subfee.techstriker.com/backend/public${item?.creator_detail?.profile_image}`}
@@ -597,18 +597,18 @@ const Video = (props) => {
                       </div>
                     </div> */}
 
-                  {item.video !== null ? (
-                    <div className="single-video">
-                      <ReactPlayer
-                        className="videoFrame"
-                        url={`https://subfee.techstriker.com/backend/public${item.video}`}
-                        light={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
-                        playing={false}
-                        // controls
-                        // onPlay={() => handleViewCount(item.id, item.user_id)}
-                        width="100"
-                      />
-                      {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
+                    {item.video !== null ? (
+                      <div className="single-video">
+                        <ReactPlayer
+                          className="videoFrame"
+                          url={`https://subfee.techstriker.com/backend/public${item.video}`}
+                          light={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
+                          playing={false}
+                          // controls
+                          // onPlay={() => handleViewCount(item.id, item.user_id)}
+                          width="100"
+                        />
+                        {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                               <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
                                                                   {item.like_status ?
                                                                       <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
@@ -621,20 +621,20 @@ const Video = (props) => {
                                                               </button>
                                                               <p>{item?.likes} Likes</p>
                                                           </div> */}
-                    </div>
-                  ) : item.thumbnail !== null ? (
-                    <div className="single-video">
-                      <img
-                        src={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
-                        className="feed-img"
-                      />
+                      </div>
+                    ) : item.thumbnail !== null ? (
+                      <div className="single-video">
+                        <img
+                          src={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
+                          className="feed-img"
+                        />
 
-                    </div>
-                  ) : null}
+                      </div>
+                    ) : null}
 
-                  <h6 className="mt-3">{item?.title}</h6>
-                  <p className="video-desc">{item?.desc}</p>
-                  {/* {item.thumbnail === null && item.video === null ?
+                    <h6 className="mt-3">{item?.title}</h6>
+                    <p className="video-desc">{item?.desc}</p>
+                    {/* {item.thumbnail === null && item.video === null ?
                                                   <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                       <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
                                                           {item.like_status ?
@@ -649,11 +649,11 @@ const Video = (props) => {
                                                       <p>{item?.likes} Likes</p>
                                                   </div>
                                                   : null} */}
-                  <div></div>
-                </div>
-              </>
-            );
-          })}
+                    <div></div>
+                  </div>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

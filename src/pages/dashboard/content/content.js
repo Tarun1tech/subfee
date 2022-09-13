@@ -84,16 +84,17 @@ const ContentPage = (props) => {
   const [showcontent, setShowContent] = useState(false);
   const [contentAdd, setContentAdd] = useState(false);
   const handleClosevideo = () => {
-    props.reset_app();
+    props.reset_content();
     setExtensionFile("");
     setContentAdd(true);
     setShowvideo(false);
     setFileList([]);
   };
 
+
   const handleCloseimage = () => {
 
-    props.reset_app();
+    props.reset_content();
 
     setExtensionFile("");
     setContentAdd(true);
@@ -117,7 +118,7 @@ const ContentPage = (props) => {
     var formdata = new FormData();
     formdata.append("fileupload", k, k.name);
     formdata.append("type", k.type);
-    
+
     props.upload_file(formdata);
     if (k.type === "video/mp4" || k.type === "video/mov" || k.type === "video/wmv" || k.type === "video/avi" || k.type === "video/webm") {
       setVideoLoader(true);
@@ -163,7 +164,7 @@ const ContentPage = (props) => {
     if (!values.description) {
       errors.description = `Beschrijving is vereist`;
     }
-    
+
     return errors;
   };
   const handleContentChange = (e) => {
@@ -251,24 +252,24 @@ const ContentPage = (props) => {
                   </svg>
                     Upload nieuwe video
                   </p>
-                  <button className="content-upload-btn" data-bs-toggle="modal" id="videoup" data-bs-target="#video-submit">           {videoLoader ? "Loading...." : "Selecteer een bestand"} {videoLoader ? <span className="dot-pulse"></span> : null}</button>
+                  <button className="content-upload-btn" data-bs-toggle="modal" id="videoup" data-bs-target="#video-submit">           {videoLoader ? <span className="dot-pulse"></span> : "Selecteer een bestand"} </button>
                   <input type="file" onChange={handleChangefile} name="video" placeholder="file" accept="video/mp4" />
                 </div>
                 <div className="content-upload-btns-back">
                   <p><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M35 9.99999H29.7167L26.6667 6.66666H16.6667V9.99999H25.2L28.25 13.3333H35V33.3333H8.33333V18.3333H5V33.3333C5 35.1667 6.5 36.6667 8.33333 36.6667H35C36.8333 36.6667 38.3333 35.1667 38.3333 33.3333V13.3333C38.3333 11.5 36.8333 9.99999 35 9.99999ZM13.3333 23.3333C13.3333 27.9333 17.0667 31.6667 21.6667 31.6667C26.2667 31.6667 30 27.9333 30 23.3333C30 18.7333 26.2667 15 21.6667 15C17.0667 15 13.3333 18.7333 13.3333 23.3333ZM21.6667 18.3333C24.4167 18.3333 26.6667 20.5833 26.6667 23.3333C26.6667 26.0833 24.4167 28.3333 21.6667 28.3333C18.9167 28.3333 16.6667 26.0833 16.6667 23.3333C16.6667 20.5833 18.9167 18.3333 21.6667 18.3333ZM8.33333 9.99999H13.3333V6.66666H8.33333V1.66666H5V6.66666H0V9.99999H5V15H8.33333V9.99999Z" fill="black"/>
+                    <path d="M35 9.99999H29.7167L26.6667 6.66666H16.6667V9.99999H25.2L28.25 13.3333H35V33.3333H8.33333V18.3333H5V33.3333C5 35.1667 6.5 36.6667 8.33333 36.6667H35C36.8333 36.6667 38.3333 35.1667 38.3333 33.3333V13.3333C38.3333 11.5 36.8333 9.99999 35 9.99999ZM13.3333 23.3333C13.3333 27.9333 17.0667 31.6667 21.6667 31.6667C26.2667 31.6667 30 27.9333 30 23.3333C30 18.7333 26.2667 15 21.6667 15C17.0667 15 13.3333 18.7333 13.3333 23.3333ZM21.6667 18.3333C24.4167 18.3333 26.6667 20.5833 26.6667 23.3333C26.6667 26.0833 24.4167 28.3333 21.6667 28.3333C18.9167 28.3333 16.6667 26.0833 16.6667 23.3333C16.6667 20.5833 18.9167 18.3333 21.6667 18.3333ZM8.33333 9.99999H13.3333V6.66666H8.33333V1.66666H5V6.66666H0V9.99999H5V15H8.33333V9.99999Z" fill="black" />
                   </svg>
                     Upload nieuwe foto</p>
-                  <button className="content-upload-btn" data-bs-toggle="modal" id="imageup" data-bs-target="#photo-submit">   {imageLoader ? "Loading...." : "Selecteer een bestand"} {imageLoader ? <span className="dot-pulse"></span> : null}</button>
+                  <button className="content-upload-btn" data-bs-toggle="modal" id="imageup" data-bs-target="#photo-submit">   {imageLoader ? <span className="dot-pulse"></span> : "Selecteer een bestand"} </button>
                   <input type="file" onChange={handleChangefile} name="image" accept="image/*" />
                 </div>
                 <div className="content-upload-btns-back">
                   <p><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 26.6667C5 28.505 6.495 30 8.33333 30H14.31L20 35.69L25.69 30H31.6667C33.505 30 35 28.505 35 26.6667V6.66668C35 4.82834 33.505 3.33334 31.6667 3.33334H8.33333C6.495 3.33334 5 4.82834 5 6.66668V26.6667ZM8.33333 6.66668H31.6667V26.6667H24.31L20 30.9767L15.69 26.6667H8.33333V6.66668Z" fill="black"/>
-                  <path d="M18.3333 23.3333H21.6667V18.3333H26.6667V15H21.6667V10H18.3333V15H13.3333V18.3333H18.3333V23.3333Z" fill="black"/>
+                    <path d="M5 26.6667C5 28.505 6.495 30 8.33333 30H14.31L20 35.69L25.69 30H31.6667C33.505 30 35 28.505 35 26.6667V6.66668C35 4.82834 33.505 3.33334 31.6667 3.33334H8.33333C6.495 3.33334 5 4.82834 5 6.66668V26.6667ZM8.33333 6.66668H31.6667V26.6667H24.31L20 30.9767L15.69 26.6667H8.33333V6.66668Z" fill="black" />
+                    <path d="M18.3333 23.3333H21.6667V18.3333H26.6667V15H21.6667V10H18.3333V15H13.3333V18.3333H18.3333V23.3333Z" fill="black" />
                   </svg>
                     Upload nieuw bericht</p>
-                  <button className="content-upload-btn" data-bs-toggle="modal" onClick={handleContent}> {loading ? "Loading...." : "Maak een bericht"} {loading ? <span className="dot-pulse"></span> : null}</button>
+                  <button className="content-upload-btn" data-bs-toggle="modal" onClick={handleContent}> {loading ? <span className="dot-pulse"></span> : "Maak een bericht"} </button>
                 </div>
               </div>
               {/*  */}
@@ -320,7 +321,7 @@ const ContentPage = (props) => {
                                     <Modal.Header closeButton>
                                       <Modal.Title>{previewTitle}</Modal.Title>
                                     </Modal.Header>
-                                    <Modal.Body><img alt="example" style={{ width: '100%',}} src={previewImage} /></Modal.Body>
+                                    <Modal.Body><img alt="example" style={{ width: '100%', }} src={previewImage} /></Modal.Body>
                                   </Modal>
                                 </>
                               </div>
@@ -338,7 +339,7 @@ const ContentPage = (props) => {
                               </div>
                             </div>
                           </div>
-                          
+
                           <div className="col-md-4 sbmit-right">
                             <video src={videourl} width="320" height="240" controls />
                             <label className="mt-4 mb-3"> Heb je alles gecheckt?</label>
@@ -394,7 +395,7 @@ const ContentPage = (props) => {
                           <h5>Details</h5>
                           <form onSubmit={handleSubmit}>
                             <div className="mb-3">
-                              <input type="text" onChange={handleContentChange} name="title" placeholder="Titel van je foto"/>
+                              <input type="text" onChange={handleContentChange} name="title" placeholder="Titel van je foto" />
                               {formErrors.title && (
                                 <span className="error">{formErrors.title}</span>
                               )}
@@ -409,7 +410,7 @@ const ContentPage = (props) => {
                               <div className="video-de pe-3">
                                 <label>Foto uploaden</label>
                                 <p>Selecteer hier een afbeelding die je op de feed van je subscribers wilt laten zien. (Grootte moet 1280x720 pixels zijn)</p>
-                                <img src={imageurl} width="200"/>
+                                <img src={imageurl} width="200" />
 
                               </div>
                               <div className="video-de ps-3">

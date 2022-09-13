@@ -33,7 +33,7 @@
   $My-gradient: linear-gradient(87.39deg, #bf00a5 0%, #ff6a6a 100%);
   $danger: #FF0000;
   $grey: #e9ecef;
-  $sub-pink: #E10051;
+  $light-grey: #8F8F8F;
 
   ::selection {
     background: $pink;
@@ -256,6 +256,7 @@
     .dash-logo {
       width: auto;
       margin-bottom: 18px;
+      padding: 0px 20px;
     }
 
     .sidenav {
@@ -272,12 +273,15 @@
           padding: 12px 20px;
           width: 100%;
           color: $white;
-          font-size: 15px;
+          font-size: 17px;
           font-weight: 500;
           border-radius: 10px;
           margin: 14px 0;
           cursor: pointer;
           transition: all .2s ease-in-out;
+          align-items: center;
+          vertical-align: middle;
+          display: inline-flex;
 
           svg {
             width: 20px;
@@ -782,6 +786,10 @@
 
   .setting-tab .setting-tab-content .table_outer th {
     padding-left: 0 !important;
+    color: $light-grey;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 13px;
   }
 
   .setting-tab .setting-tab-content .table_outer td svg {
@@ -790,6 +798,10 @@
 
   .subs-page .table_outer th {
     padding-left: 0 !important;
+    color: $light-grey;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 13px;
   }
 
   .subscriber-search {
@@ -1020,6 +1032,7 @@
 
   .content-upload-btn {
     width: 100%;
+    height: 48px;
     padding: 12px 36px;
     text-align: center;
     color: $white;
@@ -1304,13 +1317,13 @@
 
   .subs-page {
     background-color: $white;
-    margin-top: 110px;
+    margin-top: 55px;
     padding: 50px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
     table td {
-      padding: 30px 0 !important;
+      padding: 20px 0 !important;
     }
   }
 
@@ -2667,7 +2680,7 @@
 
     .sidebar .sidenav ul li {
       padding: 8px 14px;
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .sidebar .sidenav ul li svg {
@@ -2766,7 +2779,7 @@
     }
 
     .subs-page {
-      margin-top: 64px;
+      margin-top: 30px;
       padding: 24px;
     }
 
