@@ -80,7 +80,7 @@ const ContactUs = (props) => {
                             <input type="email" name="email" onChange={handleChange} defaultValue={props.profileData?.email} disabled />
                             <label>Vraag of opmerking</label>
                             <input type="text" name="message" onChange={handleChange} />
-                            <div class="mb-4"><input class="form-submit" type="submit" value="Opslaan" /></div>
+                            <div class="mb-4"><input class="form-submit" type="submit" value="Indienen" /></div>
                         </form>
                     </div>
                 </div>

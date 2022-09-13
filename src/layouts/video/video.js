@@ -46,7 +46,7 @@ const Video = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   console.log(listComment, "listCOme")
 
-  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -88,7 +88,7 @@ const Video = (props) => {
   /* pagination starts from here */
   useEffect(() => {
     get_feed_data({
-        page: currentPage
+      page: currentPage
     });
     //eslint-disable-next-line
   }, [token, get_feed_data]);
@@ -97,14 +97,14 @@ const Video = (props) => {
     get_feed_data({
       page: page
     });
-      setCurrentPage(page)
+    setCurrentPage(page)
   }
-  console.log(currentPage,"curee")
+  console.log(currentPage, "curee")
   useEffect(() => {
-      if (feedlist?.data?.length > 0) {
-          setTotalPage(props.feedlist?.total)
-      }
-      //eslint-disable-next-line
+    if (feedlist?.data?.length > 0) {
+      setTotalPage(props.feedlist?.total)
+    }
+    //eslint-disable-next-line
   }, [feedlist])
   /* pagination ends here */
 
@@ -244,7 +244,7 @@ const Video = (props) => {
 
             }
 
-            {((initial_data?.video !== null && initial_data?.thumbnail ===null) || (initial_data?.video !== null && initial_data?.thumbnail !==null)) &&
+            {((initial_data?.video !== null && initial_data?.thumbnail === null) || (initial_data?.video !== null && initial_data?.thumbnail !== null)) &&
               <div className="video-like-btn d-flex justify-content-start align-items-center">
                 <p>{initial_data?.likes} Likes</p>
               </div>
@@ -612,16 +612,16 @@ const Video = (props) => {
         </div>
         <div className="col-md-4">
           <div className="naar-right">
-          {props.feedlist?.data?.map((item, index) => {
-            return (
-              <>
-                <div
-                  className="creator-video side-sm-vdo mt-4"
-                  data-aos="fade-up"
-                  key={index}
-                  onClick={() => handleGet(item?.id)}
-                >
-                  {/* <div className="creator-nm-detail d-flex justify-content-start align-items-center">
+            {props.feedlist?.data?.map((item, index) => {
+              return (
+                <>
+                  <div
+                    className="creator-video side-sm-vdo mt-4"
+                    data-aos="fade-up"
+                    key={index}
+                    onClick={() => handleGet(item?.id)}
+                  >
+                    {/* <div className="creator-nm-detail d-flex justify-content-start align-items-center">
                       <div>
                         <img
                           src={`https://subfee.techstriker.com/backend/public${item?.creator_detail?.profile_image}`}
@@ -632,18 +632,18 @@ const Video = (props) => {
                       </div>
                     </div> */}
 
-                  {item.video !== null ? (
-                    <div className="single-video">
-                      <ReactPlayer
-                        className="videoFrame"
-                        url={`https://subfee.techstriker.com/backend/public${item.video}`}
-                        light={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
-                        playing={false}
-                        // controls
-                        // onPlay={() => handleViewCount(item.id, item.user_id)}
-                        width="100"
-                      />
-                      {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
+                    {item.video !== null ? (
+                      <div className="single-video">
+                        <ReactPlayer
+                          className="videoFrame"
+                          url={`https://subfee.techstriker.com/backend/public${item.video}`}
+                          light={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
+                          playing={false}
+                          // controls
+                          // onPlay={() => handleViewCount(item.id, item.user_id)}
+                          width="100"
+                        />
+                        {/* <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                               <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
                                                                   {item.like_status ?
                                                                       <svg className="after-like" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
@@ -656,20 +656,20 @@ const Video = (props) => {
                                                               </button>
                                                               <p>{item?.likes} Likes</p>
                                                           </div> */}
-                    </div>
-                  ) : item.thumbnail !== null ? (
-                    <div className="single-video">
-                      <img
-                        src={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
-                        className="feed-img"
-                      />
+                      </div>
+                    ) : item.thumbnail !== null ? (
+                      <div className="single-video">
+                        <img
+                          src={`https://subfee.techstriker.com/backend/public${item.thumbnail}`}
+                          className="feed-img"
+                        />
 
-                    </div>
-                  ) : null}
+                      </div>
+                    ) : null}
 
-                  <h6 className="mt-3">{item?.title}</h6>
-                  <p className="video-desc">{item?.desc}</p>
-                  {/* {item.thumbnail === null && item.video === null ?
+                    <h6 className="mt-3">{item?.title}</h6>
+                    <p className="video-desc">{item?.desc}</p>
+                    {/* {item.thumbnail === null && item.video === null ?
                                                   <div className="video-like-btn d-flex justify-content-start align-items-center">
                                                       <button className="d-flex justify-content-center align-items-center" onClick={() => handleLikes(item.id, item.user_id)}>
                                                           {item.like_status ?
@@ -684,25 +684,25 @@ const Video = (props) => {
                                                       <p>{item?.likes} Likes</p>
                                                   </div>
                                                   : null} */}
-                  <div></div>
-                </div>
-              </>
-            );
-          })}
-          <div className="creator-video side-sm-vdo mt-4 feed_pagination">
-          <Pagination
-            className="pagination-bar"
-            currentPage={currentPage}
-            totalCount={totalPage}
-            pageSize={PageSize}
-            onPageChange={page => handlePerPage(page)}
-            leftBtn={<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.40001 2.99999L5.40001 5.99999L8.40001 8.99999L7.80001 10.2L3.60001 5.99999L7.80001 1.79999L8.40001 2.99999Z" fill="#6A6A6A"></path></svg>}
-            rightBtn={<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.60002 9.00001L6.60002 6.00001L3.60002 3.00001L4.20002 1.80001L8.40002 6.00001L4.20002 10.2L3.60002 9.00001Z" fill="#6A6A6A"></path></svg>}
-          />
+                    <div></div>
+                  </div>
+                </>
+              );
+            })}
+            <div className="creator-video side-sm-vdo mt-4 feed_pagination">
+              <Pagination
+                className="pagination-bar"
+                currentPage={currentPage}
+                totalCount={totalPage}
+                pageSize={PageSize}
+                onPageChange={page => handlePerPage(page)}
+                leftBtn={<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.40001 2.99999L5.40001 5.99999L8.40001 8.99999L7.80001 10.2L3.60001 5.99999L7.80001 1.79999L8.40001 2.99999Z" fill="#6A6A6A"></path></svg>}
+                rightBtn={<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.60002 9.00001L6.60002 6.00001L3.60002 3.00001L4.20002 1.80001L8.40002 6.00001L4.20002 10.2L3.60002 9.00001Z" fill="#6A6A6A"></path></svg>}
+              />
+            </div>
           </div>
-          </div>
-          
-          
+
+
         </div>
       </div>
 
