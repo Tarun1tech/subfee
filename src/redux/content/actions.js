@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 /* LISTCLIENT */
 export const get_content_data = payload => async dispatch => {
-    console.log(payload, "pa")
+   
     let response = await contentData(payload);
     response = checkResponse(response);
 

@@ -9,7 +9,9 @@ const Pagination = props => {
         siblingCount = 1,
         currentPage,
         pageSize,
-        className
+        className,
+        leftBtn,
+        rightBtn,
     } = props;
 
     const paginationRange = usePagination({
@@ -42,7 +44,8 @@ const Pagination = props => {
             <li className={classnames(' page-item page-link content-next-tablepagination-item', {
                 disabled: currentPage == 1
             })} onClick={onPrevious}>
-                Vorige
+                {leftBtn}
+                {/* Vorige */}
             </li>
 
             {paginationRange.map(pageNumber => {
@@ -71,7 +74,8 @@ const Pagination = props => {
                 disabled: currentPage == lastPage
             })}
                 onClick={onNext} disabled>
-                Volgende
+                    {rightBtn}
+                {/* Volgende */}
             </li>
 
         </ul>

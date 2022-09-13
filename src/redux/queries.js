@@ -148,9 +148,10 @@ export const themeData = (data) => {
 // Comment API
 
 export const feedData = (data) => {
+  console.log(data,"ffffffffffffffffffffffffffffffffff")
   let token = localStorage.getItem("access_token");
   return axios
-    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getfeedsbycreator`, {
+    .get(`${process.env.REACT_APP_API_ENDPOINT}creator/getfeedsbycreator/?page=${data.page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
