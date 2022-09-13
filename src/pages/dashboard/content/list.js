@@ -244,6 +244,8 @@ const ContentList = (props) => {
                         totalCount={totalPage}
                         pageSize={PageSize}
                         onPageChange={page => handlePerPage(page)}
+                        leftBtn="Vorige"
+                        rightBtn="Volgende"
                     />
                 </div>
             </div>
