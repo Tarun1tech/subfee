@@ -241,7 +241,7 @@ const ContentPage = (props) => {
   return (
     <div>
       <ToastContainer />
-      <div className="dash-content-side">
+      <div className="dash-content-side content-pg">
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12 content-first-row-gap">

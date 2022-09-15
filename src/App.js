@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Auth from "./Auth";
 import 'antd/dist/antd.css';
 function App() {
-  function clearStorage() {
+  /* function clearStorage() {
     let session = sessionStorage.getItem("ref");
     if (session == null) {
       Auth.signout();
@@ -20,7 +20,7 @@ function App() {
   window.addEventListener("load", clearStorage);
   window.onbeforeunload = function () {
     localStorage.clear();
-  }
+  } */
   return (
     <div className="App">
       <BrowserRouter>

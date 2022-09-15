@@ -125,7 +125,7 @@ const ContentList = (props) => {
     };
     console.log(contentlist, "content listttttt")
     return (
-        <div className="col-md-12 mt-4">
+        <div className="col-md-12">
             <div className="setting-tab">
                 <div className="setting-tab-content">
                     <h6 className="stats-page-title">Recent geüploade content</h6>

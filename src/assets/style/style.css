@@ -109,6 +109,7 @@ body {
   letter-spacing: 0em;
   margin-top: 18px;
   margin-bottom: 8px;
+  color: #000;
 }
 .login_back .login_card form input[type=text] {
   width: 100%;
@@ -235,7 +236,7 @@ body {
   padding: 12px 20px;
   width: 100%;
   color: #fff;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   border-radius: 10px;
   margin: 14px 0;
@@ -330,7 +331,7 @@ body {
 }
 
 .setting-tab .sml-heading {
-  margin-top: 30px;
+  margin-top: 15px;
   font-size: 16px !important;
   color: #000 !important;
   font-weight: 700 !important;
@@ -349,7 +350,7 @@ body {
   font-weight: 700;
   color: #a5a5a5;
   margin-top: 30px;
-  padding: 10px 40px;
+  padding: 8px 25px;
 }
 .setting-tab .verti {
   background-color: #fff;
@@ -357,7 +358,7 @@ body {
 }
 .setting-tab .nav-pills .nav-link {
   text-align: left;
-  padding: 10px 40px;
+  padding: 8px 25px;
   transition: 0.4s ease-in-out;
 }
 .setting-tab .nav-pills .nav-link:hover {
@@ -407,16 +408,18 @@ body {
   margin-top: 20px;
 }
 .setting-tab .setting-tab-content .tele-btn button {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: #FF0000;
   border: 1px solid #FF0000;
-  padding: 10px;
-  border-radius: 15px;
+  padding: 5px 20px;
   background-color: #fff;
+  width: 100%;
+  border-radius: 10px;
 }
 .setting-tab .setting-tab-content .tele-btn button svg {
-  width: 14px;
+  width: 22px;
+  margin-right: 10px;
 }
 .setting-tab .setting-tab-content .ant-upload {
   width: 100% !important;
@@ -445,6 +448,7 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 14px;
+  color: #000;
 }
 .setting-tab .setting-tab-content form label {
   font-size: 14px;
@@ -456,7 +460,7 @@ body {
   width: 100%;
   padding: 6px;
   border: 1px solid #C9C9C9;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 .setting-tab .setting-tab-content form span {
   font-size: 17px;
@@ -727,6 +731,7 @@ table .icon_setting {
   font-size: 14px;
   border: 1px solid #a4a4a4;
   border-radius: 10px;
+  font-weight: 500;
 }
 .table-header-inactive:hover {
   background-color: #FE6A6A;
@@ -741,10 +746,13 @@ table .icon_setting {
   border: 1px solid #A4A4A4;
   border-radius: 10px;
   background-color: transparent;
+  font-weight: 500;
 }
 
 .export_popup_title {
-  margin-top: 16px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .modal-modal-size {
@@ -785,7 +793,7 @@ table .icon_setting {
   width: 0;
 }
 .export-subs-body .file-icon {
-  width: 215px;
+  width: 205px;
   height: 75px;
   border: 2px solid #999;
   border-radius: 10px;
@@ -823,7 +831,7 @@ table .icon_setting {
 .subs-table-row p {
   margin-bottom: 0;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 .subs-table-row img {
   width: 40px;
@@ -917,6 +925,7 @@ table .icon_setting {
 .modal-content {
   border-radius: 16px !important;
   border: none;
+  margin-top: 80px;
 }
 
 .modal-header {
@@ -972,7 +981,7 @@ table .icon_setting {
 }
 .pagination .page-item.active .page-link {
   z-index: 3;
-  color: #fff !important;
+  color: #000 !important;
   background-color: #e9ecef;
   border: none;
   border-radius: 10px;
@@ -980,6 +989,7 @@ table .icon_setting {
 }
 .pagination .selected {
   background-color: #320035 !important;
+  color: #fff !important;
 }
 
 .page-item:first-child .page-link {
@@ -1049,7 +1059,7 @@ table .icon_setting {
   display: none;
 }
 .video-submit-model .sbmit-right {
-  margin-top: 32px;
+  margin-top: 0;
 }
 .video-submit-model .sbmit-right svg {
   margin-right: 8px;
@@ -1430,13 +1440,13 @@ table .icon_setting {
 
 .financial-data p {
   color: #159800;
-  font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 4px;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-bottom: 0;
 }
 .financial-data span {
   color: #959595;
-  font-size: 500;
+  font-weight: 500;
   font-size: 15px;
 }
 
@@ -2023,13 +2033,214 @@ input[type=search]::-webkit-search-cancel-button {
   margin-top: 54px;
 }
 
+.content-pg h6.stats-page-title {
+  margin-bottom: 0;
+}
+
+.content-pg tbody tr td:first-child {
+  width: 35px;
+}
+
+.page-item.active .page-link.selected {
+  color: #fff !important;
+}
+
+.content-pg tbody tr td:nth-child(2) {
+  width: 50%;
+}
+
+.ant-upload.ant-upload-select.ant-upload-select-picture-card {
+  border: 2px dashed #E3E6EC;
+  border-radius: 16px;
+  width: 152px;
+  height: 85px;
+  font-weight: 300;
+}
+
+.ant-upload.ant-upload-select.ant-upload-select-picture-card div {
+  margin-top: 0 !important;
+}
+
+.video-submit-model .d-flex.justify-content-between {
+  flex-wrap: wrap;
+}
+
+.video-submit-model .video-de.ps-3:last-child {
+  margin-top: 20px;
+}
+
+.custom-comment-switch {
+  margin-top: 0;
+}
+
+.video-submit-model .pe-3 p {
+  max-width: 220px;
+}
+
+button.table-header-inactive.me-5 {
+  margin-right: 30px !important;
+}
+
+.financial_block_outer .setting-tab .setting-tab-content,
+.financial_block_outer .setting-tab {
+  height: 100%;
+}
+
+.financial_block_outer .col-md-12 {
+  margin-top: 30px;
+}
+
+.password_change button.btn-success.rounded {
+  border-radius: 8px !important;
+}
+
+.profile_update_tabs input.form-submit {
+  border-radius: 8px !important;
+}
+
+.setting-tab .setting-tab-content form input[type=text], .setting-tab .setting-tab-content form input[type=email],
+.setting-tab .setting-tab-content form input[type=password] {
+  background: #FDFDFD;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #D6D6D6 !important;
+  padding: 0;
+}
+
+h2.accordion-header button {
+  padding: 20px 0;
+}
+
+.setting-tab .setting-tab-content .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  background: none;
+}
+
+.accordion-body {
+  padding: 0 0 15px !important;
+  color: #000000;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+button.accordion-button {
+  font-weight: 600;
+  font-size: 15px;
+  color: #000000;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.profile_update_tabs p.small-heading {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  color: #000000 !important;
+  margin: 0;
+}
+
+.creator-video.side-sm-vdo h6 {
+  font-weight: 700;
+}
+
+.creator-video h6 {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  color: #000000;
+}
+
 /* media query starts from here */
 @media only screen and (min-width: 1500px) {
   .container {
     max-width: 1020px !important;
   }
 }
+@media only screen and (max-width: 1199px) {
+  .sbmit-right video {
+    width: 100%;
+    height: auto;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .modal-dialog {
+    max-width: 90% !important;
+  }
+  .video-submit-model form .form-submit {
+    padding: 14px 18px !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .video-submit-model .sbmit-right {
+    margin-top: 20px;
+  }
+  .table_outer tr {
+    white-space: nowrap;
+  }
+  .setting-tab-content table tr {
+    white-space: nowrap;
+  }
+  .dash-content-side table.table {
+    overflow-x: scroll;
+    display: inline-block;
+  }
+  .setting-tab-content table tr td {
+    padding-right: 20px !important;
+  }
+}
 @media only screen and (max-width: 480px) {
+  .login_card h4.small_heading {
+    font-size: 25px;
+  }
+  .setting-tab .setting-tab-content .ant-input-affix-wrapper {
+    width: auto;
+  }
+  .setting-tab .setting-tab-content, .financial_block_outer .setting-tab {
+    height: auto;
+  }
+  .financial_block_outer .col-md-12 {
+    margin-top: 0;
+  }
+  button.table-header-inactive.me-5 {
+    margin-right: 30px !important;
+  }
+  .user-welcome h1 {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  .user-welcome p {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  .colored-btn a {
+    width: 100%;
+  }
+  .support_banner_btns {
+    flex-wrap: wrap;
+  }
+  .support_banner_btns .light-btn {
+    margin-top: 20px;
+  }
+  .support_banner_btns .colored-btn.me-4 {
+    width: 100%;
+  }
+  .custom-modal .modal-dialog .modal-button button {
+    width: 100%;
+    min-height: 50px;
+  }
+  .custom-modal .modal-dialog .modal-button {
+    flex-wrap: wrap;
+  }
+  .video-de-commentt {
+    display: block;
+    width: 100%;
+  }
+  .modal-dialog {
+    max-width: 95% !important;
+  }
   .sidenav {
     margin: 0 15px 0 15px;
   }
@@ -2236,6 +2447,12 @@ input[type=search]::-webkit-search-cancel-button {
   }
 }
 @media screen and (min-width: 480px) and (max-width: 1024px) {
+  .setting-tab .setting-tab-content, .financial_block_outer .setting-tab {
+    height: auto;
+  }
+  .financial_block_outer .col-md-12 {
+    margin-top: 0;
+  }
   .sidenav {
     margin: 0 15px 0 15px;
   }
