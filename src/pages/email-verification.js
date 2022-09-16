@@ -14,7 +14,7 @@ const EmailVerification = (props) => {
     });
     const validate = (values) => {
         let errors = {};
-        const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        const regexEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
         if (!values.email || !regexEmail.test(values.email)) {
             errors.email = `Enter a valid email.`;
         }

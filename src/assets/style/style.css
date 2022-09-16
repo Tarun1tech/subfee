@@ -711,12 +711,13 @@ table .icon_setting {
 }
 
 .table-header-active {
-  padding: 8px 12px;
+  padding: 7px 12px;
   background-color: #FE6A6A;
   color: #fff;
   font-size: 14px;
+  font-weight: 500;
   border-radius: 10px;
-  border: none;
+  border: 1px solid #FE6A6A;
 }
 .table-header-active::before {
   background-color: #fff;
@@ -736,6 +737,14 @@ table .icon_setting {
 .table-header-inactive:hover {
   background-color: #FE6A6A;
   color: #fff;
+}
+
+.dbtn1 {
+  margin-right: 48px;
+}
+
+.dbtn {
+  margin-right: 16px;
 }
 
 .export-subscribers-btn {
@@ -2077,10 +2086,6 @@ input[type=search]::-webkit-search-cancel-button {
   max-width: 220px;
 }
 
-button.table-header-inactive.me-5 {
-  margin-right: 30px !important;
-}
-
 .financial_block_outer .setting-tab .setting-tab-content,
 .financial_block_outer .setting-tab {
   height: 100%;
@@ -2203,9 +2208,6 @@ button.accordion-button {
   }
   .financial_block_outer .col-md-12 {
     margin-top: 0;
-  }
-  button.table-header-inactive.me-5 {
-    margin-right: 30px !important;
   }
   .user-welcome h1 {
     font-size: 25px;
@@ -2351,7 +2353,6 @@ button.accordion-button {
     margin-bottom: 0;
   }
   .table-header-inactive {
-    margin-right: 10px !important;
     padding: 1px 10px !important;
     font-size: 13px !important;
   }
@@ -2506,9 +2507,6 @@ button.accordion-button {
   }
   .subs_handle_btns {
     width: auto !important;
-  }
-  .table-header-inactive {
-    margin-right: 12px !important;
   }
   .financial_block_outer {
     margin-top: 40px !important;

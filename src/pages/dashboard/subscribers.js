@@ -50,8 +50,10 @@ const Subscribers = (props) => {
   const [inactives, setInActives] = useState(true)
   const handleFilter = (data) => {
     setActives(!actives)
+    setInActives(true)
     setStripeStatus(data)
-    console.log(actives, "actives")
+    console.log("handle filter stripe status", data)
+    /* console.log(actives, "actives") */
     if (actives) {
       setActive(true);
       setInActive(false)
@@ -75,8 +77,10 @@ const Subscribers = (props) => {
   }
   const handleFilterActive = (data) => {
     setInActives(!inactives)
+    setActives(true)
     setStripeStatus(data)
-    console.log(inactives, "actives")
+    console.log("handlefilteractive stripe status", data)
+    /* console.log(inactives, "actives") */
     if (inactives) {
       setInActive(true)
       setActive(false)
@@ -156,8 +160,8 @@ const Subscribers = (props) => {
                     </form>
                   </div>
                   <div className="subs_handle_btns col-md-4 text-end">
-                    <button className={active ? "table-header-active me-2" : "table-header-inactive me-2"} onClick={() => handleFilter("1", "active")}>Actief</button>
-                    <button className={inactive ? "table-header-active me-5" : "table-header-inactive me-5"} onClick={() => handleFilterActive("0", "active")}>Inactief</button>
+                    <button className={active ? "dbtn table-header-active" : "dbtn table-header-inactive"} onClick={() => handleFilter("1", "active")}>Actief</button>
+                    <button className={inactive ? "dbtn1 table-header-active" : "dbtn1 table-header-inactive"} onClick={() => handleFilterActive("0", "active")}>Inactief</button>
                     <button className="export-subscribers-btn" type="button" onClick={() => setShow(true)}>Exporteren</button>
                     {/* <div class="modal fade" id="exportSubs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-modal-size">

@@ -74,7 +74,7 @@ const Profile = (props) => {
             errors.password_confirmation = `Confirmation and New password must match be same`;
         }
 
-        const regexUsername = /^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+        const regexUsername = /^[a-zA-Z0-9]+$/;
         if (!values.name || !regexUsername.test(values.name)) {
             errors.username = `Enter valid username`;
         }
